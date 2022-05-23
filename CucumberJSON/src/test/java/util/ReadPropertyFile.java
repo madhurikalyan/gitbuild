@@ -1,12 +1,14 @@
 package util;
 
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
 
 public class ReadPropertyFile {
 	public static String URL;
 	static Properties prop = new Properties();
-	static String proFileName = "utility/config.properties"; 
+	static FileReader reader;  
+	static String proFileName = "./src/test/java/util/config.Properties"; 
 	
 	
 	public static String readURL() {
@@ -101,14 +103,19 @@ public class ReadPropertyFile {
 		}
 		return prop.getProperty("Reportername");
 	}
-	public static String getJSONPath() {
+	public static String getJSONPath() throws IOException{
 		try {
-			prop.load(Thread.currentThread().getContextClassLoader().getResourceAsStream(proFileName));  
+			reader=new FileReader(proFileName);
+			prop.load(reader);
+			//prop.load(Thread.currentThread().getContextClassLoader().getResourceAsStream(proFileName));  
+			System.out.println(prop.getProperty("JSONPath"));
+			return prop.getProperty("JSONPath");
 	}
-		catch (IOException e) {
+		catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
-		return prop.getProperty("JSONPath");
+		
 	}
 }
 /*

@@ -1,5 +1,6 @@
 package stepDefinitions;
 
+
 import java.util.HashMap;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
@@ -25,7 +26,7 @@ public class LoginPageStepDefinition {
 	
 	
 	@Given("user is on login page")
-	public void user_is_on_login_page() {
+	public void user_is_on_login_page() throws Exception {
 	    // Write code here that turns the phrase above into concrete actions
 		WebDriverManager.chromedriver().setup();
 		driver =new ChromeDriver();
@@ -34,9 +35,13 @@ public class LoginPageStepDefinition {
 		driver.get("https://opensource-demo.orangehrmlive.com");
 		loginPageObj= new LoginPage(driver);
 		beneficiarytestData=JSONUtils.getNestedTestDataInMap("Beneficiary");
+		System.out.println(beneficiarytestData);
 		ProfiletestData=JSONUtils.getNestedTestDataInMap("Profile");
+		System.out.println(ProfiletestData);
 		TaskCreationtestData=JSONUtils.getNestedTestDataInMap("TaskCreation");
+		System.out.println(TaskCreationtestData);
 		LinkBenPettestData=JSONUtils.getNestedTestDataInMap("Link Ben & Pet");
+		System.out.println(LinkBenPettestData);
 	}
 
 	//Some other steps were also undefined:
@@ -50,7 +55,7 @@ public class LoginPageStepDefinition {
 	@Then("page title should be {string}")
 	public void page_title_should_be(String expectedTitleName) {
 	    // Write code here that turns the phrase above into concrete actions
-		System.out.println("Username is :"+beneficiarytestData.get("Title"));
+		System.out.println("title is :"+beneficiarytestData.get("Title"));
 		Assert.assertTrue(title.contains(beneficiarytestData.get("Title")));
 	}
 	@When("user enter username {string}")
@@ -62,14 +67,14 @@ public class LoginPageStepDefinition {
 	@When("user enter password {string}")
 	public void user_enter_password(String password) {
 	    // Write code here that turns the phrase above into concrete actions
-		System.out.println("Username is :"+beneficiarytestData.get("Password"));
+		System.out.println("Password is :"+beneficiarytestData.get("Password"));
 		loginPageObj.enterPassword(beneficiarytestData.get("Password"));
 	}
 	@When("user click on login button")
-	public void user_click_on_login_button() {
+	public void user_click_on_login_button() throws Exception {
 	    // Write code here that turns the phrase above into concrete actions
 		loginPageObj.clickOnLogin();
-		 String linkBeneUserID = "Ben_" +1234;
+		 String linkBeneUserID = "Ben_" +123456;
 		 
 		 //updating into profile object
 		 ProfiletestData.put("Ben_UserID",beneficiarytestData.get("Userid"));

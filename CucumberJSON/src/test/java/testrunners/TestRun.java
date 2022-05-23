@@ -9,9 +9,10 @@ import io.cucumber.junit.CucumberOptions;
 @CucumberOptions(
 		features = ".//Features/Loginpage.feature",
 		glue="stepDefinitions",
-		dryRun=true,
+		dryRun=false,
+		monochrome=false,
 		plugin= {"pretty",
-				"json:target/cucumberReport.json"
+				"html:test-output"
 		}
 		)
 

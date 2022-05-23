@@ -20,6 +20,7 @@ public class JSONUtils {
 	static HashMap<String,Object> testSuiteData;
 	static HashMap<String,Object> NestedtestSuiteData;
 	static JSONArray value=null;
+	static String filePath;
 	//static String filePath = "./src/main/resources/testdataJSON/Imagility_CapH1B.json";
 	static  HashMap<String, String> nestedTestDataMap;
 	static HashMap<String, Object> MainTestData;
@@ -30,14 +31,16 @@ public class JSONUtils {
 	 * @Param: JSON File Path as String
 	 * @return: JSONArray
 	 */
-public static  JSONArray readJsonFiletoArray(String JsonPath) throws IOException, ParseException {
+public static  JSONArray readJsonFiletoArray(String JsonPath) throws Exception {
+	JsonPath=ConfigReader.readJSONFilePath();
 	FileReader reader = new FileReader(JsonPath);
 	JSONParser parser = new JSONParser();
 	JSONArray jsonArr = (JSONArray)parser.parse(reader);
 	return jsonArr;
 }
 //----------------------------------------------
-public static  JSONObject readJsonFiletoJSONObject(String JsonPath) throws IOException, ParseException {
+public static  JSONObject readJsonFiletoJSONObject(String JsonPath) throws Exception {
+	JsonPath=ConfigReader.readJSONFilePath();
 	FileReader reader = new FileReader(JsonPath);
 	JSONParser parser = new JSONParser();
 	Object jsonArray = parser.parse(reader);
@@ -89,11 +92,11 @@ public static HashMap<String, String> getNestedTestDataintoMap(Object abc) {
 return nestedTestDataMap;
 }
 //------------------------------------------
-public static HashMap<String, String> getNestedTestDataInMap(String Mainkey) {
+public static HashMap<String, String> getNestedTestDataInMap(String Mainkey) throws Exception {
 	try {
 		testSuiteData= new HashMap<String,Object>();
 		nestedTestDataMap=new HashMap<String, String>();
-		JSONObject jsonobj =(readJsonFiletoJSONObject(ReadPropertyFile.getJSONPath()));
+		JSONObject jsonobj =(readJsonFiletoJSONObject(ConfigReader.readJSONFilePath()));
 		testSuiteData=getTestDataintoMap(jsonobj);
 				value=(JSONArray) testSuiteData.get(Mainkey);
 				String dataType = value.getClass().getSimpleName();  //JSONArray
@@ -212,10 +215,10 @@ public static JSONArray toJsonArray(JSONObject jobj) {
 	
 }
 //---------------------------------------------
-public static HashMap<String, Object> ConvertJSONArray(String Mainkey,JSONArray jarray) {
+public static HashMap<String, Object> ConvertJSONArray(String Mainkey,JSONArray jarray) throws Exception {
 	try {
 		testSuiteData= new HashMap<String,Object>();
-		JSONObject jsonobj =(readJsonFiletoJSONObject(ReadPropertyFile.getJSONPath()));
+		JSONObject jsonobj =(readJsonFiletoJSONObject(ConfigReader.readJSONFilePath()));
 		testSuiteData=getTestDataintoMap(jsonobj);
 		for(String mainKeyName: testSuiteData.keySet()) {
 			if(mainKeyName.equals(Mainkey)) {
@@ -256,10 +259,10 @@ public static JSONObject ObjectMaptoJsonObject(HashMap<String, Object> map) {
     return jsonObject;
 }
 //-------------------------------------------
-public static void WriteintoJSONFile(String path,JSONObject jobj)  {
+public static void WriteintoJSONFile(String path,JSONObject jobj) throws Exception  {
 	
     try {
-   	 file = new FileWriter(ReadPropertyFile.getJSONPath());
+   	 file = new FileWriter(ConfigReader.readJSONFilePath());
    	 file.write(jobj.toJSONString());
 	} catch (IOException e) {
 		// TODO Auto-generated catch block
@@ -278,7 +281,7 @@ public static void WriteintoJSONFile(String path,JSONObject jobj)  {
 }
 //----------------------------
 
-public static void writing(String sheetname,HashMap<String, String> sheettestData) {
+public static void writing(String sheetname,HashMap<String, String> sheettestData) throws Exception {
 	JSONObject sheetJSONObject=toJsonObject(sheettestData);
 	MainTestData=ConvertJSONArray(sheetname, toJsonArray(sheetJSONObject));
 	JSONObject jj=ObjectMaptoJsonObject(MainTestData);
