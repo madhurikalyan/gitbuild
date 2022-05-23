@@ -4,18 +4,19 @@ import java.util.HashMap;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import pageObjects.LoginPage;
 import util.JSONUtils;
 
 public class LoginPageStepDefinition {
 	
-	private static String title;
-	LoginPage loginPageObj= new LoginPage();
 	public WebDriver driver;
+	private static String title;
+	public LoginPage loginPageObj;
+	
 	static HashMap<String, String> beneficiarytestData;
 	static HashMap<String, String> ProfiletestData;
 	static HashMap<String, String> TaskCreationtestData;
@@ -31,7 +32,7 @@ public class LoginPageStepDefinition {
 		driver.manage().deleteAllCookies();
 		driver.manage().window().maximize();
 		driver.get("https://opensource-demo.orangehrmlive.com");
-		
+		loginPageObj= new LoginPage(driver);
 		beneficiarytestData=JSONUtils.getNestedTestDataInMap("Beneficiary");
 		ProfiletestData=JSONUtils.getNestedTestDataInMap("Profile");
 		TaskCreationtestData=JSONUtils.getNestedTestDataInMap("TaskCreation");
@@ -49,16 +50,19 @@ public class LoginPageStepDefinition {
 	@Then("page title should be {string}")
 	public void page_title_should_be(String expectedTitleName) {
 	    // Write code here that turns the phrase above into concrete actions
+		System.out.println("Username is :"+beneficiarytestData.get("Title"));
 		Assert.assertTrue(title.contains(beneficiarytestData.get("Title")));
 	}
 	@When("user enter username {string}")
 	public void user_enter_username(String username) {
 	    // Write code here that turns the phrase above into concrete actions
+		System.out.println("Username is :"+beneficiarytestData.get("Userid"));
 		loginPageObj.enterUserName(beneficiarytestData.get("Userid"));
 	}
 	@When("user enter password {string}")
 	public void user_enter_password(String password) {
 	    // Write code here that turns the phrase above into concrete actions
+		System.out.println("Username is :"+beneficiarytestData.get("Password"));
 		loginPageObj.enterPassword(beneficiarytestData.get("Password"));
 	}
 	@When("user click on login button")
