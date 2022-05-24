@@ -10,7 +10,7 @@ import io.cucumber.junit.CucumberOptions;
 		features = ".//Features/Loginpage.feature",
 		glue="stepDefinitions",
 		dryRun=false,
-		monochrome=false,
+		monochrome=true,
 		plugin= {"pretty",
 				"html:test-output"
 		}
