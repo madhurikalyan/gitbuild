@@ -13,7 +13,8 @@ import io.cucumber.junit.CucumberOptions;
 		monochrome=true,
 		plugin= {"pretty",
 				"html:test-output"
-		}
+		},
+		publish=true
 		)
 
 public class TestRun {

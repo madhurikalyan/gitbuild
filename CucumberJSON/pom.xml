@@ -21,6 +21,14 @@
 
 
 	<dependencies>
+	<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-jvm -->
+<dependency>
+    <groupId>io.cucumber</groupId>
+    <artifactId>cucumber-jvm</artifactId>
+    <version>7.3.4</version>
+    <type>pom</type>
+</dependency>
+	
 <!-- https://mvnrepository.com/artifact/com.sun/tools -->
 <dependency>
     <groupId>com.sun</groupId>
