@@ -7,7 +7,7 @@ import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-		features = ".//Features/Loginpage.feature",
+		features = ".//Features/Screenshotc.feature",
 		glue="stepDefinitions",
 		dryRun=false,
 		monochrome=true,

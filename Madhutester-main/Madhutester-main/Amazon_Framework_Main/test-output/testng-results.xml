@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="47521" started-at="2022-06-30T10:57:35 IST" finished-at="2022-06-30T10:58:23 IST">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="47521" started-at="2022-06-30T10:57:35 IST" finished-at="2022-06-30T10:58:23 IST">
+      <class name="extentreports.LoginPage1">
+        <test-method status="PASS" signature="beforeClass()[pri:0, instance:extentreports.LoginPage1@3bd94634]" name="beforeClass" is-config="true" duration-ms="5259" started-at="2022-06-30T10:57:35 IST" finished-at="2022-06-30T10:57:40 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeClass -->
+        <test-method status="PASS" signature="LoginPage1_test()[pri:0, instance:extentreports.LoginPage1@3bd94634]" name="LoginPage1_test" duration-ms="40478" started-at="2022-06-30T10:57:40 IST" finished-at="2022-06-30T10:58:21 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LoginPage1_test -->
+        <test-method status="PASS" signature="afterClass()[pri:0, instance:extentreports.LoginPage1@3bd94634]" name="afterClass" is-config="true" duration-ms="1738" started-at="2022-06-30T10:58:21 IST" finished-at="2022-06-30T10:58:23 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterClass -->
+      </class> <!-- extentreports.LoginPage1 -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

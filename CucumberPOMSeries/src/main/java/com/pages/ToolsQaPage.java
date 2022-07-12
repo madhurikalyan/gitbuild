@@ -11,6 +11,11 @@ public class ToolsQaPage {
 		this.driver = driver;
 	}
 	
+	public String getLoginPageTitle() {
+		return driver.getTitle();
+	}
+
+	
 	public boolean isHomeLinkExist() {
 		return driver.findElement(HomeLink).isDisplayed();
 	}

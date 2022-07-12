@@ -1,0 +1,12 @@
+
+Scenario Outline: Candidate scenario                                           [90m# src/test/resources/parallel/Addcandidate.feature:19[0m
+  [32mGiven [0m[32muser has already logged in to application[0m                              [90m# parallel.Homepagestepdefinition.user_has_already_logged_in_to_application(io.cucumber.datatable.DataTable)[0m
+  [32mGiven [0m[32muser navigates to candidate page[0m                                       [90m# parallel.Addcandidatestepdefinition.user_navigates_to_candidate_page()[0m
+  [32mWhen [0m[32muser fills the form from given sheetname [0m[32m[1m"Addcandidate"[0m[32m and rownumber [0m[32m[1m0[0m [90m# parallel.Addcandidatestepdefinition.user_fills_the_form_from_given_sheetname_and_rownumber(java.lang.String,java.lang.Integer)[0m
+  [32mAnd [0m[32muser clicks on send button[0m                                               [90m# parallel.Addcandidatestepdefinition.user_clicks_on_send_button()[0m
+
+Scenario Outline: Candidate scenario                                           [90m# src/test/resources/parallel/Addcandidate.feature:20[0m
+  [32mGiven [0m[32muser has already logged in to application[0m                              [90m# parallel.Homepagestepdefinition.user_has_already_logged_in_to_application(io.cucumber.datatable.DataTable)[0m
+  [32mGiven [0m[32muser navigates to candidate page[0m                                       [90m# parallel.Addcandidatestepdefinition.user_navigates_to_candidate_page()[0m
+  [32mWhen [0m[32muser fills the form from given sheetname [0m[32m[1m"Addcandidate"[0m[32m and rownumber [0m[32m[1m1[0m [90m# parallel.Addcandidatestepdefinition.user_fills_the_form_from_given_sheetname_and_rownumber(java.lang.String,java.lang.Integer)[0m
+  [32mAnd [0m[32muser clicks on send button[0m                                               [90m# parallel.Addcandidatestepdefinition.user_clicks_on_send_button()[0m

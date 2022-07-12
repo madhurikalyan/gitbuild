@@ -26,18 +26,21 @@
     <version>${serenity.version}</version>
     <scope>test</scope>
 </dependency>
+
 	<!-- https://mvnrepository.com/artifact/net.serenity-bdd/serenity-junit -->
 <dependency>
     <groupId>net.serenity-bdd</groupId>
     <artifactId>serenity-junit</artifactId>
     <version>${serenity.version}</version>
 </dependency>
+
 	<!-- https://mvnrepository.com/artifact/net.serenity-bdd/serenity-ensure -->
 <dependency>
     <groupId>net.serenity-bdd</groupId>
     <artifactId>serenity-ensure</artifactId>
     <version>${serenity.version}</version>
 </dependency>
+
 	<!-- https://mvnrepository.com/artifact/net.serenity-bdd/serenity-cucumber6 -->
 <dependency>
     <groupId>net.serenity-bdd</groupId>
@@ -72,12 +75,14 @@
 			<artifactId>webdrivermanager</artifactId>
 			<version>5.1.1</version>
 		</dependency>
+		
 		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
 			<version>4.1.4</version>
 		</dependency>
+	
 		<!-- https://mvnrepository.com/artifact/tech.grasshopper/extentreports-cucumber6-adapter -->
 		<dependency>
 			<groupId>tech.grasshopper</groupId>
@@ -85,6 +90,7 @@
 			<version>2.11.1</version>
 			<scope>test</scope>
 		</dependency>
+	
 	</dependencies>
 
 	<build>
