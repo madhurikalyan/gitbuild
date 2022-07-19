@@ -1,14 +1,17 @@
 package com.pages;
 
-import org.openqa.selenium.By;
+import java.time.Duration;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import com.qa.util.ElementUtil;
+
 public class SearchPaymentpage {
-	
-	
+
+
 	private WebDriver driver;
 	@FindBy(id="first_name") WebElement fname;
 	@FindBy(id="last_name") WebElement lname;
@@ -20,53 +23,64 @@ public class SearchPaymentpage {
 	@FindBy(id="cc_cvv") WebElement cvno;
 	@FindBy(id="book_now") WebElement Bookbutton;
 	@FindBy(xpath="//*[text()='Logout']") WebElement logout;
-	
+
 	public SearchPaymentpage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
-	
-	
+
+
 	public void enterfirstname(String firstname) {
-		fname.sendKeys(firstname);
+		ElementUtil.webEditTxtChange(fname, firstname);
+		//fname.sendKeys(firstname);
 	}
-	
+
 	public void enterlastname(String Lastname)  {
-		lname.sendKeys(Lastname);
+		ElementUtil.webEditTxtChange(lname, Lastname);
+		//lname.sendKeys(Lastname);
 	}
-	
+
 	public void enterbillingaddress(String Address)   {
-		Billaddrs.sendKeys(Address);
+		ElementUtil.webEditTxtChange(Billaddrs, Address);
+		//Billaddrs.sendKeys(Address);
 	}
-	
-	
+
+
 	public void entercreditcardnumber(String cardno)  {
-		credcarno.sendKeys(cardno);
+		ElementUtil.webEditTxtChange(credcarno,cardno);
+	//	credcarno.sendKeys(cardno);
 	}
-	
+
 	public void enterctreditcardtype(String cardtype)  {
-		crecartyp.sendKeys(cardtype);		
+		ElementUtil.webEditTxt(crecartyp, cardtype, Duration.ofSeconds(100));
+		//crecartyp.sendKeys(cardtype);
 	}
-	
-	
+
+
 	public void enterexpirydatemonth(String expmonth)  {
-		exmonth.sendKeys(expmonth);
+		ElementUtil.webEditTxt(exmonth, expmonth, Duration.ofSeconds(100));
+		//exmonth.sendKeys(expmonth);
 	}
-	
+
 	public void enterexpirydateyear(String expyear)  {
-		exyr.sendKeys(expyear);
+		ElementUtil.webEditTxt(exyr, expyear, Duration.ofSeconds(100));
+		//exyr.sendKeys(expyear);
 		}
-	
+
 	public void entercvvnumber(String cvnum)   {
-		cvno.sendKeys(cvnum);
+		ElementUtil.webEditTxtChange(cvno, cvnum);
+		//cvno.sendKeys(cvnum);
 		}
-	
+
     public void clickbutton()  {
-    	Bookbutton.click();
+    	ElementUtil.clickElement(Bookbutton, Duration.ofSeconds(100));
+    	//Bookbutton.click();
     }
-    
+
     public void clickonlogout() {
-    	logout.click();
+    	ElementUtil.clickElement(logout, Duration.ofSeconds(100));
+    	//logout.click();
     }
 
 }
+

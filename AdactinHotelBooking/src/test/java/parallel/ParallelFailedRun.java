@@ -15,8 +15,8 @@ plugin = {"pretty","com.aventstack.extentreports.cucumber.adapter.ExtentCucumber
 })
 
 public class ParallelFailedRun extends AbstractTestNGCucumberTests{
-	
-	
+
+
 
 	@Override
 	@DataProvider(parallel = true)

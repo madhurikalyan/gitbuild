@@ -8,12 +8,12 @@ import org.openqa.selenium.safari.SafariDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class Driver_Factory {
-	
+
 	public WebDriver driver;
 
 	public static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<>();
 
-	
+
 	public WebDriver init_driver(String browser) {
 
 		System.out.println("browser value is: " + browser);

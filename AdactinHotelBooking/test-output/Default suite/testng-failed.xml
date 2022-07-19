@@ -6,8 +6,8 @@
       <class name="parallel.Parallel_Run">
         <methods>
           <include name="setUpClass"/>
+          <include name="runScenario" invocation-numbers="2 0 3"/>
           <include name="tearDownClass"/>
-          <include name="runScenario" invocation-numbers="0"/>
         </methods>
       </class> <!-- parallel.Parallel_Run -->
     </classes>

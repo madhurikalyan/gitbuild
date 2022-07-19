@@ -10,7 +10,7 @@ import io.cucumber.testng.CucumberOptions;
 				"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
 				"timeline:test-output-thread/",
 				"rerun:target/Parallelfailedrerun.txt",
-				"json:target/cucumber-reportreport2.json"}, 
+				"json:target/cucumber-reportreport2.json"},
 		monochrome = true,
 		publish = true,
 		glue = { "parallel","AppHooks" },
@@ -20,8 +20,8 @@ import io.cucumber.testng.CucumberOptions;
 
 
 public class Parallel_Run extends AbstractTestNGCucumberTests{
-	
-	
+
+
 
 	@Override
 	@DataProvider(parallel = true)

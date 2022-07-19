@@ -1,43 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="4" passed="3" failed="1" skipped="0">
+<testng-results ignored="0" total="4" passed="1" failed="3" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2022-07-11T18:48:50 IST" name="Default suite" finished-at="2022-07-11T18:50:40 IST" duration-ms="109913">
+  <suite started-at="2022-07-19T15:16:21 IST" name="Default suite" finished-at="2022-07-19T15:20:10 IST" duration-ms="229093">
     <groups>
       <group name="cucumber">
-        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:parallel.Parallel_Run@291a7e3c]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
+        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:parallel.Parallel_Run@d737b89]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
       </group> <!-- cucumber -->
     </groups>
-    <test started-at="2022-07-11T18:48:50 IST" name="Default test" finished-at="2022-07-11T18:50:40 IST" duration-ms="109913">
+    <test started-at="2022-07-19T15:16:21 IST" name="Default test" finished-at="2022-07-19T15:20:10 IST" duration-ms="229093">
       <class name="parallel.Parallel_Run">
-        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:parallel.Parallel_Run@291a7e3c]" started-at="2022-07-11T18:48:50 IST" name="setUpClass" finished-at="2022-07-11T18:48:51 IST" duration-ms="596" status="PASS">
+        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:parallel.Parallel_Run@d737b89]" started-at="2022-07-19T15:16:21 IST" name="setUpClass" finished-at="2022-07-19T15:16:22 IST" duration-ms="640" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.TestRunner@2e09c51]]>
+                <![CDATA[org.testng.TestRunner@618ff5c2]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:parallel.Parallel_Run@291a7e3c]" started-at="2022-07-11T18:48:51 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2022-07-11T18:49:27 IST" duration-ms="36564" status="PASS">
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:parallel.Parallel_Run@d737b89]" started-at="2022-07-19T15:16:22 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2022-07-19T15:16:22 IST" duration-ms="180" status="FAIL">
           <params>
             <param index="0">
               <value>
-                <![CDATA["Adding Payment Method"]]>
+                <![CDATA["Selecting Hotel"]]>
               </value>
             </param>
             <param index="1">
               <value>
-                <![CDATA["Payment Method Page Feature from JSON File"]]>
+                <![CDATA["Search Hotel From Excel Reader"]]>
               </value>
             </param>
           </params>
+          <exception class="java.lang.NullPointerException">
+            <message>
+              <![CDATA[Cannot invoke "String.equals(Object)" because "browser" is null]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.NullPointerException: Cannot invoke "String.equals(Object)" because "browser" is null
+at com.qa.factory.Driver_Factory.init_driver(Driver_Factory.java:21)
+at AppHooks.Application_Hooks.launchBrowser(Application_Hooks.java:39)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.NullPointerException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- runScenario -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:parallel.Parallel_Run@291a7e3c]" started-at="2022-07-11T18:48:51 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2022-07-11T18:49:12 IST" duration-ms="20848" status="PASS">
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:parallel.Parallel_Run@d737b89]" started-at="2022-07-19T15:16:22 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2022-07-19T15:16:43 IST" duration-ms="20639" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -53,23 +64,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- runScenario -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:parallel.Parallel_Run@291a7e3c]" started-at="2022-07-11T18:48:51 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2022-07-11T18:49:38 IST" duration-ms="47449" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA["Selecting Hotel"]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA["Search Hotel From Excel Reader"]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- runScenario -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:parallel.Parallel_Run@291a7e3c]" started-at="2022-07-11T18:48:51 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2022-07-11T18:49:23 IST" duration-ms="32454" status="FAIL">
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:parallel.Parallel_Run@d737b89]" started-at="2022-07-19T15:16:22 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2022-07-19T15:16:45 IST" duration-ms="22925" status="FAIL">
           <params>
             <param index="0">
               <value>
@@ -90,9 +85,9 @@ For documentation on this error, please visit: https://selenium.dev/exceptions/#
 Build info: version: '4.3.0', revision: 'a4995e2c09*'
 System info: host: 'SAIMADHURI', ip: '192.168.225.54', os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.2'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [a8f79e68683550da576854e9dc58fedf, findElement {using=link text, value=Forgot Password?12}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 103.0.5060.114, chrome: {chromedriverVersion: 103.0.5060.53 (a1711811edd7..., userDataDir: C:\Users\saima\AppData\Loca...}, goog:chromeOptions: {debuggerAddress: localhost:59683}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:59683/devtoo..., se:cdpVersion: 103.0.5060.114, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: a8f79e68683550da576854e9dc58fedf]]>
+Command: [d0aaa850bb86a70f96c3795f34fd8aae, findElement {using=link text, value=Forgot Password?12}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 103.0.5060.114, chrome: {chromedriverVersion: 103.0.5060.53 (a1711811edd7..., userDataDir: C:\Users\saima\AppData\Loca...}, goog:chromeOptions: {debuggerAddress: localhost:59094}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:59094/devtoo..., se:cdpVersion: 103.0.5060.114, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: d0aaa850bb86a70f96c3795f34fd8aae]]>
             </message>
             <full-stacktrace>
               <![CDATA[org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"link text","selector":"Forgot Password?12"}
@@ -101,9 +96,9 @@ For documentation on this error, please visit: https://selenium.dev/exceptions/#
 Build info: version: '4.3.0', revision: 'a4995e2c09*'
 System info: host: 'SAIMADHURI', ip: '192.168.225.54', os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.2'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [a8f79e68683550da576854e9dc58fedf, findElement {using=link text, value=Forgot Password?12}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 103.0.5060.114, chrome: {chromedriverVersion: 103.0.5060.53 (a1711811edd7..., userDataDir: C:\Users\saima\AppData\Loca...}, goog:chromeOptions: {debuggerAddress: localhost:59683}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:59683/devtoo..., se:cdpVersion: 103.0.5060.114, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: a8f79e68683550da576854e9dc58fedf
+Command: [d0aaa850bb86a70f96c3795f34fd8aae, findElement {using=link text, value=Forgot Password?12}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 103.0.5060.114, chrome: {chromedriverVersion: 103.0.5060.53 (a1711811edd7..., userDataDir: C:\Users\saima\AppData\Loca...}, goog:chromeOptions: {debuggerAddress: localhost:59094}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:59094/devtoo..., se:cdpVersion: 103.0.5060.114, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: d0aaa850bb86a70f96c3795f34fd8aae
 at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
 at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -123,16 +118,62 @@ at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:3
 at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:70)
 at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:39)
 at jdk.proxy2/jdk.proxy2.$Proxy31.isDisplayed(Unknown Source)
-at com.pages.Loginpage.isForgotPwdLinkExist(Loginpage.java:41)
-at parallel.LoginStep_Definition.forgot_your_password_link_should_be_displayed(LoginStep_Definition.java:24)
-at ✽.forgot your password link should be displayed(file:///D:/WorkSpace/Selenium/AdactinHotelBooking/src/test/resources/parallel/Login.feature:5)
+at com.pages.Loginpage.isForgotPwdLinkExist(Loginpage.java:34)
+at parallel.LoginStep_Definition.forgot_your_password_link_should_be_displayed(LoginStep_Definition.java:25)
+at ✽.forgot your password link should be displayed(file:///D:/WorkingDirectory/AdactinHotelBooking/src/test/resources/parallel/Login.feature:5)
 ]]>
             </full-stacktrace>
           </exception> <!-- org.openqa.selenium.NoSuchElementException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- runScenario -->
-        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:parallel.Parallel_Run@291a7e3c]" started-at="2022-07-11T18:49:38 IST" name="tearDownClass" finished-at="2022-07-11T18:50:40 IST" duration-ms="61827" status="PASS">
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:parallel.Parallel_Run@d737b89]" started-at="2022-07-19T15:16:22 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2022-07-19T15:16:47 IST" duration-ms="25095" status="FAIL">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Adding Payment Method"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Payment Method Page Feature from JSON File"]]>
+              </value>
+            </param>
+          </params>
+          <exception class="org.openqa.selenium.NoSuchSessionException">
+            <message>
+              <![CDATA[Session ID is null. Using WebDriver after calling quit()?
+Build info: version: '4.3.0', revision: 'a4995e2c09*'
+System info: host: 'SAIMADHURI', ip: '192.168.225.54', os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.2'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [null, actions {actions=[org.openqa.selenium.interactions.Sequence@6ec40dc]}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 103.0.5060.114, chrome: {chromedriverVersion: 103.0.5060.53 (a1711811edd7..., userDataDir: C:\Users\saima\AppData\Loca...}, goog:chromeOptions: {debuggerAddress: localhost:59095}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:59095/devtoo..., se:cdpVersion: 103.0.5060.114, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.NoSuchSessionException: Session ID is null. Using WebDriver after calling quit()?
+Build info: version: '4.3.0', revision: 'a4995e2c09*'
+System info: host: 'SAIMADHURI', ip: '192.168.225.54', os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.2'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [null, actions {actions=[org.openqa.selenium.interactions.Sequence@6ec40dc]}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 103.0.5060.114, chrome: {chromedriverVersion: 103.0.5060.53 (a1711811edd7..., userDataDir: C:\Users\saima\AppData\Loca...}, goog:chromeOptions: {debuggerAddress: localhost:59095}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:59095/devtoo..., se:cdpVersion: 103.0.5060.114, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:145)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:167)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:142)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:569)
+at org.openqa.selenium.remote.RemoteWebDriver.perform(RemoteWebDriver.java:637)
+at org.openqa.selenium.interactions.Actions$BuiltAction.perform(Actions.java:567)
+at org.openqa.selenium.interactions.Actions.perform(Actions.java:536)
+at com.qa.util.ElementUtil.clickElementUsingActions(ElementUtil.java:357)
+at com.pages.Loginpage.doLogin(Loginpage.java:57)
+at parallel.SearchHotelStep_Definition.user_has_already_logged_in_to_application(SearchHotelStep_Definition.java:33)
+at ✽.user has already logged in to application(file:///D:/WorkingDirectory/AdactinHotelBooking/src/test/resources/parallel/SearchPaymentMethod.feature:4)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.NoSuchSessionException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:parallel.Parallel_Run@d737b89]" started-at="2022-07-19T15:16:47 IST" name="tearDownClass" finished-at="2022-07-19T15:20:10 IST" duration-ms="203328" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->
