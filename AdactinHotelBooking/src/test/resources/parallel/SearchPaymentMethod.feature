@@ -8,7 +8,7 @@ Given user has already logged in to application
 Scenario: Adding Payment Method
 Given user navigate to Payment method process
 When user enter first name 
-And user enter last name
+And user enter last name 
 Then user enter billing address
 Then user enter Credit card no
 Then user enter Credit card type

@@ -4,18 +4,12 @@ package parallel;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
-
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-
 import com.pages.Loginpage;
 import com.pages.SearchHotelpage;
 import com.qa.factory.Driver_Factory;
 import com.qa.util.ConfigReader;
 import com.qa.util.ExcelReader;
-
-import AppHooks.Application_Hooks;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -25,7 +19,8 @@ public class SearchHotelStep_Definition {
 	private Loginpage loginPage = new Loginpage(Driver_Factory.getDriver());
 	private SearchHotelpage SearchHotelpage;
 
-
+	ExcelReader reader = new ExcelReader();
+	
 
 		@Given("user has already logged in to application")
 	public void user_has_already_logged_in_to_application() {
@@ -41,7 +36,6 @@ public class SearchHotelStep_Definition {
 
 	@When("user fills the form from given sheetname {string} and rownumber {int}")
 	public void user_fills_the_form_from_given_sheetname_and_rownumber_row_number(String sheetName, Integer rowNumber) throws InvalidFormatException, IOException {
-		ExcelReader reader = new ExcelReader();
 		List<Map<String,String>> testData =
 				reader.getData(ConfigReader.readexcel_SearchHotel(),sheetName);
 

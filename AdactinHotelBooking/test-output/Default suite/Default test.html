@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Default test</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>3/1/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>2/2/0</td>
 </tr><tr>
-<td>Started on:</td><td>Tue Jul 19 16:46:44 IST 2022</td>
+<td>Started on:</td><td>Mon Jul 25 13:49:54 IST 2022</td>
 </tr>
-<tr><td>Total time:</td><td>816 seconds (816333 ms)</td>
+<tr><td>Total time:</td><td>120 seconds (120519 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -70,21 +70,46 @@ function toggleAllBoxes() {
 <table width='100%' border='1' class='invocation-failed'>
 <tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
 <tr><td><b>Test method</b></td>
+<td><b>Attribute(s)</b></td>
 <td width="30%"><b>Exception</b></td>
 <td width="10%"><b>Time (seconds)</b></td>
 <td><b>Instance</b></td>
 </tr>
 <tr>
+<td title='parallel.Parallel_Run.runScenario()'><b>runScenario</b><br>Test class: parallel.Parallel_Run<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Login with correct credentials", "Login Page Feature"</td>
+<td><div><pre>java.lang.NullPointerException: null value in entry: url=null
+	at com.google.common.collect.CollectPreconditions.checkEntryNotNull(CollectPreconditions.java:33)
+	at com.google.common.collect.SingletonImmutableBiMap.&lt;init&gt;(SingletonImmutableBiMap.java:43)
+	at com.google.common.collect.ImmutableBiMap.of(ImmutableBiMap.java:81)
+	at com.google.common.collect.ImmutableMap.of(ImmutableMap.java:128)
+	at org.openqa.selenium.remote.DriverCommand.GET(DriverCommand.java:199)
+	at org.openqa.selenium.remote.RemoteWebDriver.get(RemoteWebDriver.java:332)
+	at parallel.LoginStep_Definition.user_is_on_login_page(LoginStep_Definition.java:19)
+	at ?.user is on login page(file:///D:/WorkingDirectory/AdactinHotelBooking/src/test/resources/parallel/Login.feature:8)
+</pre></div><a href='#' onClick='toggleBox("stack-trace126521399", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace126521399'><pre>java.lang.NullPointerException: null value in entry: url=null
+	at com.google.common.collect.CollectPreconditions.checkEntryNotNull(CollectPreconditions.java:33)
+	at com.google.common.collect.SingletonImmutableBiMap.&lt;init&gt;(SingletonImmutableBiMap.java:43)
+	at com.google.common.collect.ImmutableBiMap.of(ImmutableBiMap.java:81)
+	at com.google.common.collect.ImmutableMap.of(ImmutableMap.java:128)
+	at org.openqa.selenium.remote.DriverCommand.GET(DriverCommand.java:199)
+	at org.openqa.selenium.remote.RemoteWebDriver.get(RemoteWebDriver.java:332)
+	at parallel.LoginStep_Definition.user_is_on_login_page(LoginStep_Definition.java:19)
+	at ?.user is on login page(file:///D:/WorkingDirectory/AdactinHotelBooking/src/test/resources/parallel/Login.feature:8)
+</pre></div></td>
+<td>4</td>
+<td>parallel.Parallel_Run@1046d517</td></tr>
+<tr>
 <td title='parallel.Parallel_Run.runScenario()'><b>runScenario</b><br>Test class: parallel.Parallel_Run<br>Test method: Runs Cucumber Scenarios<br>Parameters: "login page", "Login Page Feature"</td>
 <td><div><pre>org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;link text&quot;,&quot;selector&quot;:&quot;Forgot Password?12&quot;}
-  (Session info: chrome=103.0.5060.114)
+  (Session info: chrome=103.0.5060.134)
 For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
 Build info: version: &apos;4.3.0&apos;, revision: &apos;a4995e2c09*&apos;
 System info: host: &apos;SAIMADHURI&apos;, ip: &apos;192.168.225.54&apos;, os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;17.0.2&apos;
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [746ecbf3e35f7c162a9f13a6b9f28487, findElement {using=link text, value=Forgot Password?12}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 103.0.5060.114, chrome: {chromedriverVersion: 103.0.5060.53 (a1711811edd7..., userDataDir: C:\Users\saima\AppData\Loca...}, goog:chromeOptions: {debuggerAddress: localhost:59788}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:59788/devtoo..., se:cdpVersion: 103.0.5060.114, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 746ecbf3e35f7c162a9f13a6b9f28487
+Command: [fcd99f148fc3e0fb6b129e72cf7c7e68, findElement {using=link text, value=Forgot Password?12}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 103.0.5060.134, chrome: {chromedriverVersion: 103.0.5060.134 (8ec6fce403b..., userDataDir: C:\Users\saima\AppData\Loca...}, goog:chromeOptions: {debuggerAddress: localhost:56984}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:56984/devtoo..., se:cdpVersion: 103.0.5060.134, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: fcd99f148fc3e0fb6b129e72cf7c7e68
 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -104,19 +129,19 @@ Session ID: 746ecbf3e35f7c162a9f13a6b9f28487
 	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:70)
 	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:39)
 	at jdk.proxy2/jdk.proxy2.$Proxy31.isDisplayed(Unknown Source)
-	at com.pages.Loginpage.isForgotPwdLinkExist(Loginpage.java:34)
+	at com.pages.Loginpage.isForgotPwdLinkExist(Loginpage.java:35)
 	at parallel.LoginStep_Definition.forgot_your_password_link_should_be_displayed(LoginStep_Definition.java:25)
 	at ?.forgot your password link should be displayed(file:///D:/WorkingDirectory/AdactinHotelBooking/src/test/resources/parallel/Login.feature:5)
-</pre></div><a href='#' onClick='toggleBox("stack-trace1110406951", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace1110406951'><pre>org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;link text&quot;,&quot;selector&quot;:&quot;Forgot Password?12&quot;}
-  (Session info: chrome=103.0.5060.114)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1434013876", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1434013876'><pre>org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;link text&quot;,&quot;selector&quot;:&quot;Forgot Password?12&quot;}
+  (Session info: chrome=103.0.5060.134)
 For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
 Build info: version: &apos;4.3.0&apos;, revision: &apos;a4995e2c09*&apos;
 System info: host: &apos;SAIMADHURI&apos;, ip: &apos;192.168.225.54&apos;, os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;17.0.2&apos;
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [746ecbf3e35f7c162a9f13a6b9f28487, findElement {using=link text, value=Forgot Password?12}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 103.0.5060.114, chrome: {chromedriverVersion: 103.0.5060.53 (a1711811edd7..., userDataDir: C:\Users\saima\AppData\Loca...}, goog:chromeOptions: {debuggerAddress: localhost:59788}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:59788/devtoo..., se:cdpVersion: 103.0.5060.114, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 746ecbf3e35f7c162a9f13a6b9f28487
+Command: [fcd99f148fc3e0fb6b129e72cf7c7e68, findElement {using=link text, value=Forgot Password?12}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 103.0.5060.134, chrome: {chromedriverVersion: 103.0.5060.134 (8ec6fce403b..., userDataDir: C:\Users\saima\AppData\Loca...}, goog:chromeOptions: {debuggerAddress: localhost:56984}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:56984/devtoo..., se:cdpVersion: 103.0.5060.134, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: fcd99f148fc3e0fb6b129e72cf7c7e68
 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -136,35 +161,31 @@ Session ID: 746ecbf3e35f7c162a9f13a6b9f28487
 	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:70)
 	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:39)
 	at jdk.proxy2/jdk.proxy2.$Proxy31.isDisplayed(Unknown Source)
-	at com.pages.Loginpage.isForgotPwdLinkExist(Loginpage.java:34)
+	at com.pages.Loginpage.isForgotPwdLinkExist(Loginpage.java:35)
 	at parallel.LoginStep_Definition.forgot_your_password_link_should_be_displayed(LoginStep_Definition.java:25)
 	at ?.forgot your password link should be displayed(file:///D:/WorkingDirectory/AdactinHotelBooking/src/test/resources/parallel/Login.feature:5)
 </pre></div></td>
-<td>25</td>
-<td>parallel.Parallel_Run@d737b89</td></tr>
+<td>11</td>
+<td>parallel.Parallel_Run@1046d517</td></tr>
 </table><p>
 <table width='100%' border='1' class='invocation-passed'>
 <tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
 <tr><td><b>Test method</b></td>
+<td><b>Attribute(s)</b></td>
 <td width="30%"><b>Exception</b></td>
 <td width="10%"><b>Time (seconds)</b></td>
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='parallel.Parallel_Run.runScenario()'><b>runScenario</b><br>Test class: parallel.Parallel_Run<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Selecting Hotel", "Search Hotel From Excel Reader"</td>
-<td></td>
-<td>44</td>
-<td>parallel.Parallel_Run@d737b89</td></tr>
-<tr>
-<td title='parallel.Parallel_Run.runScenario()'><b>runScenario</b><br>Test class: parallel.Parallel_Run<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Login with correct credentials", "Login Page Feature"</td>
-<td></td>
-<td>24</td>
-<td>parallel.Parallel_Run@d737b89</td></tr>
-<tr>
 <td title='parallel.Parallel_Run.runScenario()'><b>runScenario</b><br>Test class: parallel.Parallel_Run<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Adding Payment Method", "Payment Method Page Feature from JSON File"</td>
 <td></td>
-<td>50</td>
-<td>parallel.Parallel_Run@d737b89</td></tr>
+<td>19</td>
+<td>parallel.Parallel_Run@1046d517</td></tr>
+<tr>
+<td title='parallel.Parallel_Run.runScenario()'><b>runScenario</b><br>Test class: parallel.Parallel_Run<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Selecting Hotel", "Search Hotel From Excel Reader"</td>
+<td></td>
+<td>23</td>
+<td>parallel.Parallel_Run@1046d517</td></tr>
 </table><p>
 </body>
 </html>

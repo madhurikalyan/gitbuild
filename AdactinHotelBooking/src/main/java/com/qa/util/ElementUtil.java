@@ -15,8 +15,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.ITestContext;
-import org.testng.asserts.SoftAssert;
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.Toolkit;
@@ -44,8 +42,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Function;
 import org.apache.commons.io.FileUtils;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -77,7 +73,7 @@ public class ElementUtil {
 	static JSONObject jsonObject = null;
 	String keyvalue=null;
 	public static WebDriver driver=Driver_Factory.getDriver();
-	public static SoftAssert softAssert;
+	//public static SoftAssert softAssert;
 	public static WebDriverWait wait;
 	public static String mainWindow;
 	public static ExtentHtmlReporter htmlReporter;
@@ -123,14 +119,6 @@ public static ElementUtil getInstance(){
 
 	}
 	/*
-	 * @description : takes the suite name and save as a string variable
-	 * @return : suite name of the xml file
-	 * @author : SaiMadhuri Aturi
-	 */
-	public static String getSuiteName(ITestContext context){
-		return context.getCurrentXmlTest().getSuite().getName();
-	}
-	/*
 	 * @description : takes the screenshot and save as a png file
 	 * @param  : driver
 	 * @param  : screenshot name
@@ -169,6 +157,21 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 
 		return destination;
 	}
+	private static void until(WebDriver webDriver, Duration timeOutInSeconds, Function<WebDriver, Boolean> waitCondition) {
+        WebDriverWait webDriverWait = new WebDriverWait(webDriver, timeOutInSeconds);
+        try {
+            webDriverWait.until(waitCondition);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+	 public static void untilAjaxCallIsDone(WebDriver webDriver, Duration timeOutInSeconds) {
+	        until(webDriver, timeOutInSeconds, (function) -> {
+	            Boolean isJqueryCallDone = (Boolean) ((JavascriptExecutor) webDriver).executeScript("return jQuery.active==0");
+	            if (!isJqueryCallDone) System.out.println("jQuery call is in progress");
+	            return isJqueryCallDone;
+	        });
+	    }
 	/*
 	 * @description : adds the input value to current date
 	 * @param  : no of days to be added
@@ -425,42 +428,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 			throw e;
 		}
 	}
-	/*
-	 * @description : checks whether a web element is visible
-	 * @param  : web element
-	 * @param  : element name to be logged in the test results
-	 * @return : NA
-	 * @author : SaiMadhuri Aturi
-	 */
-	public static void assertVisible(WebElement element,String elementName) throws Exception{
-
-		softAssert.assertTrue(element.isDisplayed(),"Element - "+element.getTagName()+" "+element.getText()+" - not visible (Expected element to be visible):  ");
-
-		if(element.isDisplayed())
-			System.out.println(element+" is displayed");
-		else
-			System.out.println(element+" is not displayed");
-	}
-	/*
-	 * @description : verifies that a web element is not visible
-	 * @param  : web element
-	 * @return : NA
-	 * @author : SaiMadhuri Aturi
-	 */
-	public static void assertNotVisible(WebElement element) throws Exception{
-
-		try {
-			softAssert.assertFalse(element.isDisplayed(),"Element- "+element.getTagName()+" "+element.getText()+" - is visible (Expected element not to be visible)");
-
-			if(element.isDisplayed())
-				System.out.println(element+" is displayed");
-			else
-				System.out.println(element+" is not displayed");
-
-		} catch (NoSuchElementException e) {
-			}
-	}
-		/*
+			/*
 	 * @description : refresh current web page
 	 * @param  : NA
 	 * @return : NA
@@ -487,6 +455,21 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 		try {
 			wait = new WebDriverWait(driver, timeOutInSeconds);
 			wait.until(ExpectedConditions.visibilityOf(element));
+		} catch (Exception e) {
+			throw e;
+		}
+	}
+	/*
+	 * @description : wait until an element is visible
+	 * @param  : element to be displayed
+	 * @param  : timeout in seconds
+	 * @return : NA
+	 * @author : SaiMadhuri Aturi
+	 */
+	public static void waitUntilElementsVisible(List<WebElement> element, Duration timeOutInSeconds) {
+		try {
+			wait = new WebDriverWait(driver, timeOutInSeconds);
+			wait.until(ExpectedConditions.visibilityOfAllElements(element));
 		} catch (Exception e) {
 			throw e;
 		}
@@ -735,7 +718,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 	}
 	/**
 	 * wait for the element to load
-	 * @author ashwathkumar.gowda
+	 * @author SaiMadhuri Aturi
 	 * @param driver
 	 */
 	public static void waitForLoad(WebDriver driver) {
@@ -758,7 +741,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 	}
 	/**
 	 * Scroll the page to view element and click
-	 * @author aSaiMadhuri Aturi
+	 * @author SaiMadhuri Aturi
 	 * @param element
 	 */
 	public static void scrollToViewAndClickElement(WebElement element) throws Exception{
@@ -856,30 +839,6 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 			}
 			i += 50;
 		}
-	}
-	/**
-	 * To check whether the element is disabled or not
-	 * @author SaiMadhuri Aturi
-	 * @param element
-	 * @param expectedMessage
-	 */
-	public static void assertElementDisabled(WebElement element) throws Exception {
-
-		softAssert.assertTrue(!element.isEnabled(),"Element - "+element.getTagName()+" "+element.getText()+" - not enabled (Expected element to be enable):  ");
-
-
-	}
-	/**
-	 * To validate default options present in dropdown
-	 * @author SaiMadhuri Aturi
-	 * @param element
-	 * @param expectedOption
-	 * @throws Exception
-	 */
-	public static void validateDropdownDefalutValue(WebElement element, String expectedOption) throws Exception {
-		Select select=new Select(element);
-		WebElement defaultOption = select.getFirstSelectedOption();
-		softAssert.assertEquals(defaultOption.getText(), expectedOption);
 	}
 	/**
 	 * To handle date picker
@@ -985,28 +944,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 			robot.keyRelease(KeyEvent.VK_ENTER);
 		}
 	}
-	/*
-	 * @description : delete all files from specified directory
-	 * @param  : directory path from which files to be deleted
-	 * @return : NA
-	 * @author : SaiMadhuri Aturi
-	 */
-	public static void deleteAllFilesInDirectory(String downloadFilepath) {
-		softAssert = new SoftAssert();
-		File downloadsDir = new File(downloadFilepath);
-
-		// Verify downloads dir is empty, if not remove all files.
-		File[] downloadDirFiles = downloadsDir.listFiles();
-		if (downloadDirFiles != null) {
-			for (File f : downloadDirFiles) {
-				if (f.exists()) {
-					boolean deleted = f.delete();
-					softAssert.assertTrue(deleted, "Files are not deleted from system local directory" + downloadsDir + ", skipping the download tests.");
-				}
-			}
-		}
-	}
-	/*
+		/*
 	 * @description : get latest file from the specified directory
 	 * @param  : directory path
 	 * @return : NA
