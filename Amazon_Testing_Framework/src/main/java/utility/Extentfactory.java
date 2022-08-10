@@ -8,7 +8,7 @@ public class Extentfactory {
 		
 		ExtentReports extent;
 		
-	     String Path = "./test-output\\reportdemoAmazon1.html";
+	     String Path = "./test-output\\reportdemoAmazon2.html";
 	     extent = new ExtentReports(Path, false);
 
 	return extent;

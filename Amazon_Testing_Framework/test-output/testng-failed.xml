@@ -7,6 +7,7 @@
         <methods>
           <include name="Test1"/>
           <include name="teardown"/>
+          <include name="Test2"/>
           <include name="setup"/>
         </methods>
       </class> <!-- com.Amazon_demo.tests.AmazonDemoTest -->

@@ -321,9 +321,9 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 	 * @return : NA
 	 * @author : SaiMadhuri Aturi
 	 */
-	public static void clickElement(WebElement element, Duration i) {
+	public static void clickElement(WebElement element) {
 		try {
-			wait = new WebDriverWait(driver, i);
+			wait = new WebDriverWait(driver,Duration.ofSeconds(200));
 			wait.until(ExpectedConditions.elementToBeClickable(element));
 			element.click();
 		}
