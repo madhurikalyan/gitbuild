@@ -3,12 +3,11 @@ package com.pages;
 
 
 import java.io.IOException;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
-import com.qa.util.ConfigReader;
 import com.qa.util.ElementUtil;
 import com.qa.util.ExcelReader;
 
@@ -72,13 +71,58 @@ private WebElement Zipcode;
 @FindBy (id="address-ui-widgets-form-submit-button")
 private WebElement addresssave;
 
+@FindBy(xpath="//div[contains(text(),'Please enter an address.')]")
+private WebElement addressErrorMsgLbl;
+
+
+@FindBy(xpath="//div[text()='Please enter a city name.']")
+private WebElement cityErrorMsgLbl;
+
+@FindBy(xpath="//div[text()='Please enter a state, region, or province.']")
+private WebElement stateErrorMsgLbl;
+
+@FindBy(xpath="//div[text()='Please enter a ZIP or postal code.']")
+private WebElement zipCodeErrorMsgLbl;
+@FindBy(xpath="//span[text()='Add address']/preceding-sibling::input")
+private WebElement addAddressBtn;
+
+public void clickOnAddAddressButton() {
+	ElementUtil.clickElement(addAddressBtn);
+}
+
+
+public void isAddressErrorMsgDisplayed() {
+	
+	Assert.assertTrue( ElementUtil.isPresentAndDisplayed(addressErrorMsgLbl));
+}
+
+
+public void isCityErrorMsgDisplayed() {
+	
+	Assert.assertTrue( ElementUtil.isPresentAndDisplayed(cityErrorMsgLbl));
+}
+
+
+public void isStateErrorMsgDisplayed() {
+	
+	Assert.assertTrue( ElementUtil.isPresentAndDisplayed(stateErrorMsgLbl));
+}
+
+
+public void isZipCodeErrorMsgDisplayed() {
+	
+	Assert.assertTrue( ElementUtil.isPresentAndDisplayed(zipCodeErrorMsgLbl));
+}
+
+
+
 	public void clickonlogin() {
 		ElementUtil.clickElement(loginBtn);
 	//	loginBtn.click();
 	}
 
-	public void enteruserid() {
-		ElementUtil.webEditTxtChange(email, ConfigReader.readuserid());
+	public void enterUserId(String userid) {
+		ElementUtil.webEditTxtChange(email, userid);
 		//email.sendKeys(Email);
 	}
 
@@ -86,11 +130,18 @@ private WebElement addresssave;
 		ElementUtil.clickElement(cont);
 		//cont.click();
 	}
-
+/*
 	public void enterpassword() {
 		ElementUtil.webEditTxtChange(password, ConfigReader.readpswrd());
 		//password.sendKeys(Password);
 	}
+	*/
+	
+	public void enterpassword(String pwd) {
+		ElementUtil.webEditTxtChange(password, pwd);
+		//password.sendKeys(Password);
+	}
+
 
 	public void clickOnSigin() {
 		ElementUtil.clickElement(sigin);

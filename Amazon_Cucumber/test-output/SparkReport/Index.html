@@ -35,7 +35,7 @@
 <a href="#"><span class="badge badge-primary">Grasshopper Report</span></a>
 </li>
 <li class="m-r-10">
-<a href="#"><span class="badge badge-primary">Aug 11, 2022 12:47:16 pm</span></a>
+<a href="#"><span class="badge badge-primary">Aug 11, 2022 01:24:41 pm</span></a>
 </li>
 </ul>
 </div>
@@ -61,13 +61,13 @@
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Started</p>
-<h3>Aug 11, 2022 12:47:16 pm</h3>
+<h3>Aug 11, 2022 01:24:41 pm</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Ended</p>
-<h3>Aug 11, 2022 12:49:52 pm</h3>
+<h3>Aug 11, 2022 01:25:11 pm</h3>
 </div></div>
 </div>
 <div class="col-md-3">
@@ -138,7 +138,7 @@
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='100%'><b>16</b> steps passed</small></div>
+<div><small data-tooltip='100%'><b>10</b> steps passed</small></div>
 <div>
 <small data-tooltip='0%'><b>0</b> steps failed,
 <b>0</b> skipped, <b data-tooltip='%'>0</b> others
@@ -157,7 +157,7 @@
 </div></div>
 <script>
 var timeline = {
-"Search product and select and add to cart with other functionalities":155.365
+"Adding address and validate all field":29.221
 };
 </script>
 <div class="row">
@@ -203,7 +203,7 @@ warningChild: 0,
 skipChild: 0,
 infoChild: 0,
 grandChildCount: 5,
-passGrandChild: 16,
+passGrandChild: 10,
 failGrandChild: 0,
 warningGrandChild: 0,
 skipGrandChild: 0,
@@ -233,9 +233,9 @@ eventsCount: 5,
           tag=""
           device="">
           <div class="test-detail">
-            <p class="name">Search product and select and add to cart with other functionalities</p>
+            <p class="name">Adding address and validate all field</p>
             <p class="text-sm">
-              <span>12:47:17 pm</span> / <span>00:02:35:365</span>
+              <span>1:24:42 pm</span> / <span>00:00:29:221</span>
               <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
@@ -243,10 +243,10 @@ eventsCount: 5,
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-pass">Search product and select and add to cart with other functionalities</h5>
-<span class='badge badge-success'>08.11.2022 12:47:17 pm</span>
-<span class='badge badge-danger'>08.11.2022 12:49:52 pm</span>
-<span class='badge badge-default'>00:02:35:365</span>
+<h5 class="test-status text-pass">Adding address and validate all field</h5>
+<span class='badge badge-success'>08.11.2022 1:24:42 pm</span>
+<span class='badge badge-danger'>08.11.2022 1:25:11 pm</span>
+<span class='badge badge-default'>00:00:29:221</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=1</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
@@ -258,88 +258,58 @@ eventsCount: 5,
   <div class="card">
     <div class="card-header" role="tab">
       <div class="card-title">
-        <div class="node" id="2"><span class="badge log pass-bg mr-2">Pass</span>Adding product to the cart</div>
+        <div class="node" id="2"><span class="badge log pass-bg mr-2">Pass</span>Address validating and adding</div>
       </div>
     </div>
         <div class="collapse">
           <div class="card-body">
-              <div class="step pass-bg" title="parallel.ProductStepDefinition.login_to_the_amazon_app()">
-                <span>When login to the Amazon app</span>
+              <div class="step pass-bg" title="parallel.AdressStepDefinitionNew.user_login_the_application()">
+                <span>Given user login the application</span>
       <div>
       </div>
               </div>
-              <div class="step pass-bg" title="parallel.ProductStepDefinition.user_search_the_product(java.lang.String)">
-                <span>Then user search the product "Amazon Essentials Women's Digital Chronograph Resin Strap Watch"</span>
+              <div class="step pass-bg" title="parallel.AdressStepDefinitionNew.user_navigates_account_page()">
+                <span>And user navigates Account page</span>
       <div>
       </div>
               </div>
-              <div class="step pass-bg" title="parallel.ProductStepDefinition.product_add_to_the_cart()">
-                <span>Then product add to the cart</span>
+              <div class="step pass-bg" title="parallel.AdressStepDefinitionNew.user_should_be_on_account_page()">
+                <span>Then user should be on account page</span>
       <div>
       </div>
               </div>
-              <div class="step pass-bg" title="parallel.ProductStepDefinition.user_validates_the_product_with_quantity_in_the_cart(java.lang.String)">
-                <span>And user validates the product with quantity "1" in the cart</span>
+              <div class="step pass-bg" title="parallel.AdressStepDefinitionNew.user_click_on_your_address()">
+                <span>When user click on your address</span>
       <div>
       </div>
               </div>
-              <div class="step pass-bg" title="parallel.ProductStepDefinition.user_search_the_product(java.lang.String)">
-                <span>Then user search the product "Mouse"</span>
+              <div class="step pass-bg" title="parallel.AdressStepDefinitionNew.user_should_be_your_address_page()">
+                <span>Then user should be your address page</span>
       <div>
       </div>
               </div>
-              <div class="step pass-bg" title="parallel.ProductStepDefinition.increase_the_quantity_of_the_product_by_in_cart(java.lang.Integer)">
-                <span>And increase the quantity of the product by 2 in cart</span>
+              <div class="step pass-bg" title="parallel.AdressStepDefinitionNew.user_clicks_on_add_address_button()">
+                <span>When user clicks on add address button</span>
       <div>
       </div>
               </div>
-              <div class="step pass-bg" title="parallel.ProductStepDefinition.product_add_to_the_cart()">
-                <span>Then product add to the cart</span>
+              <div class="step pass-bg" title="parallel.AdressStepDefinitionNew.user_should_be_on_add_new_address_page()">
+                <span>Then user should be on add new address page</span>
       <div>
       </div>
               </div>
-              <div class="step pass-bg" title="parallel.ProductStepDefinition.user_validates_the_product_with_quantity_in_the_cart(java.lang.String)">
-                <span>And user validates the product with quantity "2" in the cart</span>
+              <div class="step pass-bg" title="parallel.AdressStepDefinitionNew.clickOnAddAddressButton()">
+                <span>When user clicks on add address button on new address page</span>
       <div>
       </div>
               </div>
-              <div class="step pass-bg" title="parallel.ProductStepDefinition.user_search_the_product(java.lang.String)">
-                <span>Then user search the product "puma backpack for boys"</span>
+              <div class="step pass-bg" title="parallel.AdressStepDefinitionNew.user_should_see_error_messages_for_mandatory_fileds()">
+                <span>Then user should see error messages for mandatory fileds</span>
       <div>
       </div>
               </div>
-              <div class="step pass-bg" title="parallel.ProductStepDefinition.product_add_to_the_cart()">
-                <span>Then product add to the cart</span>
-      <div>
-      </div>
-              </div>
-              <div class="step pass-bg" title="parallel.ProductStepDefinition.user_validates_the_product_with_quantity_in_the_cart(java.lang.String)">
-                <span>And user validates the product with quantity "1" in the cart</span>
-      <div>
-      </div>
-              </div>
-              <div class="step pass-bg" title="parallel.ProductStepDefinition.user_deletes_the_product(java.lang.String)">
-                <span>Then user deletes the product "puma backpack for boys"</span>
-      <div>
-      </div>
-              </div>
-              <div class="step pass-bg" title="parallel.ProductStepDefinition.user_search_the_product(java.lang.String)">
-                <span>Then user search the product "puma backpack for boys"</span>
-      <div>
-      </div>
-              </div>
-              <div class="step pass-bg" title="parallel.ProductStepDefinition.product_add_to_the_cart_to_proceed_to_checkout()">
-                <span>And product add to the cart to proceed to checkout</span>
-      <div>
-      </div>
-              </div>
-              <div class="step pass-bg" title="parallel.ProductStepDefinition.navigate_and_validate_the_screen_select_a_shipping_address()">
-                <span>Then navigate and validate the screen Select a shipping address</span>
-      <div>
-      </div>
-              </div>
-              <div class="step pass-bg" title="parallel.ProductStepDefinition.navigate_to_cart_and_validate_the_save_later_functionality()">
-                <span>Then navigate to cart and validate the save later functionality</span>
+              <div class="step pass-bg" title="parallel.AdressStepDefinitionNew.user_enters_data_for_address()">
+                <span>When user enters data for address</span>
       <div>
       </div>
               </div>

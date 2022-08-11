@@ -7,7 +7,7 @@ import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
 
-@CucumberOptions(features = {"src/test/resources/parallel/Product2Cart.feature"},glue = {"parallel", "AppHooks"},
+@CucumberOptions(features = {"src/test/resources/parallel/Address.feature"},glue = {"parallel", "AppHooks"},
 plugin = {"pretty","com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
 		"rerun:target/failedrerun.txt",
 		"timeline:test-output-thread/","pretty:target/json-report.json"
