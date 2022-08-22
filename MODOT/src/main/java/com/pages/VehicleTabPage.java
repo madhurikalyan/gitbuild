@@ -4,12 +4,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
-import com.qa.util.ExcelReader;
+import com.qa.util.ElementUtil;
 
 public class VehicleTabPage {
 	public WebDriver driver;
-	ExcelReader reader = new ExcelReader();
 	public VehicleTabPage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
@@ -19,16 +17,39 @@ public class VehicleTabPage {
 	
 	@FindBy(xpath="(//div[contains(@class,'box-title')]/h4)[1]") WebElement VehicleRenewalDetailsSubHdr;
 	@FindBy(xpath="//label[@for='NoOfAmendVeh']") WebElement VehicleAmendedVehicleslbl;
+	@FindBy(xpath="//input[@id='NoOfAmendVeh']") WebElement VehicleAmendedVehiclestxt;
+	
+	@FindBy(xpath="//label[@for='NoOfAddVeh']") WebElement VehicleAddedVehicleslbl;
+	@FindBy(xpath="//input[@id='NoOfAddVeh']") WebElement VehicleAddedVehiclestxt;
+	
+	@FindBy(xpath="//label[@for='NoOfDelVeh']") WebElement VehicleDeleteVehicleslbl;
+	@FindBy(xpath="//input[@id='NoOfDelVeh']") WebElement VehicleDeleteVehiclestxt;
+	
+	@FindBy(xpath="//label[@for='NoOfRenewVeh']") WebElement VehicleRenewVehicleslbl;
+	@FindBy(xpath="//input[@id='NoOfRenewVeh']") WebElement VehicleRenewVehiclestxt;
+	
+	@FindBy(xpath="//input[@id='VehicleAction' and contains(@title,'AMEND')]") WebElement VehicleAmendRd; 
+	@FindBy(xpath="//input[@id='VehicleAction' and contains(@title,'DELETE')]") WebElement VehicleDeleteRd; 
+	
+	
+	@FindBy(xpath="//input[@id='btnUpdateFromPrevYear']") WebElement VehicleUpdateFromPreviousYearbtn;
+	@FindBy(xpath="//input[@id='btnVehicleList']") WebElement VehicleVehicleListbtn;
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
+	public void clickAmendVehicleRadioButton() {
+		ElementUtil.clickElement(VehicleAmendRd);
+	}
+	public void clickDeleteVehicleRadioButton() {
+		ElementUtil.clickElement(VehicleDeleteRd);
+	}
+	public void clickUpdateFromPreviousYear() {
+		ElementUtil.clickElement(VehicleUpdateFromPreviousYearbtn);
+	}
+	public void clickVehicleList() {
+		ElementUtil.clickElement(VehicleVehicleListbtn);
+	}
+	/*
 	
 	
 	@FindBy(xpath="//a[text()='Add Vehicle']") WebElement SitemapAddvechile;
@@ -73,7 +94,7 @@ public class VehicleTabPage {
 	@FindBy(id="editComment_CommentTxtcommentsVM1") WebElement Webprocessingcomtext;
 	@FindBy(id="addUpdateCommentBtncommentsVM1") WebElement Webprocessingcomupdate;
 	@FindBy(id="btnSubmit") WebElement WebprocessingSubmit;
-
+*/
 
 
 	/*Select s = new Select(VehicleTitlejur);
@@ -81,6 +102,7 @@ public class VehicleTabPage {
 
 	Select s = new Select(VehicleSaftchange)
 			s.selectByValue("Y")*/
+
 
 
 	 

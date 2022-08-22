@@ -30,7 +30,7 @@ public class WgtGroup {
 	@FindBy(xpath="//th[contains(@class,'sorting_disabled')  and contains(text(),'Different')]") WebElement Weight_JurWithDIfferentWeightstbl;
 	
 	@FindBy(xpath="//input[@id='btnAddWeightGroup']") WebElement Weight_AddWeightGroupbtn;
-	@FindBy(xpath="//input[@id='btnDone']") WebElement Weight_Donebtn;
+	
 	
 	
 	@FindBy(xpath="//table[@id='WgtGrpSelectGrid']/tbody//tr") List<WebElement> Weight_NoofRows;
@@ -44,9 +44,6 @@ public class WgtGroup {
 		}
 	}
 	
-	public void clickDonebtn() {
-		ElementUtil.clickElement(Weight_Donebtn);
-	}
 	
 	
 	

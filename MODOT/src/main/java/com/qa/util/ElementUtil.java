@@ -627,6 +627,20 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 		}
 	}
 	/*
+	 * @description : returns true if the element contains value.
+	 * returns false if the element doest not contain value
+	 * @param  : element
+	 * @return : presence of the element's value
+	 * @author : SaiMadhuri Aturi
+	 */
+	public static boolean isElementcontainsValue(WebElement element, String value) {
+		try {
+			return element.getAttribute(value).isEmpty();
+		} catch (NoSuchElementException e) {
+			return false;
+		}
+	}
+	/*
 	 * @description : download file to the default downloads folder in IE
 	 * @param  : download button/link
 	 * @return : NA

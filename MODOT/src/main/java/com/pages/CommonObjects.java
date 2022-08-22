@@ -15,7 +15,8 @@ public class CommonObjects {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
-	@FindBy(xpath="(//div[@class='PageHeader row']//h3)[1]") WebElement lefthdr;  //Account Details,FleetDetails ,Distance Details, Weight Group Selection Details, Renewal Vehicle Processing
+	@FindBy(xpath="(//div[@class='PageHeader row']//h3)[1]") WebElement lefthdr;  //Account Details,FleetDetails ,Distance Details, Weight Group Selection Details, 
+	//Renewal Vehicle Processing, Vehicle Details
 	@FindBy(xpath="(//div[@class='PageHeader row']//h3)[2]") WebElement Righthdr; //Renew Fleet
 	
 	//get values by using element.getattribute("value")
@@ -91,12 +92,14 @@ public class CommonObjects {
 		@FindBy(xpath="//input[@id='btnProceed']") WebElement Proceedbtn;
 		@FindBy(xpath="//input[@id='btnRefresh']") WebElement Refershbtn;
 		@FindBy(xpath="//input[@id='btnQuit']") WebElement Quitbtn;
-		
+		@FindBy(xpath="//input[@id='btnDone']") WebElement Donebtn;
 		@FindBy(xpath="//input[@id='btnBack']") WebElement Backbtn;
+		@FindBy(xpath="//input[@id='btnHelp']") WebElement Helpbtn;
+		@FindBy(xpath="//input[@id='btnCancel']") WebElement Cancelbtn;
 		
 		@FindBy(xpath="//input[@id='btnGoToWeightGroupSelection']") WebElement WeightGroupSelectionbtn;
 		@FindBy(xpath="//input[@id='btnDeleteWeightGroup']") WebElement DeleteWeightGroupbtn;
-		@FindBy(xpath="//input[@id='btnCancel']") WebElement Cancelbtn;
+		
 		
 		public void expandCommentSection() throws Exception {
 			ElementUtil.scrollToViewAndClickElement(Commentssubhdr);
@@ -144,4 +147,8 @@ public class CommonObjects {
 		public void clickCancelbtn() {
 			ElementUtil.clickElement(Cancelbtn);
 		}
+		public void clickDonebtn() {
+			ElementUtil.clickElement(Donebtn);
+		}
+		
 }
