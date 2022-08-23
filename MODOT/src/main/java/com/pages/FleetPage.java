@@ -58,9 +58,11 @@ public class FleetPage {
 
 	public void validatetitle() {
 		if(driver.getTitle().equalsIgnoreCase("Supplement Search -  IRP")) {
+			assert true;
 			System.out.println("Current screen is Supplement Search -  IRP");
 		}
 		else {
+			assert false;
 			System.out.println("Current screen is not Supplement Search -  IRP");
 		}
 	}

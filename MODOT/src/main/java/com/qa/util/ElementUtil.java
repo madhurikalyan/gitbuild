@@ -11,6 +11,12 @@ package com.qa.util;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.text.PDFTextStripper;
+import java.io.InputStream;
+import java.io.BufferedInputStream;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -86,8 +92,26 @@ public static ElementUtil getInstance(){
 		}
 
 		return elementUtil;
+}
+public static int getPageCount(PDDocument doc) {
+	//get the total number of pages in the pdf document
+	int pageCount = doc.getNumberOfPages();
+	return pageCount;
+	
+}
+public static  String readPdfContent(String url) throws IOException {
+	
+	URL pdfUrl = new URL(url);
+	InputStream in = pdfUrl.openStream();
+	BufferedInputStream bf = new BufferedInputStream(in);
+	PDDocument doc = PDDocument.load(bf);
+	int numberOfPages = getPageCount(doc);
+	System.out.println("The total number of pages "+numberOfPages);
+	String content = new PDFTextStripper().getText(doc);
+	doc.close();
 
-	}
+return content;
+}
 	/*
 	 * @description : Read the data from JSON File & return JSONObject
 	 * @param  : NA

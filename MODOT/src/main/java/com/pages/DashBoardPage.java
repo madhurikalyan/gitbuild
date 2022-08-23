@@ -20,10 +20,17 @@ public class DashBoardPage {
 	// Elements for SiteMappage
 
 		@FindBy(xpath="//a[text()='Add Vehicle']") WebElement SitemapAddvechile;
-		@FindBy(id="AccountNo") WebElement VehicleAccountNo;
+		@FindBy(xpath="//input[@id='AccountNo']") WebElement AccountNo;
 		@FindBy(id="FleetNbr") WebElement VehicleFleetNo;
 		@FindBy(id="FltExpYear") WebElement VehicleExpyr;
 		@FindBy(id="btnProceed") WebElement VehicleProceed;
+		
+		//After Successfully added into cart
+@FindBy(xpath="//ul[@class='errorMessage']//span") WebElement Dashboard_Message;
+@FindBy(xpath="//a[@title='Supplement Continuance']") WebElement Dashboard_SupplementContinuancelnk;
+
+@FindBy(xpath="//ul[contains(@class,'errorMessage')]/li/span") WebElement Dashboard_ErrorMessge;
+@FindBy(xpath="//a[@id='cartRef']") WebElement Cartimg;
 
 	public DashBoardPage(WebDriver driver) {
 		this.driver = driver;
@@ -32,9 +39,11 @@ public class DashBoardPage {
 
 	public void validatetitle() {
 		if(driver.getTitle().equalsIgnoreCase("Missouri Department of Transportation -  Enterprise")) {
+			assert true;
 			System.out.println("Current screen is Missouri Department of Transportation -  Enterprise");
 		}
 		else {
+			assert false;
 			System.out.println("Current screen is not Missouri Department of Transportation -  Enterprise");
 		}
 	}
@@ -50,10 +59,11 @@ public class DashBoardPage {
 	public void validateIRPScreen() throws InterruptedException {
 		ElementUtil.highlightElement(driver, DashboardIRPHeader);
 		if(DashboardIRPHeader.getText().equalsIgnoreCase("IRP")) {
-			
+			assert true;
 			System.out.println("Current screen is IRP");
 		}
 		else {
+			assert false;
 			System.out.println("Current screen is not IRP");
 		}
 		Thread.sleep(2000);
@@ -64,5 +74,39 @@ public class DashBoardPage {
 		ElementUtil.clickElementUsingActions(DashboardRenewFleetLink);
 		Thread.sleep(2000);
 	}
+public void validateMessage(CharSequence SuccessMessageValue) {
+	
+	if(Dashboard_Message.getText().contains(SuccessMessageValue)) { //Transaction is added to cart - 4113 successfully.
+		assert true;
+		System.out.println("Pass");
+	}
+	else {
+		assert false;
+		System.out.println("Fail");
+	}
+	
+}
+public void clickSupplementContinuance() throws InterruptedException {
+	ElementUtil.clickElementUsingActions(Dashboard_SupplementContinuancelnk);
+	Thread.sleep(2000);
+}
 
+public void enterAccountNo(String AccountNoValue) {
+	ElementUtil.webEditTxt(AccountNo, AccountNoValue);
+}
+public void validateErrorMessage(String ErrorMessgeValue) {
+	//GENPAY01 : [E] This transaction already exists in the cart.
+	if(Dashboard_ErrorMessge.getText().contains(ErrorMessgeValue)) {
+		assert true;
+		System.out.println("Pass");
+	}
+	else {
+		assert false;
+		System.out.println("Fail");
+	}
+	
+}
+public void clickCartimg() {
+	ElementUtil.clickElement(Cartimg);
+}
 }

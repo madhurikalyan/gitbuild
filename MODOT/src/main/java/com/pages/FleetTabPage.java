@@ -263,36 +263,6 @@ public class FleetTabPage {
 		
 		
 		//-------------------------------------
-		
-	@FindBy(id="FltType") WebElement FleetFleettype;
-	@FindBy(id="CommodityClass") WebElement FleetCommodity;
-	@FindBy(id="FltEffDate") WebElement FleetEffectivedate;
-	@FindBy(id="FltExpDate") WebElement FleetExpdate;
-	@FindBy(id="FirstOperationDate") WebElement FleetFirstoperationdate;
-	@FindBy(id="IRPRequirementsForm") WebElement FleetIRPreq;
-	@FindBy(id="StatementOfUnderstanding") WebElement FleetStatement;
-	@FindBy(id="InstallmentAgreement") WebElement FleetInstallment;
-	@FindBy(id="PowerOfAttorney") WebElement FleetPowerofattorny;
-
-	
-	@FindBy(id="btnProceed") public WebElement AccountProceed;
-	@FindBy(id="btnRefresh") WebElement AccountRefersh;
-	@FindBy(id="btnQuit") WebElement AccountQuit;
-
-	/*	Select s = new Select(FleetFleettype);
-	s.selectByValue("FHE");
-	Select s = new Select(FleetCommodity);
-	s.selectByValue("B");
-
-	Select s = new Select(FleetIRPreq);
-	s.selectByValue("C");
-	Select s = new Select(FleetStatement);
-	s.selectByValue("C");
-	Select s = new Select(FleetInstallment);
-	s.selectByValue("C");
-	Select s = new Select(FleetInstallment);
-	s.selectByValue("C");
-*/
 	
 	
 	
@@ -315,16 +285,16 @@ public class FleetTabPage {
 		ElementUtil.webEditTxtChange(FleetDetails_EmailIDtxt, EmailIDValue);
 	}
 	public void selectIRPRequirementForm(String selectValue) {
-		ElementUtil.selectFromDropdownByVisibleText(FleetIRPreq,selectValue);  //C - COLLECTED
+		ElementUtil.selectFromDropdownByVisibleText(FleetDocCollection_IRPRequirementsFormdd,selectValue);  //C - COLLECTED
 	}
 	public void selectStatementofUnderstanding(String selectValue) {
-		ElementUtil.selectFromDropdownByVisibleText(FleetStatement,selectValue); //C - COLLECTED
+		ElementUtil.selectFromDropdownByVisibleText(FleetDocCollection_StatementOfUnderstandingdd,selectValue); //C - COLLECTED
 	}
 	public void selectInstallmentAgreement(String selectValue) {
-		ElementUtil.selectFromDropdownByVisibleText(FleetInstallment,selectValue); //C - COLLECTED
+		ElementUtil.selectFromDropdownByVisibleText(FleetDocCollection_InstallmentAgreementdd,selectValue); //C - COLLECTED
 	}
 	public void selectPowerOfAttroney(String selectValue) {
-		ElementUtil.selectFromDropdownByVisibleText(FleetPowerofattorny,selectValue); //C - COLLECTED
+		ElementUtil.selectFromDropdownByVisibleText(FleetDocCollection_PowerOfAttorneydd,selectValue); //C - COLLECTED
 	}
 
 	public void selectHVUTForm(String selectValue) {
