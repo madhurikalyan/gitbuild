@@ -287,6 +287,9 @@ break;
 		ElementUtil.selectFromDropdownByVisibleText(AmendVehicle_PropertyTaxdd,PropertyTaxddValue);
 	}
 	
+	public void selectSafetyChangedd(String AmendVehicle_SafetyChangeValue) {
+		ElementUtil.selectFromDropdownByVisibleText(AmendVehicle_SafetyChangedd,AmendVehicle_SafetyChangeValue);
+	}
 	
 	
 	

@@ -156,13 +156,13 @@ public class ExcelReader {
 		}
 		return columnMapdata;
 	}
-	public static String readExcel(int rownum, int colnum) throws IOException  {
+	public static String FetchDataFromSheet( String SheetName,int rownum, int colnum) throws IOException  {
 		String cellvalue=null;
 		try {
 		File file = new File(ConfigReader.readexcel());
 		FileInputStream inputStream = new FileInputStream(file);
 		XSSFWorkbook wb = new XSSFWorkbook(inputStream);
-		XSSFSheet sheet = wb.getSheetAt(0);
+		XSSFSheet sheet = wb.getSheet(SheetName);
   cellvalue=sheet.getRow(rownum).getCell(colnum).getStringCellValue();
  wb.close();
 	}

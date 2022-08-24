@@ -49,8 +49,15 @@ public class VehicleTabPage {
 	public void clickVehicleList() {
 		ElementUtil.clickElement(VehicleVehicleListbtn);
 	}
+public void validateAmendedVehiclesCount(String AmendedVehiclesCount) {
+	assert equals(VehicleAmendedVehiclestxt.getAttribute("value").toString().equalsIgnoreCase(AmendedVehiclesCount)); 
+}
+public void validateDeleteVehiclesCount(String AmendedVehiclesCount) {
+	assert equals(VehicleDeleteVehiclestxt.getAttribute("value").toString().equalsIgnoreCase(AmendedVehiclesCount)); 
+}
+
 	/*
-	
+
 	
 	@FindBy(xpath="//a[text()='Add Vehicle']") WebElement SitemapAddvechile;
 	@FindBy(id="AccountNo") WebElement VehicleAccountNo;

@@ -52,7 +52,7 @@ public class WgtGroupAdd {
 	
 	
 	public void enterWeightGroupNo(String WeightGroupNoValue) {
-		ElementUtil.webEditTxt(AddWgtGroup_WeightGroupNotxt, WeightGroupNoValue);
+		ElementUtil.webEditTxtChange(AddWgtGroup_WeightGroupNotxt, WeightGroupNoValue);
 	}
 	public void selectMaxGrossWeight(String MaxGrossWeightValue) {
 		ElementUtil.selectFromDropdownByVisibleText(AddWgtGroup_MaxGrossWeightdd, MaxGrossWeightValue);  //B - BUS  P - POWER UNIT T - TRAILER

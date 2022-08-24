@@ -99,7 +99,7 @@ public static int getPageCount(PDDocument doc) {
 	return pageCount;
 	
 }
-public static  String readPdfContent(String url) throws IOException {
+/*public static  String readPdfContent(String url) throws IOException {
 	
 	URL pdfUrl = new URL(url);
 	InputStream in = pdfUrl.openStream();
@@ -111,7 +111,7 @@ public static  String readPdfContent(String url) throws IOException {
 	doc.close();
 
 return content;
-}
+}*/
 	/*
 	 * @description : Read the data from JSON File & return JSONObject
 	 * @param  : NA

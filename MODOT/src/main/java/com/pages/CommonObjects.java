@@ -66,7 +66,7 @@ public class CommonObjects {
 		
 		
 		//Comments
-		@FindBy(xpath="//div[@class='bottom-comments']") WebElement Commentssubhdr;
+		@FindBy(xpath="//div[@class='bottom-comments']//a") WebElement Commentssubhdr;
 		@FindBy(xpath="//label[@for='editComment_CommentTxtcommentsVM1']") WebElement Commentlbl;
 		@FindBy(xpath="//textarea[@id='editComment_CommentTxtcommentsVM1']") WebElement Commenttxt;
 		@FindBy(xpath="//label[@for='DefaultAccessLevelcommentsVM1']") WebElement AccessLevellbl;
@@ -100,7 +100,7 @@ public class CommonObjects {
 		@FindBy(xpath="//input[@id='btnGoToWeightGroupSelection']") WebElement WeightGroupSelectionbtn;
 		@FindBy(xpath="//input[@id='btnDeleteWeightGroup']") WebElement DeleteWeightGroupbtn;
 		
-		
+		@FindBy(xpath="//ul[@class='errorMessage']//span") WebElement ErrorMessage;
 		public void expandCommentSection() throws Exception {
 			ElementUtil.scrollToViewAndClickElement(Commentssubhdr);
 		}
@@ -115,7 +115,7 @@ public class CommonObjects {
 		}
 
 
-		public void checkDeleteAllowed(String accesslevelvalue) {
+		public void checkDeleteAllowed() {
 			ElementUtil.webCheckON(DeleteAllowedCommentchk);
 		}
 
@@ -149,6 +149,11 @@ public class CommonObjects {
 		}
 		public void clickDonebtn() {
 			ElementUtil.clickElement(Donebtn);
+		}
+		public void validateErrorMessage(String errormessagevalue) {
+			if(ErrorMessage.getText().contains(errormessagevalue))
+				assert true;
+			
 		}
 		
 }

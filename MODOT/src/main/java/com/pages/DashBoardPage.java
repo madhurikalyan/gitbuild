@@ -56,15 +56,13 @@ public class DashBoardPage {
 		Thread.sleep(2000);
 	}
 
-	public void validateIRPScreen() throws InterruptedException {
+	public void validateIRPScreen(String title) throws InterruptedException {
 		ElementUtil.highlightElement(driver, DashboardIRPHeader);
-		if(DashboardIRPHeader.getText().equalsIgnoreCase("IRP")) {
+		if(DashboardIRPHeader.getText().equalsIgnoreCase(title)) {
 			assert true;
-			System.out.println("Current screen is IRP");
 		}
 		else {
 			assert false;
-			System.out.println("Current screen is not IRP");
 		}
 		Thread.sleep(2000);
 	}

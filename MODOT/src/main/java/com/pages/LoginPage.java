@@ -25,11 +25,11 @@ public class LoginPage {
 		return driver.getTitle();
 	}
 
-	public void enterUsername() throws Exception {
-		ElementUtil.webEditTxtChange(LoginUserId,ConfigReader.readLoginInternalUser());
+	public void enterUsername(String username) throws Exception {
+		ElementUtil.webEditTxtChange(LoginUserId,username);
 	}
-	public void enterPassword() {
-		ElementUtil.webEditTxtChange(LoginPassword,ConfigReader.readpswrd());
+	public void enterPassword(String password) {
+		ElementUtil.webEditTxtChange(LoginPassword,password);
 	}
 	public void clickLoginbtn() throws InterruptedException {
 		ElementUtil.clickElementUsingActions(LoginbtnLogin);

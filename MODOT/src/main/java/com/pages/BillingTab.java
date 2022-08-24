@@ -83,6 +83,28 @@ public class BillingTab {
 	@FindBy(xpath="//input[@id='btnCancelBill']") WebElement BillingCancelBillbtn;
 	@FindBy(xpath="//input[@id='Email']") WebElement Billing_EmailIDTxt;
 	
+	@FindBy(xpath="//a[@role='button' and contains(text(),'Manual')]") WebElement Billing_ManualAdjReasonCollapse;
+	@FindBy(xpath="//textarea[@id='editComment_CommentTxtcommentsVM2']") WebElement Billing_ManualAdjReasonCommentstxt;
+	@FindBy(xpath="//input[@id='editComment_DelAllowedcommentsVM2']") WebElement Billing_ManualAdjReasonDeleteAllowedchk;
+	@FindBy(xpath="//input[@id='addUpdateCommentBtncommentsVM2']") WebElement Billing_ManualAdjReasonAddorUpdateCommentbtn;
+	@FindBy(xpath="//input[@id='refreshCommentBtncommentsVM2']") WebElement Billing_ManualAdjReasonClearCommentbtn;
+	
+	@FindBy(xpath="//select[@id='FeeDetailRows_8__WaiverReasonsSelect']") WebElement Billing_BicentennialFeedd;
+	@FindBy(xpath="//select[@id='FeeDetailRows_9__WaiverReasonsSelect']") WebElement Billing_GradeCrossingFeedd;
+	@FindBy(xpath="//select[@id='FeeDetailRows_10__WaiverReasonsSelect']") WebElement Billing_ReplacementPlateFeedd;
+	@FindBy(xpath="//select[@id='FeeDetailRows_11__WaiverReasonsSelect']") WebElement Billing_SecondPlateFeedd;
+	@FindBy(xpath="//select[@id='FeeDetailRows_12__WaiverReasonsSelect']") WebElement Billing_LateFilingPenaltydd;
+	@FindBy(xpath="//select[@id='FeeDetailRows_13__WaiverReasonsSelect']") WebElement Billing_LatePayPenaltydd;
+	@FindBy(xpath="//select[@id='FeeDetailRows_14__WaiverReasonsSelect']") WebElement Billing_TransferFeedd;
+	@FindBy(xpath="//select[@id='FeeDetailRows_15__WaiverReasonsSelect']") WebElement Billing_TransferRevenueFeedd;
+	
+	@FindBy(xpath="//a[@role='button' and contains(text(),'Fee')]") WebElement Billing_FeeOverrideReasonCollapse;
+	@FindBy(xpath="//textarea[@id='editComment_CommentTxtcommentsVM3']") WebElement Billing_FeeOverrideReasonCommentstxt;
+	@FindBy(xpath="//input[@id='editComment_DelAllowedcommentsVM3']") WebElement Billing_FeeOverrideReasonDeleteAllowedchk;
+	@FindBy(xpath="//input[@id='addUpdateCommentBtncommentsVM3']") WebElement Billing_FeeOverrideReasonAddorUpdateCommentbtn;
+	@FindBy(xpath="//input[@id='refreshCommentBtncommentsVM3']") WebElement Billing_FeeOverrideReasonClearCommentbtn;
+	
+	
 	
 	public void enterManualAdjBaseJur(String ManualAdjBaseJurValue) {
 		ElementUtil.webEditTxtChange(Billing_ManualAdjBaseJurtxt, ManualAdjBaseJurValue);
@@ -121,4 +143,64 @@ public void clickCancelBill() {
 public void enterEmailIDTxt(String EmailIDTxtValue) {
 	ElementUtil.webEditTxtChange(Billing_EmailIDTxt, EmailIDTxtValue);
 }
+public void expandManualAdjReason() {
+	ElementUtil.clickElement(Billing_ManualAdjReasonCollapse);
+}
+
+public void enterManualAdjReasonComments(String ManualadjreasonCommentsValue) {
+	ElementUtil.webEditTxtChange(Billing_ManualAdjReasonCommentstxt, ManualadjreasonCommentsValue);
+}
+public void clickManualAdjReasonDeleteAllowed() {
+	ElementUtil.webCheckON(Billing_ManualAdjReasonDeleteAllowedchk);
+}
+public void  clickManualAdjReasonAddorUpdateComments() {
+	ElementUtil.clickElement(Billing_ManualAdjReasonAddorUpdateCommentbtn);
+}
+
+public void  clickManualAdjReasonclearComments() {
+	ElementUtil.clickElement(Billing_ManualAdjReasonClearCommentbtn);
+}
+public void selectBicentennialFee(String BicentennialFeeValue) {
+	ElementUtil.selectFromDropdownByVisibleText(Billing_BicentennialFeedd,BicentennialFeeValue);
+}
+public void selectGradeCrossingFee(String GradeCrossingFeeValue) {
+	ElementUtil.selectFromDropdownByVisibleText(Billing_GradeCrossingFeedd,GradeCrossingFeeValue);
+}
+public void selectReplacementPlateFee(String ReplacementPlateFeeValue) {
+	ElementUtil.selectFromDropdownByVisibleText(Billing_ReplacementPlateFeedd,ReplacementPlateFeeValue);
+}
+public void selectSecondPlateFee(String SecondPlateFeeValue) {
+	ElementUtil.selectFromDropdownByVisibleText(Billing_SecondPlateFeedd,SecondPlateFeeValue);
+}
+public void selectLateFilingPenalty(String LateFilingPenaltyValue) {
+	ElementUtil.selectFromDropdownByVisibleText(Billing_LateFilingPenaltydd,LateFilingPenaltyValue);
+}
+public void selectLatePayPenalty(String LatePayPenaltyValue) {
+	ElementUtil.selectFromDropdownByVisibleText(Billing_LatePayPenaltydd,LatePayPenaltyValue);
+}
+public void selectTransferFee(String TransferFeeValue) {
+	ElementUtil.selectFromDropdownByVisibleText(Billing_TransferFeedd,TransferFeeValue);
+}
+public void selectTransferRevenueFee(String TransferRevenueFeeValue) {
+	ElementUtil.selectFromDropdownByVisibleText(Billing_TransferRevenueFeedd,TransferRevenueFeeValue);
+}
+public void expandFeeOverrideReason() {
+	ElementUtil.clickElement(Billing_FeeOverrideReasonCollapse);
+}
+
+public void enterFeeOverrideReasonComments(String ManualadjreasonCommentsValue) {
+	ElementUtil.webEditTxtChange(Billing_FeeOverrideReasonCommentstxt, ManualadjreasonCommentsValue);
+}
+public void clickFeeOverrideReasonDeleteAllowed() {
+	ElementUtil.webCheckON(Billing_FeeOverrideReasonDeleteAllowedchk);
+}
+public void  clickFeeOverrideReasonAddorUpdateComments() {
+	ElementUtil.clickElement(Billing_FeeOverrideReasonAddorUpdateCommentbtn);
+}
+
+public void  clickFeeOverrideReasonclearComments() {
+	ElementUtil.clickElement(Billing_FeeOverrideReasonClearCommentbtn);
+}
+
+
 }

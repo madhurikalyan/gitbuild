@@ -67,14 +67,14 @@ public class FleetPage {
 		}
 	}
 	
-	public void enterAccountNo() throws IOException {
-		ElementUtil.webEditTxtChange(FleetAccountNOtxt, ExcelReader.readExcel(1, 0));
+	public void enterAccountNo(String AccountNoValue) throws IOException {
+		ElementUtil.webEditTxtChange(FleetAccountNOtxt,AccountNoValue);
 	}
-	public void enterFleetNo() throws IOException {
-		ElementUtil.webEditTxtChange(FleetFleetNotxt, ExcelReader.readExcel(1, 1));
+	public void enterFleetNo(String FleetNoValue) throws IOException {
+		ElementUtil.webEditTxtChange(FleetFleetNotxt,FleetNoValue);
 	}
-	public void enterFleetyear() throws IOException {
-		ElementUtil.webEditTxtChange(FleetfltExpYeartxt, ExcelReader.readExcel(1, 2));
+	public void enterFleetyear(String FleetyearValue) throws IOException {
+		ElementUtil.webEditTxtChange(FleetfltExpYeartxt, FleetyearValue);
 	}
 	public void clickproceedbtn() {
 		ElementUtil.clickElement(FleetProceedbtn);
