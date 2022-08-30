@@ -7,6 +7,8 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.qa.util.ElementUtil;
 
+import junit.framework.Assert;
+
 public class PaymentTab {
 	public WebDriver driver;
 	public PaymentTab(WebDriver driver) {
@@ -47,10 +49,72 @@ public class PaymentTab {
 @FindBy(xpath="//input[@id='btnAddToCart']") WebElement Payment_AddToCartbtn;
 
 
+@FindBy(xpath="//a[@title='Supplement Continuance']") WebElement Supplement_Cont;
+@FindBy(xpath="//div[@id='contentMsg']//span") WebElement Addtocart_Msg;
+@FindBy(xpath="//a[@id='cartRef']") WebElement VerifyAddtocart;
+@FindBy(xpath="//select[contains(@id,'PayType')]") WebElement PaymentType;
+@FindBy(xpath="//input[contains(@id,'PaymentAmount')and contains(@id,'paymentVos')]") WebElement PaymentAmount;
+@FindBy(xpath="//input[@id='Add']") WebElement PaymentAdd;
+@FindBy(xpath="//select[@id='paymentVos_1__PayType']") WebElement PaymentAmountchecktype;
+@FindBy(xpath="//input[@id='paymentVos_1__PaymentAmount']") WebElement PaymentAmountCheque;
+@FindBy(xpath="//input[@id='paymentVos_2__DeleteChk']") WebElement Checkboxdelete;
+@FindBy(xpath="//input[@id='Delete']") WebElement Deletecheckbox;
+@FindBy(xpath="//select[@id='outPutModelSelect']") WebElement PaymentReceipt;
+@FindBy(xpath="//input[@id='paymentVos_1__PaymentNo']") WebElement Paymentcheckno;
+
+
 public void clickPayNow() {
 	ElementUtil.clickElement(Payment_PayNowbtn);
 }
 public void clickAddtoCart() {
 	ElementUtil.clickElement(Payment_AddToCartbtn);
 }	
+public void clickpaymentadd() {
+	ElementUtil.clickElement(PaymentAdd);
+}
+/*public void clickandenteraccno(String accountnovalue) {
+ElementUtil.clickElement(Accountno);
+ElementUtil.webEditTxtChange(Accountno,accountnovalue);
+}*/
+public void clicksupplcont() {
+	ElementUtil.clickElement(Supplement_Cont);
+}
+@SuppressWarnings("deprecation")
+public void validatemessage(String TransactionexistMeesage) {
+	
+	ElementUtil.highlightElement(driver, Addtocart_Msg);
+	Assert.assertEquals(Addtocart_Msg.getText(),TransactionexistMeesage);
+}
+public void clickverifyaddtocart() {
+	ElementUtil.clickElement(VerifyAddtocart);
+}
+/*public void clickpay() {
+	ElementUtil.clickElement(Payment_Pay);
+}*/
+/*public void clickpaymenttype(String selectValue) {
+	ElementUtil.selectFromDropdownByValue(PaymentType, selectValue);
+}
+public void enterpaymentamount(String amountcashvalue) {
+	ElementUtil.webEditTxtChange(PaymentAmountCash,amountcashvalue);
+}
+public void clickpaymenttypecheque(String selectValue) {
+	ElementUtil.selectFromDropdownByValue(PaymentAmountchecktype, selectValue);
+}
+public void enterpaymentamount2(String PaymentAmountChequevalue) {
+	ElementUtil.webEditTxtChange(PaymentAmountCheque,PaymentAmountChequevalue);
+	
+}
+public void entercheckno(String paymentchequenovalue) {
+	ElementUtil.webEditTxtChange(Paymentcheckno,paymentchequenovalue);
+}
+public void clickcheckbox() {
+	ElementUtil.clickElement(Checkboxdelete);
+}
+public void clickdeletecheckbox() {
+	ElementUtil.clickElement(Deletecheckbox);
+}
+public void clickpaymentreceipt(String selectValue) {
+	ElementUtil.selectFromDropdownByValue(PaymentReceipt, selectValue);
+}
+*/
 }

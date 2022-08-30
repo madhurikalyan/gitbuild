@@ -134,6 +134,18 @@ public class ConfigReader {
 		}
 		}
 
+	public static String writeexcel() throws Exception {
+		try
+		{
+			prop = init_prop();
+		return prop.getProperty("writeExcel");
+		}
+		catch (Exception e){
+		e.printStackTrace();
+		throw e;
+		}
+		}
+	
 	public static String readexcel() throws Exception {
 		try
 		{

@@ -134,7 +134,7 @@ public class VehicleAmend {
 		@FindBy(xpath="//input[@id='VehDtlSafetyTin']") WebElement AmendVehicle_SafetyTPIDtxt;
 		
 		@FindBy(xpath="//label[@for='SaftyChangeDuringYear']") WebElement AmendVehicle_SafetyChangelbl;
-		@FindBy(xpath="//input[@id='SaftyChangeDuringYear']") WebElement AmendVehicle_SafetyChangedd;
+		@FindBy(xpath="//select[@id='SaftyChangeDuringYear']") WebElement AmendVehicle_SafetyChangedd;
 		
 		@FindBy(xpath="//label[@for='IsUseExistingPlate']") WebElement AmendVehicle_UseExistingPlatelbl;
 		@FindBy(xpath="//input[@id='IsUseExistingPlate']") WebElement AmendVehicle_UseExistingPlatechk;
@@ -217,11 +217,21 @@ break;
 	
 	}
 	
-	
+	public void selectBodyType(String AmendVehicle_BodytypeddValue) {
+		ElementUtil.selectFromDropdownByVisibleText(AmendVehicle_Bodytypedd, AmendVehicle_BodytypeddValue); //BS - Bus,CG - Converter Gear,FT - Full Trailer,MT - Motor Totor,RT - Road Truck,ST - Semi Trailer,TK - Straight Truck,TR - Tractor,TT - Truck Tractor,WR - Wrecker
+	}
 	public void clickTVR() {
 		ElementUtil.clickElement(AmendVehicle_TVRchk);
 	}
-	
+	public void enterUnladenWeight(String unladenWeightValue) {
+		if(AmendVehicle_UnladenWeighttxt.getAttribute("value") == null) {
+			System.out.println("UnladenWeight is Null");
+			ElementUtil.webEditTxtChange(AmendVehicle_UnladenWeighttxt, unladenWeightValue);
+		}
+	}
+	public void selectWeightGroupNo(String AmendVehicle_WeightGroupNoddValue) {
+		ElementUtil.selectFromDropdownByVisibleText(AmendVehicle_WeightGroupNodd, AmendVehicle_WeightGroupNoddValue); //BS - Bus,CG - Converter Gear,FT - Full Trailer,MT - Motor Totor,RT - Road Truck,ST - Semi Trailer,TK - Straight Truck,TR - Tractor,TT - Truck Tractor,WR - Wrecker
+	}
 	public void ValidatePresenceOfMandatoryFeildValues() {
 		
 		System.out.println( AmendVehicle_UnitNotxt.getAttribute("value").isEmpty()); //for execution debug
@@ -242,7 +252,6 @@ break;
 		 ElementUtil.isElementcontainsValue(AmendVehicle_SafetyChangedd,"value");
 		 
 	}
-	
 	
 	
 	public void selectColorado10kIndicator(String Colorado10kIndicatorddValue) {

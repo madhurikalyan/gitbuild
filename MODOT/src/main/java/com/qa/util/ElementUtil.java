@@ -475,9 +475,9 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 	 * @return : NA
 	 * @author : SaiMadhuri Aturi
 	 */
-	public static void waitUntilElementVisible(WebElement element, Duration timeOutInSeconds) {
+	public static void waitUntilElementVisible(WebElement element) {
 		try {
-			wait = new WebDriverWait(driver, timeOutInSeconds);
+			wait = new WebDriverWait(driver, Duration.ofSeconds(100));
 			wait.until(ExpectedConditions.visibilityOf(element));
 		} catch (Exception e) {
 			throw e;
@@ -490,9 +490,9 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 	 * @return : NA
 	 * @author : SaiMadhuri Aturi
 	 */
-	public static void waitUntilElementsVisible(List<WebElement> element, Duration timeOutInSeconds) {
+	public static void waitUntilElementsVisible(List<WebElement> element) {
 		try {
-			wait = new WebDriverWait(driver, timeOutInSeconds);
+			wait = new WebDriverWait(driver, Duration.ofSeconds(100));
 			wait.until(ExpectedConditions.visibilityOfAllElements(element));
 		} catch (Exception e) {
 			throw e;
@@ -505,9 +505,9 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 	 * @return : NA
 	 * @author : SaiMadhuri Aturi
 	 */
-	public static void waitUntilElementClickable(WebElement element, Duration timeOutInSeconds) {
+	public static void waitUntilElementClickable(WebElement element) {
 		try {
-			wait = new WebDriverWait(driver, timeOutInSeconds);
+			wait = new WebDriverWait(driver, Duration.ofSeconds(100));
 			wait.until(ExpectedConditions.elementToBeClickable(element));
 
 		} catch (Exception e) {
@@ -769,7 +769,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 					return ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
 				}
 			};
-			WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+			WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(100));
 			wait.until(pageLoadCondition);
 
 		} catch (Exception e) {
@@ -1204,7 +1204,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 	public static  void webEditTxt(WebElement inputObject,String value) {
 		try
 		{
-				wait = new WebDriverWait(driver, Duration.ofSeconds(200));
+				wait = new WebDriverWait(driver, Duration.ofSeconds(100));
 				wait.until(ExpectedConditions.elementToBeClickable(inputObject));
 				inputObject.sendKeys(value);
 		}
@@ -1271,10 +1271,44 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 	public static void selectFromDropdownByVisibleText(WebElement element, String option) {
 		try {
 			if(!option.equals("")) {
-				wait = new WebDriverWait(driver, Duration.ofSeconds(200));
+				wait = new WebDriverWait(driver, Duration.ofSeconds(100));
 				wait.until(ExpectedConditions.elementToBeClickable(element));
 				Select select=new Select(element);
 				select.selectByVisibleText(option);
+				
+			}
+		} catch (Exception e) {
+
+			throw e;
+		}
+	}
+	/*
+	 * @description : select an option from drop down using visible text
+	 * @param  : element
+	 * @param  : timeout for element to be present in seconds
+	 * @return : NA
+	 * @author : Sai Madhuri Aturi
+	 */
+	/*public static String selectedfromdropdown(WebElement element) {
+		try {
+				Select select=new Select(element);
+				System.out.println("webelement is;"+select.getFirstSelectedOption());
+				String selectedvalue=select.getFirstSelectedOption().getAttribute("value");
+		} catch (Exception e) {
+
+			throw e;
+		}
+		String selectedvalue = null;
+		return selectedvalue;
+	}*/
+
+	public static void selectFromDropdownByValue(WebElement element, String option) {
+		try {
+			if(!option.equals("")) {
+				wait = new WebDriverWait(driver, Duration.ofSeconds(200));
+				wait.until(ExpectedConditions.elementToBeClickable(element));
+				Select select=new Select(element);
+							select.selectByValue(option);
 			}
 		} catch (Exception e) {
 

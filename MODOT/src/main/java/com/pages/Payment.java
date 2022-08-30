@@ -2,6 +2,7 @@ package com.pages;
 
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,7 +16,7 @@ public class Payment {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
-	
+	@FindBy(xpath="//div[@class='alert alert-danger notification']") List<WebElement> validationMessage;
 	@FindBy(xpath="//input[@id='AccountNo']") WebElement Payment_MCECustomerIdtxt;
 	@FindBy(xpath="//label[@for='AccountNo']") WebElement Payment_MCECustomerIdlbl;
 	@FindBy(xpath="//input[@id='invoiceNbr']") WebElement Payment_invoiceNbrtxt;
@@ -37,7 +38,7 @@ public class Payment {
 	@FindBy(xpath="(//div[contains(@class,'box-title')]/h4)[1]") WebElement Payment_SearchForTransactionSubhdr;  //SearchForTransaction, Payment
 	@FindBy(xpath="(//div[contains(@class,'box-title')]/h4)[2]") WebElement Payment_SelectedTransactionSubhdr; //SelectedTransaction, payment Details
 	@FindBy(xpath="(//div[contains(@class,'box-title')]/h4)[3]") WebElement Payment_ElectronicDeliveryTypeSubhdr;
-	
+	@FindBy(xpath="//select[@id='ElectronicDeliveryType']") WebElement Payment_ElectronicDeliveryTypedd;
 	@FindBy(xpath="//input[@id='payerName']") WebElement Payment_payerNametxt;
 	@FindBy(xpath="//label[@for='payerName']") WebElement Payment_payerNamelbl;
 	@FindBy(xpath="//input[@id='payerAccountNo']") WebElement Payment_payerAccountNotxt;
@@ -76,9 +77,9 @@ public class Payment {
 	@FindBy(xpath="//label[@for='OPAEsc']") WebElement Payment_OpaSystemCreditlbl;
 	
 	@FindBy(xpath="//input[@name='totalInvoiceAmountUSD']") WebElement Payment_TotalInvoiceAmountUSDValue;
-	@FindBy(xpath="//select[@id='paymentVos_0__PayType']") WebElement Payment_PaymentTypegriddd;
-	@FindBy(xpath="//input[contains(@id,'paymentVos') and contains(@id,'PaymentAmount')]") WebElement Payment_PaymentAmountgridtxt;
-	@FindBy(xpath="//input[contains(@id,'paymentVos') and contains(@id,'PaymentNo')]") WebElement Payment_PaymentNumbergridtxt;
+//	@FindBy(xpath="//select[contains(@id,'PayType') and contains(@id,'"+i+"')]") List<WebElement> Payment_PaymentTypegriddd;
+	//@FindBy(xpath="//input[contains(@id,'paymentVos') and contains(@id,'PaymentAmount')]") List<WebElement> Payment_PaymentAmountgridtxt;
+	//@FindBy(xpath="//input[contains(@id,'paymentVos') and contains(@id,'PaymentNo')]") List<WebElement> Payment_PaymentNumbergridtxt;
 	
 	
 	@FindBy(xpath="//input[@id='Delete']") WebElement Deletebtn;
@@ -102,29 +103,97 @@ public class Payment {
 	
 	@FindBy(xpath="//label[@for='outPutModelSelect']") WebElement Payment_PaymentReceiptlbl;
 	@FindBy(xpath="//select[@id='outPutModelSelect']") WebElement Payment_PaymentReceiptdd;
-	
+	@FindBy(xpath="//input[@id='remainingBalance']") WebElement Payment_RemainingBalancetxt;
 	@FindBy(xpath="//input[@id='btnbtnTransactionSection']")WebElement TransactionSelectionbtn;
 	
+	public void selectElectronicDeliverytype(String electronicdeliverytypevalue) {
+		ElementUtil.selectFromDropdownByVisibleText(Payment_ElectronicDeliveryTypedd, electronicdeliverytypevalue);
+	}
 	public String FetchTotalAmount() {
 		String TotalAmountValue=Payment_TotalInvoiceAmountUSDValue.getAttribute("value").toString();
 		return TotalAmountValue;
 	}
-	
+	public String FetchRemainingBalance() {
+		String TotalRemainingBalance=Payment_RemainingBalancetxt.getAttribute("value").toString();
+		return TotalRemainingBalance;
+	}
 	public void clickPayNow() {
 	ElementUtil.clickElement(Payment_Paybtn);
 }
+public void check(int i) {
+	WebElement Payment_PaymentType=driver.findElement(By.xpath("//select[contains(@id,'PayType') and contains(@id,'"+i+"')]"));
+	System.out.println("id1 is:"+Payment_PaymentType.getAttribute("id")); //paymentVos_0__PayType
+	
+}
+public void selectPaymentType(int i,String PaymentTypeValue) {
+	WebElement Payment_PaymentType=driver.findElement(By.xpath("//select[contains(@id,'PayType') and contains(@id,'"+i+"')]"));
+	ElementUtil.selectFromDropdownByVisibleText(Payment_PaymentType, PaymentTypeValue); //Cash,Check,Certified Check,E-check,Credit Card,Wire Transfer,EFT,Enterprise System Credit,IRP System Credit,IFTA System Credit,OPA System Credit,IFTA Bond
+}
+public void enterpaymentNoBasedonType(int i,String ExcelpassedValue,String PaymentNumberValue) {
+	WebElement Payment_PaymentNumbertxt=driver.findElement(By.xpath("//input[contains(@id,'paymentVos') and contains(@id,'PaymentNo')and contains(@id,'"+i+"')]"));
 
-public void selectPaymentType(String PaymentTypeValue) {
-	ElementUtil.selectFromDropdownByVisibleText(Payment_PaymentTypegriddd, PaymentTypeValue); //Cash,Check,Certified Check,E-check,Credit Card,Wire Transfer,EFT,Enterprise System Credit,IRP System Credit,IFTA System Credit,OPA System Credit,IFTA Bond
+	if(ExcelpassedValue.equalsIgnoreCase("Check")) {
+		ElementUtil.webEditTxt(Payment_PaymentNumbertxt, PaymentNumberValue);
+	}
+	else if(ExcelpassedValue.equalsIgnoreCase("Certified Check")){
+		ElementUtil.webEditTxt(Payment_PaymentNumbertxt, PaymentNumberValue);
+	}
+	else if(ExcelpassedValue.equalsIgnoreCase("Wire Transfer")){
+		ElementUtil.webEditTxt(Payment_PaymentNumbertxt, PaymentNumberValue);
+	}
+	else if(ExcelpassedValue.equalsIgnoreCase("EFT")){
+		ElementUtil.webEditTxt(Payment_PaymentNumbertxt, PaymentNumberValue);
+	}
+	else if(ExcelpassedValue.equalsIgnoreCase("Enterprise System Credit")){
+		ElementUtil.webEditTxt(Payment_PaymentNumbertxt, PaymentNumberValue);
+	}
 }
 
-public void enterPaymentAmount(String PaymentAmountValue) {
-	ElementUtil.webEditTxt(Payment_PaymentAmountgridtxt, PaymentAmountValue);
+public void enterPaymentAmountBasedonType(int i,String ExcelpassedValue,String PaymentAmountValue) {
+	WebElement Payment_PaymentType=driver.findElement(By.xpath("//select[contains(@id,'PayType') and contains(@id,'"+i+"')]"));
+	WebElement Payment_PaymentAmount=driver.findElement(By.xpath("//input[contains(@id,'paymentVos') and contains(@id,'PaymentAmount') and contains(@id,'"+i+"')]"));
+	
+	System.out.print("Sai "+Payment_PaymentType.getAttribute("VisibleText"));
+	System.out.print("Madhuri "+Payment_PaymentType.getAttribute("value"));
+	
+	if(ExcelpassedValue.equalsIgnoreCase("Cash")) {
+		ElementUtil.webEditTxt(Payment_PaymentAmount, PaymentAmountValue);
+	}
+	else if(ExcelpassedValue.equalsIgnoreCase("Check")){
+		ElementUtil.webEditTxt(Payment_PaymentAmount, PaymentAmountValue);
+	}
+	else if(ExcelpassedValue.equalsIgnoreCase("Certified Check")){
+		ElementUtil.webEditTxt(Payment_PaymentAmount, PaymentAmountValue);
+	}
+	else if(ExcelpassedValue.equalsIgnoreCase("Wire Transfer")){
+		ElementUtil.webEditTxt(Payment_PaymentAmount, PaymentAmountValue);
+	}
+	else if(ExcelpassedValue.equalsIgnoreCase("EFT")){
+		ElementUtil.webEditTxt(Payment_PaymentAmount, PaymentAmountValue);
+	}
+	else if(ExcelpassedValue.equalsIgnoreCase("Enterprise System Credit")){
+		ElementUtil.webEditTxt(Payment_PaymentAmount, PaymentAmountValue);
+	}
+	else if(ExcelpassedValue.equalsIgnoreCase("IRP System Credit")){
+		ElementUtil.webEditTxt(Payment_PaymentAmount, PaymentAmountValue);
+	}
+	else if(ExcelpassedValue.equalsIgnoreCase("IFTA System Credit")){
+		ElementUtil.webEditTxt(Payment_PaymentAmount, PaymentAmountValue);
+	}
+	else if(ExcelpassedValue.equalsIgnoreCase("OPA System Credit")){
+		ElementUtil.webEditTxt(Payment_PaymentAmount, PaymentAmountValue);
+	}
+	else if(ExcelpassedValue.equalsIgnoreCase("IFTA Bond")){
+		ElementUtil.webEditTxt(Payment_PaymentAmount, PaymentAmountValue);
+	}
 }
-public void enterPaymentNumber(String PaymentNumberValue) {
-	ElementUtil.webEditTxt(Payment_PaymentNumbergridtxt, PaymentNumberValue);
+public void validatemsg(String msgvalue) {
+	for(WebElement eachmsg:validationMessage) {
+		if(eachmsg.getText().contains(msgvalue))
+			assert true;
+	}
 }
-
+	//ElementUtil.highlightElement(driver, validationMessage);
 public void clickDelete() {
 	ElementUtil.clickElement(Deletebtn);
 }

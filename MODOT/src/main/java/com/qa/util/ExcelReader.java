@@ -2,12 +2,12 @@ package com.qa.util;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
@@ -16,13 +16,19 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.ss.util.NumberToTextConverter;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 
 public class ExcelReader {
-	
-
+	static FileOutputStream fos;
+	static File file;
+	static XSSFWorkbook wb;
+static FileInputStream fis;
+static XSSFSheet sheet = null;
+static XSSFRow  row = null ;
 	public List<Map<String, String>> getData(String excelFilePath, String sheetName)
 			throws InvalidFormatException, IOException {
 		Sheet sheet = getSheetByName(excelFilePath, sheetName);
@@ -156,13 +162,13 @@ public class ExcelReader {
 		}
 		return columnMapdata;
 	}
-	public static String FetchDataFromSheet( String SheetName,int rownum, int colnum) throws IOException  {
+	public static String FetchDataFromSheet(String filepath,String SheetName,int rownum, int colnum) throws IOException  {
 		String cellvalue=null;
 		try {
-		File file = new File(ConfigReader.readexcel());
-		FileInputStream inputStream = new FileInputStream(file);
-		XSSFWorkbook wb = new XSSFWorkbook(inputStream);
-		XSSFSheet sheet = wb.getSheet(SheetName);
+			file = new File(filepath);
+		 fis = new FileInputStream(file);
+		 wb = new XSSFWorkbook(fis);
+		 sheet = wb.getSheet(SheetName);
   cellvalue=sheet.getRow(rownum).getCell(colnum).getStringCellValue();
  wb.close();
 	}
@@ -177,5 +183,58 @@ public class ExcelReader {
 		 return cellvalue;
 }
 
+@SuppressWarnings("resource")
+public static void writeintoExcel(String filepath, String sheetname, int rownum, int cellnum, String cellValue) throws IOException{
+	
+	Cell cell;
+	
+		 wb = new XSSFWorkbook();
+		 sheet = 	wb.createSheet(sheetname);
+		if(sheet.getRow(rownum) == null) {
+			sheet.createRow(0).createCell(cellnum).setCellValue(cellValue);
+		}
+		else {
+			sheet.getRow(0).createCell(cellnum).setCellValue(cellValue);
+		}
+		
+//	sheet.createRow(rownum).createCell(cellnum).setCellValue(cellValue);
+		try {
+		fos = new FileOutputStream(
+                new File(filepath));
+	wb.write(fos);
+	
+	}
+	catch (Exception e) {
+		// TODO: handle exception
+	}
+}
+public static void closefile() throws IOException {
+	fos.close();
+}
+
+public static void sheetUpdate(String filePath,String sheetName,int rownum,int cellnum,String cellValue) throws Exception
+{
+	//File testDataFile = new File(filePath);
+	//Workbook workbook = null;
+	try {
+	//	workbook = WorkbookFactory.create(testDataFile);
+		fis = new FileInputStream(filePath);
+		wb = new XSSFWorkbook(fis);
+	sheet = wb.createSheet(sheetName);
+	System.out.println("SheetName :" +sheet.getSheetName());
+	if(sheet.getRow(rownum) == null) {
+		sheet.createRow(0).createCell(cellnum).setCellValue(cellValue);
+	}
+	else {
+		sheet.getRow(0).createCell(cellnum).setCellValue(cellValue);
+	}			
+	fos = new FileOutputStream(filePath);
+	wb.write(fos);
+	fos.close();	
+}
+	catch (Exception e) {
+		// TODO: handle exception
+	}
+}
 
 }

@@ -109,10 +109,11 @@ public class BillingTab {
 	public void enterManualAdjBaseJur(String ManualAdjBaseJurValue) {
 		ElementUtil.webEditTxtChange(Billing_ManualAdjBaseJurtxt, ManualAdjBaseJurValue);
 	}
-	public void clickTVR() {
+	public void clickBatchBilling() {
 		ElementUtil.webCheckON(Billing_BatchBillingchk);
 	}
-	public void clickBatchBilling() {
+	
+	public void clickTVR() {
 		ElementUtil.webCheckON(Billing_TVRchk);
 	}
 	public void clickInstallmentPlan() {
@@ -146,7 +147,6 @@ public void enterEmailIDTxt(String EmailIDTxtValue) {
 public void expandManualAdjReason() {
 	ElementUtil.clickElement(Billing_ManualAdjReasonCollapse);
 }
-
 public void enterManualAdjReasonComments(String ManualadjreasonCommentsValue) {
 	ElementUtil.webEditTxtChange(Billing_ManualAdjReasonCommentstxt, ManualadjreasonCommentsValue);
 }
@@ -156,7 +156,6 @@ public void clickManualAdjReasonDeleteAllowed() {
 public void  clickManualAdjReasonAddorUpdateComments() {
 	ElementUtil.clickElement(Billing_ManualAdjReasonAddorUpdateCommentbtn);
 }
-
 public void  clickManualAdjReasonclearComments() {
 	ElementUtil.clickElement(Billing_ManualAdjReasonClearCommentbtn);
 }
@@ -187,7 +186,6 @@ public void selectTransferRevenueFee(String TransferRevenueFeeValue) {
 public void expandFeeOverrideReason() {
 	ElementUtil.clickElement(Billing_FeeOverrideReasonCollapse);
 }
-
 public void enterFeeOverrideReasonComments(String ManualadjreasonCommentsValue) {
 	ElementUtil.webEditTxtChange(Billing_FeeOverrideReasonCommentstxt, ManualadjreasonCommentsValue);
 }

@@ -77,6 +77,7 @@ public class DistanceTabPage {
 			
 
 public void selectYesOrNo(String selectvalue) {
+	ElementUtil.waitUntilElementsVisible(Distance_ReportingPeriodQuestionrd);
 	for(WebElement a:Distance_ReportingPeriodQuestionrd) {
 		if(a.getAttribute("value").equalsIgnoreCase(selectvalue)) { //"Y" //"N"
 			ElementUtil.clickElement(a);
@@ -85,6 +86,7 @@ public void selectYesOrNo(String selectvalue) {
 	}
 }
 public void enterMODistanceValue( String Juri,String DistanceValuedynamic) {
+	ElementUtil.waitUntilElementsVisible(Distance_JurisList);
 	for(int i=0;i<Distance_JurisList.size();i++) {
 		if(Distance_JurisList.get(i).getText().equalsIgnoreCase(Juri)) { //"MO - MISSOURI"
 			ElementUtil.webEditTxtChange(Distance_DistanceJurisList.get(i),DistanceValuedynamic);

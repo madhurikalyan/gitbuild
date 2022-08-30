@@ -49,9 +49,11 @@ public class VehicleTabPage {
 	public void clickVehicleList() {
 		ElementUtil.clickElement(VehicleVehicleListbtn);
 	}
+@SuppressWarnings("unlikely-arg-type")
 public void validateAmendedVehiclesCount(String AmendedVehiclesCount) {
 	assert equals(VehicleAmendedVehiclestxt.getAttribute("value").toString().equalsIgnoreCase(AmendedVehiclesCount)); 
 }
+@SuppressWarnings("unlikely-arg-type")
 public void validateDeleteVehiclesCount(String AmendedVehiclesCount) {
 	assert equals(VehicleDeleteVehiclestxt.getAttribute("value").toString().equalsIgnoreCase(AmendedVehiclesCount)); 
 }

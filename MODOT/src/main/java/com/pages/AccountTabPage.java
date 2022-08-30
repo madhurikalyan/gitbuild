@@ -1,10 +1,15 @@
 package com.pages;
 
+import org.testng.Assert;
+
+import java.io.IOException;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import com.qa.util.ConfigReader;
 import com.qa.util.ElementUtil;
 import com.qa.util.ExcelReader;
 
@@ -128,21 +133,53 @@ public class AccountTabPage {
 
 			
 	public void validateAccountstabPresence() {
+		ElementUtil.waitUntilElementVisible(AccountActMainTab);
 		ElementUtil.isPresentAndDisplayed(AccountActMainTab);
 		ElementUtil.highlightElement(driver, AccountActMainTab);
 	}
 		
 	public void checkEmailNotification() {
+		ElementUtil.waitUntilElementClickable(AccountEmailnotification);
 		ElementUtil.webCheckON(AccountEmailnotification);
 	}
 
 	public void checkFaxNotification() {
+		ElementUtil.waitUntilElementClickable(AccountFaxnotification);
 		ElementUtil.webCheckON(AccountFaxnotification);
 	}
 
+public void fetchMCECustomerid() throws IOException, Exception {
+	ExcelReader.sheetUpdate(ConfigReader.writeexcel(),"AccountTab",0,0,"sai");
+	ExcelReader.sheetUpdate(ConfigReader.writeexcel(),"AccountTab",1,0,"Madhuri");
+	ExcelReader.sheetUpdate(ConfigReader.writeexcel(),"AccountTab",0,1,"Nitya");
+	ExcelReader.sheetUpdate(ConfigReader.writeexcel(),"AccountTab",1,1,"Kalyan");
+	ExcelReader.sheetUpdate(ConfigReader.writeexcel(),"AccountTab",0,2,"Jishnu");
+	ExcelReader.sheetUpdate(ConfigReader.writeexcel(),"AccountTab",1,2,"Tej");
+	//ExcelReader.closefile();
+	//ExcelReader.writeintoExcel(ConfigReader.writeexcel(),"AccountTab",0,0,AccountMCECustomerIDlbl.getAttribute("value"));
+	/*ExcelReader.writeintoExcel(ConfigReader.writeexcel(),"AccountTab",1,0,AccountMCECustomerIDtxt.getAttribute("value"));
+	ExcelReader.writeintoExcel(ConfigReader.writeexcel(),"AccountTab",0,1,AccountRegistrantTypelbl.getAttribute("value"));
+	ExcelReader.writeintoExcel(ConfigReader.writeexcel(),"AccountTab",1,1,AccountRegistrantTypetxt.getAttribute("value"));
+	ExcelReader.writeintoExcel(ConfigReader.writeexcel(),"AccountTab",0,2,AccountCarrierTypelbl.getAttribute("value"));
+	ExcelReader.writeintoExcel(ConfigReader.writeexcel(),"AccountTab",1,2,AccountCarrierTypetxt.getAttribute("value"));
+	ExcelReader.writeintoExcel(ConfigReader.writeexcel(),"AccountTab",0,3,AccountIFTAAccountNolbl.getAttribute("value"));
+	ExcelReader.writeintoExcel(ConfigReader.writeexcel(),"AccountTab",1,3,AccountIFTAAccountNotxt.getAttribute("value"));
+	ExcelReader.writeintoExcel(ConfigReader.writeexcel(),"AccountTab",0,4,AccountCustomerStatuslbl.getAttribute("value"));
+	ExcelReader.writeintoExcel(ConfigReader.writeexcel(),"AccountTab",1,4,AccountCustomerStatustxt.getAttribute("value"));
+	ExcelReader.writeintoExcel(ConfigReader.writeexcel(),"AccountTab",0,5,AccountStreet0lbl.getAttribute("value"));
+	ExcelReader.writeintoExcel(ConfigReader.writeexcel(),"AccountTab",1,5,AccountStreet0txt.getAttribute("value"));
+	ExcelReader.writeintoExcel(ConfigReader.writeexcel(),"AccountTab",0,6,AccountZip0lbl.getAttribute("value"));
+	ExcelReader.writeintoExcel(ConfigReader.writeexcel(),"AccountTab",1,6,AccountZip0txt.getAttribute("value"));
+	ExcelReader.writeintoExcel(ConfigReader.writeexcel(),"AccountTab",0,7,AccountJur0lbl.getAttribute("value"));
+	ExcelReader.writeintoExcel(ConfigReader.writeexcel(),"AccountTab",1,7,AccountJur0dd.getAttribute("value"));
+	ExcelReader.writeintoExcel(ConfigReader.writeexcel(),"AccountTab",0,8,AccountCounty0lbl.getAttribute("value"));
+	ExcelReader.writeintoExcel(ConfigReader.writeexcel(),"AccountTab",1,8,AccountCounty0txt.getAttribute("value"));*/
+}
 
-
-
+public void validateenable() {
+	Assert.assertEquals(AccountMCECustomerIDtxt.isEnabled(),false);
+	Assert.assertTrue(AccountMCECustomerIDtxt.getAttribute("value").equalsIgnoreCase("151947"));
+}
 
 }
 

@@ -103,51 +103,46 @@ public class CommonObjects {
 		@FindBy(xpath="//ul[@class='errorMessage']//span") WebElement ErrorMessage;
 		public void expandCommentSection() throws Exception {
 			ElementUtil.scrollToViewAndClickElement(Commentssubhdr);
-		}
-		
+		}		
 		public void enterComments(String commentsvalue) {
 			ElementUtil.webEditTxtChange(Commenttxt,commentsvalue);
 		}
-
-
 		public void selectaccesslevel(String accesslevelvalue) {
 			ElementUtil.selectFromDropdownByVisibleText(AccessLeveldd,accesslevelvalue);
 		}
-
-
 		public void checkDeleteAllowed() {
 			ElementUtil.webCheckON(DeleteAllowedCommentchk);
 		}
-
-
-
 		public void clickAddorUpdateComment() {
+			ElementUtil.waitUntilElementClickable(AddorUpdateCommentbtn);
 			ElementUtil.clickElement(AddorUpdateCommentbtn);
 		}
 		public void clickClearComment() {
+			ElementUtil.waitUntilElementClickable(RefreshCommentbtn);
 			ElementUtil.clickElement(RefreshCommentbtn);
 		}
-
-
 		public void clickProceed() {
+			ElementUtil.waitUntilElementClickable(Proceedbtn);
 			ElementUtil.clickElement(Proceedbtn);
 		}
-
 		public void clickRefresh() {
+			ElementUtil.waitUntilElementClickable(Refershbtn);
 			ElementUtil.clickElement(Refershbtn);
 		}
-
 		public void clickQuit() {
+			ElementUtil.waitUntilElementClickable(Quitbtn);
 			ElementUtil.clickElement(Quitbtn);
 		}
-
 		public void clickBack() {
+			ElementUtil.waitUntilElementClickable(Backbtn);
 			ElementUtil.clickElement(Backbtn);
 		}
 		public void clickCancelbtn() {
+			ElementUtil.waitUntilElementClickable(Cancelbtn);
 			ElementUtil.clickElement(Cancelbtn);
 		}
 		public void clickDonebtn() {
+			ElementUtil.waitUntilElementClickable(Donebtn);
 			ElementUtil.clickElement(Donebtn);
 		}
 		public void validateErrorMessage(String errormessagevalue) {

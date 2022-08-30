@@ -7,7 +7,7 @@
    <properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
-		<junit.version>4.13.2</junit.version>
+		<!-- <junit.version>4.13.2</junit.version> -->
 		<cucumber.version>7.4.1</cucumber.version>
 		<maven.compiler.version>3.10.1</maven.compiler.version>
 		<maven.surefire.version>3.0.0-M7</maven.surefire.version>
@@ -60,12 +60,12 @@
 			<version>1.0.1</version>
 		</dependency>
 <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
-<dependency>
+<!--<dependency>
     <groupId>io.cucumber</groupId>
     <artifactId>cucumber-junit</artifactId>
     	<version>${cucumber.version}</version>
     <scope>test</scope>
-</dependency>
+</dependency>-->
 
 <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-core -->
 <dependency>
@@ -101,12 +101,12 @@
     <version>5.7.2</version>
 </dependency>
 
-		<dependency>
+	<!-- 	<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>${junit.version}</version>
 			<scope>test</scope>
-		</dependency>
+		</dependency> -->
 <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
 <dependency>
     <groupId>org.seleniumhq.selenium</groupId>

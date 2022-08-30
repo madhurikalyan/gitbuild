@@ -267,7 +267,7 @@ public class FleetTabPage {
 	
 	
 	
-	public void navigateToPowerOfAttroney() throws Exception {
+	public void navigateToServiceProvider() throws Exception {
 		//ElementUtil.scrollToViewAndClickElement(Fleettab3);  //click on service Provider under Address details
 		ElementUtil.clickElement(Fleettab3);
 		Thread.sleep(2000);
