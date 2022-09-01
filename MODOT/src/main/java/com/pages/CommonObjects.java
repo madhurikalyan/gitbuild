@@ -101,6 +101,11 @@ public class CommonObjects {
 		@FindBy(xpath="//input[@id='btnDeleteWeightGroup']") WebElement DeleteWeightGroupbtn;
 		
 		@FindBy(xpath="//ul[@class='errorMessage']//span") WebElement ErrorMessage;
+		@FindBy(xpath="//div[contains(@class,'alert-info')]") WebElement InformationMessage;
+		
+		//Reinstatement
+	
+		
 		public void expandCommentSection() throws Exception {
 			ElementUtil.scrollToViewAndClickElement(Commentssubhdr);
 		}		
@@ -150,5 +155,12 @@ public class CommonObjects {
 				assert true;
 			
 		}
-		
+		public void validateInfoMessage(CharSequence inforMsg) {
+			if(InformationMessage.getText().contains(inforMsg)) {
+				System.out.println("true");
+				System.out.println("InformationMessage"+ InformationMessage.getText());
+			assert true;
+			}
+		}
+	
 }

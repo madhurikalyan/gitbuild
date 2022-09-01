@@ -104,6 +104,12 @@ public class BillingTab {
 	@FindBy(xpath="//input[@id='addUpdateCommentBtncommentsVM3']") WebElement Billing_FeeOverrideReasonAddorUpdateCommentbtn;
 	@FindBy(xpath="//input[@id='refreshCommentBtncommentsVM3']") WebElement Billing_FeeOverrideReasonClearCommentbtn;
 	
+	///Reinstatement
+	@FindBy(xpath="//a[@id='BillingBtn']") WebElement Billing_billingtab;
+	@FindBy(xpath="//input[@id='ReceiptDate']") WebElement Billing_AppREceiptDatedtpicker;
+	@FindBy(xpath="//h3[contains(@class,'pull-left')]") WebElement Billing_subhdr;
+	
+	
 	
 	
 	public void enterManualAdjBaseJur(String ManualAdjBaseJurValue) {
@@ -200,5 +206,28 @@ public void  clickFeeOverrideReasonclearComments() {
 	ElementUtil.clickElement(Billing_FeeOverrideReasonClearCommentbtn);
 }
 
+public void validateBillingtab(String textmsg) {
+	Boolean a=Billing_billingtab.getText().contains(textmsg);
+	if(a==true) {
+		System.out.println("true");
+		assert true;
+	}
+	else {
+		System.out.println("false");
+		assert false;
+	}
+}
+
+
+///Reinstatement
+public void enterreceiptdate(String previousdate) {
+	if(Billing_AppREceiptDatedtpicker.getAttribute("value").isEmpty()) {
+		ElementUtil.clickElement(Billing_AppREceiptDatedtpicker);
+	ElementUtil.webEditTxt(Billing_AppREceiptDatedtpicker,previousdate); }
+}
+public void validatesubhdr(String hdrvalue) {
+	if(Billing_subhdr.getText().contains(hdrvalue))
+		assert true;
+}
 
 }

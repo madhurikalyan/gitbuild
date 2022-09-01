@@ -99,6 +99,7 @@ public static int getPageCount(PDDocument doc) {
 	return pageCount;
 	
 }
+
 /*public static  String readPdfContent(String url) throws IOException {
 	
 	URL pdfUrl = new URL(url);
@@ -1039,6 +1040,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 	 */
 	public static void selectFirstChildWindow() throws Exception{
 		mainWindow=driver.getWindowHandle();
+		System.out.print("mainWindow is :"+mainWindow);
 		Set<String> set =driver.getWindowHandles();
 		// Using Iterator to iterate with in windows
 		Iterator<String> itr= set.iterator();
@@ -1046,9 +1048,14 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 			String childWindow=itr.next();
 			// Compare whether the main windows is not equal to child window. If not equal, we will close.
 			if(!mainWindow.equals(childWindow)){
+				System.out.println("childWindow is:"+childWindow);
 				driver.switchTo().window(childWindow);
+				driver.close();
+				driver.switchTo().window(mainWindow);
 				break;
 			}
+			
+			
 		}
 		//make sure that you will use the following line of code after doing operations on child window --> driver.switchTo().window(Common.mainWindow);
 	}

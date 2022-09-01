@@ -16,7 +16,7 @@ public class DashBoardPage {
 	@FindBy(xpath="//div[@class='PageHeader row']//li[contains(@class,'breadcrumb-item')]") WebElement Dashboardsecondrow;
 	@FindBy(xpath="//div[@class='PageHeader row']//li[contains(@class,'breadcrumb-item')]/strong") WebElement DashboardIRPHeader;
 	@FindBy(xpath="//a[@title='Renew Fleet']") WebElement DashboardRenewFleetLink;
-	
+@FindBy(xpath="//a[@title='Logout']") WebElement DashboardLogout;	
 	// Elements for SiteMappage
 
 		@FindBy(xpath="//a[text()='Add Vehicle']") WebElement SitemapAddvechile;
@@ -32,7 +32,13 @@ public class DashBoardPage {
 @FindBy(xpath="//ul[contains(@class,'errorMessage')]/li/span") WebElement Dashboard_ErrorMessge;
 @FindBy(xpath="//a[@id='cartRef']") WebElement Cartimg;
 
-	public DashBoardPage(WebDriver driver) {
+
+//Reinstatement
+@FindBy(xpath="//li[@class='dropdown']/a[contains(text(),'More')]") WebElement Dashboard_FleetMore;
+@FindBy(xpath="//a[text()='Fleet Reinstatement']") WebElement Dashoboad_More_FleetReinstatement;
+
+
+public DashBoardPage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
@@ -106,5 +112,15 @@ public void validateErrorMessage(String ErrorMessgeValue) {
 }
 public void clickCartimg() {
 	ElementUtil.clickElement(Cartimg);
+}
+//Reinstatement
+public void clickFleetMore() {
+	ElementUtil.clickElement(Dashboard_FleetMore);
+}
+public void clickFleetReinstatement() {
+	ElementUtil.clickElement(Dashoboad_More_FleetReinstatement);
+}
+public void clickLogout() {
+	ElementUtil.clickElement(DashboardLogout);
 }
 }

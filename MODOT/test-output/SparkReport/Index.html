@@ -35,7 +35,7 @@
 <a href="#"><span class="badge badge-primary">Grasshopper Report</span></a>
 </li>
 <li class="m-r-10">
-<a href="#"><span class="badge badge-primary">Aug 30, 2022 07:32:28 pm</span></a>
+<a href="#"><span class="badge badge-primary">Sep 1, 2022 05:20:09 pm</span></a>
 </li>
 </ul>
 </div>
@@ -61,13 +61,13 @@
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Started</p>
-<h3>Aug 30, 2022 07:32:28 pm</h3>
+<h3>Sep 1, 2022 05:20:09 pm</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Ended</p>
-<h3>Aug 30, 2022 07:45:28 pm</h3>
+<h3>Sep 1, 2022 05:22:36 pm</h3>
 </div></div>
 </div>
 <div class="col-md-3">
@@ -138,7 +138,7 @@
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='100%'><b>7</b> steps passed</small></div>
+<div><small data-tooltip='100%'><b>6</b> steps passed</small></div>
 <div>
 <small data-tooltip='0%'><b>0</b> steps failed,
 <b>0</b> skipped, <b data-tooltip='%'>0</b> others
@@ -157,7 +157,7 @@
 </div></div>
 <script>
 var timeline = {
-"Renew Fleet feature":779.939
+"Reinstate Fleet feature":146.233
 };
 </script>
 <div class="row">
@@ -173,7 +173,7 @@ var timeline = {
 </tr>
 <tr>
 <td>user</td>
-<td>SaimadhuriMI</td>
+<td>Saimadhuri</td>
 </tr>
 <tr>
 <td>build</td>
@@ -203,7 +203,7 @@ warningChild: 0,
 skipChild: 0,
 infoChild: 0,
 grandChildCount: 5,
-passGrandChild: 7,
+passGrandChild: 6,
 failGrandChild: 0,
 warningGrandChild: 0,
 skipGrandChild: 0,
@@ -233,9 +233,9 @@ eventsCount: 5,
           tag=""
           device="">
           <div class="test-detail">
-            <p class="name">Renew Fleet feature</p>
+            <p class="name">Reinstate Fleet feature</p>
             <p class="text-sm">
-              <span>7:32:28 pm</span> / <span>00:12:59:939</span>
+              <span>5:20:10 pm</span> / <span>00:02:26:233</span>
               <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
@@ -243,10 +243,10 @@ eventsCount: 5,
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-pass">Renew Fleet feature</h5>
-<span class='badge badge-success'>08.30.2022 7:32:28 pm</span>
-<span class='badge badge-danger'>08.30.2022 7:45:28 pm</span>
-<span class='badge badge-default'>00:12:59:939</span>
+<h5 class="test-status text-pass">Reinstate Fleet feature</h5>
+<span class='badge badge-success'>09.01.2022 5:20:10 pm</span>
+<span class='badge badge-danger'>09.01.2022 5:22:36 pm</span>
+<span class='badge badge-default'>00:02:26:233</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=1</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
@@ -258,43 +258,38 @@ eventsCount: 5,
   <div class="card">
     <div class="card-header" role="tab">
       <div class="card-title">
-        <div class="node" id="2"><span class="badge log pass-bg mr-2">Pass</span>IRP Renew fleet</div>
+        <div class="node" id="2"><span class="badge log pass-bg mr-2">Pass</span>IRP Reinstate fleet</div>
       </div>
     </div>
         <div class="collapse">
           <div class="card-body">
-              <div class="step pass-bg" title="Parallel.RenewFleet_StepDefinition.user_login_as_internal_user()">
+              <div class="step pass-bg" title="Parallel.RWC_001.user_login_as_internal_user()">
                 <span>Given User login as Internal user</span>
       <div>
       </div>
               </div>
-              <div class="step pass-bg" title="Parallel.RenewFleet_StepDefinition.user_will_navigate_to_irp()">
-                <span>When User will navigate to IRP</span>
+              <div class="step pass-bg" title="Parallel.RIN_001.user_will_navigate_to_irp_reinstate_fleet()">
+                <span>When User will navigate to IRP & Reinstate Fleet</span>
       <div>
       </div>
               </div>
-              <div class="step pass-bg" title="Parallel.RenewFleet_StepDefinition.user_will_navigate_to_renew_fleet_and_input_all_the_details()">
-                <span>Then User will navigate to renew fleet and input all the details</span>
+              <div class="step pass-bg" title="Parallel.RIN_001.user_will_provide_all_the_inputs_select_the_record_on_the_grid()">
+                <span>Then User will provide all the inputs & select the record on the grid</span>
       <div>
       </div>
               </div>
-              <div class="step pass-bg" title="Parallel.RenewFleet_StepDefinition.user_will_add_amend_or_delete_vehicle_as_per_the_requirement()">
-                <span>Then User will add, amend or delete vehicle as per the requirement</span>
+              <div class="step pass-bg" title="Parallel.RIN_001.user_will_navigate_to_distance_page_proceed()">
+                <span>Then User will navigate to Distance page & Proceed</span>
       <div>
       </div>
               </div>
-              <div class="step pass-bg" title="Parallel.RenewFleet_StepDefinition.user_will_navigate_to_billing_to_verify_as_well_to_adjust_the_cost()">
-                <span>Then User will navigate to billing to verify as well to adjust the cost</span>
+              <div class="step pass-bg" title="Parallel.RIN_001.user_will_navigate_to_billing_page_provide_mandatory_inputs_proceed()">
+                <span>Then User will navigate to billing Page & provide mandatory inputs & proceed</span>
       <div>
       </div>
               </div>
-              <div class="step pass-bg" title="Parallel.RenewFleet_StepDefinition.user_will_navigate_to_payment()">
-                <span>And User will navigate to payment</span>
-      <div>
-      </div>
-              </div>
-              <div class="step pass-bg" title="Parallel.RenewFleet_StepDefinition.user_will_assign_the_inventory()">
-                <span>Then User will assign the inventory</span>
+              <div class="step pass-bg" title="Parallel.RIN_001.user_will_validate_the_success_information_message()">
+                <span>And User will validate the Success Information Message</span>
       <div>
       </div>
               </div>

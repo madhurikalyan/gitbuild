@@ -75,7 +75,15 @@ public class DistanceTabPage {
 			@FindBy(xpath="//input[contains(@id,'MileageDataVMList')and contains(@id,'JurCode')]//preceding-sibling::span") List<WebElement> Distance_JurisList;
 			@FindBy(xpath="//input[contains(@class,'rightAlign') and contains(@id,'MileageDataVMList')]")List<WebElement> Distance_DistanceJurisList;
 			
-
+//Reinstatement Distance Tab
+			@FindBy(xpath="//a[@id='MileageBtn']") WebElement Distance_distanceTab;
+			@FindBy(xpath="//h3[@class='float-left']") WebElement Distance_Reinstatesubhdr;
+			
+			
+			
+			
+			
+			
 public void selectYesOrNo(String selectvalue) {
 	ElementUtil.waitUntilElementsVisible(Distance_ReportingPeriodQuestionrd);
 	for(WebElement a:Distance_ReportingPeriodQuestionrd) {
@@ -95,8 +103,23 @@ public void enterMODistanceValue( String Juri,String DistanceValuedynamic) {
 	}
 }
 
+//Reinstatement
+public void validateDistancetab(String textmsg) {
+	Boolean a=Distance_distanceTab.getText().contains(textmsg);
+	if(a==true) {
+		System.out.println("true");
+		assert true;
+	}
+	else {
+		System.out.println("false");
+		assert false;
+	}
+}
 
-
+public void validatesubhdr(String hdrvalue) {
+	if(Distance_Reinstatesubhdr.getText().contains(hdrvalue))
+		assert true;
+}
 
 
 

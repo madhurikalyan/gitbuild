@@ -146,17 +146,29 @@ public class ConfigReader {
 		}
 		}
 	
-	public static String readexcel() throws Exception {
+	public static String readRWCexcel() throws Exception {
 		try
 		{
 			prop = init_prop();
-		return prop.getProperty("excel");
+		return prop.getProperty("RWCexcel");
 		}
 		catch (Exception e){
 		e.printStackTrace();
 		throw e;
 		}
 		}
+	public static String readRINexcel() throws Exception {
+		try
+		{
+			prop = init_prop();
+		return prop.getProperty("RINexcel");
+		}
+		catch (Exception e){
+		e.printStackTrace();
+		throw e;
+		}
+		}
+	
 	public static String readLoginInternalUser() throws Exception {
 		try
 		{

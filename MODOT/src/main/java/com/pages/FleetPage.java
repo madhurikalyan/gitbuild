@@ -47,9 +47,12 @@ public class FleetPage {
 	@FindBy(xpath="(//a[@id='lnkGridSelectCustomerGrid'])[last()]") WebElement FleetGridlastHandimg;
 	
 	
-	
-	
-	
+	@FindBy(xpath="//a[@id='lnkGridSelectCustomerGrid']") WebElement FleetGridFirstHandimg;
+	//Reinstatement
+	@FindBy(xpath="//input[@id='LastInactiveDate']") WebElement Fleet_LastInactiveDate;
+	@FindBy(xpath="//a[contains(@class,'nav-fast')]") WebElement Fleet_MonthYearhhdr;
+	@FindBy(xpath="//a[contains(@class,'nav-prev')]") WebElement Fleet_Previouslnk;
+	@FindBy(xpath="//a[contains(@class,'nav-nex')]") WebElement Fleet_Nextlnk;
 	
 	public FleetPage(WebDriver driver) {
 		this.driver = driver;
@@ -87,9 +90,22 @@ public class FleetPage {
 			}
 		}
 	}
+public void clickFirstHandimg() {
+	ElementUtil.clickElement(FleetGridFirstHandimg);
+}
 	
-	
-	
-	
-	
+//Reinstatement
+public void enterlastinactivedays(String inactivedatevalue) {
+	ElementUtil.clickElement(Fleet_LastInactiveDate);
+	ElementUtil.webEditTxt(Fleet_LastInactiveDate, inactivedatevalue);
+}	
+public void clickcalendarheader() {
+	ElementUtil.clickElement(Fleet_MonthYearhhdr);
+}
+public void clickpreviouslnk() {
+	ElementUtil.clickElement(Fleet_Previouslnk);
+}
+public void clicknextlnk() {
+	ElementUtil.clickElement(Fleet_Nextlnk);
+}
 }
