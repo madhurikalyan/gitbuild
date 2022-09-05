@@ -30,7 +30,7 @@ public class WgtGroup {
 	@FindBy(xpath="//th[contains(@class,'sorting_disabled')  and contains(text(),'Different')]") WebElement Weight_JurWithDIfferentWeightstbl;
 	
 	@FindBy(xpath="//input[@id='btnAddWeightGroup']") WebElement Weight_AddWeightGroupbtn;
-	
+	@FindBy(xpath="(//td[contains(@class,'leftAlign')])[2]") WebElement JurWithWeight;
 	
 	
 	@FindBy(xpath="//table[@id='WgtGrpSelectGrid']/tbody//tr") List<WebElement> Weight_NoofRows;
@@ -44,9 +44,14 @@ public class WgtGroup {
 		}
 	}
 	
+	public String fetchJurwithdiffWeights() {
+		return ElementUtil.FetchTextBoxValuewithText(JurWithWeight);
+	}
 	
-	
-	
+	public String[] validateJurisWeightsedited() {
+		 String[] JurisList	=fetchJurwithdiffWeights().split("[,]", 0);
+		return JurisList;
+	}
 	
 	
 	

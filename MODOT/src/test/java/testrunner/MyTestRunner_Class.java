@@ -19,7 +19,7 @@ import io.cucumber.junit.CucumberOptions;
 		monochrome = true,
 		publish = true,
 		glue = { "Parallel","AppHooks" },
-		features = { "src/test/resources/parallel"}
+		features = { "src/test/resources/parallel/RWC_002.feature"}
 		)
 
 public class MyTestRunner_Class extends AbstractTestNGCucumberTests{

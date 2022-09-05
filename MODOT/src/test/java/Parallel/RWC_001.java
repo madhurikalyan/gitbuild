@@ -2,7 +2,6 @@ package Parallel;
 
 
 import java.io.IOException;
-
 import com.pages.AccountTabPage;
 import com.pages.BillingTab;
 import com.pages.CommonObjects;
@@ -22,7 +21,6 @@ import com.pages.WgtGroup;
 import com.pages.WgtGroupAdd;
 import com.qa.factory.Driver_Factory;
 import com.qa.util.ConfigReader;
-import com.qa.util.ElementUtil;
 import com.qa.util.ExcelReader;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -62,16 +60,15 @@ public class RWC_001 {
 	public void user_will_navigate_to_irp() throws Exception {
 		dashboardpage.clickIRPLink();
 		dashboardpage.clickRenewFleetLink();
-		fleetpage.enterAccountNo(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"PreSetup",1,0));
-		fleetpage.enterFleetNo(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"PreSetup",1,2));
-		fleetpage.enterFleetyear(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"PreSetup",1,3));
-		commonobjects.clickProceed();	
-		//accounttabpage.fetchMCECustomerid();
-		//accounttabpage.validateenable();
 	}
 
 	@Then("User will navigate to renew fleet and input all the details")
 	public void user_will_navigate_to_renew_fleet_and_input_all_the_details() throws Exception {
+		fleetpage.enterAccountNo(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"PreSetup",1,0));
+		fleetpage.enterFleetNo(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"PreSetup",1,2));
+		fleetpage.enterFleetyear(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"PreSetup",1,3));
+		commonobjects.clickProceed();	
+		
 		Thread.sleep(2000);
 		//In Account Page
 		accounttabpage.checkEmailNotification();

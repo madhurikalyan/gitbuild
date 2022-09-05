@@ -41,8 +41,8 @@ public class WgtGroupAdd {
 	
 	@FindBy(xpath="//input[@id='btnGoToWeightGroupSelection']") WebElement AddWgtGroup_GoToWeightGroupSelectionbtn;
 	@FindBy(xpath="//input[@id='btnDeleteWeightGroup']") WebElement AddWgtGroup_DeleteWeightGroupbtn;
-	
-	
+	@FindBy(xpath="//input[contains(@id,'Juris')]/preceding-sibling::span") List<WebElement> EditWgtGroup_JurisList;
+	@FindBy(xpath="//input[contains(@id,'WeightQ')]") List<WebElement> EditWgtGroup_Weighttxt;
 	
 	
 	
@@ -67,6 +67,31 @@ public class WgtGroupAdd {
 	}
 	
 	
+	public void enterWeight_JuriValue( String Juri) {
+		ElementUtil.waitUntilElementsVisible(EditWgtGroup_JurisList);
+		String GrossWeight=FetchMaxGrossWeight();
+		int GrossWeightint =Integer.valueOf(GrossWeight);
+		
+		//MO,AL,AR,AZ,CA,CO,CT,DC
+		for(int i=0;i<EditWgtGroup_JurisList.size();i++) {
+			Boolean valuexists=ElementUtil.validateTextbox(EditWgtGroup_JurisList.get(i));
+			if(EditWgtGroup_JurisList.get(i).getText().equalsIgnoreCase(Juri)) { //"MO - MISSOURI"
+				ElementUtil.webEditTxtChange(EditWgtGroup_Weighttxt.get(i),String.valueOf(GrossWeightint-1));
+				break;
+			}
+		}
+	}
+		public String FetchMaxGrossWeight() {
+			String GrossWeight=	ElementUtil.FetchDropdownSelectedValue(AddWgtGroup_MaxGrossWeightdd);
+		return GrossWeight;	
+		}
+		
+		
+		
+		
+		
+		
+	}
 	
 	
 	
@@ -98,7 +123,4 @@ public class WgtGroupAdd {
 	
 	
 	
-	
-	
-	
-}
+

@@ -275,14 +275,14 @@ public class FleetTabPage {
 	}
 
 	public void clickPowerOfAttroney() {
-		ElementUtil.isPresentAndDisplayed(FleetService_PowerOfAttroneylbl);
 		if(ElementUtil.isPresentAndDisplayed(FleetService_PowerOfAttroneychk)) {
-			//ElementUtil.clickElement(FleetService_PowerOfAttroneychk);
 			ElementUtil.webCheckON(FleetService_PowerOfAttroneychk);
 		}
 	}
 	public void enterEmailID(String EmailIDValue) {
-		ElementUtil.webEditTxtChange(FleetDetails_EmailIDtxt, EmailIDValue);
+		Boolean valueexists=ElementUtil.validateTextbox(FleetDetails_EmailIDtxt);
+		if(valueexists==true) {
+		ElementUtil.webEditTxtChange(FleetDetails_EmailIDtxt, EmailIDValue);  }
 	}
 	public void selectIRPRequirementForm(String selectValue) {
 		ElementUtil.selectFromDropdownByVisibleText(FleetDocCollection_IRPRequirementsFormdd,selectValue);  //C - COLLECTED
@@ -303,6 +303,118 @@ public class FleetTabPage {
 	public void selectPropertyTax(String selectValue) {
 		ElementUtil.selectFromDropdownByVisibleText(FleetVehDocument_PropertyTaxdd,selectValue); //C - COLLECTED
 	}
+
+	public void selectEffectiveDate(String EffDate) {
+		Boolean valueexists=ElementUtil.validateTextbox(FleetDetails_FltEffDatedtPicker);
+		if(valueexists==true) {
+			ElementUtil.clickElement(FleetDetails_FltEffDatedtPicker);
+			ElementUtil.webEditTxt(FleetDetails_FltEffDatedtPicker,EffDate); 
+			}
+	}
+	public void selectExpirationDate(String ExpDate) {
+		Boolean valueexists=ElementUtil.validateTextbox(FleetDetails_FltExpDatedtPicker);
+		if(valueexists==true) {
+			ElementUtil.clickElement(FleetDetails_FltExpDatedtPicker);
+			ElementUtil.webEditTxt(FleetDetails_FltExpDatedtPicker,ExpDate); 
+			}
+	}
+	public void selectFirstOperatedDate(String FirstOperatedDate) {
+		Boolean valueexists=ElementUtil.validateTextbox(FleetDetails_FirstOperatedDatedtPicker);
+		if(valueexists==true) {
+			ElementUtil.clickElement(FleetDetails_FirstOperatedDatedtPicker);
+			ElementUtil.webEditTxt(FleetDetails_FirstOperatedDatedtPicker,FirstOperatedDate); 
+			}
+	}
+public void selectFleetType(String FleettypeValue) {
+	Boolean selectedornot=ElementUtil.validateDropdownSelected(FleetDetails_FltTypedd);
+	if(selectedornot==true) {
+	ElementUtil.selectFromDropdownByVisibleText(FleetDetails_FltTypedd, FleettypeValue);  }
+	//FHE - FOR HIRE EXEMPT (FH),FOR - FOR HIRE (FH),FHL - FOR HIRE LEASE (FH),FHR - FOR HIRE RENTAL CARRIER (FH),PVR - PRIVATE RENTAL (PC),PVT - PRIVATE CARRIER (PC)
+}
+
+
+public void selectCommodityClass(String CommodityClassValue) {
+	Boolean selectedornot=ElementUtil.validateDropdownSelected(FleetDetails_CommodityClassdd);
+	if(selectedornot==true) {
+	ElementUtil.selectFromDropdownByVisibleText(FleetDetails_CommodityClassdd, CommodityClassValue);  }
+	//A - ALL,B - BUS,E - EXEMPT,H - HOUSEHOLD GOODS (HG),L - LOGS
+}
+
+public void enterContactName(String contactnamevalue) {
+	//System.out.println("contact name:"+FleetDetails_ContactNametxt.getAttribute("value"));
+	Boolean valueexists=ElementUtil.validateTextbox(FleetDetails_ContactNametxt);
+	//System.out.println("check boolean status:"+valueexists);
+	if(valueexists== true) {
+	ElementUtil.webEditTxtChange(FleetDetails_ContactNametxt, contactnamevalue);
+	}
+}
+public void enterprimaryPhone(String PrimaryPhonevalue) {
+	Boolean valueexists=ElementUtil.validateTextbox(FleetDetails_PrimaryCellNbrtxt);
+	if(valueexists == true) {
+	ElementUtil.webEditTxtChange(FleetDetails_PrimaryCellNbrtxt, PrimaryPhonevalue);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//---------------------------------------------
+public String fetchRegistrationtypelbl() {
+	return ElementUtil.FetchTextBoxValuewithText(FleetRegistrationtypelbl);
+}
+
+public String fetchRegistrationtype() {
+	return ElementUtil.FetchTextBoxValuewithText(FleetRegistrationtypedd);
+}
+public String fetchfltstatuslbl() {
+	return ElementUtil.FetchTextBoxValuewithText(FleetfltStatuslbl);
+}
+
+public String fetchfltstatus() {
+	return ElementUtil.FetchTextBoxValuewithText(FleetfltStatusdd);
+}
+
+public String fetchcarriertypelbl() {
+	return ElementUtil.FetchTextBoxValuewithText(FleetCarriertypelbl);
+}
+
+public String fetchcarriertype() {
+	return ElementUtil.FetchTextBoxValuewithText(FleetCarriertypetxt);
+}
+
+public String fetchDBANamelbl() {
+	return ElementUtil.FetchTextBoxValuewithText(FleetDBANamelbl);
+}
+
+public String fetchDBAName() {
+	return ElementUtil.FetchTextBoxValuewithText(FleetDBANametxt);
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 

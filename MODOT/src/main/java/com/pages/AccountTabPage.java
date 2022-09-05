@@ -28,6 +28,8 @@ public class AccountTabPage {
 	//Customer Details section
 	
 	@FindBy(xpath="(//div[contains(@class,'box-title')]/h4)[1]") WebElement Accountcustomerdetailssubhdr;
+	@FindBy(xpath="//span[text()='Account No.']") WebElement AccountaccountNbrlbl;
+	@FindBy(xpath="//input[@id='AccountNo']") WebElement AccountaccountNbrtxt;
 	
 	@FindBy(xpath="//label[@for='MCECustomerID']") WebElement AccountMCECustomerIDlbl;
 	@FindBy(xpath="//input[@id='MCECustomerID']") WebElement AccountMCECustomerIDtxt;
@@ -180,6 +182,129 @@ public void validateenable() {
 	Assert.assertEquals(AccountMCECustomerIDtxt.isEnabled(),false);
 	Assert.assertTrue(AccountMCECustomerIDtxt.getAttribute("value").equalsIgnoreCase("151947"));
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//--------------------------------------------------------------------------------------------------------------
+//Verification screen Fetching Data
+public String fetchAccountnolbl() {
+	return ElementUtil.FetchTextBoxValuewithText(AccountaccountNbrlbl);
+}
+
+public String fetchAccountno() {
+	return ElementUtil.FetchTextBoxValuewithText(AccountaccountNbrtxt);
+}
+
+public String fetchMCECustomernolbl() {
+	return ElementUtil.FetchTextBoxValuewithText(AccountMCECustomerIDlbl);
+}
+
+public String fetchMCECustomerno() {
+	return ElementUtil.FetchTextBoxValuewithText(AccountMCECustomerIDtxt);
+}
+
+public String fetchAccountCarrierTypelbl() {
+	return ElementUtil.FetchTextBoxValuewithText(AccountCarrierTypelbl);
+}
+
+public String fetchAccountCarrierType() {
+	return ElementUtil.FetchTextBoxValuewithText(AccountCarrierTypetxt);
+}
+
+public String fetchIFTAAccountNbrlbl() {
+	return ElementUtil.FetchTextBoxValuewithText(AccountIFTAAccountNolbl);
+}
+
+public String fetchIFTAAccountNbr() {
+	return ElementUtil.FetchTextBoxValuewithText(AccountIFTAAccountNotxt);
+}
+
+public String fetchAccountCustomerStatuslbl() {
+	return ElementUtil.FetchTextBoxValuewithText(AccountCustomerStatuslbl);
+}
+
+public String fetchAccountCustomerStatus() {
+	return ElementUtil.FetchTextBoxValuewithText(AccountCustomerStatustxt);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
 

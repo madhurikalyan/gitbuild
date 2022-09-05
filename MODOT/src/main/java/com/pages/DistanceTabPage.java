@@ -96,11 +96,15 @@ public void selectYesOrNo(String selectvalue) {
 public void enterMODistanceValue( String Juri,String DistanceValuedynamic) {
 	ElementUtil.waitUntilElementsVisible(Distance_JurisList);
 	for(int i=0;i<Distance_JurisList.size();i++) {
-		if(Distance_JurisList.get(i).getText().equalsIgnoreCase(Juri)) { //"MO - MISSOURI"
+		Boolean valuexists=ElementUtil.validateTextbox(Distance_DistanceJurisList.get(i));
+		if(Distance_JurisList.get(i).getText().equalsIgnoreCase(Juri) && valuexists==false) { //"MO - MISSOURI"
 			ElementUtil.webEditTxtChange(Distance_DistanceJurisList.get(i),DistanceValuedynamic);
 			break;
 		}
 	}
+}
+public void enterEstimatedDistance(String EstimatedDistanceValue) {
+	ElementUtil.webEditTxtChange(Distance_EstimatedDistancetxt,EstimatedDistanceValue);
 }
 
 //Reinstatement

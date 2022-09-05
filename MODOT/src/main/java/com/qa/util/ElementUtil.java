@@ -9,12 +9,18 @@ package com.qa.util;
  *
  */
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import java.io.InputStream;
 import java.io.BufferedInputStream;
 import org.json.simple.JSONObject;
@@ -27,6 +33,7 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.io.FileInputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.Connection;
@@ -84,7 +91,7 @@ public class ElementUtil {
 	public static String mainWindow;
 	public static ExtentHtmlReporter htmlReporter;
 	public static ExtentReports extentReport;
-	
+	static String excelFilePath = "D:\\WorkingDirectory\\MODOT\\src\\test\\resources\\DataProvider\\gfgcontribute.xlsx";
 public static ElementUtil getInstance(){
 
 		if(elementUtil==null){
@@ -1322,6 +1329,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 			throw e;
 		}
 	}
+	
 	/*
 	 * @description : waits for javascript and jquery to finish loading
 	 * @param  : chckbox element
@@ -1363,5 +1371,106 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 		actions.moveToElement(element).build().perform();
 	}
 
+	public static boolean validateDropdownSelected(WebElement element) {
+		try {
+			wait = new WebDriverWait(driver, Duration.ofSeconds(200));
+			wait.until(ExpectedConditions.visibilityOf(element));
+			Select select=new Select(element);
+			return select.getFirstSelectedOption().getText() == null;
+		}
+		
+		catch(Exception e) {
+			return false;
+		}
+	
+	}
+	public static String FetchDropdownSelectedValue(WebElement element) {
+		try {
+			wait = new WebDriverWait(driver, Duration.ofSeconds(200));
+			wait.until(ExpectedConditions.visibilityOf(element));
+			Select select=new Select(element);
+			return select.getFirstSelectedOption().getText();
+		}
+		
+		catch(Exception e) {
+			return null;
+		}
+	
+	}
 
+	public static boolean validateTextbox(WebElement element) {
+		try {
+			wait = new WebDriverWait(driver, Duration.ofSeconds(200));
+			wait.until(ExpectedConditions.visibilityOf(element));
+			return element.getAttribute("value").isEmpty();
+		}
+		
+		catch(Exception e) {
+			return false;
+		}
+	}
+	public static String FetchTextBoxValuewithText(WebElement element) {
+		try {
+			wait = new WebDriverWait(driver, Duration.ofSeconds(200));
+			wait.until(ExpectedConditions.visibilityOf(element));
+			return element.getText();
+		}
+		
+		catch(Exception e) {
+			return null;
+		}
+	}
+		public static String FetchTextBoxValuewithattribute(WebElement element,String attributevalue) {
+			try {
+				wait = new WebDriverWait(driver, Duration.ofSeconds(200));
+				wait.until(ExpectedConditions.visibilityOf(element));
+				return element.getAttribute(attributevalue);
+			}
+			
+			catch(Exception e) {
+				return null;
+			}
+		
+	}
+		public static void updateExcel(String sheetname, int rownum, int cellnum,String value) {
+			  try {
+				  FileInputStream inputStream;
+				  Workbook workbook;
+				  Boolean bool = null;
+				  Sheet newSheet;
+				  Row row ;
+				  Cell cell;
+				   inputStream = new FileInputStream(new File(excelFilePath));
+
+				   workbook = WorkbookFactory.create(inputStream);
+				  for (int i=0; i<workbook.getNumberOfSheets(); i++) {
+					   bool=workbook.getSheetName(i).equalsIgnoreCase(sheetname);
+					}
+				  if(bool==false) {
+					   newSheet = workbook.createSheet(sheetname);
+				  }
+				  else {
+					   newSheet =workbook.getSheet(sheetname);
+				  }
+				 int rown= newSheet.getLastRowNum();
+				
+					 if(rown>=rownum) {
+						 row= newSheet.getRow(rownum);
+					 }
+					 else {
+						 row= newSheet.createRow(rownum);
+					 }
+				   cell = row.createCell(cellnum);  
+			       cell.setCellValue(value);
+		               FileOutputStream out = new FileOutputStream(
+		                   new File(excelFilePath));
+		               workbook.write(out);
+		               workbook.close();
+		               out.close();
+		           }
+		           catch (Exception e) {
+		               e.printStackTrace();
+		           }
+		     
+		}
 }

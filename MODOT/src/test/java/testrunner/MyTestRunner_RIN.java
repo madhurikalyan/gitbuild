@@ -19,7 +19,7 @@ import io.cucumber.junit.CucumberOptions;
 		monochrome = true,
 		publish = true,
 		glue = { "Parallel","AppHooks" },
-		features = { "src/test/resources/parallel/ReinstateFleet.feature"}
+		features = { "src/test/resources/parallel/RIN_001.feature"}
 		)
 
 public class MyTestRunner_RIN extends AbstractTestNGCucumberTests{
