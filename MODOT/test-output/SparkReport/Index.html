@@ -35,7 +35,7 @@
 <a href="#"><span class="badge badge-primary">Grasshopper Report</span></a>
 </li>
 <li class="m-r-10">
-<a href="#"><span class="badge badge-primary">Sep 5, 2022 04:51:03 pm</span></a>
+<a href="#"><span class="badge badge-primary">Sep 5, 2022 09:52:09 pm</span></a>
 </li>
 </ul>
 </div>
@@ -66,13 +66,13 @@
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Started</p>
-<h3>Sep 5, 2022 04:51:03 pm</h3>
+<h3>Sep 5, 2022 09:52:09 pm</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Ended</p>
-<h3>Sep 5, 2022 04:59:15 pm</h3>
+<h3>Sep 5, 2022 09:52:10 pm</h3>
 </div></div>
 </div>
 <div class="col-md-3">
@@ -143,10 +143,10 @@
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='16%'><b>4</b> steps passed</small></div>
+<div><small data-tooltip='0%'><b>0</b> steps passed</small></div>
 <div>
-<small data-tooltip='4%'><b>1</b> steps failed,
-<b>20</b> skipped, <b data-tooltip='%'>0</b> others
+<small data-tooltip='30%'><b>3</b> steps failed,
+<b>7</b> skipped, <b data-tooltip='%'>0</b> others
 </small>
 </div>
 </div>
@@ -162,7 +162,7 @@
 </div></div>
 <script>
 var timeline = {
-"Renewal after Reinstatement":491.073
+"Renew Fleet feature":0.371
 };
 </script>
 <div class="row">
@@ -208,10 +208,10 @@ warningChild: 0,
 skipChild: 0,
 infoChild: 0,
 grandChildCount: 5,
-passGrandChild: 4,
-failGrandChild: 1,
+passGrandChild: 0,
+failGrandChild: 3,
 warningGrandChild: 0,
-skipGrandChild: 20,
+skipGrandChild: 7,
 infoGrandChild: 0,
 eventsCount: 5,
 };
@@ -238,9 +238,9 @@ eventsCount: 5,
           tag=""
           device="">
           <div class="test-detail">
-            <p class="name">Renewal after Reinstatement</p>
+            <p class="name">Renew Fleet feature</p>
             <p class="text-sm">
-              <span>4:51:04 pm</span> / <span>00:08:11:073</span>
+              <span>9:52:10 pm</span> / <span>00:00:00:371</span>
               <span class="badge fail-bg log float-right">Fail</span>
             </p>
           </div>
@@ -248,10 +248,10 @@ eventsCount: 5,
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-fail">Renewal after Reinstatement</h5>
-<span class='badge badge-success'>09.05.2022 4:51:04 pm</span>
-<span class='badge badge-danger'>09.05.2022 4:59:15 pm</span>
-<span class='badge badge-default'>00:08:11:073</span>
+<h5 class="test-status text-fail">Renew Fleet feature</h5>
+<span class='badge badge-success'>09.05.2022 9:52:10 pm</span>
+<span class='badge badge-danger'>09.05.2022 9:52:10 pm</span>
+<span class='badge badge-default'>00:00:00:371</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=1</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
@@ -263,178 +263,145 @@ eventsCount: 5,
   <div class="card">
     <div class="card-header" role="tab">
       <div class="card-title">
-        <div class="node" id="2"><span class="badge log fail-bg mr-2">Fail</span>Renew with Reinstate</div>
-          <div class="status-avatar float-right mr-4">
-            <i class="fa fa-paperclip"></i>
-          </div>
+        <div class="node" id="2"><span class="badge log fail-bg mr-2">Fail</span>IRP Renew fleet</div>
       </div>
     </div>
         <div class="">
           <div class="card-body">
-              <div class="step pass-bg" title="Parallel.RWC_001.user_login_as_internal_user()">
-                <span>Given User login as Internal user</span>
+              <div class="step fail-bg" title="BEFORE">
+                <span>AppHooks.Application_Hooks.launchBrowser(io.cucumber.java.Scenario)</span>
       <div>
-      </div>
-              </div>
-              <div class="step pass-bg" title="Parallel.RWC_001.user_will_navigate_to_irp()">
-                <span>When User will navigate to IRP</span>
-      <div>
-      </div>
-              </div>
-              <div class="step pass-bg" title="Parallel.RWC_002.user_will_navigate_to_renew_fleet_and_search_for_reinstated_account_number()">
-                <span>Then User will navigate to renew fleet and search for  Reinstated Account Number</span>
-      <div>
-      </div>
-              </div>
-              <div class="step fail-bg" title="Parallel.RWC_002.user_should_navigate_to_account_screen_and_provides_all_the_required_input_to_proceed()">
-                <span>Then User should navigate to Account screen and provides all the required input to proceed</span>
-      <div>
-        <textarea disabled class="code-block">org.openqa.selenium.ElementNotInteractableException: element not interactable
-  (Session info: chrome=105.0.5195.52)
-Build info: version: '4.3.0', revision: 'a4995e2c09*'
-System info: host: 'SAIMADHURI', ip: '192.168.1.39', os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.2'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [29a7c968ccf57f6fcd27c1aa9dd58eb4, clearElement {id=f61b93f0-41e0-46bc-8cb6-a261de2e3ec1}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 105.0.5195.52, chrome: {chromedriverVersion: 105.0.5195.52 (412c95e51883..., userDataDir: C:\Users\saima\AppData\Loca...}, goog:chromeOptions: {debuggerAddress: localhost:58214}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:58214/devtoo..., se:cdpVersion: 105.0.5195.52, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Element: [[ChromeDriver: chrome on WINDOWS (29a7c968ccf57f6fcd27c1aa9dd58eb4)] -> xpath: //textarea[@id='editComment_CommentTxtcommentsVM1']]
-Session ID: 29a7c968ccf57f6fcd27c1aa9dd58eb4
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:184)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:167)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:142)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:569)
-	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:257)
-	at org.openqa.selenium.remote.RemoteWebElement.clear(RemoteWebElement.java:132)
+        <textarea disabled class="code-block">java.lang.NoClassDefFoundError: org/openqa/selenium/interactions/HasTouchScreen
+	at java.base/java.lang.ClassLoader.defineClass1(Native Method)
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1012)
+	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:150)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:862)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull(BuiltinClassLoader.java:760)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:681)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:639)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:520)
+	at com.qa.factory.Driver_Factory.init_driver(Driver_Factory.java:23)
+	at AppHooks.Application_Hooks.launchBrowser(Application_Hooks.java:28)
+Caused by: java.lang.ClassNotFoundException: org.openqa.selenium.interactions.HasTouchScreen
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:520)
+	at java.base/java.lang.ClassLoader.defineClass1(Native Method)
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1012)
+	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:150)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:862)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull(BuiltinClassLoader.java:760)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:681)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:639)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:520)
+	at com.qa.factory.Driver_Factory.init_driver(Driver_Factory.java:23)
+	at AppHooks.Application_Hooks.launchBrowser(Application_Hooks.java:28)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:52)
-	at jdk.proxy2/jdk.proxy2.$Proxy31.clear(Unknown Source)
-	at com.qa.util.ElementUtil.webEditTxtChange(ElementUtil.java:301)
-	at com.pages.CommonObjects.enterComments(CommonObjects.java:113)
-	at Parallel.RWC_002.user_should_navigate_to_account_screen_and_provides_all_the_required_input_to_proceed(RWC_002.java:77)
-	at ?.User should navigate to Account screen and provides all the required input to proceed(file:///D:/WorkingDirectory/MODOT/src/test/resources/parallel/RWC_002.feature:6)
+	at io.cucumber.java.Invoker.doInvoke(Invoker.java:66)
+	at io.cucumber.java.Invoker.invoke(Invoker.java:24)
+	at io.cucumber.java.AbstractGlueDefinition.invokeMethod(AbstractGlueDefinition.java:47)
+	at io.cucumber.java.JavaHookDefinition.execute(JavaHookDefinition.java:64)
+	at io.cucumber.core.runner.CoreHookDefinition.execute(CoreHookDefinition.java:46)
+	at io.cucumber.core.runner.HookDefinitionMatch.runStep(HookDefinitionMatch.java:21)
+	at io.cucumber.core.runner.ExecutionMode$1.execute(ExecutionMode.java:10)
+	at io.cucumber.core.runner.TestStep.executeStep(TestStep.java:85)
+	at io.cucumber.core.runner.TestStep.run(TestStep.java:57)
+	at io.cucumber.core.runner.TestCase.run(TestCase.java:78)
+	at io.cucumber.core.runner.Runner.runPickle(Runner.java:75)
+	at io.cucumber.testng.TestNGCucumberRunner.lambda$runScenario$1(TestNGCucumberRunner.java:132)
+	at io.cucumber.core.runtime.CucumberExecutionContext.lambda$runTestCase$5(CucumberExecutionContext.java:129)
+	at io.cucumber.core.runtime.RethrowingThrowableCollector.executeAndThrow(RethrowingThrowableCollector.java:23)
+	at io.cucumber.core.runtime.CucumberExecutionContext.runTestCase(CucumberExecutionContext.java:129)
+	at io.cucumber.testng.TestNGCucumberRunner.runScenario(TestNGCucumberRunner.java:129)
+	at io.cucumber.testng.AbstractTestNGCucumberTests.runScenario(AbstractTestNGCucumberTests.java:35)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
+	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
+	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.testng.TestRunner.privateRun(TestRunner.java:794)
+	at org.testng.TestRunner.run(TestRunner.java:596)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+	at org.testng.TestNG.runSuites(TestNG.java:1063)
+	at org.testng.TestNG.run(TestNG.java:1031)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
 </textarea>
       
       </div>
               </div>
-              <div class="step skip-bg" title="Parallel.RWC_002.user_should_navigate_to_account_verification_screen_and_proceed_further()">
-                <span>Then user should navigate to Account verification screen and proceed further</span>
+              <div class="step skip-bg" title="Parallel.RWC_001.user_login_as_internal_user()">
+                <span>Given User login as Internal user</span>
       <div>Step skipped
       </div>
               </div>
-              <div class="step skip-bg" title="Parallel.RWC_002.user_should_navigate_to_fleet_screen_and_update_fleet_expiration_date_fleet_type_commodity_class_and_proceed_further()">
-                <span>Then user should navigate to Fleet  screen and update Fleet Expiration Date & Fleet Type & Commodity Class and proceed further</span>
+              <div class="step skip-bg" title="Parallel.RWC_001.user_will_navigate_to_irp()">
+                <span>When User will navigate to IRP</span>
       <div>Step skipped
       </div>
               </div>
-              <div class="step skip-bg" title="Parallel.RWC_002.user_should_navigate_to_fleet_verification_screen_and_proceed_further()">
-                <span>Then user should navigate to Fleet verification screen and proceed further</span>
+              <div class="step skip-bg" title="Parallel.RWC_001.user_will_navigate_to_renew_fleet_and_input_all_the_details()">
+                <span>Then User will navigate to renew fleet and input all the details</span>
       <div>Step skipped
       </div>
               </div>
-              <div class="step skip-bg" title="Parallel.RWC_002.user_should_land_on_distance_screen_and_select_estimated_distance_and_proceed_further()">
-                <span>Then user should land on Distance screen and select Estimated Distance and proceed further</span>
+              <div class="step skip-bg" title="Parallel.RWC_001.user_will_add_amend_or_delete_vehicle_as_per_the_requirement()">
+                <span>Then User will add, amend or delete vehicle as per the requirement</span>
       <div>Step skipped
       </div>
               </div>
-              <div class="step skip-bg" title="Parallel.RWC_002.user_should_navigate_to_distance_verification_screen_and_proceed_further()">
-                <span>Then user should navigate to Distance verification screen and proceed further</span>
+              <div class="step skip-bg" title="Parallel.RWC_001.user_will_navigate_to_billing_to_verify_as_well_to_adjust_the_cost()">
+                <span>Then User will navigate to billing to verify as well to adjust the cost</span>
       <div>Step skipped
       </div>
               </div>
-              <div class="step skip-bg" title="Parallel.RWC_002.user_should_land_on_the_weight_group_screen_and_go_for_add_weight_group()">
-                <span>Then user should land on the Weight Group screen and go for Add Weight group</span>
+              <div class="step skip-bg" title="Parallel.RWC_001.user_will_navigate_to_payment()">
+                <span>And User will navigate to payment</span>
       <div>Step skipped
       </div>
               </div>
-              <div class="step skip-bg" title="Parallel.RWC_002.user_should_land_on_the_add_weight_group_screen_and_provide_all_the_required_input_to_proceed()">
-                <span>Then user should land on the Add Weight Group screen and provide all the required input to proceed</span>
+              <div class="step skip-bg" title="Parallel.RWC_001.user_will_assign_the_inventory()">
+                <span>Then User will assign the inventory</span>
       <div>Step skipped
       </div>
               </div>
-              <div class="step skip-bg" title="Parallel.RWC_002.user_should_land_on_the_add_weight_group_verification_screen_and_go_for_weight_group()">
-                <span>Then user should land on the Add Weight Group Verification screen and go for  Weight group</span>
-      <div>Step skipped
-      </div>
-              </div>
-              <div class="step skip-bg" title="Parallel.RWC_002.user_should_land_on_the_weight_group_and_edit_the_existing_weight_group_to_proceed_to_vehicle_screen()">
-                <span>Then user should land on the Weight Group and edit the existing weight group to proceed to Vehicle screen</span>
-      <div>Step skipped
-      </div>
-              </div>
-              <div class="step skip-bg" title="Parallel.RWC_002.user_should_land_on_the_vehicle_screen_and()">
-                <span>Then user should land on the Vehicle Screen and</span>
-      <div>Step skipped
-      </div>
-              </div>
-              <div class="step skip-bg" title="Parallel.RWC_002.user_should_land_on_the_billing_screen_with_open_status_and_request_for_tvr_set_delivery_type_as_pdf_with_comments()">
-                <span>Then user should land on the Billing screen with open status and Request for TVR & set Delivery Type as PDF with Comments</span>
-      <div>Step skipped
-      </div>
-              </div>
-              <div class="step skip-bg" title="Parallel.RWC_002.system_calculates_fee_and_user_change_the_supplement_status_as_invoiced()">
-                <span>And system calculates Fee and user change the supplement status as invoiced</span>
-      <div>Step skipped
-      </div>
-              </div>
-              <div class="step skip-bg" title="Parallel.RWC_002.system_should_calculates_the_in_state_fee_and_fees_should_be_waived_overridden_for_some_vehicles()">
-                <span>And system should calculates the In-state fee and Fees should be waived/overridden for some vehicles.</span>
-      <div>Step skipped
-      </div>
-              </div>
-              <div class="step skip-bg" title="Parallel.RWC_002.user_should_check_installment_payment_and_should_be_selected_and_proceed_further()">
-                <span>And user should check Installment payment and should be selected and proceed further</span>
-      <div>Step skipped
-      </div>
-              </div>
-              <div class="step skip-bg" title="Parallel.RWC_002.system_should_generate_pdf_and_should_go_to_payment_init_screen()">
-                <span>Then system should generate PDF and should go to Payment Init screen.</span>
-      <div>Step skipped
-      </div>
-              </div>
-              <div class="step skip-bg" title="Parallel.RWC_002.user_should_verify_the_screen_and_set_delivery_types_as_pdf_proceed_further()">
-                <span>Then user should verify the screen and set Delivery Types as PDF & proceed further</span>
-      <div>Step skipped
-      </div>
-              </div>
-              <div class="step skip-bg" title="Parallel.RWC_002.user_should_land_on_the_payment_init_verification_screen_click_on_pay_now()">
-                <span>Then user should land on the Payment Init Verification screen & click on Pay Now</span>
-      <div>Step skipped
-      </div>
-              </div>
-              <div class="step skip-bg" title="Parallel.RWC_002.user_should_land_on_the_payment_collection_page()">
-                <span>Then user should land on the Payment Collection page</span>
-      <div>Step skipped
-      </div>
-              </div>
-              <div class="step skip-bg" title="Parallel.RWC_002.user_select_multiple_payment_types_and_select_pdf_delivery_type_clicks_paynow()">
-                <span>And user select multiple payment types and select PDF delivery type & clicks Paynow</span>
-      <div>Step skipped
-      </div>
-              </div>
-              <div class="step skip-bg" title="Parallel.RWC_002.payment_receipt_should_get_generated_hard_stop_message_should_get_displayed()">
-                <span>Then payment receipt should get generated & Hard stop message should get displayed</span>
-      <div>Step skipped
-      </div>
-              </div>
-              <div class="step pass-bg" title="AFTER">
+              <div class="step fail-bg" title="AFTER">
                 <span>AppHooks.Application_Hooks.tearDown(io.cucumber.java.Scenario)</span>
-      <div>Renew_with_Reinstate
-          <div class="row mb-3"><div class="col-md-3">
-<img data-featherlight='../embedded1.png' src="../embedded1.png">
-    
-    </div></div>
-</div>
       <div>
+        <textarea disabled class="code-block">java.lang.NullPointerException: Cannot invoke "org.openqa.selenium.TakesScreenshot.getScreenshotAs(org.openqa.selenium.OutputType)" because "this.driver" is null
+	at AppHooks.Application_Hooks.tearDown(Application_Hooks.java:58)
+</textarea>
+      
+      </div>
+              </div>
+              <div class="step fail-bg" title="AFTER">
+                <span>AppHooks.Application_Hooks.quitBrowser()</span>
+      <div>
+        <textarea disabled class="code-block">java.lang.NullPointerException: Cannot invoke "org.openqa.selenium.WebDriver.quit()" because "this.driver" is null
+	at AppHooks.Application_Hooks.quitBrowser(Application_Hooks.java:46)
+</textarea>
+      
       </div>
               </div>
           </div>
@@ -456,21 +423,67 @@ Session ID: 29a7c968ccf57f6fcd27c1aa9dd58eb4
 <div class="test-list">
 <div class="test-list-tools">
 <ul class="tools pull-left"><li><a href=""><span class="font-size-14">Exception</span></a></li></ul>
-<ul class="tools text-right"><li><a href="#"><span class="badge badge-primary">1</span></a></li></ul>
+<ul class="tools text-right"><li><a href="#"><span class="badge badge-primary">2</span></a></li></ul>
 </div>
 <div class="test-list-wrapper scrollable">
 <ul class="test-list-item">
 <li class="test-item">
 <div class="test-detail">
 <span class="meta">
+<span class='badge log badge-danger'>2</span>
+</span>
+<p class="name">java.lang.NullPointerException</p>
+<p class="duration text-sm">2 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>java.lang.NullPointerException</h4>
+<span status="fail" class='badge log badge-danger'>2 failed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="fail">
+<td><span class="badge log fail-bg">Fail</span></td>
+<td>21:52:10 pm</td>
+<td>
+<a href="#" class="linked" test-id='1' id='11'>AppHooks.Application_Hooks.tearDown(io.cucumber.java.Scenario)</a>
+<div class="">
+<span class="badge badge-default">Renew Fleet feature.IRP Renew fleet.AppHooks.Application_Hooks.tearDown(io.cucumber.java.Scenario)</span>
+</div>
+</td>
+</tr>
+<tr class="tag-test-status" status="fail">
+<td><span class="badge log fail-bg">Fail</span></td>
+<td>21:52:10 pm</td>
+<td>
+<a href="#" class="linked" test-id='1' id='12'>AppHooks.Application_Hooks.quitBrowser()</a>
+<div class="">
+<span class="badge badge-default">Renew Fleet feature.IRP Renew fleet.AppHooks.Application_Hooks.quitBrowser()</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
 <span class='badge log badge-danger'>1</span>
 </span>
-<p class="name">org.openqa.selenium.ElementNotInteractableException</p>
+<p class="name">java.lang.NoClassDefFoundError</p>
 <p class="duration text-sm">1 tests</p>
 </div>
 <div class="test-contents d-none">
 <div class="info">
-<h4>org.openqa.selenium.ElementNotInteractableException</h4>
+<h4>java.lang.NoClassDefFoundError</h4>
 <span status="fail" class='badge log badge-danger'>1 failed</span>
 </div>
 <table class='table table-sm mt-4'>
@@ -484,11 +497,11 @@ Session ID: 29a7c968ccf57f6fcd27c1aa9dd58eb4
 <tbody>
 <tr class="tag-test-status" status="fail">
 <td><span class="badge log fail-bg">Fail</span></td>
-<td>16:52:29 pm</td>
+<td>21:52:10 pm</td>
 <td>
-<a href="#" class="linked" test-id='1' id='7'>Then User should navigate to Account screen and provides all the required input to proceed</a>
+<a href="#" class="linked" test-id='1' id='3'>AppHooks.Application_Hooks.launchBrowser(io.cucumber.java.Scenario)</a>
 <div class="">
-<span class="badge badge-default">Renewal after Reinstatement.Renew with Reinstate.Then User should navigate to Account screen and provides all the required input to proceed</span>
+<span class="badge badge-default">Renew Fleet feature.IRP Renew fleet.AppHooks.Application_Hooks.launchBrowser(io.cucumber.java.Scenario)</span>
 </div>
 </td>
 </tr>

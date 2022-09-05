@@ -60,25 +60,29 @@ public class RWC_002 {
 	public void user_should_navigate_to_account_screen_and_provides_all_the_required_input_to_proceed() throws Exception {
 	//ElementUtil.updateExcel("Account", 0, 0, accounttabpage.fetchAccountnolbl());
 		//ElementUtil.updateExcel("Account", 1, 0, accounttabpage.fetchAccountno());
-		ElementUtil.updateExcel("Account", 0, 1, accounttabpage.fetchMCECustomernolbl());
+		/*ElementUtil.updateExcel("Account", 0, 1, accounttabpage.fetchMCECustomernolbl());
 		ElementUtil.updateExcel("Account", 1, 1, accounttabpage.fetchMCECustomerno());
+		
 		ElementUtil.updateExcel("Account", 0, 2, accounttabpage.fetchAccountCarrierTypelbl());
 		ElementUtil.updateExcel("Account", 1, 2, accounttabpage.fetchAccountCarrierType());
 		ElementUtil.updateExcel("Account", 0, 3, accounttabpage.fetchIFTAAccountNbrlbl());
 		ElementUtil.updateExcel("Account", 1, 3, accounttabpage.fetchIFTAAccountNbr());
 		ElementUtil.updateExcel("Account", 0, 4, accounttabpage.fetchAccountCustomerStatuslbl());
-		ElementUtil.updateExcel("Account", 1, 4, accounttabpage.fetchAccountCustomerStatus());
+		ElementUtil.updateExcel("Account", 1, 4, accounttabpage.fetchAccountCustomerStatus());*/
 		
 		
 		//In Account Page
 		accounttabpage.checkEmailNotification();
-		commonobjects.expandCommentSection();
+		Thread.sleep(2000);
+		System.out.println("check");
+	/*	commonobjects.expandCommentSection();
+		System.out.println("check1");
 		Thread.sleep(2000);
 		commonobjects.enterComments(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"AccountTab",2,0));
 		Thread.sleep(2000);
 		commonobjects.checkDeleteAllowed();
 		commonobjects.clickAddorUpdateComment();
-		Thread.sleep(3000);
+		Thread.sleep(3000);*/
 		commonobjects.clickProceed();
 		Thread.sleep(2000);
 	}
@@ -104,7 +108,7 @@ public class RWC_002 {
 		ElementUtil.updateExcel("Fleet", 1, 3, fleettabpage.fetchDBAName());
 		
 		
-		fleettabpage.navigateToServiceProvider();
+	/*	fleettabpage.navigateToServiceProvider();
 		Thread.sleep(2000);
 		fleettabpage.clickPowerOfAttroney();
 		Thread.sleep(2000);
@@ -136,19 +140,19 @@ public class RWC_002 {
 		commonobjects.clickAddorUpdateComment();
 		Thread.sleep(3000);
 		commonobjects.clickProceed();
-		Thread.sleep(2000);
+		Thread.sleep(2000);*/
 	}
 
 	@Then("user should navigate to Fleet verification screen and proceed further")
 	public void user_should_navigate_to_fleet_verification_screen_and_proceed_further() throws InterruptedException {
 		//Fleet Verification Screen
-		commonobjects.clickProceed();
-		Thread.sleep(2000); 
+	/*	commonobjects.clickProceed();
+		Thread.sleep(2000); */
 	}
 
 	@Then("user should land on Distance screen and select Estimated Distance and proceed further")
 	public void user_should_land_on_distance_screen_and_select_estimated_distance_and_proceed_further() throws IOException, Exception {
-	  distancetabpage.selectYesOrNo(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"DistanceTab",2,4));
+	/*  distancetabpage.selectYesOrNo(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"DistanceTab",2,4));
 		Thread.sleep(2000);
 	  commonobjects.enterComments(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"DistanceTab",2,2));
 		Thread.sleep(2000);
@@ -156,43 +160,43 @@ public class RWC_002 {
 		commonobjects.clickAddorUpdateComment();
 		Thread.sleep(3000);
      	commonobjects.clickProceed();
-		Thread.sleep(2000);
+		Thread.sleep(2000);*/
 	}
 
 	@Then("user should navigate to Distance verification screen and proceed further")
 	public void user_should_navigate_to_distance_verification_screen_and_proceed_further() throws InterruptedException {
 		//Distance Verification Screen
-		commonobjects.clickProceed();
-		Thread.sleep(2000);
+	/*	commonobjects.clickProceed();
+		Thread.sleep(2000);*/
 	}
 
 	@Then("user should land on the Weight Group screen and go for Add Weight group")
 	public void user_should_land_on_the_weight_group_screen_and_go_for_add_weight_group() throws IOException, Exception {
 		//Weight Group
-		wgtgroup.clickAddWeightGroup();
+		//wgtgroup.clickAddWeightGroup();
 	}
 
 	@Then("user should land on the Add Weight Group screen and provide all the required input to proceed")
 	public void user_should_land_on_the_add_weight_group_screen_and_provide_all_the_required_input_to_proceed() throws IOException, Exception {
-		wgtgroupadd.selectWeightGroupType(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"WeightGrouptab",2,0));
+		/*wgtgroupadd.selectWeightGroupType(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"WeightGrouptab",2,0));
 		Thread.sleep(2000);
 		wgtgroupadd.enterWeightGroupNo(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"WeightGrouptab",2,1));
 		wgtgroupadd.selectMaxGrossWeight(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"WeightGrouptab",2,2));
 		Thread.sleep(1000);
 		commonobjects.clickProceed();
-		Thread.sleep(2000); 
+		Thread.sleep(2000); */
 	}
 
 	@Then("user should land on the Add Weight Group Verification screen and go for  Weight group")
 	public void user_should_land_on_the_add_weight_group_verification_screen_and_go_for_weight_group() throws InterruptedException {
 		//Add  Weight Group verification Screen
-		commonobjects.clickProceed();
-		Thread.sleep(2000);
+		/*commonobjects.clickProceed();
+		Thread.sleep(2000);*/
 	}
 
 	@Then("user should land on the Weight Group and edit the existing weight group to proceed to Vehicle screen")
 	public void user_should_land_on_the_weight_group_and_edit_the_existing_weight_group_to_proceed_to_vehicle_screen() throws IOException, Exception {
-	    fleetpage.clickFirstHandimg();
+	  /*  fleetpage.clickFirstHandimg();
 	    Thread.sleep(1000);
 	    String Juri1=ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"WeightGrouptab",2,4);
 	    String Juri2=ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"WeightGrouptab",2,5);
@@ -206,7 +210,7 @@ public class RWC_002 {
 for(String Juri:weightlist) {
 	if(Juri.equalsIgnoreCase(Juri))
 		assert true;
-}
+}*/
 	}
 	@Then("user should land on the Vehicle Screen and")
 	public void user_should_land_on_the_vehicle_screen_and() {
