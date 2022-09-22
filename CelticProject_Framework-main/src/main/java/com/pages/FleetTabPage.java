@@ -548,7 +548,7 @@ public String FleetService_PowerOfAttroneylbl() {
 }
 
 public String FleetService_PowerOfAttroney() {
-	return ElementUtil.FetchTextBoxValuewithattribute(FleetService_PowerOfAttroneychk,"checked");
+	return ElementUtil.FetchTextBoxValuewithattribute(FleetService_PowerOfAttroneychk,"value");
 }
 public String FleetService_PowerOfAttroneyEffDatelbl() {
 	return ElementUtil.FetchTextBoxValuewithText(FleetService_PowerOfAttroneyEffDatelbl);

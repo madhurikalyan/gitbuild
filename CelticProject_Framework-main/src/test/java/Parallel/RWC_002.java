@@ -1,5 +1,6 @@
 package Parallel;
 
+
 import java.io.IOException;
 import java.util.ArrayList;
 import com.pages.AccountTabPage;
@@ -7,7 +8,6 @@ import com.pages.BillingTab;
 import com.pages.CommonObjects;
 import com.pages.DashBoardPage;
 import com.pages.DistanceTabPage;
-import com.pages.DistanceVerification;
 import com.pages.Enquiry;
 import com.pages.Financepage;
 import com.pages.FleetPage;
@@ -21,7 +21,6 @@ import com.pages.VehicleAmend;
 import com.pages.VehicleDelete;
 import com.pages.VehicleDocuments;
 import com.pages.VehicleTabPage;
-import com.pages.VehicleVerification;
 import com.pages.WgtGroup;
 import com.pages.WgtGroupAdd;
 import com.qa.factory.Driver_Factory;
@@ -29,8 +28,11 @@ import com.qa.util.ConfigReader;
 import com.qa.util.ElementUtil;
 import com.qa.util.ExcelReader;
 import io.cucumber.java.en.Then;
+import org.testng.asserts.SoftAssert;
 
 public class RWC_002 extends Driver_Factory {
+	 SoftAssert softassert = new SoftAssert();
+	 
 	LoginPage loginpage = new LoginPage(Driver_Factory.getDriver());
 	DashBoardPage dashboardpage = new DashBoardPage(Driver_Factory.getDriver());
 	AccountTabPage accounttabpage = new AccountTabPage(Driver_Factory.getDriver());
@@ -47,15 +49,14 @@ public class RWC_002 extends Driver_Factory {
 	Payment pay = new Payment(Driver_Factory.getDriver());
 	PaymentTab paymenttab = new PaymentTab(Driver_Factory.getDriver());
 	InventoryPage inventorypage = new InventoryPage(Driver_Factory.getDriver());
-	ExcelReader excel = new ExcelReader();
-	int Noof = 0;
-	Financepage financepage = new Financepage(Driver_Factory.getDriver());
-	DistanceVerification Distanceverify = new DistanceVerification(Driver_Factory.getDriver());
-	VehicleVerification vehicleverify = new VehicleVerification(Driver_Factory.getDriver());
-	VehicleAdd vehicleadd = new VehicleAdd(Driver_Factory.getDriver());
-	ElementUtil eleutil = new ElementUtil();
 	VehicleDocuments vehicledocs = new VehicleDocuments(Driver_Factory.getDriver());
 	Enquiry enquiry=new Enquiry(Driver_Factory.getDriver());
+	Financepage financepage = new Financepage(Driver_Factory.getDriver());
+	VehicleAdd vehicleadd = new VehicleAdd(Driver_Factory.getDriver());
+
+	ExcelReader excel = new ExcelReader();
+	ElementUtil eleutil = new ElementUtil();
+	int Noof = 0;
 	
 	@Then("User will navigate to renew fleet and search for  Reinstated Account Number")
 	public void user_will_navigate_to_renew_fleet_and_search_for_reinstated_account_number()
@@ -139,14 +140,12 @@ public class RWC_002 extends Driver_Factory {
 		commonobjects.checkDeleteAllowed();
 		commonobjects.clickAddorUpdateComment();
 		commonobjects.clickProceed();
-		Thread.sleep(3000);
 	}
 
 	@Then("user should navigate to Account verification screen and proceed further")
 	public void user_should_navigate_to_account_verification_screen_and_proceed_further() throws InterruptedException {
 		// In Account Verification Screen
 		commonobjects.clickProceed();
-		Thread.sleep(2000);
 	}
 
 	@Then("user should navigate to Fleet  screen and update Fleet Expiration Date & Fleet Type & Commodity Class and proceed further")
@@ -325,16 +324,13 @@ public class RWC_002 extends Driver_Factory {
 		commonobjects.clickAddorUpdateComment();
 
 		commonobjects.clickProceed();
-		Thread.sleep(2000);
 	}
 
 	@Then("user should navigate to Fleet verification screen and proceed further")
 	public void user_should_navigate_to_fleet_verification_screen_and_proceed_further() throws Exception {
 
 		// Fleet Verification Screen
-		Thread.sleep(2000);
 		commonobjects.clickProceed();
-		Thread.sleep(2000);
 	}
 
 	@Then("user should land on Distance screen and select Estimated Distance and proceed further")
@@ -348,7 +344,7 @@ public class RWC_002 extends Driver_Factory {
 		  eleutil.updateExcel("Distance",0,2,distancetabpage.DistanceUsdotNbrlbl());
 		  eleutil.updateExcel("Distance",1,2,distancetabpage.DistanceUsdotNbr()); 
 		  eleutil.updateExcel("Distance",0,3,distancetabpage.DistanceEstimatedDistanceChartlbl()); 
-		  eleutil.updateExcel("Distance",1,3,distancetabpage.DistanceEstimatedDistanceChart ()); 
+		  eleutil.updateExcel("Distance",1,3,distancetabpage.DistanceEstimatedDistanceChart()); 
 		  eleutil.updateExcel("Distance",0,4,distancetabpage.DistanceOverrideContJurlbl ()); 
 		  eleutil.updateExcel("Distance",1,4,distancetabpage.DistanceOverrideContJur()); 
 		  
@@ -369,7 +365,7 @@ public class RWC_002 extends Driver_Factory {
 		 
 		//Juris Table Verification
 	     	//Juris Table header
-	     	ArrayList<String> TableHeadervalues=Distanceverify.FetchTableHeader();
+	     	ArrayList<String> TableHeadervalues=distancetabpage.FetchTableHeader();
 	    	for(int i=0;i<TableHeadervalues.size();i++) {
 	    		eleutil.updateExcel("Distance_Juris",0,i,TableHeadervalues.get(i));
 	    	}
@@ -400,15 +396,13 @@ public class RWC_002 extends Driver_Factory {
 	@Then("user should navigate to Distance verification screen and proceed further")
 	public void user_should_navigate_to_distance_verification_screen_and_proceed_further() throws InterruptedException {
 		// Distance Verification Screen
-		Thread.sleep(2000);
 		commonobjects.clickProceed();
-		Thread.sleep(2000);
-
 	}
 
 	@Then("user should land on the Weight Group screen and go for Add Weight group")
 	public void user_should_land_on_the_weight_group_screen_and_go_for_add_weight_group()
 			throws IOException, Exception {
+		
 		//Fetch Values into Excel
 		ArrayList<String>  headervalues=wgtgroup.FetchTableHeader();
 		for(int i=0;i<headervalues.size();i++) {
@@ -418,6 +412,7 @@ public class RWC_002 extends Driver_Factory {
 		for(int i=0;i<RowDatavalues.size();i++) {
 			eleutil.updateExcel("WeightGroup",1,i,RowDatavalues.get(i));
 		}
+		
 		// Weight Group
 		wgtgroup.clickAddWeightGroup();
 		wgtgroupadd.selectWeightGroupType(
@@ -426,9 +421,7 @@ public class RWC_002 extends Driver_Factory {
 				ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(), "WeightGrouptab", 2, 1));
 		wgtgroupadd.selectMaxGrossWeight(
 				ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(), "WeightGrouptab", 2, 2));
-		Thread.sleep(2000);
 		commonobjects.clickProceed();
-		Thread.sleep(2000);
 		commonobjects.clickProceed();
 	}
 
@@ -436,21 +429,15 @@ public class RWC_002 extends Driver_Factory {
 	public void user_should_land_on_the_add_weight_group_screen_and_provide_all_the_required_input_to_proceed()
 			throws IOException, Exception {
 		// Weight Group
-		Thread.sleep(2000);
 		wgtgroup.clickAddWeightGroup();
 		wgtgroupadd.selectWeightGroupType(
 				ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(), "WeightGrouptab", 2, 8));
-		Thread.sleep(2000);
 		wgtgroupadd.enterWeightGroupNo(
 				ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(), "WeightGrouptab", 2, 9));
-		Thread.sleep(2000);
 		wgtgroupadd.selectMaxGrossWeight(
 				ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(), "WeightGrouptab", 2, 10));
-		Thread.sleep(2000);
 		commonobjects.clickProceed();
-		Thread.sleep(2000);
 		commonobjects.clickProceed();
-
 	}
 
 	@Then("user should land on the Add Weight Group Verification screen and go for  Weight group")
@@ -458,55 +445,41 @@ public class RWC_002 extends Driver_Factory {
 			throws IOException, Exception {
 		// Add Weight Group verification Screen
 		// Weight Group
-		Thread.sleep(2000);
 		wgtgroup.clickAddWeightGroup();
-		Thread.sleep(2000);
 		wgtgroupadd.selectWeightGroupType(
-				ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(), "WeightGrouptab", 2, 12));
-		Thread.sleep(2000);
+				ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(), "WeightGrouptab", 2, 11));
 		wgtgroupadd.enterWeightGroupNo(
-				ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(), "WeightGrouptab", 2, 13));
-		Thread.sleep(2000);
+				ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(), "WeightGrouptab", 2, 12));
 		wgtgroupadd.selectMaxGrossWeight(
-				ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(), "WeightGrouptab", 2, 14));
-		Thread.sleep(2000);
+				ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(), "WeightGrouptab", 2, 13));
 		commonobjects.clickProceed();
-		Thread.sleep(2000);
 		commonobjects.clickProceed();
-
 	}
 
 	@Then("user should land on the Weight Group and edit the existing weight group to proceed to Vehicle screen")
 	public void user_should_land_on_the_weight_group_and_edit_the_existing_weight_group_to_proceed_to_vehicle_screen()
 			throws IOException, Exception {
-		// In Weight Group Screen
-
 		// Edit Existing Weight Group
 		wgtgroup.clickHandimg();
-		// Thread.sleep(2000);
 		String Juri_ExcelCount = ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(), "WeightGrouptab", 2, 4);
 		for (int i = 0; i < Integer.valueOf(Juri_ExcelCount); i++) {
-		//	System.out.print("i is:" + i);
 			String Juri_Excel = ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(), "WeightGrouptab",2, i + 5);
 			wgtgroupadd.enterWeight_JuriValue(Juri_Excel);
 		}
 		commonobjects.clickProceed();
+		
 		// Weight Group Verification Screen
 		commonobjects.clickProceed();
 		// Validating JUR WITH DIFFERENT WEIGHTS
 		String[] weightlist = wgtgroup.validateJurisWeightsedited(); // [AL, AR, AZ]
 		for (int i = 0; i < Integer.valueOf(Juri_ExcelCount); i++) {
 			String Juri_Excel = ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(), "WeightGrouptab",2, i + 5);
-			//System.out.print("Juri from Excel" + weightlist[i]);
 			if (weightlist[i].equalsIgnoreCase(Juri_Excel)) {
-				System.out.print("check Weights" + weightlist[i]);
 				assert true;
 			}
 		}
-
 		// In Weight Group Screen
 		commonobjects.clickDonebtn();
-		// Thread.sleep(2000);
 	}
 
 	@Then("user should land on the Vehicle Screen and")
@@ -524,17 +497,12 @@ public class RWC_002 extends Driver_Factory {
 		  //Perform Actions
 		Vehicletabpage.clickAddVehicleRadioButton();
 		commonobjects.clickProceed();
-		Thread.sleep(2000);
 		int AddVehiclesCount_Excel=Integer.valueOf(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(), "VehicleAddTab",2,0));
 		int j=0;
 		for(int i=1;i<=AddVehiclesCount_Excel;i++) {
 		vehicleadd.enterVINNumber(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(), "VehicleAddTab",2,1+j));
-		Thread.sleep(2000);
 		vehicleadd.clickSearch();
-		Thread.sleep(1000);
 		vehicleadd.selectBodyType(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(), "VehicleAddTab",2,3+j));
-		Thread.sleep(2000);
-//	vehicleadd.selectWeightGroupNumber(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"VehicleAdd"2,4));
 		vehicleadd.enterDetailsUnitNumber(
 				ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(), "VehicleAddTab",2, 2+j));
 		vehicleadd.selectWeightGroupNumber(
@@ -546,7 +514,6 @@ public class RWC_002 extends Driver_Factory {
 				.enterUnladenWeight(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(), "VehicleAddTab",2,11+j));
 		vehicleadd.enterseats(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(), "VehicleAddTab",2, 9+j));
 		vehicleadd.selectColor(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(), "VehicleAddTab",2,10+j));
-		Thread.sleep(2000);
 		vehicleadd.EmptyenterPurchaseDate(eleutil.getDateInSpecifiedFormat("MMddYYYY",-1));
 		vehicleadd.EmptyenterInStateExpirationDate(eleutil.getDateInSpecifiedFormat("MMddYYYY",1));
 		vehicleadd.enterPurchaseprice(
@@ -577,7 +544,6 @@ public class RWC_002 extends Driver_Factory {
 		commonobjects.clickProceed();
 		commonobjects.clickProceed();
 		j+=35;
-		Thread.sleep(2000);
 		}
 		commonobjects.clickDonebtn();
 
@@ -585,16 +551,12 @@ public class RWC_002 extends Driver_Factory {
 		Vehicletabpage.clickVehicleList();
 		vehicleadd.UpdatevehiclelistUnit(
 				ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(), "VehicleUpdate",2,0));
-		Thread.sleep(2000);
 		vehicleadd.Updatevehiclelistsearch();
-		Thread.sleep(2000);
 		vehicleadd.Updatevehiclelistselectunit();
-		Thread.sleep(2000);
 		vehicleadd.selectTitleJurisdiction( 
 				ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(), "VehicleUpdate",2, 1)); //AB - ALBERTA
 
 		vehicleadd.EmptyenterInStateExpirationDate(eleutil.getDateInSpecifiedFormat("MMddYYYY",2));
-		//vehicleadd.enterExistingPlate(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(), "VehicleAddTab", 1, 23));
 		vehicleadd
 				.enterInStatePlate(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(), "VehicleUpdate",2, 2));
 		vehicleadd.enterInStateFee(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(), "VehicleUpdate",2,3));
@@ -612,22 +574,17 @@ public class RWC_002 extends Driver_Factory {
 		Vehicletabpage.clickVehicleList();
 		vehicleadd.UpdatevehiclelistUnit(
 				ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(), "VehicleUpdate",2,0)); //1
-		Thread.sleep(2000);
 		vehicleadd.Updatevehiclelistsearch();
-		Thread.sleep(2000);
 		vehicleadd.Updatevehiclelistselectunit();
-		Thread.sleep(2000);
 		vehicleadd.CancelVehicle();
 		eleutil.handleAlert();
 		Thread.sleep(2000);
 		commonobjects.clickDonebtn();
-
 	}
 
 	@Then("user should land on the Billing screen with open status and Request for TVR & set Delivery Type as PDF with Comments")
 	public void user_should_land_on_the_billing_screen_with_open_status_and_request_for_tvr_set_delivery_type_as_pdf_with_comments()
 			throws Exception, Throwable {
-		Thread.sleep(2000);
 		 eleutil.updateExcel("Billing",0,0,billingtab.fetchRegisterMonthlbl());
 		 eleutil.updateExcel("Billing",1,0,billingtab.fetchRegisterMonth()); 
 		  eleutil.updateExcel("Billing",0,1,billingtab.fetchNoOfVehiclesinSupplbl()); 
@@ -659,8 +616,6 @@ public class RWC_002 extends Driver_Factory {
 		  eleutil.updateExcel("Billing",1,13,billingtab.fetchBilling_InstallmentPlan());
 		  eleutil.updateExcel("Billing",0,14,billingtab.fetchBilling_IsUseOneTimeMailinglbl());
 		  eleutil.updateExcel("Billing",1,14,billingtab.fetchBilling_IsUseOneTimeMailing());
-		  eleutil.updateExcel("Billing",0,15,billingtab.fetchBilling_TVRNoOfDayslbl());
-		  eleutil.updateExcel("Billing",1,15,billingtab.fetchBilling_TVRNoOfDays());
 		  eleutil.updateExcel("Billing",0,16,billingtab.fetchElectronicDeliveryTypelbl());
 		  eleutil.updateExcel("Billing",1,16,billingtab.fetchElectronicDeliveryType());
 		  eleutil.updateExcel("Billing",0,17,"Email");
@@ -683,6 +638,9 @@ public class RWC_002 extends Driver_Factory {
 	    	}
 
 	    billingtab.clickTVR();
+	    eleutil.updateExcel("Billing",0,15,billingtab.fetchBilling_TVRNoOfDayslbl());
+		eleutil.updateExcel("Billing",1,15,billingtab.fetchBilling_TVRNoOfDays());
+		 
 		billingtab.clickInstallmentPlan();
 		billingtab.selectElectronicDeliveryType(
 				ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(), "BillingTab",2, 1));
@@ -702,7 +660,6 @@ public class RWC_002 extends Driver_Factory {
 		commonobjects.clickProceed();
 		//Billing Verification Screen
 		eleutil.CloseFirstChildWindow();  //To close PDF Window
-		Thread.sleep(2000);
 		//Payment Tab
 		  eleutil.updateExcel("PaymentTab",0,0,paymenttab.FetchEnterpriseSystemCreditlbl());
 		  eleutil.updateExcel("PaymentTab",1,0,paymenttab.FetchEnterpriseSystemCredit()); 
@@ -759,6 +716,7 @@ public class RWC_002 extends Driver_Factory {
 		  eleutil.updateExcel("PaymentScreen",1,5,pay.FetchIftaSystemCredit()); 
 		  eleutil.updateExcel("PaymentScreen",0,6,pay.FetchOpaSystemCreditlbl());
 		  eleutil.updateExcel("PaymentScreen",1,6,pay.FetchOpaSystemCredit());
+		  
 		  ArrayList<String> TableHeadervalues=pay.FetchTable_Headers();
 	    	for(int i=0;i<TableHeadervalues.size();i++) {
 	    		eleutil.updateExcel("PaymentScreen",0,i+7,TableHeadervalues.get(i));
@@ -772,12 +730,10 @@ public class RWC_002 extends Driver_Factory {
 		  eleutil.updateExcel("PaymentScreen",1,12,pay.FetchTotalAmountDue());
 			String paymenttype=ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"Payment",2,1);
 			String totalAmount=pay.FetchTotalAmount();
-			System.out.print("totalAmount is :"+totalAmount);
 			pay.selectPaymentType(0,paymenttype);	
 			String PaymentNumberValue=ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"Payment",2,0);
 			pay.enterpaymentNoBasedonType(0,paymenttype,PaymentNumberValue);
 			String cashAmount=String.valueOf(Double.valueOf(totalAmount));
-			System.out.print("cashAmount is:"+cashAmount);
 				pay.enterPaymentAmountBasedonType(0,paymenttype,cashAmount);
 		pay.selectPaymentReceipt(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"Payment",2,3));
 		commonobjects.clickProceed();
@@ -800,12 +756,12 @@ public class RWC_002 extends Driver_Factory {
 	    		eleutil.updateExcel("Vehicle Document",0,i,TableHeader1.get(i));
 	    	}
 	    	ArrayList<String> TableHeader2=vehicledocs.FetchTableHeader2();
-	    	for(int i=0;i<TableHeader2.size();i++) {
+	    	for(int i=0;i<TableHeader2.size()-1;i++) {
 	    		eleutil.updateExcel("Vehicle Document",0,i+TableHeader1.size(),TableHeader2.get(i));
 	    	}
 	    	//Juris list
 	    	ArrayList<String>  row_values=vehicledocs.FetchTable_Rows();
-	     	for(int i=1;i<row_values.size();i++) {
+	     	for(int i=1;i<row_values.size()-1;i++) {
 	     	eleutil.updateExcel("Vehicle Document", 1,i-1,row_values.get(i));  //0 0 13
 	     	}
 			vehicledocs.SelectHVUT(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(), "VehicleDocuments",2,0));
@@ -822,6 +778,7 @@ public class RWC_002 extends Driver_Factory {
 			financepage.clickandenterfleetyear(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"PreSetup",2,5));
 			commonobjects.clickProceed();
 			financepage.clickgrid();
+			
 			//Fetch Vallues from 
 			eleutil.updateExcel("InstallmentPayment", 0, 0, financepage.Fetch_PostPayment_AccountNolbl());
 			eleutil.updateExcel("InstallmentPayment", 1, 0, financepage.Fetch_PostPayment_AccountNo());
@@ -875,12 +832,10 @@ public class RWC_002 extends Driver_Factory {
 			
 			String paymenttype1=ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"Payment",2,1);
 			String totalAmount1=pay.FetchTotalAmount();
-			System.out.print("totalAmount is :"+totalAmount1);
 			pay.selectPaymentType(0,paymenttype1);	
 			String PaymentNumberValue1=ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"Payment",2,0);
 			pay.enterpaymentNoBasedonType(0,paymenttype1,PaymentNumberValue1);
 			String cashAmount1=String.valueOf(Double.valueOf(totalAmount1));
-			System.out.print("cashAmount is:"+cashAmount1);
 				pay.enterPaymentAmountBasedonType(0,paymenttype1,cashAmount1);
 				pay.selectPaymentReceipt(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"Payment",2,3));
 			commonobjects.clickProceed();
@@ -920,23 +875,51 @@ public class RWC_002 extends Driver_Factory {
 	}
 	@Then("user verifies details in Vehicle Enquiry")
 	public void user_verifies_details_in_Vehicle_enquiry() throws Exception {
-		/*String ParentWindow=eleutil.GetParentWindow();
+		dashboardpage.clickIRPLink();
+		String ExpiryYear_Excel=ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"Enquiry",2,0);
+		String ParentWindow=eleutil.GetParentWindow();
 		dashboardpage.clickVehicleEnquiry();
 		String childWindow= eleutil.SwitchtoFirstChildWindow();
-		 fleetpage.enterAccountNo(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"PreSetup",2,0));
-		  commonobjects.clickProceed();*/
-		System.out.println("Vehcile Enquiry");
+		fleetpage.enterAccountNo(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"PreSetup",2,0));
+		commonobjects.clickProceed();
+		enquiry.clickVehicleEnquiryUnitNo();
+		 int AddVehiclesCount_Excel=Integer.valueOf(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(), "VehicleAddTab",2,0));
+		  int j=35;
+			for(int i=1;i<=AddVehiclesCount_Excel; i++) {
+				String ActualVIN=enquiry.fetchVehicleEnquiryVIN(String.valueOf(i),ExpiryYear_Excel);
+				String expectedVIN=ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"VehicleAddTab",2,1+j);
+				if(ActualVIN !=null) {
+				softassert.assertEquals(ActualVIN, expectedVIN);
+				j+=35;
+				}
+			}
+			softassert.assertAll();
+			eleutil.closespecificWindow(childWindow);
+			eleutil.SwitchspecificWindow(ParentWindow);
+			
 	}
 	@Then("user verifies details in Vehicle Supplement Enquiry")
 	public void user_verifies_details_in_Vehicle_Supplement_enquiry() throws Exception {
+		String ExpiryYear_Excel=ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"Enquiry",2,0);
 		String ParentWindow=eleutil.GetParentWindow();
 		dashboardpage.clickVehicleSupplementEnquiry();
 		String childWindow= eleutil.SwitchtoFirstChildWindow();
-		 fleetpage.enterAccountNo(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"PreSetup",2,0));
-		  commonobjects.clickProceed();
-		  enquiry.VehicleSupplementEnquiryvaluevalidation(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"Enquiry",2,0));
-		  eleutil.closespecificWindow(childWindow);
+		fleetpage.enterAccountNo(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"PreSetup",2,0));
+		commonobjects.clickProceed();
+		enquiry.clickVehicleSupplementUnitNo();
+		 int AddVehiclesCount_Excel=Integer.valueOf(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(), "VehicleAddTab",2,0));
+		  int j=35;
+			for(int i=1;i<=AddVehiclesCount_Excel; i++) {
+				String ActualVIN=enquiry.FetchVehicleSupplementEnquiryVIN(String.valueOf(i),ExpiryYear_Excel);
+				String expectedVIN=ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"VehicleAddTab",2,1+j);
+				if(ActualVIN !=null) {
+				softassert.assertEquals(ActualVIN, expectedVIN);
+				j+=35;
+				}
+			}
+			softassert.assertAll();
+			eleutil.closespecificWindow(childWindow);
 			eleutil.SwitchspecificWindow(ParentWindow);
-	}
+			}
 	
 }

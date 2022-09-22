@@ -119,11 +119,10 @@ public void enterEstimatedDistance(String EstimatedDistanceValue) {
 public void validateDistancetab(String textmsg) {
 	Boolean a=Distance_distanceTab.getText().contains(textmsg);
 	if(a==true) {
-		System.out.println("true");
 		assert true;
 	}
 	else {
-		System.out.println("false");
+
 		assert false;
 	}
 }
@@ -132,11 +131,6 @@ public void validatesubhdr(String hdrvalue) {
 	if(Distance_Reinstatesubhdr.getText().contains(hdrvalue))
 		assert true;
 }
-
-
-
-
-
 
 //Fetch Details
 public String DistanceReportingPeriodFromlbl() {
@@ -167,14 +161,14 @@ public String DistanceEstimatedDistanceChartlbl() {
 }
 
 public String DistanceEstimatedDistanceChart() {
-	return ElementUtil.FetchTextBoxValuewithattribute(Distance_VehicleDistanceChartchk,"checked");
+	return ElementUtil.FetchTextBoxValuewithattribute(Distance_VehicleDistanceChartchk,"value");
 }
 public String DistanceOverrideContJurlbl() {
 	return ElementUtil.FetchTextBoxValuewithText(Distance_OverrideContJurlbl);
 }
 
 public String DistanceOverrideContJur() {
-	return ElementUtil.FetchTextBoxValuewithattribute(Distance_OverrideContJurchk,"checked");
+	return ElementUtil.FetchTextBoxValuewithattribute(Distance_OverrideContJurchk,"value");
 }
 
 public String DistanceEstimatedDistancelbl() {
@@ -225,7 +219,7 @@ public String DistanceActualDistConfirmationlbl() {
 }
 
 public String DistanceActualDistConfirmation() {
-	return ElementUtil.FetchTextBoxValuewithattribute(Distance_ActualDistanceQuestionchk,"value");
+	return ElementUtil.FetchTextBoxValuewithattribute(Distance_ActualDistanceQuestionchk,"checked");
 }
 
 public ArrayList<String> FetchTableHeader() {

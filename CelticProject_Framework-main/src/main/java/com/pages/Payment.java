@@ -267,7 +267,7 @@ public String FetchOpaSystemCredit() {
 public ArrayList<String> FetchTable_Headers() {
 	ArrayList<String> Headers_array = new ArrayList<String>();
 	for(int i=0;i<Headers_array.size();i++) {
-		Headers_array.add(ElementUtil.FetchTextBoxValuewithattribute(Payment_tableHeaderRow.get(i),"value"));
+		Headers_array.add(ElementUtil.FetchTextBoxValuewithText(Payment_tableHeaderRow.get(i)));
 	}
 	return Headers_array;
 }
@@ -275,7 +275,7 @@ public ArrayList<String> FetchTable_Headers() {
 public ArrayList<String> FetchTable_InvoiceDetails() {
 	ArrayList<String> Invoice_array = new ArrayList<String>();
 	for(int i=0;i<Invoice_array.size();i++) {
-		Invoice_array.add(ElementUtil.FetchTextBoxValuewithattribute(Payment_InvoiceRow.get(i),"value"));
+		Invoice_array.add(ElementUtil.FetchTextBoxValuewithText(Payment_InvoiceRow.get(i)));
 	}
 	return Invoice_array;
 }

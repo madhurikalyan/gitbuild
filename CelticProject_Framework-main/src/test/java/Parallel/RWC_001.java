@@ -8,11 +8,9 @@ import com.pages.BillingTab;
 import com.pages.CommonObjects;
 import com.pages.DashBoardPage;
 import com.pages.DistanceTabPage;
-import com.pages.DistanceVerification;
 import com.pages.Financepage;
 import com.pages.FleetPage;
 import com.pages.FleetTabPage;
-import com.pages.FleetVerification;
 import com.pages.InventoryPage;
 import com.pages.LoginPage;
 import com.pages.Payment;
@@ -20,8 +18,6 @@ import com.pages.PaymentTab;
 import com.pages.VehicleAmend;
 import com.pages.VehicleDelete;
 import com.pages.VehicleTabPage;
-import com.pages.VehicleVerification;
-import com.pages.WeightGroupVerification;
 import com.pages.WgtGroup;
 import com.pages.WgtGroupAdd;
 import com.qa.factory.Driver_Factory;
@@ -53,10 +49,6 @@ public class RWC_001 {
 	ExcelReader excel =new ExcelReader();
 	int Noof=0;
 	Financepage financepage =new Financepage(Driver_Factory.getDriver());
-	FleetVerification fleetverify =new FleetVerification(Driver_Factory.getDriver());
-	DistanceVerification Distanceverify=new DistanceVerification(Driver_Factory.getDriver());
-	WeightGroupVerification wgtverify= new WeightGroupVerification(Driver_Factory.getDriver());
-	VehicleVerification vehicleverify =new VehicleVerification(Driver_Factory.getDriver());
 	ElementUtil eleutil =new ElementUtil();
 	
 	
@@ -186,7 +178,7 @@ public class RWC_001 {
 		Thread.sleep(3000);
 		commonobjects.clickProceed();
 		//Fleet Verification Screen
-		eleutil.updateExcel("Fleet", 0,0,fleetverify.FleetNbrlbl());
+	/*	eleutil.updateExcel("Fleet", 0,0,fleetverify.FleetNbrlbl());
 		eleutil.updateExcel("Fleet", 1,0,fleetverify.FleetNbr());
 		eleutil.updateExcel("Fleet", 0,1,fleetverify.FleetRegistrantTypelbl());
 		eleutil.updateExcel("Fleet", 1,1,fleetverify.FleetRegistrantType());
@@ -323,7 +315,7 @@ public class RWC_001 {
 		eleutil.updateExcel("Fleet", 0,67,fleetverify.FleetVehDocument_HVUTFormlbl());
 		eleutil.updateExcel("Fleet", 1,67,fleetverify.FleetVehDocument_HVUTForm());
 		eleutil.updateExcel("Fleet", 0,68,fleetverify.FleetVehDocument_PropertyTaxlbl());
-		eleutil.updateExcel("Fleet", 1,68,fleetverify.FleetVehDocument_PropertyTax());
+		eleutil.updateExcel("Fleet", 1,68,fleetverify.FleetVehDocument_PropertyTax());*/
 		
 		//Thread.sleep(2000);
 		commonobjects.clickProceed();
@@ -338,7 +330,7 @@ public class RWC_001 {
 		Thread.sleep(3000);
      	commonobjects.clickProceed();
      	//Distance Verification Screen
-     	eleutil.updateExcel("Distance", 0, 0,Distanceverify.fetchAccountnolbl());
+     /*	eleutil.updateExcel("Distance", 0, 0,Distanceverify.fetchAccountnolbl());
      	eleutil.updateExcel("Distance", 1, 0,Distanceverify.fetchAccountno());
      	eleutil.updateExcel("Distance", 0,1,Distanceverify.FleetNbrlbl());
      	eleutil.updateExcel("Distance", 1,1,Distanceverify.FleetNbr());
@@ -413,11 +405,11 @@ public class RWC_001 {
      	eleutil.updateExcel("Distance", 0,18,Distanceverify.DistanceDistanceTypelbl());
      	eleutil.updateExcel("Distance", 1,18,Distanceverify.DistanceDistanceType());
      	eleutil.updateExcel("Distance", 0,19,Distanceverify.DistanceActualDistConfirmationlbl());
-     	eleutil.updateExcel("Distance", 1,19,Distanceverify.DistanceActualDistConfirmation());
+     	eleutil.updateExcel("Distance", 1,19,Distanceverify.DistanceActualDistConfirmation()); */
 
      	//Juris Table Verification
      	//Juris Table header
-     	ArrayList<String> TableHeadervalues=Distanceverify.FetchTableHeader();
+     /*	ArrayList<String> TableHeadervalues=Distanceverify.FetchTableHeader();
     	for(int i=0;i<TableHeadervalues.size();i++) {
     		eleutil.updateExcel("Distance_Juris",0,i,TableHeadervalues.get(i));
     	}
@@ -435,7 +427,7 @@ public class RWC_001 {
      	eleutil.updateExcel("Distance_Juris", 1,i+j,Percent_values.get(i)); //02 15
      	
      	}
-     	 
+     	 */
      	
   
      
@@ -473,14 +465,14 @@ wgtgroupadd.enterWeight_JuriValue(Juri_Excel);
 	commonobjects.clickProceed();
 	// Weight Group Verification Screen
 	commonobjects.clickProceed();
-	ArrayList<String>  headervalues=wgtverify.FetchTableHeader();
+	/*ArrayList<String>  headervalues=wgtverify.FetchTableHeader();
 	for(int i=0;i<headervalues.size();i++) {
 		eleutil.updateExcel("WeightGrouptab",0,i,headervalues.get(i));
 	}
 	ArrayList<String>  RowDatavalues=wgtverify.FetchTableRowData();
 	for(int i=0;i<RowDatavalues.size();i++) {
 		eleutil.updateExcel("WeightGrouptab",1,i,RowDatavalues.get(i));
-	}
+	}*/
 	//Validating JUR WITH DIFFERENT WEIGHTS
 	String[] weightlist=wgtgroup.validateJurisWeightsedited(); //[AL, AR, AZ]
 	for(int i=0;i<Integer.valueOf(Juri_ExcelCount);i++) {
@@ -498,14 +490,14 @@ wgtgroupadd.enterWeight_JuriValue(Juri_Excel);
 		
 		//Vehicle Tab
 		//Fetch values from Vehicle screen before modifying
-		eleutil.updateExcel("Vehicle",0,0,vehicleverify.FetchAmendVehiclelbl());
+	/*	eleutil.updateExcel("Vehicle",0,0,vehicleverify.FetchAmendVehiclelbl());
 		eleutil.updateExcel("Vehicle",1,0,vehicleverify.FetchAmendVehicle());
 		eleutil.updateExcel("Vehicle",0,1,vehicleverify.FetchAddVehicleslbl());
 		eleutil.updateExcel("Vehicle",1,1,vehicleverify.FetchAddVehicles());
 		eleutil.updateExcel("Vehicle",0,2,vehicleverify.FetchdeleteVehiclelbl());
 		eleutil.updateExcel("Vehicle",1,2,vehicleverify.FetchdeleteVehicle());
 		eleutil.updateExcel("Vehicle",0,3,vehicleverify.FetchRenewVehiclelbl());
-		eleutil.updateExcel("Vehicle",1,3,vehicleverify.FetchRenewVehicle());
+		eleutil.updateExcel("Vehicle",1,3,vehicleverify.FetchRenewVehicle());*/
 		
 		Vehicletabpage.clickAmendVehicleRadioButton();
 		//Thread.sleep(2000);

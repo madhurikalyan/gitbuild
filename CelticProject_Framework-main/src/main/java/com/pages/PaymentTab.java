@@ -107,13 +107,13 @@ public String FetchEnterpriseSystemCreditlbl() {
 	return ElementUtil.FetchTextBoxValuewithText(Payment_EnterpriseSystemCreditlbl);
 }
 public String FetchEnterpriseSystemCredit() {
-	return ElementUtil.FetchDropdownSelectedValue(Payment_EnterpriseSystemCredittxt);
+	return ElementUtil.FetchTextBoxValuewithattribute(Payment_EnterpriseSystemCredittxt,"value");
 }
 public String FetchIRPSystemCreditlbl() {
 	return ElementUtil.FetchTextBoxValuewithText(Payment_IRPSystemCreditlbl);
 }
 public String FetchIRPSystemCredit() {
-	return ElementUtil.FetchDropdownSelectedValue(Payment_IRPSystemCredittxt);
+	return ElementUtil.FetchTextBoxValuewithattribute(Payment_IRPSystemCredittxt,"value");
 }
 public String FetchInvoiceDatelbl() {
 	return ElementUtil.FetchTextBoxValuewithText(Payment_InvoiceDatelbl);
@@ -143,13 +143,13 @@ public String FetchBatchCredentiallbl() {
 	return ElementUtil.FetchTextBoxValuewithText(Payment_BatchCredentiallbl);
 }
 public String FetchBatchCredential() {
-	return ElementUtil.FetchTextBoxValuewithattribute(Payment_BatchCredentialchk,"value");
+	return ElementUtil.FetchTextBoxValuewithattribute(Payment_BatchCredentialchk,"checked");
 }
 public String FetchWireTransferFeelbl() {
 	return ElementUtil.FetchTextBoxValuewithText(Payment_WireTransferFeelbl);
 }
 public String FetchWireTransferFee() {
-	return ElementUtil.FetchTextBoxValuewithattribute(Payment_WireTransferFeechk,"value");
+	return ElementUtil.FetchTextBoxValuewithattribute(Payment_WireTransferFeechk,"checked");
 }
 public ArrayList<String> FetchTable_Headers() {
 	ArrayList<String> Headers_array = new ArrayList<String>();

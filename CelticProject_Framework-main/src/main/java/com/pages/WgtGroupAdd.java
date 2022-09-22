@@ -48,10 +48,12 @@ public class WgtGroupAdd {
 	
 	public void selectWeightGroupType(String WeightGroupTypeValue) {
 		ElementUtil.selectFromDropdownByVisibleText(AddWgtGroup_WeightGroupTypedd, WeightGroupTypeValue);  //B - BUS  P - POWER UNIT T - TRAILER
+	
 	}
 	
 	
 	public void enterWeightGroupNo(String WeightGroupNoValue) {
+		ElementUtil.waitUntilElementClickable(AddWgtGroup_WeightGroupNotxt);
 		ElementUtil.webEditTxtChange(AddWgtGroup_WeightGroupNotxt, WeightGroupNoValue);
 	}
 	public void selectMaxGrossWeight(String MaxGrossWeightValue) {

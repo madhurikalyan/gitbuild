@@ -339,14 +339,14 @@ public String fetchAccountEmailnotificationlbl() {
 }
 
 public String fetchAccountEmailnotification() {
-	return ElementUtil.FetchTextBoxValuewithattribute(AccountEmailnotification,"checked");
+	return ElementUtil.FetchTextBoxValuewithattribute(AccountEmailnotification,"value");
 }
 public String fetchAccountFaxnotificationlbl() {
 	return ElementUtil.FetchTextBoxValuewithText(AccountFaxnotificationlbl);
 }
 
 public String fetchAccountFaxnotification() {
-	return ElementUtil.FetchTextBoxValuewithattribute(AccountFaxnotification,"checked");
+	return ElementUtil.FetchTextBoxValuewithattribute(AccountFaxnotification,"value");
 }
 
 

@@ -346,7 +346,7 @@ public String fetchBilling_TVRlbl() {
 }
 
 public String fetchBilling_TVR() {
-	return ElementUtil.FetchTextBoxValuewithattribute(Billing_TVRchk,"value");
+	return ElementUtil.FetchTextBoxValuewithattribute(Billing_TVRchk,"checked");
 }
 
 public String fetchBilling_IsUseOneTimeMailinglbl() {

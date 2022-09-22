@@ -186,15 +186,17 @@ public void enterVINNumber(String VinNumberValue) {
 	ElementUtil.webEditTxtChange(Add_VIntxt, VinNumberValue);
 }
 
-public void clickSearch() {
+public void clickSearch() throws InterruptedException {
 	ElementUtil.clickElement(Add_Searchbtn);
+	Thread.sleep(2000);
 }
 
 public void enterDetailsUnitNumber(String UnitNumberValue) {
 	ElementUtil.webEditTxtChange(Add_Details_UnitNotxt, UnitNumberValue);
 }
-public void selectBodyType(String BodyTypeValue) {
+public void selectBodyType(String BodyTypeValue) throws InterruptedException {
 	ElementUtil.selectFromDropdownByVisibleText(Add_Details_BodyTypedd, BodyTypeValue);
+	Thread.sleep(1000);
 }
 public void selectWeightGroupNumber(String BodyTypeValue) {
 	ElementUtil.selectFromDropdownByVisibleText(Add_Details_WeightGroupNodd, BodyTypeValue);
@@ -381,8 +383,9 @@ public void selectAffidavitDoc(String AffidavitDocddValue) {
 public void UpdatevehiclelistUnit(String UnitNumber) {
 	ElementUtil.webEditTxtChange(VehicleList_EnterUnitno, UnitNumber);
 }
-public void Updatevehiclelistsearch() {
+public void Updatevehiclelistsearch() throws InterruptedException {
 	ElementUtil.clickElement(VehicleList_VehicleSearch);
+	Thread.sleep(1000);
 }
 public void Updatevehiclelistselectunit() {
 	ElementUtil.clickElement(VehicleList_Vehicleunit1);
