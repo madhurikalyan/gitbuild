@@ -6,13 +6,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
 import com.qa.util.ElementUtil;
-import com.qa.util.ExcelReader;
 
 public class FleetPage {
 	public WebDriver driver;
-	ExcelReader reader = new ExcelReader();
 	
 	@FindBy(xpath="//h3[@class='float-left']") WebElement FleetLeftHeader;  //Fleet
 	@FindBy(xpath="//h3[@class='float-right']") WebElement FleetRightHeader; //Renew Fleet
@@ -60,16 +57,6 @@ public class FleetPage {
 		PageFactory.initElements(driver, this);
 	}
 
-	public void validatetitle() {
-		if(driver.getTitle().equalsIgnoreCase("Supplement Search -  IRP")) {
-			assert true;
-			System.out.println("Current screen is Supplement Search -  IRP");
-		}
-		else {
-			assert false;
-			System.out.println("Current screen is not Supplement Search -  IRP");
-		}
-	}
 	
 	public void enterAccountNo(String AccountNoValue) throws IOException {
 		ElementUtil.webEditTxtChange(FleetAccountNOtxt,AccountNoValue);

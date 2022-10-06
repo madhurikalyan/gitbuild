@@ -236,5 +236,53 @@ public static void sheetUpdate(String filePath,String sheetName,int rownum,int c
 		// TODO: handle exception
 	}
 }
+public  static void updateExcel(String sheetname, int rownum, int cellnum,String value) throws IOException {
+  	 FileInputStream inputStream;
+  	  Workbook workbook = null;
+  	  Boolean bool = null;
+  	  Sheet newSheet;
+  	  Row row ;
+  	  Cell cell;
+  	  FileOutputStream out = null;
+  	try {
+  		 inputStream = new FileInputStream(new File(ConfigReader.writeexcel()));
+
+  		   workbook = WorkbookFactory.create(inputStream);
+  		  for (int i=0; i<workbook.getNumberOfSheets(); i++) {
+  			   bool=workbook.getSheetName(i).toString().equalsIgnoreCase(sheetname);
+  			 if(bool==true) {
+  				 break;
+  			 }
+  			}
+  		  if(bool==false) {
+  			   newSheet = workbook.createSheet(sheetname);
+  		  }
+  		  else {
+  			   newSheet =workbook.getSheet(sheetname);
+  		  }
+  		
+  		 int rown= newSheet.getLastRowNum();
+  			 if(rown>=rownum) {
+  				 row= newSheet.getRow(rownum);
+  			 }
+  			 else {
+  				 row= newSheet.createRow(rownum);
+  			 }
+  			
+  		   cell = row.createCell(cellnum);  
+  	       cell.setCellValue(value);
+  	       out  = new FileOutputStream(new File(ConfigReader.writeexcel()));
+                workbook.write(out);
+              
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+      
+  	  finally {
+  		  workbook.close();
+            out.close();
+  	}
+  }
 
 }

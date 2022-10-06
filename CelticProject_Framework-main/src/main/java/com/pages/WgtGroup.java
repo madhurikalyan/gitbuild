@@ -2,25 +2,21 @@ package com.pages;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
 import com.qa.util.ElementUtil;
-import com.qa.util.ExcelReader;
 
 public class WgtGroup {
 	
 	
 	public WebDriver driver;
-	ExcelReader reader = new ExcelReader();
 	public WgtGroup(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
-	
+	@FindBy(css = "#contentMsg > div > ul > li > span") WebElement Weight_Verificationmsg;
 	
 	@FindBy(xpath="(//div[contains(@class,'box-title')]/h4)[2]") WebElement WeightGroupListsubhdr;
 	
@@ -80,6 +76,10 @@ public class WgtGroup {
 		return RowData_Array;
 	}
 	
-	
+public String WeightValidatemessage() {
+		
+		ElementUtil.highlightElement(driver, Weight_Verificationmsg);
+		return ElementUtil.FetchTextBoxValuewithText(Weight_Verificationmsg);
+	}	
 	
 }

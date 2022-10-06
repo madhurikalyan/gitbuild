@@ -14,6 +14,7 @@ public class VehicleDelete {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
+	@FindBy(css ="#contentMsg > div > ul") WebElement Delete_Verificationmessage;
 	@FindBy(xpath="(//div[contains(@class,'box-title')]/h4)[1]") WebElement AmendVehicle_SupplementDetailsSubHdr;
 	@FindBy(xpath="//label[@for='NoOfDeletedVehicle']") WebElement DeleteVehicle_DeletedVehiclelbl;
 	@FindBy(xpath="//input[@id='NoOfDeletedVehicle']") WebElement DeleteVehicle_DeletedVehicletxt;
@@ -55,6 +56,14 @@ public class VehicleDelete {
 	@FindBy(xpath="//table[@id='DeleteVehicleGrid']/tbody/tr") List<WebElement> DeleteVehicle_RowinTable;
 	@FindBy(xpath="//td[contains(@class,'leftAlign')]") List<WebElement> DeleteCellsinaRow;
 	
+	
+	@FindBy(xpath="//a[text()='Next']") WebElement Nextlink;
+	@FindBy(xpath="//div[@id='DeleteVehicleGrid_info']") WebElement Showingentries;
+	
+	
+	
+	
+	
 	public void enterUnitNo(String UnitNumbertxtValue) {
 		ElementUtil.webEditTxtChange(DeleteVehicle_UnitNumbertxt,UnitNumbertxtValue);
 	}
@@ -69,7 +78,6 @@ public class VehicleDelete {
 		for(i=1;i<=DeleteVehicle_RowinTable.size();i++) {
 			List<WebElement>cellvalueineachrow=driver.findElements(By.xpath("//table[@id='DeleteVehicleGrid']/tbody/tr["+i+"]//td[contains(@class,'leftAlign')]"));
 			//starting the loop from 2 because the Row contains checkbox for which text doesn't contain in locators
-			System.out.println("cellvalueineachrow is:"+cellvalueineachrow.size());
 			for(j=1;j<=cellvalueineachrow.size();j++) {
 				if(driver.findElement(By.xpath("//table[@id='DeleteVehicleGrid']/tbody/tr["+i+"]//td[contains(@class,'leftAlign')]["+j+"]")).getText().equalsIgnoreCase(Unitvalue))
 					break;
@@ -79,7 +87,29 @@ public class VehicleDelete {
 		}
 		return i;
 	}
-	
+	public void deleteFewVehicles(String vehiclesCount,String plateStatusValue,String PlateReturnedValue, String AffidavitDocumentValue, String DeleteCommentsValue) {
+		for(int i=1;i<=Integer.valueOf(vehiclesCount);i++) {
+			if(i>Integer.valueOf(ElementUtil.FetchTextBoxValuewithText(Showingentries).indexOf("to "))) {
+				System.out.println("Vehicle about to delete is: "+i);
+				ElementUtil.clickElement(Nextlink);
+				break;
+			}
+			//Click the check box for each untill we reach the count to delete the vehicles
+			WebElement checkBoxCheck=driver.findElement(By.xpath("//table[@id='DeleteVehicleGrid']/tbody/tr["+i+"]/td[1]/input[@title='Select']"));
+			ElementUtil.clickElement(checkBoxCheck);
+			WebElement PlateStatus=driver.findElement(By.xpath("//table[@id='DeleteVehicleGrid']/tbody/tr["+i+"]/td[5]//select"));
+			ElementUtil.selectFromDropdownByVisibleText(PlateStatus,plateStatusValue);
+			//Plate Returned Document
+		    WebElement PlateReturnedDocument=driver.findElement(By.xpath("//table[@id='DeleteVehicleGrid']/tbody/tr["+i+"]/td[7]//select"));
+			ElementUtil.selectFromDropdownByVisibleText(PlateReturnedDocument,PlateReturnedValue);
+			//Affidavit Document
+			WebElement AffidavitDocument=driver.findElement(By.xpath("//table[@id='DeleteVehicleGrid']/tbody/tr["+i+"]/td[8]//select"));
+			ElementUtil.selectFromDropdownByVisibleText(AffidavitDocument,AffidavitDocumentValue);
+			//Delete Comments
+			WebElement DeleteComments=driver.findElement(By.xpath("//table[@id='DeleteVehicleGrid']/tbody/tr["+i+"]/td[9]/textarea"));
+		    ElementUtil.webEditTxtChange(DeleteComments, DeleteCommentsValue);
+		}
+	}
 	public void ClickCheckBoxFromGrid() {
 		ElementUtil.clickElement(DeleteVehicle_Checkboxchk);
 	}
@@ -102,7 +132,11 @@ public class VehicleDelete {
 		ElementUtil.clickElement(DeleteVehicle_VehicleListbtn);
 	}
 	
-	
+	public String DeleteValidationMessage() {
+		ElementUtil.highlightElement(driver, Delete_Verificationmessage);
+		return ElementUtil.FetchTextBoxValuewithText(Delete_Verificationmessage);
+	}
+		
 	
 	
 	

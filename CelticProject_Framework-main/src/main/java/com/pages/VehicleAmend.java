@@ -199,21 +199,28 @@ public class VehicleAmend {
 		ElementUtil.clickElement(AmendVehicle_ChangeVehUnitNotxt);
 	}
 	
-	public void selectUnitNoFromSuggestions(String ChangeVehicleUnitNoValue) {
+	public void selectUnitNoFromSuggestions() {
+		
+		AmendVehicle_ChangeVehUnitNotxt.sendKeys(Keys.ARROW_DOWN);
+		AmendVehicle_ChangeVehUnitNotxt.sendKeys(Keys.ENTER);
+	}
+	public void selectUnitNoFromExcel(String ChangeVehicleUnitNoValue) {
 		String text;
 		do {
 			AmendVehicle_ChangeVehUnitNotxt.sendKeys(Keys.ARROW_DOWN);
+			AmendVehicle_ChangeVehUnitNotxt.sendKeys(Keys.ENTER);
 			 text=AmendVehicle_ChangeVehUnitNotxt.getAttribute("value");
 			if(text.equals(ChangeVehicleUnitNoValue)) {
 				AmendVehicle_ChangeVehUnitNotxt.sendKeys(Keys.ENTER);
 break;
 			}
-		}while(!text.isEmpty());
+			 
+		}
+	while(!text.isEmpty());
 	}
-	
 	public void clickSearch() throws InterruptedException {
 		ElementUtil.clickElement(AmendVehicle_Searchbtn);
-	Thread.sleep(3000);
+		ElementUtil.sleepTime(1000);
 	
 	}
 	
@@ -225,7 +232,6 @@ break;
 	}
 	public void enterUnladenWeight(String unladenWeightValue) {
 		if(AmendVehicle_UnladenWeighttxt.getAttribute("value") == null) {
-			System.out.println("UnladenWeight is Null");
 			ElementUtil.webEditTxtChange(AmendVehicle_UnladenWeighttxt, unladenWeightValue);
 		}
 	}
@@ -233,8 +239,6 @@ break;
 		ElementUtil.selectFromDropdownByVisibleText(AmendVehicle_WeightGroupNodd, AmendVehicle_WeightGroupNoddValue); //BS - Bus,CG - Converter Gear,FT - Full Trailer,MT - Motor Totor,RT - Road Truck,ST - Semi Trailer,TK - Straight Truck,TR - Tractor,TT - Truck Tractor,WR - Wrecker
 	}
 	public void ValidatePresenceOfMandatoryFeildValues() {
-		
-		System.out.println( AmendVehicle_UnitNotxt.getAttribute("value").isEmpty()); //for execution debug
 		 ElementUtil.isElementcontainsValue(AmendVehicle_UnitNotxt,"value");
 		 ElementUtil.isElementcontainsValue(AmendVehicle_WeightGroupNodd,"value");
 		 ElementUtil.isElementcontainsValue(AmendVehicle_Yeartxt,"value");
@@ -250,7 +254,6 @@ break;
 		 ElementUtil.isElementcontainsValue(AmendVehicle_SafetyUSDOTtxt,"value");
 		 ElementUtil.isElementcontainsValue(AmendVehicle_SafetyTPIDtxt,"value");
 		 ElementUtil.isElementcontainsValue(AmendVehicle_SafetyChangedd,"value");
-		 
 	}
 	
 	

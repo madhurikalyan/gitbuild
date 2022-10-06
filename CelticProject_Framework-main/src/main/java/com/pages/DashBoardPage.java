@@ -23,7 +23,7 @@ public class DashBoardPage {
 	@FindBy(xpath="//a[@title='Vehicle Supplement Inquiry']") WebElement DashboardVehicleSupplementEnquiry;
 	@FindBy(xpath="//a[@title='Supplement Inquiry']") WebElement DashboardSupplementEnquiry;
 	@FindBy(xpath="//a[@title='Account Inquiry']") WebElement DashboardAccountEnquiry;
-	
+	@FindBy(xpath="//a[@title='Supplement Documents']") WebElement DashboardSupplementDocuments;
 @FindBy(xpath="//a[@title='Logout']") WebElement DashboardLogout;	
 	// Elements for SiteMappage
 
@@ -63,11 +63,11 @@ public DashBoardPage(WebDriver driver) {
 	}
 	public void clickServiceLink() throws InterruptedException {
 		ElementUtil.clickElementUsingActions(DashboardServicesLink);
-		Thread.sleep(2000);
+		ElementUtil.sleepTime(2000);
 	}
 	public void clickIRPLink() throws InterruptedException {
 		ElementUtil.clickElementUsingActions(DashboardIRPLink);
-		Thread.sleep(2000);
+		ElementUtil.sleepTime(2000);
 	}
 
 	public void validateIRPScreen(String title) throws InterruptedException {
@@ -78,13 +78,13 @@ public DashBoardPage(WebDriver driver) {
 		else {
 			assert false;
 		}
-		Thread.sleep(2000);
+		ElementUtil.sleepTime(2000);
 	}
 
 
 	public void clickRenewFleetLink() throws InterruptedException {
 		ElementUtil.clickElementUsingActions(DashboardRenewFleetLink);
-		Thread.sleep(2000);
+		ElementUtil.sleepTime(2000);
 	}
 public void validateMessage(CharSequence SuccessMessageValue) {
 	
@@ -100,27 +100,31 @@ public void validateMessage(CharSequence SuccessMessageValue) {
 }
 public void clickSupplementContinuance() throws InterruptedException {
 	ElementUtil.clickElementUsingActions(Dashboard_SupplementContinuancelnk);
-	Thread.sleep(2000);
+	ElementUtil.sleepTime(2000);
 }
 public void clickFleetEnquiry() throws InterruptedException {
 	ElementUtil.clickElementUsingActions(DashboardFleetEnquiry);
-	Thread.sleep(2000);
+	ElementUtil.sleepTime(2000);
 }
 public void clickVehicleEnquiry() throws InterruptedException {
 	ElementUtil.clickElementUsingActions(DashboardVehicleEnquiry);
-	Thread.sleep(2000);
+	ElementUtil.sleepTime(2000);
 }
 public void clickVehicleSupplementEnquiry() throws InterruptedException {
 	ElementUtil.clickElementUsingActions(DashboardVehicleSupplementEnquiry);
-	Thread.sleep(2000);
+	ElementUtil.sleepTime(2000);
 }
 public void clickSupplementEnquiry() throws InterruptedException {
 	ElementUtil.clickElementUsingActions(DashboardSupplementEnquiry);
-	Thread.sleep(2000);
+	ElementUtil.sleepTime(2000);
 }
 public void clickAccountEnquiry() throws InterruptedException {
 	ElementUtil.clickElementUsingActions(DashboardAccountEnquiry);
-	Thread.sleep(2000);
+	ElementUtil.sleepTime(2000);
+}
+public void clickSupplementDocuments() throws InterruptedException {
+	ElementUtil.clickElementUsingActions(DashboardSupplementDocuments);
+	ElementUtil.sleepTime(2000);
 }
 
 
@@ -145,7 +149,7 @@ public void clickCartimg() {
 //Reinstatement
 public void clickFleetMore() throws InterruptedException {
 	ElementUtil.clickElement(Dashboard_FleetMore);
-	Thread.sleep(2000);
+	ElementUtil.sleepTime(2000);
 }
 public void clickFleetReinstatement() {
 	ElementUtil.clickElement(Dashoboad_More_FleetReinstatement);

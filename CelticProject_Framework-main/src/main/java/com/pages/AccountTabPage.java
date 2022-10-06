@@ -6,11 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import com.qa.util.ElementUtil;
-import com.qa.util.ExcelReader;
 
 public class AccountTabPage {
 	public WebDriver driver;
-	ExcelReader reader = new ExcelReader();
 	public AccountTabPage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
@@ -18,8 +16,7 @@ public class AccountTabPage {
 	//Account Tab
 	@FindBy(xpath="//a[@id='AccountBtn']") WebElement AccountActMainTab;
 
-	
-	
+	@FindBy(css = "#contentMsg > div > ul") WebElement Account_VerificationMessage;
 	//Customer Details section
 	
 	@FindBy(xpath="(//div[contains(@class,'box-title')]/h4)[1]") WebElement Accountcustomerdetailssubhdr;
@@ -163,7 +160,8 @@ public String fetchIFTAAccountNbrlbl() {
 }
 
 public String fetchIFTAAccountNbr() {
-	return ElementUtil.FetchTextBoxValuewithattribute(AccountIFTAAccountNotxt,"value");
+	System.out.println("IFTA Check: "+ElementUtil.FetchTextBoxValuewithattributedisabled(AccountIFTAAccountNotxt,"value"));
+	return ElementUtil.FetchTextBoxValuewithattributedisabled(AccountIFTAAccountNotxt,"value");
 }
 
 public String fetchAccountCustomerStatuslbl() {
@@ -195,7 +193,7 @@ public String fetchAccountJur0lbl() {
 }
 
 public String fetchAccountJur0() {
-	return ElementUtil.FetchTextBoxValuewithattribute(AccountJur0dd,"value");
+	return ElementUtil.FetchDropdownSelectedValue(AccountJur0dd);
 }
 public String fetchAccountCity0lbl() {
 	return ElementUtil.FetchTextBoxValuewithText(AccountCity0lbl);
@@ -246,7 +244,7 @@ public String fetchAccountJur1lbl() {
 }
 
 public String fetchAccountJur1() {
-	return ElementUtil.FetchTextBoxValuewithattribute(AccountJur1dd,"value");
+	return ElementUtil.FetchDropdownSelectedValue(AccountJur1dd);
 }
 public String fetchAccountCity1lbl() {
 	return ElementUtil.FetchTextBoxValuewithText(AccountCity1lbl);
@@ -339,18 +337,29 @@ public String fetchAccountEmailnotificationlbl() {
 }
 
 public String fetchAccountEmailnotification() {
-	return ElementUtil.FetchTextBoxValuewithattribute(AccountEmailnotification,"value");
+	return ElementUtil.FetchTextBoxValuewithattribute(AccountEmailnotification,"checked");
 }
 public String fetchAccountFaxnotificationlbl() {
 	return ElementUtil.FetchTextBoxValuewithText(AccountFaxnotificationlbl);
 }
 
 public String fetchAccountFaxnotification() {
-	return ElementUtil.FetchTextBoxValuewithattribute(AccountFaxnotification,"value");
+	boolean boolstatus=false;
+	if(ElementUtil.FetchTextBoxValuewithattribute(AccountFaxnotification,"checked")==null){
+		boolstatus=false;
+	}
+	else {
+		boolstatus=true;
+	}
+	return Boolean.toString(boolstatus);
 }
 
 
-
+public String ValidateMessage() {
+	
+	ElementUtil.highlightElement(driver, Account_VerificationMessage);
+	return ElementUtil.FetchTextBoxValuewithText(Account_VerificationMessage);
+}
 
 
 

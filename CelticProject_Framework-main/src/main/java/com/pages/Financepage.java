@@ -59,7 +59,7 @@ public class Financepage {
 	
 	@FindBy(xpath="//input[@id='btnSearch']") WebElement PostPayment_Search;
 	@FindBy(xpath="//a[@id='lnkGridSelectgvPostPayment']") WebElement PostPayment_Cartid;
-	
+	@FindBy(xpath="//input[@id='AccountNo']") WebElement PostPayment_Mceid;
 	
 	//installment payment
 	
@@ -76,6 +76,18 @@ public class Financepage {
 	@FindBy(xpath="//select[@id='outPutModelSelect']") WebElement Intallment_Pdf;
 	
 	
+	public void clickfinance() {
+		ElementUtil.clickElement(DashboardFinancetab);
+	}
+	public void clickpostpayment() {
+		ElementUtil.clickElement(Finance_postpayment);
+	}
+	
+	
+	public void enterMCEid(String MCEIDvalue) {
+		ElementUtil.clickElement(PostPayment_Mceid);
+		ElementUtil.webEditTxtChange(PostPayment_Mceid,MCEIDvalue);
+	}
 	
 	
 	public void clicksearch() {
@@ -85,10 +97,26 @@ public class Financepage {
 	public void clickoncartid() {
 		ElementUtil.clickElement(PostPayment_Cartid);
 	}
-	
+	public void clickservice() {
+		ElementUtil.clickElement(Installment_Service);
+	}
+	public void clickIRP() {
+		ElementUtil.clickElement(Installment_IRP);
+	}
+	public void selectpaymenttype(String selectValue) {
+		ElementUtil.selectFromDropdownByVisibleText(Installment_paytype, selectValue); //Cash,Check,Certified Check,E-check,Credit Card,Wire Transfer,EFT,Enterprise System Credit,IRP System Credit,IFTA System Credit,OPA System Credit,IFTA Bond
+		//ElementUtil.selectFromDropdownByValue(Installment_paytype, selectValue);
+		
+	}
+	public void entercashamount(String installmenttypevalue) {	
+	ElementUtil.webEditTxtChange(Installment_paymentcash,installmenttypevalue);
+	}
+	public void clickreceipt(String selectValue) {
+	ElementUtil.selectFromDropdownByValue(Intallment_Pdf, selectValue);
+}
 	public void clickinstallmentpayment() throws InterruptedException {
 		ElementUtil.clickElement(Installment_instalpayment);
-		Thread.sleep(2000);
+		ElementUtil.sleepTime(2000);
 	}
 	public void clickandenterAccountNo(String accountnovalue) {
 		ElementUtil.webEditTxtChange(Installment_AccountNo,accountnovalue);
@@ -101,7 +129,7 @@ public class Financepage {
 	}
 	public void clickgrid() throws InterruptedException {
 		ElementUtil.clickElement(Installment_Grid);
-		Thread.sleep(2000);
+		ElementUtil.sleepTime(2000);
 	}
 
 	

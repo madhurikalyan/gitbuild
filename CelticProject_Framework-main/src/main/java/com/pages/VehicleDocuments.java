@@ -21,15 +21,6 @@ public class VehicleDocuments {
 
 	
 	@FindBy(xpath="//a[@title='Vehicle Documents']") WebElement Dashboard_VehicleDocuments;
-/*	@FindBy(xpath="/html/body/div[2]/div/div[3]/div/div/form/div[3]/div[1]/div[3]/div/div[3]/div[2]/div/table/tbody/tr[1]/td[7]/select") WebElement VehicleDocs_HVUT;
-	@FindBy(xpath="/html/body/div[2]/div/div[3]/div/div/form/div[3]/div[1]/div[3]/div/div[3]/div[2]/div/table/tbody/tr[1]/td[8]/select") WebElement VehicleDocs_Lease;
-	@FindBy(xpath="/html/body/div[2]/div/div[3]/div/div/form/div[3]/div[1]/div[3]/div/div[3]/div[2]/div/table/tbody/tr[1]/td[13]/select") WebElement VehicleDocs_titledocs;
-	@FindBy(xpath="/html/body/div[2]/div/div[3]/div/div/form/div[3]/div[1]/div[3]/div/div[3]/div[2]/div/table/tbody/tr[1]/td[34]/select") WebElement VehicleDocs_Platedocs;
-	@FindBy(xpath="/html/body/div[2]/div/div[3]/div/div/form/div[3]/div[1]/div[3]/div/div[3]/div[2]/div/table/tbody/tr[2]/td[7]/select") WebElement VehicleDocs_HVUT1;
-	@FindBy(xpath="/html/body/div[2]/div/div[3]/div/div/form/div[3]/div[1]/div[3]/div/div[3]/div[2]/div/table/tbody/tr[2]/td[8]/select") WebElement VehicleDocs_Lease1;
-	@FindBy(xpath="/html/body/div[2]/div/div[3]/div/div/form/div[3]/div[1]/div[3]/div/div[3]/div[2]/div/table/tbody/tr[2]/td[13]/select") WebElement VehicleDocs_titledocs1;
-	@FindBy(xpath="/html/body/div[2]/div/div[3]/div/div/form/div[3]/div[1]/div[3]/div/div[3]/div[2]/div/table/tbody/tr[2]/td[34]/select") WebElement VehicleDocs_Platedocs1;
-	*/
 	@FindBy(xpath="//th[contains(@class,'Alignment')and not(contains(@class,'disabled')) and not(contains(@class,'hidden'))]") List<WebElement> Vehicle_TableHeader1;
 	@FindBy(xpath="//th[contains(@class,'Alignment sorting_disabled') and contains(@class,'mw')]") List<WebElement> Vehicle_Tableheader2;
 	@FindBy(xpath="//td[not(contains(@class,'hidden'))]//select[contains(@id,'DocStatInd') and not(contains(@disabled,'true'))]") List<WebElement> VehicleDocsdd;
@@ -43,7 +34,7 @@ public class VehicleDocuments {
 		ElementUtil.highlightElement(driver, Dashboard_VehicleDocuments);
 		ElementUtil.clickElementUsingActions(Dashboard_VehicleDocuments);
 	//	ElementUtil.clickElement(Dashboard_VehicleDocuments);
-		Thread.sleep(2000);
+		ElementUtil.sleepTime(2000);
 	}	
 	public void SelectHVUT(String HVUTValue) {
 		for(int i=0;i<Vehicle_HVUTFormdd.size();i++) {
@@ -89,7 +80,7 @@ public class VehicleDocuments {
 		}
 		return Row_Array;
 	}
-	
+
 	/*public void SelectLease(String LeaseValue) {
 		ElementUtil.selectFromDropdownByVisibleText(VehicleDocs_Lease, LeaseValue);
 	}

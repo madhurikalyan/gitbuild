@@ -1,19 +1,15 @@
 package com.pages;
 
 import java.util.List;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
 import com.qa.util.ElementUtil;
-import com.qa.util.ExcelReader;
 
 public class WgtGroupAdd {
 
 	public WebDriver driver;
-	ExcelReader reader = new ExcelReader();
 	public WgtGroupAdd(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
@@ -81,6 +77,12 @@ public class WgtGroupAdd {
 				ElementUtil.webEditTxtChange(EditWgtGroup_Weighttxt.get(i),String.valueOf(GrossWeightint-1));
 				break;
 			}
+		}
+	}
+	public void enterAllWeightValue(String DistanceValuedynamic) {
+		ElementUtil.waitUntilElementsVisible(EditWgtGroup_Weighttxt);
+		for(int i=0;i<EditWgtGroup_Weighttxt.size();i++) {
+				ElementUtil.webEditTxtChange(EditWgtGroup_Weighttxt.get(i),DistanceValuedynamic);
 		}
 	}
 		public String FetchMaxGrossWeight() {

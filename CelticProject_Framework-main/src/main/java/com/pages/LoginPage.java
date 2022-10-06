@@ -32,6 +32,6 @@ public class LoginPage {
 	}
 	public void clickLoginbtn() throws InterruptedException {
 		ElementUtil.clickElementUsingActions(LoginbtnLogin);
-		Thread.sleep(2000);
+		ElementUtil.sleepTime(2000);
 	}
 }

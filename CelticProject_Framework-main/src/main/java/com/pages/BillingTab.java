@@ -16,6 +16,12 @@ public class BillingTab {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
+	
+	@FindBy(css="#contentMsg > div > ul > li > span") WebElement Billing_Validationmessage;
+	@FindBy(css="#contentMsg > div > ul > li:nth-child(1) > span") WebElement Billing_Validationmessage2;
+	@FindBy(css="#contentMsg > div > ul > li:nth-child(2) > span") WebElement Billing_Validationmessage3;
+	
+	
 	@FindBy(xpath="(//div[contains(@class,'box-title')]/h4)[1]") WebElement Billing_SupplementDetailsSubhdr;
 	@FindBy(xpath="//label[@for='RegMonth']") WebElement Billing_RegisterMonthlbl;
 	@FindBy(xpath="//input[@id='RegMonth']") WebElement Billing_RegisterMonthtxt;
@@ -147,7 +153,8 @@ public class BillingTab {
 	}
 public void clickReCalculate() throws InterruptedException {
 	ElementUtil.clickElement(Billing_ReCalculatebtn);
-	Thread.sleep(1000);
+	
+	ElementUtil.sleepTime(1000);
 }
 public void selectTVRElectronicDeliveryType(String TVRElectronicDeliveryTypeValue) {
 	ElementUtil.selectFromDropdownByVisibleText(Billing_TVRElectronicDeliveryTypedd,TVRElectronicDeliveryTypeValue);
@@ -160,14 +167,8 @@ public void enterEmailIDTxt(String EmailIDTxtValue) {
 }
 public void expandManualAdjReason() throws Exception {
 	if(ElementUtil.FetchTextBoxValuewithattribute(Billing_ManualAdjReasonCollapse,"aria-expanded").equalsIgnoreCase("false")) {
-		//ElementUtil.clickElementUsingJavscriptExecutor(Billing_ManualAdjReasonCollapse);
-		//ElementUtil.scrollToViewAndClickElement(Billing_ManualAdjReasonCollapse);
-		//ElementUtil.clickElementUsingActions(Billing_ManualAdjReasonCollapse);
-		//ElementUtil.waitUntilElementClickable(Billing_ManualAdjReasonCollapse);
-		ElementUtil.highlightElement(driver, Billing_ManualAdjReasonCollapse);
 		ElementUtil.clickElement(Billing_ManualAdjReasonCollapse);
 		}
-	//ElementUtil.clickElement(Billing_ManualAdjReasonCollapse);
 }
 public void enterManualAdjReasonComments(String ManualadjreasonCommentsValue) {
 	ElementUtil.webEditTxtChange(Billing_ManualAdjReasonCommentstxt, ManualadjreasonCommentsValue);
@@ -234,7 +235,21 @@ public void validateBillingtab(String textmsg) {
 		assert false;
 	}
 }
+public String ValidateMessage() {
+	
+	ElementUtil.clickElement(Billing_Validationmessage);
+	ElementUtil.highlightElement(driver, Billing_Validationmessage);
+	return ElementUtil.FetchTextBoxValuewithText(Billing_Validationmessage);
+}
 
+public String ValidateMessage2() {
+	ElementUtil.highlightElement(driver, Billing_Validationmessage2);
+	return ElementUtil.FetchTextBoxValuewithText(Billing_Validationmessage2);
+}
+public String ValidateMessage3() {
+	ElementUtil.highlightElement(driver, Billing_Validationmessage3);
+	return ElementUtil.FetchTextBoxValuewithText(Billing_Validationmessage3);
+}
 
 ///Reinstatement
 public void enterreceiptdate(String previousdate) {
@@ -338,7 +353,14 @@ public String fetchBilling_BatchBillinglbl() {
 }
 
 public String fetchBilling_BatchBilling() {
-	return ElementUtil.FetchTextBoxValuewithattribute(Billing_BatchBillingchk,"value");
+	boolean boolstatus=false;
+	if(ElementUtil.FetchTextBoxValuewithattribute(Billing_BatchBillingchk,"checked")==null){
+		boolstatus=false;
+	}
+	else {
+		boolstatus=true;
+	}
+	return Boolean.toString(boolstatus);
 }
 
 public String fetchBilling_TVRlbl() {
@@ -346,7 +368,14 @@ public String fetchBilling_TVRlbl() {
 }
 
 public String fetchBilling_TVR() {
-	return ElementUtil.FetchTextBoxValuewithattribute(Billing_TVRchk,"checked");
+	boolean boolstatus=false;
+	if(ElementUtil.FetchTextBoxValuewithattribute(Billing_TVRchk,"checked")==null){
+		boolstatus=false;
+	}
+	else {
+		boolstatus=true;
+	}
+	return Boolean.toString(boolstatus);
 }
 
 public String fetchBilling_IsUseOneTimeMailinglbl() {
@@ -354,7 +383,14 @@ public String fetchBilling_IsUseOneTimeMailinglbl() {
 }
 
 public String fetchBilling_IsUseOneTimeMailing() {
-	return ElementUtil.FetchTextBoxValuewithattribute(Billing_IsUseOneTimeMailingchk,"value");
+	boolean boolstatus=false;
+	if(ElementUtil.FetchTextBoxValuewithattribute(Billing_IsUseOneTimeMailingchk,"checked")==null){
+		boolstatus=false;
+	}
+	else {
+		boolstatus=true;
+	}
+	return Boolean.toString(boolstatus);
 }
 
 public String fetchBilling_InstallmentPlanlbl() {
@@ -362,7 +398,14 @@ public String fetchBilling_InstallmentPlanlbl() {
 }
 
 public String fetchBilling_InstallmentPlan() {
-	return ElementUtil.FetchTextBoxValuewithattribute(Billing_InstallmentPlanchk,"value");
+	boolean boolstatus=false;
+	if(ElementUtil.FetchTextBoxValuewithattribute(Billing_InstallmentPlanchk,"checked")==null){
+		boolstatus=false;
+	}
+	else {
+		boolstatus=true;
+	}
+	return Boolean.toString(boolstatus);
 }
 
 public String fetchBilling_TVRNoOfDayslbl() {
@@ -375,22 +418,24 @@ public String fetchBilling_TVRNoOfDays() {
 
 public ArrayList<String> FetchTable_Headers() {
 	ArrayList<String> Headers_array = new ArrayList<String>();
-	for(int i=0;i<Headers_array.size();i++) {
+	System.out.println("headers Size in Billing screen is:"+Billing_GridHeaders.size());
+	for(int i=0;i<Billing_GridHeaders.size();i++) {
 		Headers_array.add(ElementUtil.FetchTextBoxValuewithText(Billing_GridHeaders.get(i)));
 	}
+	System.out.println("Headers Values are:"+Headers_array);
 	return Headers_array;
 }
 
 public ArrayList<String> FetchTable_FeeType() {
 	ArrayList<String> FeeType_Array = new ArrayList<String>();
-	for(int i=0;i<FeeType_Array.size();i++) {
+	for(int i=0;i<Billing_FeeType.size();i++) {
 		FeeType_Array.add(ElementUtil.FetchTextBoxValuewithattribute(Billing_FeeType.get(i),"value"));
 	}
 	return FeeType_Array;
 }
 	public ArrayList<String> FetchTable_FeeAmount() {
 		ArrayList<String> FeeAmount_Array = new ArrayList<String>();
-		for(int i=0;i<FeeAmount_Array.size();i++) {
+		for(int i=0;i<Billing_FeeAmount.size();i++) {
 			FeeAmount_Array.add(ElementUtil.FetchTextBoxValuewithattribute(Billing_FeeAmount.get(i),"value"));
 		}
 		return FeeAmount_Array;

@@ -2,18 +2,14 @@ package com.pages;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
 import com.qa.util.ElementUtil;
-import com.qa.util.ExcelReader;
 
 public class CommonObjects {
 	public WebDriver driver;
-	ExcelReader reader = new ExcelReader();
 	public CommonObjects(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
@@ -138,7 +134,7 @@ public class CommonObjects {
 		public void clickProceed() throws InterruptedException {
 			ElementUtil.waitUntilElementClickable(Proceedbtn);
 			ElementUtil.clickElement(Proceedbtn);
-			Thread.sleep(2000);
+			ElementUtil.sleepTime(2000);
 		}
 		public void ClickConfirmCancel() {
 			ElementUtil.waitUntilElementClickable(ConfirmCancelbtn);
@@ -171,9 +167,7 @@ public class CommonObjects {
 			
 		}
 		public void validateInfoMessage(String inforMsg) {
-			if(InformationMessage.getText().contains(inforMsg)) {
-				System.out.println("true");
-				System.out.println("InformationMessage"+ InformationMessage.getText());
+			if(InformationMessage.getText().equalsIgnoreCase(inforMsg)) {
 			assert true;
 			}
 		}
@@ -183,5 +177,11 @@ public class CommonObjects {
 			InfoMsgs_Array.add(InfoMsgs.get(i).getText());	
 		}
 		return InfoMsgs_Array;
+	}
+	public void provideComments(String Comments) throws Exception {
+		expandCommentSection();
+		enterComments(Comments);
+		checkDeleteAllowed();
+		clickAddorUpdateComment();
 	}
 }

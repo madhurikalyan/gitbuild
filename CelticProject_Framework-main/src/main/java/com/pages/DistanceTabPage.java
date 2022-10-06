@@ -2,25 +2,26 @@ package com.pages;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
 import com.qa.util.ElementUtil;
-import com.qa.util.ExcelReader;
 
 public class DistanceTabPage {
 	
 	public WebDriver driver;
-	ExcelReader reader = new ExcelReader();
 	public DistanceTabPage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
 	
 	//Distance Details
+
+    @FindBy(css = "#contentMsg > div > ul > li:nth-child(1) > span") WebElement Distance_Verificationmsg1;
+    @FindBy(css = "#contentMsg > div > ul > li:nth-child(2) > span") WebElement Distance_Verificationmsg2;
+    @FindBy(css = "#contentMsg > div > ul > li > span") WebElement Distance_Verificationmsg3;
+    
 			@FindBy(xpath="(//div[contains(@class,'box-title')]/h4)[2]") WebElement DistanceDistanceDetailsSubhdr;
 			
 			@FindBy(xpath="//label[@for='ReportingPeriodFrom']") WebElement Distance_ReportingperiodFromlbl;
@@ -111,6 +112,12 @@ public void enterMODistanceValue( String Juri,String DistanceValuedynamic) {
 		}
 	}
 }
+public void enterAllDistanceValue(String DistanceValuedynamic) {
+	ElementUtil.waitUntilElementsVisible(Distance_JurisList);
+	for(int i=0;i<Distance_DistanceJurisList.size();i++) {
+			ElementUtil.webEditTxtChange(Distance_DistanceJurisList.get(i),DistanceValuedynamic);
+	}
+}
 public void enterEstimatedDistance(String EstimatedDistanceValue) {
 	ElementUtil.webEditTxtChange(Distance_EstimatedDistancetxt,EstimatedDistanceValue);
 }
@@ -161,14 +168,28 @@ public String DistanceEstimatedDistanceChartlbl() {
 }
 
 public String DistanceEstimatedDistanceChart() {
-	return ElementUtil.FetchTextBoxValuewithattribute(Distance_VehicleDistanceChartchk,"value");
+	boolean boolstatus=false;
+	if(ElementUtil.FetchTextBoxValuewithattribute(Distance_VehicleDistanceChartchk,"checked")==null){
+		boolstatus=false;
+	}
+	else {
+		boolstatus=true;
+	}
+	return Boolean.toString(boolstatus);
 }
 public String DistanceOverrideContJurlbl() {
 	return ElementUtil.FetchTextBoxValuewithText(Distance_OverrideContJurlbl);
 }
 
 public String DistanceOverrideContJur() {
-	return ElementUtil.FetchTextBoxValuewithattribute(Distance_OverrideContJurchk,"value");
+	boolean boolstatus=false;
+	if(ElementUtil.FetchTextBoxValuewithattribute(Distance_OverrideContJurchk,"checked")==null){
+		boolstatus=false;
+	}
+	else {
+		boolstatus=true;
+	}
+	return Boolean.toString(boolstatus);
 }
 
 public String DistanceEstimatedDistancelbl() {
@@ -219,14 +240,23 @@ public String DistanceActualDistConfirmationlbl() {
 }
 
 public String DistanceActualDistConfirmation() {
-	return ElementUtil.FetchTextBoxValuewithattribute(Distance_ActualDistanceQuestionchk,"checked");
+	boolean boolstatus=false;
+	if(ElementUtil.FetchTextBoxValuewithattribute(Distance_ActualDistanceQuestionchk,"checked")==null){
+		boolstatus=false;
+	}
+	else {
+		boolstatus=true;
+	}
+	return Boolean.toString(boolstatus);
 }
 
 public ArrayList<String> FetchTableHeader() {
 	ArrayList<String> Headers_Array = new ArrayList<String>();
+	System.out.println("Size is:"+DistanceJurisTableHeader.size());
 	for(int i=0;i<DistanceJurisTableHeader.size();i++) {
 		Headers_Array.add(ElementUtil.FetchTextBoxValuewithText(DistanceJurisTableHeader.get(i)));
 	}
+	System.out.println("Headers Array is:"+Headers_Array);
 	return Headers_Array;
 }
 public ArrayList<String> FetchTable_Juris() {
@@ -249,6 +279,24 @@ public ArrayList<String> FetchTable_DistanceMiles() {
 		DistanceMiles_Array.add(ElementUtil.FetchTextBoxValuewithattribute(Distance_Distance.get(i),"value"));
 	}
 	return DistanceMiles_Array;
+}
+
+
+public String DistanceValidateMessage1() {
+	
+	ElementUtil.highlightElement(driver, Distance_Verificationmsg1);
+	return ElementUtil.FetchTextBoxValuewithText(Distance_Verificationmsg1);
+}
+public String DistanceValidateMessage2() {
+	
+	ElementUtil.highlightElement(driver, Distance_Verificationmsg2);
+	return ElementUtil.FetchTextBoxValuewithText(Distance_Verificationmsg2);
+}
+
+public String DistanceValidateMessage3() {
+	
+	ElementUtil.highlightElement(driver, Distance_Verificationmsg3);
+	return ElementUtil.FetchTextBoxValuewithText(Distance_Verificationmsg3);
 }
 
 

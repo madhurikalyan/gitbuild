@@ -4,13 +4,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
 import com.qa.util.ElementUtil;
-import com.qa.util.ExcelReader;
 
 public class FleetTabPage {
 	public WebDriver driver;
-	ExcelReader reader = new ExcelReader();
 	public FleetTabPage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
@@ -19,7 +16,13 @@ public class FleetTabPage {
 	
 	
 	
-	//Fleet Tab
+	//Fleet Tab    
+	 
+	    @FindBy(css = "#contentMsg > div > ul > li:nth-child(1) > span") WebElement Fleet_Verificationmsg1;
+	    @FindBy(css = "#contentMsg > div > ul > li:nth-child(2) > span") WebElement Fleet_Verificationmsg2;
+	    @FindBy(css = "#contentMsg > div > ul > li:nth-child(3) > span") WebElement Fleet_Verificationmsg3;
+	    
+	 
 		@FindBy(xpath="//a[@id='FleetBtn']") WebElement FleetfltMainTab;
 
 		
@@ -271,7 +274,7 @@ public class FleetTabPage {
 		//ElementUtil.scrollToViewAndClickElement(Fleettab3);  //click on service Provider under Address details
 		ElementUtil.waitUntilElementClickable(Fleettab3);
 		ElementUtil.clickElement(Fleettab3);
-		Thread.sleep(2000);
+		ElementUtil.sleepTime(2000);
 		
 	}
 
@@ -358,12 +361,12 @@ public void enterprimaryPhone(String PrimaryPhonevalue) {
 
 public void clickMailingAddress() throws InterruptedException {
 	ElementUtil.clickElement(Fleettab2);
-	Thread.sleep(1000);
+	ElementUtil.sleepTime(1000);
 }
 
 public void clickOnTimeMailingAddress() throws InterruptedException {
 	ElementUtil.clickElement(Fleettab4);
-	Thread.sleep(1000);
+	ElementUtil.sleepTime(1000);
 }
 
 
@@ -432,7 +435,7 @@ public String FleetJur0lbl() {
 }
 
 public String FleetJur0() {
-	return ElementUtil.FetchTextBoxValuewithattribute(FleetJur0dd,"value");
+	return ElementUtil.FetchDropdownSelectedValue(FleetJur0dd);
 }
 public String FleetCity0lbl() {
 	return ElementUtil.FetchTextBoxValuewithText(FleetCity0lbl);
@@ -460,7 +463,14 @@ public String FleetNonDeliverable0lbl() {
 }
 
 public String FleetNonDeliverable0() {
-	return ElementUtil.FetchTextBoxValuewithattribute(FleetNonDeliverable0chk,"checked");
+	boolean boolstatus=false;
+	if(ElementUtil.FetchTextBoxValuewithattribute(FleetNonDeliverable0chk,"checked")==null){
+		boolstatus=false;
+	}
+	else {
+		boolstatus=true;
+	}
+	return Boolean.toString(boolstatus);
 }
 
 public String FleetStreet1lbl() {
@@ -511,7 +521,14 @@ public String FleetNonDeliverable1lbl() {
 }
 
 public String FleetNonDeliverable1() {
-	return ElementUtil.FetchTextBoxValuewithattribute(FleetNonDeliverable1chk,"checked");
+	boolean boolstatus=false;
+	if(ElementUtil.FetchTextBoxValuewithattribute(FleetNonDeliverable1chk,"checked")==null){
+		boolstatus=false;
+	}
+	else {
+		boolstatus=true;
+	}
+	return Boolean.toString(boolstatus);
 }
 public String FleetAttentionTOlbl() {
 	return ElementUtil.FetchTextBoxValuewithText(FleetAttentionTOlbl);
@@ -607,7 +624,7 @@ public String FleetService_Jurlbl() {
 }
 
 public String FleetService_Jur() {
-	return ElementUtil.FetchTextBoxValuewithattribute(FleetService_Jurtxt,"value");
+	return ElementUtil.FetchDropdownSelectedValue(FleetService_Jurtxt);
 }
 public String FleetService_ZipCodelbl() {
 	return ElementUtil.FetchTextBoxValuewithText(FleetService_ZipCodelbl);
@@ -624,7 +641,6 @@ public String FleetService_Countrylbl() {
 public String FleetService_Country() {
 	return ElementUtil.FetchTextBoxValuewithattribute(FleetService_Countrytxt,"value");
 }
-
 
 public String FleetServiceMailing_Streetlbl() {
 	return ElementUtil.FetchTextBoxValuewithText(FleetServiceMailing_Streetlbl);
@@ -727,7 +743,14 @@ public String FleetDetails_ChangeVehUsdotTinlbl() {
 }
 
 public String FleetDetails_ChangeVehUsdotTin() {
-	return ElementUtil.FetchTextBoxValuewithattribute(FleetDetails_ChangeVehUsdotTinchk,"checked");
+	boolean boolstatus=false;
+	if(ElementUtil.FetchTextBoxValuewithattribute(FleetDetails_ChangeVehUsdotTinchk,"checked")==null){
+		boolstatus=false;
+	}
+	else {
+		boolstatus=true;
+	}
+	return Boolean.toString(boolstatus);
 }
 
 public String FleetDetails_FltTypelbl() {
@@ -735,13 +758,13 @@ public String FleetDetails_FltTypelbl() {
 }
 
 public String FleetDetails_FltType() {
-	return ElementUtil.FetchTextBoxValuewithattribute(FleetDetails_FltTypedd,"value");
+	return ElementUtil.FetchDropdownSelectedValue(FleetDetails_FltTypedd);
 }
 public String FleetDetails_CommodityClasslbl() {
 	return ElementUtil.FetchTextBoxValuewithText(FleetDetails_CommodityClasslbl);
 }
 public String FleetDetails_CommodityClass() {
-	return ElementUtil.FetchTextBoxValuewithattribute(FleetDetails_CommodityClassdd,"value");
+	return ElementUtil.FetchDropdownSelectedValue(FleetDetails_CommodityClassdd);
 }
 public String FleetDetails_FltEffDatelbl() {
 	return ElementUtil.FetchTextBoxValuewithText(FleetDetails_FltEffDatelbl);
@@ -762,7 +785,14 @@ public String FleetDetails_changeAddrOnUsdotlbl() {
 }
 
 public String FleetDetails_changeAddrOnUsdot() {
-	return ElementUtil.FetchTextBoxValuewithattribute(FleetDetails_changeAddrOnUsdotchk,"checked");
+	boolean boolstatus=false;
+	if(ElementUtil.FetchTextBoxValuewithattribute(FleetDetails_changeAddrOnUsdotchk,"checked")==null){
+		boolstatus=false;
+	}
+	else {
+		boolstatus=true;
+	}
+	return Boolean.toString(boolstatus);
 }
 public String FleetDetails_FirstOperatedDatelbl() {
 	return ElementUtil.FetchTextBoxValuewithText(FleetDetails_FirstOperatedDatelbl);
@@ -775,20 +805,41 @@ public String FleetDetails_WyomingIndicatorlbl() {
 	return ElementUtil.FetchTextBoxValuewithText(FleetDetails_WyomingIndicatorlbl);
 }
 public String FleetDetails_WyomingIndicator() {
-	return ElementUtil.FetchTextBoxValuewithattribute(FleetDetails_WyomingIndicatorchk,"checked");
+	boolean boolstatus=false;
+	if(ElementUtil.FetchTextBoxValuewithattribute(FleetDetails_WyomingIndicatorchk,"checked")==null){
+		boolstatus=false;
+	}
+	else {
+		boolstatus=true;
+	}
+	return Boolean.toString(boolstatus);
 }
 public String FleetDetails_IFTADistancelbl() {
 	return ElementUtil.FetchTextBoxValuewithText(FleetDetails_IFTADistancelbl);
 }
 
 public String FleetDetails_IFTADistance() {
-	return ElementUtil.FetchTextBoxValuewithattribute(FleetDetails_IFTADistancechk,"checked");
+	boolean boolstatus=false;
+	if(ElementUtil.FetchTextBoxValuewithattribute(FleetDetails_IFTADistancechk,"checked")==null){
+		boolstatus=false;
+	}
+	else {
+		boolstatus=true;
+	}
+	return Boolean.toString(boolstatus);
 }
 public String FleetDetails_MobileNotificationlbl() {
 	return ElementUtil.FetchTextBoxValuewithText(FleetDetails_MobileNotificationlbl);
 }
 public String FleetDetails_MobileNotification() {
-	return ElementUtil.FetchTextBoxValuewithattribute(FleetDetails_MobileNotificationchk,"checked");
+	boolean boolstatus=false;
+	if(ElementUtil.FetchTextBoxValuewithattribute(FleetDetails_MobileNotificationchk,"checked")==null){
+		boolstatus=false;
+	}
+	else {
+		boolstatus=true;
+	}
+	return Boolean.toString(boolstatus);
 }
 
 public String FleetDetails_IRPRequirementslbl() {
@@ -819,8 +870,32 @@ public String FleetDetails_PowerOfAttorney() {
 	return ElementUtil.FetchDropdownSelectedValue(FleetDocCollection_PowerOfAttorneydd);
 }
 
+public String FleetDetails_HVUTFormlbl() {
+	return ElementUtil.FetchTextBoxValuewithText(FleetVehDocument_HVUTFormlbl);
+}
+public String FleetDetails_HVUTForm() {
+	return ElementUtil.FetchDropdownSelectedValue(FleetVehDocument_HVUTFormdd);
+}
+public String FleetDetails_PropertyTaxlbl() {
+	return ElementUtil.FetchTextBoxValuewithText(FleetVehDocument_PropertyTaxlbl);
+}
+public String FleetDetails_PropertyTax() {
+	return ElementUtil.FetchDropdownSelectedValue(FleetVehDocument_PropertyTaxdd);
+}
 
+public String FleetValidateMessage1() {
+	ElementUtil.highlightElement(driver, Fleet_Verificationmsg1);
+return ElementUtil.FetchTextBoxValuewithText(Fleet_Verificationmsg1);
+}
 
+public String FleetValidateMessage2() {
+	ElementUtil.highlightElement(driver, Fleet_Verificationmsg2);
+	return ElementUtil.FetchTextBoxValuewithText(Fleet_Verificationmsg2);
+}
+public String FleetValidateMessage3() {
+	ElementUtil.highlightElement(driver, Fleet_Verificationmsg3);
+	return ElementUtil.FetchTextBoxValuewithText(Fleet_Verificationmsg3);
+}
 
 
 }

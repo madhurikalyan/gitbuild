@@ -11,125 +11,98 @@ public class ConfigReader {
 	public static Properties prop;
 
 
-
-	public static Properties init_prop() {
+	public static Properties init_prop() throws IOException {
 		prop = new Properties();
+		FileInputStream ip = null ;
 		try {
-			FileInputStream ip = new FileInputStream("./src/test/resources/config/config.properties");
+		ip	= new FileInputStream("./src/test/resources/config/config.properties");
 			prop.load(ip);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		finally {
+			ip.close();
+		}
 		return prop;
-
 	}
-
-	public static  String readBrowser() throws IOException {
-		prop = init_prop();
-		String browservalue=prop.getProperty("browser");
-		return browservalue;
+	
+	public static  String readjson() throws IOException {
+		return init_prop().getProperty("readjson");
 	}
-	public static  String readLoginURL() {
-		prop = init_prop();
-		String LoginURL=prop.getProperty("loginURL");
-		return LoginURL;
+	
+	public   String readBrowser() throws IOException {
+		return init_prop().getProperty("browser");
 	}
-	public static  String readsearchHotelURL() {
-		prop = init_prop();
-		String searchHotelURL=prop.getProperty("searchHotelURL");
-		return searchHotelURL;
+	
+	public   String readLoginURL() throws IOException {
+		return init_prop().getProperty("loginURL");
 	}
-	public static  String readexcel_SearchHotel() {
-		prop = init_prop();
-		String excel_SearchHotel=prop.getProperty("excel_SearchHotel");
-		return excel_SearchHotel;
+	
+	public   String readuserid() throws IOException {
+		return init_prop().getProperty("userid");
 	}
-	public static  String readBookHotelURL() {
-		prop = init_prop();
-		String BookHotelURL=prop.getProperty("BookHotelURL");
-		return BookHotelURL;
+	public   String readpswrd() throws IOException {
+		return init_prop().getProperty("pswrd");
 	}
-	public static  String readjson_Payment() {
-		prop = init_prop();
-		String json_Payment=prop.getProperty("json_Payment");
-		return json_Payment;
-	}
-	public static  String readuserid() {
-		prop = init_prop();
-		String login_userid=prop.getProperty("userid");
-		return login_userid;
-	}
-	public static  String readpswrd() {
-		prop = init_prop();
-		String login_pswrd=prop.getProperty("pswrd");
-		return login_pswrd;
-	}
-	public static String readTestSuiteDirectory() throws Exception {
-	try
-	{
-		prop = init_prop();
-	return prop.getProperty("testSuiteDirectory");
+	public  String readTestSuiteDirectory() throws Exception {
+	try{
+		return init_prop().getProperty("testSuiteDirectory");         
 	}
 	catch (Exception e){
-	e.printStackTrace();
+		e.printStackTrace();
 	throw e;
 	}
 	}
-	public static String readLoginEmpId() throws Exception {
+	public  String readLoginEmpId() throws Exception {
 		try
 		{
-			prop = init_prop();
-		return prop.getProperty("LoginEmpId");
+			return init_prop().getProperty("LoginEmpId");
 		}
 		catch (Exception e){
-		e.printStackTrace();
+			e.printStackTrace();
 		throw e;
 		}
 		}
-	public static String getApplicationName() throws Exception {
+	public  String getApplicationName() throws Exception {
 		try
 		{
-			prop = init_prop();
-		return prop.getProperty("ApplicationName");
+			return init_prop().getProperty("ApplicationName");
 		}
 		catch (Exception e){
-		e.printStackTrace();
+			e.printStackTrace();
 		throw e;
 		}
 		}
-	public static String readJdbcDriver() throws Exception {
+	public  static String readJdbcDriver() throws Exception {
 		try
 		{
-			prop = init_prop();
-		return prop.getProperty("ApplicationName");
+			return init_prop().getProperty("ApplicationName");
 		}
 		catch (Exception e){
-		e.printStackTrace();
+			e.printStackTrace();
 		throw e;
 		}
 		}
-	public static String getOS() throws Exception {
+	public  String getOS() throws Exception {
 		try
 		{
-			prop = init_prop();
-		return prop.getProperty("OS");
+			return init_prop().getProperty("OS");
 		}
 		catch (Exception e){
-		e.printStackTrace();
+			e.printStackTrace();
 		throw e;
 		}
 		}
 
-	public static String getEnvironment() throws Exception {
+	public  String getEnvironment() throws Exception {
 		try
 		{
-			prop = init_prop();
-		return prop.getProperty("Environment");
+			return init_prop().getProperty("Environment");
 		}
 		catch (Exception e){
-		e.printStackTrace();
+			e.printStackTrace();
 		throw e;
 		}
 		}
@@ -137,93 +110,105 @@ public class ConfigReader {
 	public static String writeexcel() throws Exception {
 		try
 		{
-			prop = init_prop();
-		return prop.getProperty("writeExcel");
+			return init_prop().getProperty("writeExcel");
 		}
 		catch (Exception e){
-		e.printStackTrace();
+			e.printStackTrace();
 		throw e;
 		}
 		}
 	
-	public static String readRWCexcel() throws Exception {
+	public static  String readRWCexcel() throws Exception {
 		try
 		{
-			prop = init_prop();
-		return prop.getProperty("RWCexcel");
+			return init_prop().getProperty("RWCexcel");
 		}
 		catch (Exception e){
-		e.printStackTrace();
+			e.printStackTrace();
 		throw e;
 		}
 		}
-	public static String readRINexcel() throws Exception {
+	public  String readRINexcel() throws Exception {
 		try
 		{
-			prop = init_prop();
-		return prop.getProperty("RINexcel");
+			return init_prop().getProperty("RINexcel");
 		}
 		catch (Exception e){
-		e.printStackTrace();
-		throw e;
-		}
-		}
-	
-	public static String readLoginInternalUser() throws Exception {
-		try
-		{
-			prop = init_prop();
-		return prop.getProperty("LoginInternalUser");
-		}
-		catch (Exception e){
-		e.printStackTrace();
+			e.printStackTrace();
 		throw e;
 		}
 		}
 	
-	public static String readLoginServiceProvider1() throws Exception {
+	public  String readLoginInternalUser() throws Exception {
 		try
 		{
-			prop = init_prop();
-		return prop.getProperty("LoginServiceProvider1");
+			return init_prop().getProperty("LoginInternalUser");
 		}
 		catch (Exception e){
-		e.printStackTrace();
-		throw e;
-		}
-		}
-	public static String readLoginServiceProvider2() throws Exception {
-		try
-		{
-			prop = init_prop();
-		return prop.getProperty("LoginServiceProvider2");
-		}
-		catch (Exception e){
-		e.printStackTrace();
-		throw e;
-		}
-		}
-	public static String readLoginExternaluser1() throws Exception {
-		try
-		{
-			prop = init_prop();
-		return prop.getProperty("LoginExternaluser1");
-		}
-		catch (Exception e){
-		e.printStackTrace();
-		throw e;
-		}
-		}
-	public static String readLoginExternaluser2() throws Exception {
-		try
-		{
-			prop = init_prop();
-		return prop.getProperty("LoginExternaluser2");
-		}
-		catch (Exception e){
-		e.printStackTrace();
+			e.printStackTrace();
 		throw e;
 		}
 		}
 	
+	public  String readLoginServiceProvider1() throws Exception {
+		try
+		{
+			return init_prop().getProperty("LoginServiceProvider1");
+		}
+		catch (Exception e){
+			e.printStackTrace();
+		throw e;
+		}
+		}
+	public  String readLoginServiceProvider2() throws Exception {
+		try
+		{
+			return init_prop().getProperty("LoginServiceProvider2");
+		}
+		catch (Exception e){
+			e.printStackTrace();
+		throw e;
+		}
+		}
+	public  String readLoginExternaluser1() throws Exception {
+		try
+		{
+			return init_prop().getProperty("LoginExternaluser1");
+		}
+		catch (Exception e){
+			e.printStackTrace();
+		throw e;
+		}
+		}
+	public  String readLoginExternaluser2() throws Exception {
+		try
+		{
+			return init_prop().getProperty("LoginExternaluser2");
+		}
+		catch (Exception e){
+			e.printStackTrace();
+		throw e;
+		}
+		}
+	public  String readPassedScreenshotFile() throws Exception {
+		try
+		{
+			return init_prop().getProperty("ScreenshotPass");
+		}
+		catch (Exception e){
+			e.printStackTrace();
+		throw e;
+		}
+		}
+	public  String readFailedScreenshotFile() throws Exception {
+		try
+		{
+			return init_prop().getProperty("ScreenshotFail");
+		}
+		catch (Exception e){
+			e.printStackTrace();
+		throw e;
+		}
+		}
+
 	}

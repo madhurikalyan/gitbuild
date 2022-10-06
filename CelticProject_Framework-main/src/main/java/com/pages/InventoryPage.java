@@ -13,7 +13,7 @@ public class InventoryPage {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
-	
+	@FindBy(css="#contentMsg > div > ul > li > span") WebElement Inventory_ValidateMessage;
 	
 	@FindBy(xpath="//a[@title='Operations']") WebElement DashboardOperation;
 	
@@ -42,33 +42,32 @@ public class InventoryPage {
 	@FindBy(xpath="//a[@title='Assign Inventory']") WebElement Inventory_AssignInventorylnk;
 	
 public void clickoperation() {
+	ElementUtil.waitUntilElementClickable(DashboardOperation);
 	ElementUtil.clickElement(DashboardOperation);
 }
 public void clickAssignInventory() {
+	ElementUtil.waitUntilElementClickable(Inventory_AssignInventorylnk);
 	ElementUtil.clickElement(Inventory_AssignInventorylnk);
 }
 public void clickoninventory() {
+	ElementUtil.waitUntilElementClickable(DashboardInventory);
 	ElementUtil.clickElement(DashboardInventory);
-
 }
 public void clickoninventorystatus() {
+	ElementUtil.waitUntilElementClickable(Inventory_StatusInventory);
 	ElementUtil.clickElement(Inventory_StatusInventory);
-
-
 }
 public void selectinventorytype(String selectValue) {
 	ElementUtil.selectFromDropdownByValue(Inventory_type, selectValue);
-
-
 }
 public void selectinventorysubtype(String selectValue) {
 ElementUtil.selectFromDropdownByValue(Inventory_Subtype, selectValue);
-
 }
 public void validateinventorymsg() {
 	ElementUtil.highlightElement(driver, Inventory_validatemsg);
 }
 public void clicknewinventory() {
+	ElementUtil.waitUntilElementClickable(Inventory_newinventory);
 	ElementUtil.clickElement(Inventory_newinventory);
 }
 public void selectnewinventorytype(String selectValue) {
@@ -91,4 +90,13 @@ ElementUtil.highlightElement(driver, Inventory_addedmsg);
 if(Inventory_addedmsg.getText().contains(msgvalue))
 	assert true;
 }
+
+public String ValidateMessage() {
+	 ElementUtil.highlightElement(driver, Inventory_ValidateMessage);
+	 return ElementUtil.FetchTextBoxValuewithText(Inventory_ValidateMessage);
+}
+public void Highlightthemessage() {
+	ElementUtil.highlightElement(driver, Inventory_ValidateMessage);
+}
+
 }

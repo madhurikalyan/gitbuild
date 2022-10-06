@@ -17,6 +17,12 @@ public class Payment {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
+	@FindBy(css="#contentMsg > div.alert.alert-danger.notification > ul > li > span") WebElement Payment_ValidationMessage1;
+	@FindBy(css="#contentMsg > div.alert.alert-info.notification > ul > li:nth-child(1) > span") WebElement Payment_ValidationMessage2;
+	@FindBy(css="#contentMsg > div.alert.alert-info.notification > ul > li:nth-child(2) > span") WebElement Payment_ValidationMessage3;
+	@FindBy(css="#contentMsg > div.alert.alert-info.notification > ul > li:nth-child(3) > span") WebElement Payment_ValidationMessage4;
+	
+	
 	@FindBy(xpath="//div[@class='alert alert-danger notification']") List<WebElement> validationMessage;
 	@FindBy(xpath="//input[@id='AccountNo']") WebElement Payment_MCECustomerIdtxt;
 	@FindBy(xpath="//label[@for='AccountNo']") WebElement Payment_MCECustomerIdlbl;
@@ -133,11 +139,12 @@ public void check(int i) {
 }
 public void selectPaymentType(int i,String PaymentTypeValue) {
 	WebElement Payment_PaymentType=driver.findElement(By.xpath("//select[contains(@id,'PayType') and contains(@id,'"+i+"')]"));
+	ElementUtil.waitUntilElementClickable(Payment_PaymentType);
 	ElementUtil.selectFromDropdownByVisibleText(Payment_PaymentType, PaymentTypeValue); //Cash,Check,Certified Check,E-check,Credit Card,Wire Transfer,EFT,Enterprise System Credit,IRP System Credit,IFTA System Credit,OPA System Credit,IFTA Bond
 }
 public void enterpaymentNoBasedonType(int i,String ExcelpassedValue,String PaymentNumberValue) {
 	WebElement Payment_PaymentNumbertxt=driver.findElement(By.xpath("//input[contains(@id,'paymentVos') and contains(@id,'PaymentNo')and contains(@id,'"+i+"')]"));
-
+	ElementUtil.waitUntilElementVisible(Payment_PaymentNumbertxt);
 	if(ExcelpassedValue.equalsIgnoreCase("Check")) {
 		ElementUtil.webEditTxt(Payment_PaymentNumbertxt, PaymentNumberValue);
 	}
@@ -158,6 +165,7 @@ public void enterpaymentNoBasedonType(int i,String ExcelpassedValue,String Payme
 public void enterPaymentAmountBasedonType(int i,String ExcelpassedValue,String PaymentAmountValue) {
 	WebElement Payment_PaymentType=driver.findElement(By.xpath("//select[contains(@id,'PayType') and contains(@id,'"+i+"')]"));
 	WebElement Payment_PaymentAmount=driver.findElement(By.xpath("//input[contains(@id,'paymentVos') and contains(@id,'PaymentAmount') and contains(@id,'"+i+"')]"));
+	ElementUtil.waitUntilElementVisible(Payment_PaymentAmount);
 	if(ExcelpassedValue.equalsIgnoreCase("Cash")) {
 		ElementUtil.webEditTxt(Payment_PaymentAmount, PaymentAmountValue);
 	}
@@ -266,7 +274,7 @@ public String FetchOpaSystemCredit() {
 }
 public ArrayList<String> FetchTable_Headers() {
 	ArrayList<String> Headers_array = new ArrayList<String>();
-	for(int i=0;i<Headers_array.size();i++) {
+	for(int i=0;i<Payment_tableHeaderRow.size();i++) {
 		Headers_array.add(ElementUtil.FetchTextBoxValuewithText(Payment_tableHeaderRow.get(i)));
 	}
 	return Headers_array;
@@ -274,7 +282,7 @@ public ArrayList<String> FetchTable_Headers() {
 
 public ArrayList<String> FetchTable_InvoiceDetails() {
 	ArrayList<String> Invoice_array = new ArrayList<String>();
-	for(int i=0;i<Invoice_array.size();i++) {
+	for(int i=0;i<Payment_InvoiceRow.size();i++) {
 		Invoice_array.add(ElementUtil.FetchTextBoxValuewithText(Payment_InvoiceRow.get(i)));
 	}
 	return Invoice_array;
@@ -288,6 +296,24 @@ public String FetchTotalAmountDue() {
 }
 
 
+public String ValidateMessage1() {
+	
+	ElementUtil.highlightElement(driver, Payment_ValidationMessage1);
+	return ElementUtil.FetchTextBoxValuewithText(Payment_ValidationMessage1);
+}
+public String ValidateMessage2() {
+	ElementUtil.highlightElement(driver, Payment_ValidationMessage2);
+	return ElementUtil.FetchTextBoxValuewithText(Payment_ValidationMessage2);
+}
+
+public String ValidateMessage3() {
+	ElementUtil.highlightElement(driver, Payment_ValidationMessage3);
+	return ElementUtil.FetchTextBoxValuewithText(Payment_ValidationMessage3);
+}
+public String ValidateMessage4() {
+	ElementUtil.highlightElement(driver, Payment_ValidationMessage4);
+	return ElementUtil.FetchTextBoxValuewithText(Payment_ValidationMessage4);
+}
 
 
 

@@ -15,8 +15,12 @@ public class VehicleTabPage {
 		PageFactory.initElements(driver, this);
 	}
 	// Elements for SiteMappage
+	@FindBy(xpath="//div[@class='validation-summary-errors clearfix']") WebElement Vehicle_Validatemeesage;
+	@FindBy(css ="#contentMsg > div > ul > li > span") WebElement Vehicle_Verificationmessage;
+	@FindBy(css ="#contentMsg > div > ul") WebElement Vehicle_Verificationmessage2;
+	@FindBy(css ="#contentMsg > div > ul > li:nth-child(1) > span") WebElement Vehicle_Verificationmessage3;
+	@FindBy(css ="#contentMsg > div > ul > li:nth-child(2) > span") WebElement Vehicle_Verificationmessage4;
 
-	
 	@FindBy(xpath="(//div[contains(@class,'box-title')]/h4)[1]") WebElement VehicleRenewalDetailsSubHdr;
 	@FindBy(xpath="//label[@for='NoOfAmendVeh']") WebElement VehicleAmendedVehicleslbl;
 	@FindBy(xpath="//input[@id='NoOfAmendVeh']") WebElement VehicleAmendedVehiclestxt;
@@ -67,69 +71,17 @@ public void validateDeleteVehiclesCount(String AmendedVehiclesCount) {
 
 
 public void selectRow(String unitvalue) {
-	for(int i=0;i<VehicleList_rows.size();i++) {
-		List<WebElement>Unitvalueineachrow=driver.findElements(By.xpath("//table[@id='gvVehicleList']//tr[contains(@class,'odd') or contains(@class,'even')]["+i+"]//td[contains(@class,'white')]"));
-	System.out.print("check row value"+Unitvalueineachrow.get(i).getText());
-		if(Unitvalueineachrow.get(i).getText().equalsIgnoreCase(unitvalue)) {
-		ElementUtil.clickElement(HandimgsList.get(i));
+	for(int i=1;i<=VehicleList_rows.size();i++) {
+		WebElement Unitvalueineachrow=driver.findElement(By.xpath("//table[@id='gvVehicleList']//tr[contains(@class,'odd') or contains(@class,'even')]["+i+"]//td[contains(@class,'white')]"));
+		ElementUtil.highlightElement(driver, HandimgsList.get(i-1));
+		ElementUtil.highlightElement(driver, Unitvalueineachrow);
+		if(Unitvalueineachrow.getText().equals(unitvalue)){
+		ElementUtil.clickElement(HandimgsList.get(i-1));
 		break;
 	}
 	
 	}
 }
-	/*
-
-	
-	@FindBy(xpath="//a[text()='Add Vehicle']") WebElement SitemapAddvechile;
-	@FindBy(id="AccountNo") WebElement VehicleAccountNo;
-	@FindBy(id="FleetNbr") WebElement VehicleFleetNo;
-	@FindBy(id="FltExpYear") WebElement VehicleExpyr;
-	@FindBy(id="btnProceed") WebElement VehicleProceed;
-
-	//Element for VehicleDetails
-
-	@FindBy(id="CopyVIN") WebElement VehicledetailsVinno;
-	@FindBy(id="btnSearch") WebElement VehicleSearch;
-	@FindBy(id="VehDtlUnitNo") WebElement VehicleUnitNo;
-	@FindBy(id="VehDtlWeightGroupNo") WebElement VehicleWeightGroupNo;
-	@FindBy(id="PurchasePrice") WebElement VehiclePurchaseprice;
-	@FindBy(id="PurchaseDate")WebElement VehiclePurchasedate;
-	@FindBy(id="VehDtlTitleJurisdiction") WebElement VehicleTitlejur;
-	
-	@FindBy(id="VehDtlTitleNo") WebElement VehicleTitleNo;
-	@FindBy(id="OwnerDtlName") WebElement VehicleOwnerName;
-	@FindBy(id="OwnerPhoneNo") WebElement VehicleOwnerPhNo;
-	@FindBy(id="SaftyChangeDuringYear") WebElement VehicleSaftchange;
-	
-	@FindBy(xpath="//a[@role='button']") WebElement VehicleComment;
-	@FindBy(id="editComment_CommentTxtcommentsVM1") WebElement Vehiclecomtext;
-	@FindBy(id="addUpdateCommentBtncommentsVM1") WebElement Vehiclecomupdate;
-	//@FindBy(id="btnProceed") WebElement VehicleProceed;
-
-	//Validate VehicleDetails
-
-	@FindBy(id="btnProceed") WebElement ValidateVehicleProceed;
-	@FindBy(id="btnDone") WebElement ValidateVehicleDone;
-
-	//WebProcessing
-
-	@FindBy(id="ISFAXDOC") WebElement WebprocessingChecklist;
-	@FindBy(id="lnkGridSelectgvDocTrack_View") WebElement WebprocessingVehicledocs;
-	@FindBy(id="UploadedFile") WebElement Webprocessingbrowsefile;
-	@FindBy(xpath="//button[@id='btnUpload']") WebElement Webprocessingupload;
-	@FindBy(id="btnDone") WebElement WebprocessingDonefile;
-	@FindBy(xpath="//a[@role='button']") WebElement WebprocessingComment;
-	@FindBy(id="editComment_CommentTxtcommentsVM1") WebElement Webprocessingcomtext;
-	@FindBy(id="addUpdateCommentBtncommentsVM1") WebElement Webprocessingcomupdate;
-	@FindBy(id="btnSubmit") WebElement WebprocessingSubmit;
-*/
-
-
-	/*Select s = new Select(VehicleTitlejur);
-	s.selectByValue("MO");
-
-	Select s = new Select(VehicleSaftchange)
-			s.selectByValue("Y")*/
 
 //Fetch values
 public String FetchAmendVehiclelbl() {
@@ -159,6 +111,30 @@ public String FetchRenewVehiclelbl() {
 public String FetchRenewVehicle() {
 	return ElementUtil.FetchTextBoxValuewithattribute(VehicleRenewVehiclestxt, "value");
 }
-
+public void vehiclevalidatemessage() {
+	ElementUtil.highlightElement(driver, Vehicle_Validatemeesage);
+}
+public String VehicleValidateMessage1() {
 	 
+	 ElementUtil.highlightElement(driver, Vehicle_Verificationmessage);
+	 return ElementUtil.FetchTextBoxValuewithText(Vehicle_Verificationmessage);
+}
+
+
+public String VehicleValidateMessage2() {
+	 
+	 ElementUtil.highlightElement(driver, Vehicle_Verificationmessage2);
+	 return ElementUtil.FetchTextBoxValuewithText(Vehicle_Verificationmessage2);
+}
+public String VehicleValidateMessage3() {
+	 
+	 ElementUtil.highlightElement(driver, Vehicle_Verificationmessage3);
+	 return ElementUtil.FetchTextBoxValuewithText(Vehicle_Verificationmessage3);
+}
+public String VehicleValidateMessage4() {
+	 
+	 ElementUtil.highlightElement(driver, Vehicle_Verificationmessage4);
+	 return ElementUtil.FetchTextBoxValuewithText(Vehicle_Verificationmessage4);
+}
+ 
 }

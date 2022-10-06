@@ -18,6 +18,14 @@ public class PaymentTab {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
+	
+	@FindBy(css="#contentMsg > div > ul > li:nth-child(1) > span") WebElement Payment_Validationmessage1;
+	@FindBy(css="#contentMsg > div > ul > li:nth-child(2) > span") WebElement Payment_Validationmessage2;
+	@FindBy(css="#contentMsg > div > ul > li:nth-child(3) > span") WebElement Payment_Validationmessage3;
+	@FindBy(css="#contentMsg > div > ul > li > span") WebElement Payment_Validationmessage4;
+	@FindBy(css="#contentMsg > div > ul > li > span") WebElement Supplement_Validationmessage5;
+	
+	
 	@FindBy(xpath="(//div[contains(@class,'box-title')]/h4)[1]") WebElement Payment_SupplementDetailsSubhdr;
 	
 	@FindBy(xpath="//label[@for='IRPEscrow']") WebElement Payment_IRPSystemCreditlbl;;
@@ -73,12 +81,14 @@ public class PaymentTab {
 public void clickPayNow() throws InterruptedException {
 	ElementUtil.scrollIntoView(Payment_PayNowbtn);
 	ElementUtil.clickElement(Payment_PayNowbtn);
-	Thread.sleep(2000);
+	ElementUtil.sleepTime(2000);
 }
 public void clickAddtoCart() {
+	ElementUtil.waitUntilElementClickable(Payment_AddToCartbtn);
 	ElementUtil.clickElement(Payment_AddToCartbtn);
 }	
 public void clickpaymentadd() {
+	ElementUtil.waitUntilElementClickable(PaymentAdd);
 	ElementUtil.clickElement(PaymentAdd);
 }
 /*public void clickandenteraccno(String accountnovalue) {
@@ -86,6 +96,7 @@ ElementUtil.clickElement(Accountno);
 ElementUtil.webEditTxtChange(Accountno,accountnovalue);
 }*/
 public void clicksupplcont() {
+	ElementUtil.waitUntilElementClickable(Supplement_Cont);
 	ElementUtil.clickElement(Supplement_Cont);
 }
 public void validatemessage(String TransactionexistMeesage) {
@@ -93,6 +104,7 @@ public void validatemessage(String TransactionexistMeesage) {
 	Assert.assertEquals(Addtocart_Msg.getText(), TransactionexistMeesage);
 }
 public void clickverifyaddtocart() {
+	ElementUtil.waitUntilElementClickable(VerifyAddtocart);
 	ElementUtil.clickElement(VerifyAddtocart);
 }
 
@@ -143,37 +155,65 @@ public String FetchBatchCredentiallbl() {
 	return ElementUtil.FetchTextBoxValuewithText(Payment_BatchCredentiallbl);
 }
 public String FetchBatchCredential() {
-	return ElementUtil.FetchTextBoxValuewithattribute(Payment_BatchCredentialchk,"checked");
+	return ElementUtil.FetchTextBoxValuewithattribute(Payment_BatchCredentialchk,"value");
 }
 public String FetchWireTransferFeelbl() {
 	return ElementUtil.FetchTextBoxValuewithText(Payment_WireTransferFeelbl);
 }
 public String FetchWireTransferFee() {
-	return ElementUtil.FetchTextBoxValuewithattribute(Payment_WireTransferFeechk,"checked");
+	return ElementUtil.FetchTextBoxValuewithattribute(Payment_WireTransferFeechk,"value");
 }
 public ArrayList<String> FetchTable_Headers() {
 	ArrayList<String> Headers_array = new ArrayList<String>();
-	for(int i=0;i<Headers_array.size();i++) {
+	for(int i=0;i<Billing_GridHeaders.size();i++) {
 		Headers_array.add(ElementUtil.FetchTextBoxValuewithText(Billing_GridHeaders.get(i)));
 	}
+	System.out.println("Headers is Payment tab is:"+Headers_array);
 	return Headers_array;
 }
 
 public ArrayList<String> FetchTable_FeeType() {
 	ArrayList<String> FeeType_Array = new ArrayList<String>();
-	for(int i=0;i<FeeType_Array.size();i++) {
+	for(int i=0;i<Billing_FeeType.size();i++) {
 		FeeType_Array.add(ElementUtil.FetchTextBoxValuewithattribute(Billing_FeeType.get(i),"value"));
 	}
+	System.out.println("Fee Type is Payment tab is:"+FeeType_Array);
 	return FeeType_Array;
 }
 public ArrayList<String> FetchTable_FeeAmount() {
 	ArrayList<String> FeeAmount_Array = new ArrayList<String>();
-	for(int i=0;i<FeeAmount_Array.size();i++) {
+	for(int i=0;i<Billing_FeeAmount.size();i++) {
 		FeeAmount_Array.add(ElementUtil.FetchTextBoxValuewithattribute(Billing_FeeAmount.get(i),"value"));
 	}
+	System.out.println("Fee Amount is Payment tab is:"+FeeAmount_Array);
 	return FeeAmount_Array;
 }
 
+public String ValidateMessage1() {
+	ElementUtil.highlightElement(driver, Payment_Validationmessage1);
+	return ElementUtil.FetchTextBoxValuewithText(Payment_Validationmessage1);
+	
+}
+public String ValidateMessage2() {
+	ElementUtil.highlightElement(driver, Payment_Validationmessage2);
+	return ElementUtil.FetchTextBoxValuewithText(Payment_Validationmessage2);
+	
+}
+public String ValidateMessage3() {
+	ElementUtil.highlightElement(driver, Payment_Validationmessage3);
+	return ElementUtil.FetchTextBoxValuewithText(Payment_Validationmessage3);
+	
+}
+
+public void ValidateMessage4() {
+	ElementUtil.highlightElement(driver, Payment_Validationmessage4);
+}
+
+public String ValidateMessage5() {
+	ElementUtil.highlightElement(driver, Supplement_Validationmessage5);
+	return ElementUtil.FetchTextBoxValuewithText(Supplement_Validationmessage5);
+	
+}
 
 
 

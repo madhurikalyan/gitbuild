@@ -1,0 +1,227 @@
+2022-10-06 23:34:14,686  INFO [main] RWC_001:68 - ****************************** Login to the application  *****************************************
+2022-10-06 23:34:15,340  INFO [main] RWC_001:71 - *** Enter Username ***
+2022-10-06 23:34:15,830  INFO [main] RWC_001:74 - *** Enter Password ***
+2022-10-06 23:34:20,957  INFO [main] RWC_001:77 - *** Click Login ***
+2022-10-06 23:34:51,546  INFO [main] RWC_001:84 - *** Click IRP ***
+2022-10-06 23:34:55,769  INFO [main] RWC_001:87 - *** Click RenewFleet ***
+2022-10-06 23:34:57,823  INFO [main] RWC_001:93 - *** Enter Account Number ***
+2022-10-06 23:34:58,484  INFO [main] RWC_001:96 - *** Enter FleetNo ***
+2022-10-06 23:34:59,119  INFO [main] RWC_001:99 - *** Click FleetYear ***
+2022-10-06 23:35:17,870  INFO [main] RWC_001:171 - IRPFLT143 : [W] Fleet information [USDOT No.] in the system does not match with the MCE information.
+2022-10-06 23:35:18,290  INFO [main] RWC_001:176 - *** Check Email Notification ***
+2022-10-06 23:35:19,805  INFO [main] RWC_001:179 - *** Enter Comments ***
+2022-10-06 23:35:53,408  INFO [main] RWC_001:335 - GEN1292 : [I] USDOT No. has been updated based on the MCE information.
+2022-10-06 23:35:53,952  INFO [main] RWC_001:342 - IRPFLT129 : [I] Account has 0 power unit fleet(s) for 2023. Account has 1 power unit fleet(s) for 2022.
+2022-10-06 23:35:54,470  INFO [main] RWC_001:351 - IRPACC00 : [I] Renewal account has been generated.
+2022-10-06 23:35:57,056  INFO [main] RWC_001:357 - *** navigateToServiceProvider ***
+2022-10-06 23:35:57,696  INFO [main] RWC_001:361 - *** Click PowerofAttroney ***
+2022-10-06 23:35:58,523  INFO [main] RWC_001:365 - *** Entering the Emailid ***
+2022-10-06 23:35:59,219  INFO [main] RWC_001:371 - *** Selecting the Expiration Date ***
+2022-10-06 23:36:00,034  INFO [main] RWC_001:375 - *** Selecting the IRPRequirementForm ***
+2022-10-06 23:36:00,731  INFO [main] RWC_001:379 - *** Selecting StatementofUnderstanding ***
+2022-10-06 23:36:01,461  INFO [main] RWC_001:383 - *** Selecting InstallmentAgreement ***
+2022-10-06 23:36:02,143  INFO [main] RWC_001:387 - *** Selecting PowerOfAttroney ***
+2022-10-06 23:36:02,809  INFO [main] RWC_001:391 - *** Selecting HVUTForm ***
+2022-10-06 23:36:03,492  INFO [main] RWC_001:395 - *** Selecting PropertyTax ***
+2022-10-06 23:36:05,461  INFO [main] RWC_001:399 - *** Enter Comments ***
+2022-10-06 23:36:56,737  INFO [main] RWC_001:460 - IRPFLT01 : [I] Renewal fleet has been generated.
+2022-10-06 23:36:57,242  INFO [main] RWC_001:468 - [I] MCE: IRP status successfully updated.
+2022-10-06 23:37:16,114  INFO [main] RWC_001:473 - *** Enter MODistanceValue ***
+2022-10-06 23:37:17,310  INFO [main] RWC_001:477 - *** Enter Comments ***
+2022-10-06 23:37:29,565  INFO [main] RWC_001:486 - IRPMLG25 : [W] Mileage appears rounded please verify.
+2022-10-06 23:37:38,297  INFO [main] RWC_001:508 - IRPMLG13 : [I] Renewal Distance has been generated.
+2022-10-06 23:37:43,342  INFO [main] RWC_001:513 - *** Click AddweightGroup ***
+2022-10-06 23:37:44,298  INFO [main] RWC_001:522 - *** Select WeightGroupType ***
+2022-10-06 23:37:45,053  INFO [main] RWC_001:526 - *** Enter WeightGroup No ***
+2022-10-06 23:37:45,675  INFO [main] RWC_001:530 - *** Select MaxGross Weight ***
+2022-10-06 23:38:20,744  INFO [main] RWC_001:579 - *** Click AmendVehicle RadioButton ***
+2022-10-06 23:38:29,515  INFO [main] RWC_001:588 - IRPVEH375 : [I] Please search the VIN first to process a vehicle.
+2022-10-06 23:38:36,223  INFO [main] RWC_001:600 - *** Enter Unit number ***
+2022-10-06 23:38:43,243  INFO [main] RWC_001:609 - *** Enter WeightGroupNo ***
+2022-10-06 23:38:43,858  INFO [main] RWC_001:613 - IRPVEH491 : [W] New Plate Required flag set for this vehicle to Yes.
+2022-10-06 23:38:44,340  INFO [main] RWC_001:619 - *** Enter UnladenWeight ***
+2022-10-06 23:38:45,268  INFO [main] RWC_001:624 - *** Click TVR ***
+2022-10-06 23:38:45,957  INFO [main] RWC_001:628 - *** Select Safety Changedd ***
+2022-10-06 23:38:46,668  INFO [main] RWC_001:632 - *** Select HVUTForm2290 ***
+2022-10-06 23:38:47,352  INFO [main] RWC_001:636 - *** Select LeaseContract ***
+2022-10-06 23:38:48,098  INFO [main] RWC_001:640 - *** Select TitleDocument ***
+2022-10-06 23:38:48,770  INFO [main] RWC_001:644 - *** Select PlateReturndoc ***
+2022-10-06 23:38:49,429  INFO [main] RWC_001:648 - *** Select AffidavitDoc ***
+2022-10-06 23:38:50,064  INFO [main] RWC_001:652 - *** Select PropertyTax ***
+2022-10-06 23:38:51,961  INFO [main] RWC_001:657 - *** Enter Comments ***
+2022-10-06 23:39:06,857  INFO [main] RWC_001:666 - IRPVEH004 : [I] Vehicle amended successfully.
+2022-10-06 23:39:14,356  INFO [main] RWC_001:600 - *** Enter Unit number ***
+2022-10-06 23:39:21,379  INFO [main] RWC_001:619 - *** Enter UnladenWeight ***
+2022-10-06 23:39:22,333  INFO [main] RWC_001:624 - *** Click TVR ***
+2022-10-06 23:39:23,000  INFO [main] RWC_001:628 - *** Select Safety Changedd ***
+2022-10-06 23:39:23,839  INFO [main] RWC_001:632 - *** Select HVUTForm2290 ***
+2022-10-06 23:39:24,577  INFO [main] RWC_001:636 - *** Select LeaseContract ***
+2022-10-06 23:39:25,243  INFO [main] RWC_001:640 - *** Select TitleDocument ***
+2022-10-06 23:39:25,895  INFO [main] RWC_001:644 - *** Select PlateReturndoc ***
+2022-10-06 23:39:26,570  INFO [main] RWC_001:648 - *** Select AffidavitDoc ***
+2022-10-06 23:39:27,255  INFO [main] RWC_001:652 - *** Select PropertyTax ***
+2022-10-06 23:39:28,805  INFO [main] RWC_001:657 - *** Enter Comments ***
+2022-10-06 23:39:45,318  INFO [main] RWC_001:666 - IRPVEH004 : [I] Vehicle amended successfully.
+2022-10-06 23:39:52,077  INFO [main] RWC_001:600 - *** Enter Unit number ***
+2022-10-06 23:39:59,589  INFO [main] RWC_001:619 - *** Enter UnladenWeight ***
+2022-10-06 23:40:00,544  INFO [main] RWC_001:624 - *** Click TVR ***
+2022-10-06 23:40:01,270  INFO [main] RWC_001:628 - *** Select Safety Changedd ***
+2022-10-06 23:40:02,060  INFO [main] RWC_001:632 - *** Select HVUTForm2290 ***
+2022-10-06 23:40:02,778  INFO [main] RWC_001:636 - *** Select LeaseContract ***
+2022-10-06 23:40:03,401  INFO [main] RWC_001:640 - *** Select TitleDocument ***
+2022-10-06 23:40:04,038  INFO [main] RWC_001:644 - *** Select PlateReturndoc ***
+2022-10-06 23:40:04,643  INFO [main] RWC_001:648 - *** Select AffidavitDoc ***
+2022-10-06 23:40:05,305  INFO [main] RWC_001:652 - *** Select PropertyTax ***
+2022-10-06 23:40:07,090  INFO [main] RWC_001:657 - *** Enter Comments ***
+2022-10-06 23:40:24,439  INFO [main] RWC_001:666 - IRPVEH004 : [I] Vehicle amended successfully.
+2022-10-06 23:40:29,253  INFO [main] RWC_001:678 - IRPVEH450 : [W] Unit(s) [6266] have no plate assigned. If you continue a new plate will be assigned or select 'Update from Previous Year' button or amend the vehicle and check 'Use Existing Plate' option to not issue a new plate.
+2022-10-06 23:40:29,732  INFO [main] RWC_001:680 - IRPVEH450 : [W] Unit(s) [6266] have no plate assigned. If you continue a new plate will be assigned or select 'Update from Previous Year' button or amend the vehicle and check 'Use Existing Plate' option to not issue a new plate.
+2022-10-06 23:40:30,281  INFO [main] RWC_001:686 - **** Click DeleteVehicle ****
+2022-10-06 23:40:35,846  INFO [main] RWC_001:706 - *** Delete vehicle Enter Unit number ***
+2022-10-06 23:40:39,517  INFO [main] RWC_001:713 - ***DeleteVehicle Select PlateStatus ***
+2022-10-06 23:40:40,066  INFO [main] RWC_001:717 - ***DeleteVehicle Select PlateReturndoc ***
+2022-10-06 23:40:40,683  INFO [main] RWC_001:721 - ***DeleteVehicle Select AffidavitDoc ***
+2022-10-06 23:40:41,261  INFO [main] RWC_001:726 - *** DeleteVehicle Comment ***
+2022-10-06 23:40:50,223  INFO [main] RWC_001:706 - *** Delete vehicle Enter Unit number ***
+2022-10-06 23:40:53,747  INFO [main] RWC_001:713 - ***DeleteVehicle Select PlateStatus ***
+2022-10-06 23:40:54,334  INFO [main] RWC_001:717 - ***DeleteVehicle Select PlateReturndoc ***
+2022-10-06 23:40:54,863  INFO [main] RWC_001:721 - ***DeleteVehicle Select AffidavitDoc ***
+2022-10-06 23:40:55,399  INFO [main] RWC_001:726 - *** DeleteVehicle Comment ***
+2022-10-06 23:41:04,366  INFO [main] RWC_001:737 - IRPVEH246 : [I] Vehicle(s) deleted successfully.
+2022-10-06 23:41:09,754  INFO [main] RWC_001:744 - *** Click VehicleList ***
+2022-10-06 23:41:10,692  INFO [main] RWC_001:748 - *** Select Unit No ***
+2022-10-06 23:41:13,580  INFO [main] RWC_001:752 - *** Search Unit No ***
+2022-10-06 23:41:20,466  INFO [main] RWC_001:760 - GEN1062 : [I] Cancellation completed successfully.
+2022-10-06 23:42:17,226  INFO [main] RWC_001:853 - *** Click TVR ***
+2022-10-06 23:42:17,870  INFO [main] RWC_001:857 - *** Click Installement Plan ***
+2022-10-06 23:42:18,497  INFO [main] RWC_001:861 - *** Select Electronic DeliveryType ***
+2022-10-06 23:42:37,927  INFO [main] RWC_001:868 - *** Enter ManualAdjBaseJur ***
+2022-10-06 23:42:43,554  INFO [main] RWC_001:872 - *** Click Recalculate ***
+2022-10-06 23:42:44,108  INFO [main] RWC_001:877 - IRPBILL09 : [E] Manual adj. reason is required.
+2022-10-06 23:42:45,379  INFO [main] RWC_001:882 - *** Enter ManualAdjReason Comments ***
+2022-10-06 23:42:52,698  INFO [main] RWC_001:890 - *** Select GradeCrossingFee ***
+2022-10-06 23:42:57,855  INFO [main] RWC_001:894 - *** Click Recalculate ***
+2022-10-06 23:42:58,540  INFO [main] RWC_001:899 - IRPBILL08 : [E] Fee Override reason required.
+2022-10-06 23:42:59,701  INFO [main] RWC_001:907 - *** Enter FeeOverrideReason Comments ***
+2022-10-06 23:43:37,864  INFO [main] RWC_001:959 - GEN24 : [I] Invoice report generated successfully.
+2022-10-06 23:43:38,430  INFO [main] RWC_001:966 - IRPREP28 : [I] Billing completed successfully.
+2022-10-06 23:43:38,908  INFO [main] RWC_001:973 - GEN1239 : [I] TVR generated successfully.
+2022-10-06 23:43:39,467  INFO [main] RWC_001:979 - ***Select Delivery type***
+2022-10-06 23:43:47,571  INFO [main] RWC_001:983 - ***Click Add to Cart**
+2022-10-06 23:43:50,338  INFO [main] RWC_001:995 - ***Click Supplement continue***
+2022-10-06 23:43:54,812  INFO [main] RWC_001:1005 - GENPAY01 : [E] This transaction already exists in the cart.
+2022-10-06 23:43:59,388  INFO [main] RWC_001:1016 - ***Verify Cart***
+2022-10-06 23:44:01,428  INFO [main] RWC_001:1020 - ***Click Paynow***
+2022-10-06 23:44:15,702  INFO [main] RWC_001:1059 - ***Payment Type***
+2022-10-06 23:44:16,216  INFO [main] RWC_001:1064 - ***Payment Number based on Payment Type***
+2022-10-06 23:44:16,817  INFO [main] RWC_001:1077 - ***Payment Amount based on Payment Type***
+2022-10-06 23:44:17,436  INFO [main] RWC_001:1059 - ***Payment Type***
+2022-10-06 23:44:17,989  INFO [main] RWC_001:1064 - ***Payment Number based on Payment Type***
+2022-10-06 23:44:18,577  INFO [main] RWC_001:1077 - ***Payment Amount based on Payment Type***
+2022-10-06 23:44:19,240  INFO [main] RWC_001:1084 - ***Enter Payment type and amount***
+2022-10-06 23:44:34,663 DEBUG [main] cache:45 - Couldn't find template in cache for "spark/spark.spa.ftl"("en_IN", UTF-8, parsed); will try to load it.
+2022-10-06 23:44:34,665 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/spark.spa_en_IN.ftl"): Not found
+2022-10-06 23:44:34,667 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/spark.spa_en.ftl"): Not found
+2022-10-06 23:44:34,669 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/spark.spa.ftl"): Found
+2022-10-06 23:44:34,669 DEBUG [main] cache:45 - Loading template for "spark/spark.spa.ftl"("en_IN", UTF-8, parsed) from "jar:file:/C:/Users/saima/.m2/repository/com/aventstack/extentreports/5.0.9/extentreports-5.0.9.jar!/com/aventstack/extentreports/templates/spark/spark.spa.ftl"
+2022-10-06 23:44:34,808 DEBUG [main] cache:45 - Couldn't find template in cache for "commons/commons-variables.ftl"("en_IN", UTF-8, parsed); will try to load it.
+2022-10-06 23:44:34,809 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("commons/commons-variables_en_IN.ftl"): Not found
+2022-10-06 23:44:34,810 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("commons/commons-variables_en.ftl"): Not found
+2022-10-06 23:44:34,811 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("commons/commons-variables.ftl"): Found
+2022-10-06 23:44:34,811 DEBUG [main] cache:45 - Loading template for "commons/commons-variables.ftl"("en_IN", UTF-8, parsed) from "jar:file:/C:/Users/saima/.m2/repository/tech/grasshopper/htmlextentreporter/1.0.1/htmlextentreporter-1.0.1.jar!/com/aventstack/extentreports/templates/commons/commons-variables.ftl"
+2022-10-06 23:44:34,974 DEBUG [main] cache:45 - Couldn't find template in cache for "commons/commons-macros.ftl"("en_IN", UTF-8, parsed); will try to load it.
+2022-10-06 23:44:34,976 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("commons/commons-macros_en_IN.ftl"): Not found
+2022-10-06 23:44:34,977 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("commons/commons-macros_en.ftl"): Not found
+2022-10-06 23:44:34,978 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("commons/commons-macros.ftl"): Found
+2022-10-06 23:44:34,979 DEBUG [main] cache:45 - Loading template for "commons/commons-macros.ftl"("en_IN", UTF-8, parsed) from "jar:file:/C:/Users/saima/.m2/repository/com/aventstack/extentreports/5.0.9/extentreports-5.0.9.jar!/com/aventstack/extentreports/templates/commons/commons-macros.ftl"
+2022-10-06 23:44:34,986 DEBUG [main] cache:45 - Couldn't find template in cache for "spark/macros/attributes.ftl"("en_IN", UTF-8, parsed); will try to load it.
+2022-10-06 23:44:34,989 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/macros/attributes_en_IN.ftl"): Not found
+2022-10-06 23:44:34,991 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/macros/attributes_en.ftl"): Not found
+2022-10-06 23:44:34,992 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/macros/attributes.ftl"): Found
+2022-10-06 23:44:34,992 DEBUG [main] cache:45 - Loading template for "spark/macros/attributes.ftl"("en_IN", UTF-8, parsed) from "jar:file:/C:/Users/saima/.m2/repository/com/aventstack/extentreports/5.0.9/extentreports-5.0.9.jar!/com/aventstack/extentreports/templates/spark/macros/attributes.ftl"
+2022-10-06 23:44:34,996 DEBUG [main] cache:45 - Couldn't find template in cache for "spark/macros/log.ftl"("en_IN", UTF-8, parsed); will try to load it.
+2022-10-06 23:44:34,997 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/macros/log_en_IN.ftl"): Not found
+2022-10-06 23:44:34,998 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/macros/log_en.ftl"): Not found
+2022-10-06 23:44:34,999 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/macros/log.ftl"): Found
+2022-10-06 23:44:34,999 DEBUG [main] cache:45 - Loading template for "spark/macros/log.ftl"("en_IN", UTF-8, parsed) from "jar:file:/C:/Users/saima/.m2/repository/com/aventstack/extentreports/5.0.9/extentreports-5.0.9.jar!/com/aventstack/extentreports/templates/spark/macros/log.ftl"
+2022-10-06 23:44:35,003 DEBUG [main] cache:45 - Couldn't find template in cache for "spark/macros/recurse_nodes.ftl"("en_IN", UTF-8, parsed); will try to load it.
+2022-10-06 23:44:35,005 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/macros/recurse_nodes_en_IN.ftl"): Not found
+2022-10-06 23:44:35,005 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/macros/recurse_nodes_en.ftl"): Not found
+2022-10-06 23:44:35,005 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/macros/recurse_nodes.ftl"): Found
+2022-10-06 23:44:35,006 DEBUG [main] cache:45 - Loading template for "spark/macros/recurse_nodes.ftl"("en_IN", UTF-8, parsed) from "jar:file:/C:/Users/saima/.m2/repository/com/aventstack/extentreports/5.0.9/extentreports-5.0.9.jar!/com/aventstack/extentreports/templates/spark/macros/recurse_nodes.ftl"
+2022-10-06 23:44:35,013 DEBUG [main] cache:45 - "spark/macros/log.ftl"("en_IN", UTF-8, parsed) cached copy not yet stale; using cached.
+2022-10-06 23:44:35,014 DEBUG [main] cache:45 - Couldn't find template in cache for "spark/macros/attr-common.ftl"("en_IN", UTF-8, parsed); will try to load it.
+2022-10-06 23:44:35,015 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/macros/attr-common_en_IN.ftl"): Not found
+2022-10-06 23:44:35,016 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/macros/attr-common_en.ftl"): Not found
+2022-10-06 23:44:35,017 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/macros/attr-common.ftl"): Found
+2022-10-06 23:44:35,017 DEBUG [main] cache:45 - Loading template for "spark/macros/attr-common.ftl"("en_IN", UTF-8, parsed) from "jar:file:/C:/Users/saima/.m2/repository/com/aventstack/extentreports/5.0.9/extentreports-5.0.9.jar!/com/aventstack/extentreports/templates/spark/macros/attr-common.ftl"
+2022-10-06 23:44:35,033 DEBUG [main] cache:45 - Couldn't find template in cache for "spark/partials/head.ftl"("en_IN", UTF-8, parsed); will try to load it.
+2022-10-06 23:44:35,034 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/partials/head_en_IN.ftl"): Not found
+2022-10-06 23:44:35,035 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/partials/head_en.ftl"): Not found
+2022-10-06 23:44:35,036 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/partials/head.ftl"): Found
+2022-10-06 23:44:35,036 DEBUG [main] cache:45 - Loading template for "spark/partials/head.ftl"("en_IN", UTF-8, parsed) from "jar:file:/C:/Users/saima/.m2/repository/com/aventstack/extentreports/5.0.9/extentreports-5.0.9.jar!/com/aventstack/extentreports/templates/spark/partials/head.ftl"
+2022-10-06 23:44:35,046 DEBUG [main] cache:45 - Couldn't find template in cache for "commons/commons-inject-css.ftl"("en_IN", UTF-8, parsed); will try to load it.
+2022-10-06 23:44:35,047 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("commons/commons-inject-css_en_IN.ftl"): Not found
+2022-10-06 23:44:35,049 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("commons/commons-inject-css_en.ftl"): Not found
+2022-10-06 23:44:35,050 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("commons/commons-inject-css.ftl"): Found
+2022-10-06 23:44:35,050 DEBUG [main] cache:45 - Loading template for "commons/commons-inject-css.ftl"("en_IN", UTF-8, parsed) from "jar:file:/C:/Users/saima/.m2/repository/com/aventstack/extentreports/5.0.9/extentreports-5.0.9.jar!/com/aventstack/extentreports/templates/commons/commons-inject-css.ftl"
+2022-10-06 23:44:35,051 DEBUG [main] cache:45 - Couldn't find template in cache for "spark/partials/navbar.ftl"("en_IN", UTF-8, parsed); will try to load it.
+2022-10-06 23:44:35,051 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/partials/navbar_en_IN.ftl"): Not found
+2022-10-06 23:44:35,053 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/partials/navbar_en.ftl"): Not found
+2022-10-06 23:44:35,054 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/partials/navbar.ftl"): Found
+2022-10-06 23:44:35,054 DEBUG [main] cache:45 - Loading template for "spark/partials/navbar.ftl"("en_IN", UTF-8, parsed) from "jar:file:/C:/Users/saima/.m2/repository/com/aventstack/extentreports/5.0.9/extentreports-5.0.9.jar!/com/aventstack/extentreports/templates/spark/partials/navbar.ftl"
+2022-10-06 23:44:35,066 DEBUG [main] cache:45 - Couldn't find template in cache for "spark/partials/sidenav.ftl"("en_IN", UTF-8, parsed); will try to load it.
+2022-10-06 23:44:35,066 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/partials/sidenav_en_IN.ftl"): Not found
+2022-10-06 23:44:35,068 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/partials/sidenav_en.ftl"): Not found
+2022-10-06 23:44:35,069 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/partials/sidenav.ftl"): Found
+2022-10-06 23:44:35,070 DEBUG [main] cache:45 - Loading template for "spark/partials/sidenav.ftl"("en_IN", UTF-8, parsed) from "jar:file:/C:/Users/saima/.m2/repository/com/aventstack/extentreports/5.0.9/extentreports-5.0.9.jar!/com/aventstack/extentreports/templates/spark/partials/sidenav.ftl"
+2022-10-06 23:44:35,095 DEBUG [main] cache:45 - Couldn't find template in cache for "spark/partials/dashboard.ftl"("en_IN", UTF-8, parsed); will try to load it.
+2022-10-06 23:44:35,097 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/partials/dashboard_en_IN.ftl"): Not found
+2022-10-06 23:44:35,099 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/partials/dashboard_en.ftl"): Not found
+2022-10-06 23:44:35,101 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/partials/dashboard.ftl"): Found
+2022-10-06 23:44:35,102 DEBUG [main] cache:45 - Loading template for "spark/partials/dashboard.ftl"("en_IN", UTF-8, parsed) from "jar:file:/C:/Users/saima/.m2/repository/com/aventstack/extentreports/5.0.9/extentreports-5.0.9.jar!/com/aventstack/extentreports/templates/spark/partials/dashboard.ftl"
+2022-10-06 23:44:35,181 DEBUG [main] cache:45 - Couldn't find template in cache for "spark/partials/test.ftl"("en_IN", UTF-8, parsed); will try to load it.
+2022-10-06 23:44:35,182 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/partials/test_en_IN.ftl"): Not found
+2022-10-06 23:44:35,183 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/partials/test_en.ftl"): Not found
+2022-10-06 23:44:35,183 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/partials/test.ftl"): Found
+2022-10-06 23:44:35,184 DEBUG [main] cache:45 - Loading template for "spark/partials/test.ftl"("en_IN", UTF-8, parsed) from "jar:file:/C:/Users/saima/.m2/repository/com/aventstack/extentreports/5.0.9/extentreports-5.0.9.jar!/com/aventstack/extentreports/templates/spark/partials/test.ftl"
+2022-10-06 23:44:35,203 DEBUG [main] cache:45 - Couldn't find template in cache for "spark/partials/bdd-content.ftl"("en_IN", UTF-8, parsed); will try to load it.
+2022-10-06 23:44:35,204 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/partials/bdd-content_en_IN.ftl"): Not found
+2022-10-06 23:44:35,206 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/partials/bdd-content_en.ftl"): Not found
+2022-10-06 23:44:35,207 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/partials/bdd-content.ftl"): Found
+2022-10-06 23:44:35,207 DEBUG [main] cache:45 - Loading template for "spark/partials/bdd-content.ftl"("en_IN", UTF-8, parsed) from "jar:file:/C:/Users/saima/.m2/repository/com/aventstack/extentreports/5.0.9/extentreports-5.0.9.jar!/com/aventstack/extentreports/templates/spark/partials/bdd-content.ftl"
+2022-10-06 23:44:35,254 DEBUG [main] cache:45 - Couldn't find template in cache for "spark/partials/category.ftl"("en_IN", UTF-8, parsed); will try to load it.
+2022-10-06 23:44:35,255 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/partials/category_en_IN.ftl"): Not found
+2022-10-06 23:44:35,256 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/partials/category_en.ftl"): Not found
+2022-10-06 23:44:35,256 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/partials/category.ftl"): Found
+2022-10-06 23:44:35,257 DEBUG [main] cache:45 - Loading template for "spark/partials/category.ftl"("en_IN", UTF-8, parsed) from "jar:file:/C:/Users/saima/.m2/repository/com/aventstack/extentreports/5.0.9/extentreports-5.0.9.jar!/com/aventstack/extentreports/templates/spark/partials/category.ftl"
+2022-10-06 23:44:35,259 DEBUG [main] cache:45 - Couldn't find template in cache for "spark/partials/exception.ftl"("en_IN", UTF-8, parsed); will try to load it.
+2022-10-06 23:44:35,259 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/partials/exception_en_IN.ftl"): Not found
+2022-10-06 23:44:35,260 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/partials/exception_en.ftl"): Not found
+2022-10-06 23:44:35,261 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/partials/exception.ftl"): Found
+2022-10-06 23:44:35,261 DEBUG [main] cache:45 - Loading template for "spark/partials/exception.ftl"("en_IN", UTF-8, parsed) from "jar:file:/C:/Users/saima/.m2/repository/com/aventstack/extentreports/5.0.9/extentreports-5.0.9.jar!/com/aventstack/extentreports/templates/spark/partials/exception.ftl"
+2022-10-06 23:44:35,264 DEBUG [main] cache:45 - Couldn't find template in cache for "spark/partials/author.ftl"("en_IN", UTF-8, parsed); will try to load it.
+2022-10-06 23:44:35,265 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/partials/author_en_IN.ftl"): Not found
+2022-10-06 23:44:35,266 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/partials/author_en.ftl"): Not found
+2022-10-06 23:44:35,266 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/partials/author.ftl"): Found
+2022-10-06 23:44:35,267 DEBUG [main] cache:45 - Loading template for "spark/partials/author.ftl"("en_IN", UTF-8, parsed) from "jar:file:/C:/Users/saima/.m2/repository/com/aventstack/extentreports/5.0.9/extentreports-5.0.9.jar!/com/aventstack/extentreports/templates/spark/partials/author.ftl"
+2022-10-06 23:44:35,269 DEBUG [main] cache:45 - Couldn't find template in cache for "spark/partials/device.ftl"("en_IN", UTF-8, parsed); will try to load it.
+2022-10-06 23:44:35,269 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/partials/device_en_IN.ftl"): Not found
+2022-10-06 23:44:35,270 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/partials/device_en.ftl"): Not found
+2022-10-06 23:44:35,270 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/partials/device.ftl"): Found
+2022-10-06 23:44:35,271 DEBUG [main] cache:45 - Loading template for "spark/partials/device.ftl"("en_IN", UTF-8, parsed) from "jar:file:/C:/Users/saima/.m2/repository/com/aventstack/extentreports/5.0.9/extentreports-5.0.9.jar!/com/aventstack/extentreports/templates/spark/partials/device.ftl"
+2022-10-06 23:44:35,273 DEBUG [main] cache:45 - Couldn't find template in cache for "spark/partials/log.ftl"("en_IN", UTF-8, parsed); will try to load it.
+2022-10-06 23:44:35,274 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/partials/log_en_IN.ftl"): Not found
+2022-10-06 23:44:35,275 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/partials/log_en.ftl"): Not found
+2022-10-06 23:44:35,276 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/partials/log.ftl"): Found
+2022-10-06 23:44:35,276 DEBUG [main] cache:45 - Loading template for "spark/partials/log.ftl"("en_IN", UTF-8, parsed) from "jar:file:/C:/Users/saima/.m2/repository/com/aventstack/extentreports/5.0.9/extentreports-5.0.9.jar!/com/aventstack/extentreports/templates/spark/partials/log.ftl"
+2022-10-06 23:44:35,280 DEBUG [main] cache:45 - Couldn't find template in cache for "spark/partials/scripts.ftl"("en_IN", UTF-8, parsed); will try to load it.
+2022-10-06 23:44:35,281 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/partials/scripts_en_IN.ftl"): Not found
+2022-10-06 23:44:35,282 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/partials/scripts_en.ftl"): Not found
+2022-10-06 23:44:35,284 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("spark/partials/scripts.ftl"): Found
+2022-10-06 23:44:35,285 DEBUG [main] cache:45 - Loading template for "spark/partials/scripts.ftl"("en_IN", UTF-8, parsed) from "jar:file:/C:/Users/saima/.m2/repository/com/aventstack/extentreports/5.0.9/extentreports-5.0.9.jar!/com/aventstack/extentreports/templates/spark/partials/scripts.ftl"
+2022-10-06 23:44:35,287 DEBUG [main] cache:45 - Couldn't find template in cache for "commons/commons-inject-js.ftl"("en_IN", UTF-8, parsed); will try to load it.
+2022-10-06 23:44:35,288 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("commons/commons-inject-js_en_IN.ftl"): Not found
+2022-10-06 23:44:35,289 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("commons/commons-inject-js_en.ftl"): Not found
+2022-10-06 23:44:35,290 DEBUG [main] cache:45 - TemplateLoader.findTemplateSource("commons/commons-inject-js.ftl"): Found
+2022-10-06 23:44:35,291 DEBUG [main] cache:45 - Loading template for "commons/commons-inject-js.ftl"("en_IN", UTF-8, parsed) from "jar:file:/C:/Users/saima/.m2/repository/com/aventstack/extentreports/5.0.9/extentreports-5.0.9.jar!/com/aventstack/extentreports/templates/commons/commons-inject-js.ftl"

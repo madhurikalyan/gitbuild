@@ -32,7 +32,6 @@ import java.io.FileInputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.Connection;
-import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -101,6 +100,14 @@ public static int getPageCount(PDDocument doc) {
 	return pageCount;
 	
 }
+public static void sleepTime(long milliseconds) {
+	try {
+		Thread.sleep(milliseconds);
+	} catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+}
 
 /*public static  String readPdfContent(String url) throws IOException {
 	
@@ -124,7 +131,7 @@ return content;
 	public static JSONObject getJSONObjectfromJSONFile() throws IOException, ParseException {
 
 		try {
-			reader = new FileReader(ConfigReader.readjson_Payment());
+			reader = new FileReader(ConfigReader.readjson());
 			Object obj = jsonparser.parse(reader);
 			jsonObject = (JSONObject)obj;
 		} catch (FileNotFoundException e) {
@@ -275,7 +282,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 			System.out.println("Vertical Position NumberY : " +NumberY);
 			Actions act= new Actions(driver);
 			act.moveByOffset( NumberX + 1 , NumberY).click().build().perform();
-			Thread.sleep(3000);
+			sleepTime(3000);
 
 		}
 		catch(Exception e){
@@ -409,57 +416,12 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 			}
 			catch (StaleElementReferenceException e) {
 				System.out.println(e.getMessage());
-				Thread.sleep(5000);
+				sleepTime(5000);
 			}
 			attempts++;
 		}
 	}
-	/*
-	 * @description : executes select query
-	 * @param  : query
-	 * @return : result of the query
-	 * @author : SaiMadhuri Aturi
-	 */
-	public static ResultSet executeSelectQuery(String query, String applicationInstance) throws Exception{
-
-		ResultSet rs = null;
-		try {
-			Class.forName(ConfigReader.readJdbcDriver());
-			Connection con = DriverManager.getConnection(applicationInstance);
-
-			DatabaseMetaData dbmd = con.getMetaData();
-
-
-			Statement st = con.createStatement();
-			rs = st.executeQuery(query);
-			//con.close();
-		} catch (Exception e) {
-			throw e;
-		}
-		return rs;
-	}
-	/*
-	 * @description : executes update query
-	 * @param  : query
-	 * @param  : applicationInstance
-	 * @return : NA
-	 * @author : SaiMadhuri Aturi
-	 */
-	public static void executeUpdateQuery(String query, String applicationInstance) throws Exception {
-		try {
-			System.out.println(query);
-			Class.forName(ConfigReader.readJdbcDriver());
-			Connection con=DriverManager.getConnection(applicationInstance);
-			DatabaseMetaData dbmd = con.getMetaData();
-
-			Statement st = con.createStatement();
-			st.executeUpdate(query);
-			//con.close();
-			} catch (Exception e) {
-			throw e;
-		}
-	}
-			/*
+				/*
 	 * @description : refresh current web page
 	 * @param  : NA
 	 * @return : NA
@@ -548,7 +510,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 	 */
 	public static void waitUntilElementExists(String xpath, long timeOutInSeconds) {
 		try {
-			Wait<WebDriver> fluentWait = new FluentWait<>(driver)
+			Wait<WebDriver> wait = new FluentWait<>(driver)
 					.withTimeout(Duration.ofSeconds(30))
 					.pollingEvery(Duration.ofSeconds(5))
 					.ignoring(NoSuchElementException.class,StaleElementReferenceException.class);
@@ -681,17 +643,17 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 		try
 		{
 			donwloadButton.click();
-			Thread.sleep(1000); // wait for save pop up
+			sleepTime(1000); // wait for save pop up
 
 			Robot robot = new Robot();
 			robot.setAutoDelay(250);
 			robot.keyPress(KeyEvent.VK_ALT);
-			Thread.sleep(500);
+			sleepTime(500);
 			robot.keyPress(KeyEvent.VK_S);
-			Thread.sleep(500);
+			sleepTime(500);
 			robot.keyRelease(KeyEvent.VK_ALT);
 			robot.keyRelease(KeyEvent.VK_S);
-			Thread.sleep(500);
+			sleepTime(500);
 		}
 		catch (Exception e) {
 
@@ -707,7 +669,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 	public static void uploadFile(String filePath) throws Exception {
 		try {
 			//Wait for upload pop up to open
-			Thread.sleep(3000);
+			sleepTime(3000);
 
 			//Copy the location of the file and store in clip board
 			StringSelection stringSelection = new StringSelection(filePath);
@@ -717,15 +679,15 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 			Robot robot = new Robot();
 
 			robot.keyPress(KeyEvent.VK_CONTROL);
-			Thread.sleep(500);
+			sleepTime(500);
 			robot.keyPress(KeyEvent.VK_V);
-			Thread.sleep(500);
+			sleepTime(500);
 			robot.keyRelease(KeyEvent.VK_V);
 			robot.keyRelease(KeyEvent.VK_CONTROL);
-			Thread.sleep(500);
+			sleepTime(500);
 			robot.keyPress(KeyEvent.VK_ENTER);
 			robot.keyRelease(KeyEvent.VK_ENTER);
-			Thread.sleep(500);
+			sleepTime(500);
 
 		} catch (Exception e) {
 
@@ -822,7 +784,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 			Robot robot = new Robot();
 			robot.setAutoDelay(250);
 			robot.keyPress(KeyEvent.VK_ALT);
-			Thread.sleep(1000);
+			sleepTime(1000);
 			robot.keyPress(KeyEvent.VK_O);
 			robot.keyRelease(KeyEvent.VK_ALT);
 			robot.keyRelease(KeyEvent.VK_O);
@@ -848,7 +810,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 			Robot robot = new Robot();
 			robot.setAutoDelay(250);
 			robot.keyPress(KeyEvent.VK_ALT);
-			Thread.sleep(1000);
+			sleepTime(1000);
 			robot.keyPress(KeyEvent.VK_C);
 			robot.keyRelease(KeyEvent.VK_ALT);
 			robot.keyRelease(KeyEvent.VK_C);
@@ -960,7 +922,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 	 */
 	public static void handleAlertExceptions() throws Exception {
 		try {
-			Wait<WebDriver> fluentWait = new FluentWait<>(driver)
+			Wait<WebDriver> wait = new FluentWait<>(driver)
 					.withTimeout(Duration.ofSeconds(30))
 					.pollingEvery(Duration.ofSeconds(5))
 					.ignoring(NoSuchElementException.class)
@@ -982,10 +944,10 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 
 		} catch (UnhandledAlertException e) {
 			((JavascriptExecutor) driver).executeScript("window.focus();");
-			Thread.sleep(500);
+			sleepTime(500);
 			Robot robot = new Robot();
 			robot.keyPress(KeyEvent.VK_ENTER);
-			Thread.sleep(500);
+			sleepTime(500);
 			robot.keyRelease(KeyEvent.VK_ENTER);
 		}
 	}
@@ -1376,7 +1338,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 	 * @author : Sai Madhuri Aturi
 	 */
 	public static boolean waitForJStoLoad() throws InterruptedException {
-		Thread.sleep(1000);
+		sleepTime(1000);
 		Calendar c = Calendar.getInstance();
 		System.out.println(c.get(Calendar.SECOND)+" "+c.get(Calendar.MILLISECOND));
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -1468,51 +1430,73 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 					attributevalue=element.getAttribute(attributetype);
 				}
 			}
-			
 			catch(Exception e) {
 				return null;
 			}
 			return attributevalue;
 	}
-		public  void updateExcel(String sheetname, int rownum, int cellnum,String value) {
-			  try {
-				  FileInputStream inputStream;
-				  Workbook workbook;
-				  Boolean bool = null;
-				  Sheet newSheet;
-				  Row row ;
-				  Cell cell;
-				   inputStream = new FileInputStream(new File(ConfigReader.writeexcel()));
-
-				   workbook = WorkbookFactory.create(inputStream);
-				  for (int i=0; i<workbook.getNumberOfSheets(); i++) {
-					   bool=workbook.getSheetName(i).equalsIgnoreCase(sheetname);
-					}
-				  if(bool==false) {
-					   newSheet = workbook.createSheet(sheetname);
-				  }
-				  else {
-					   newSheet =workbook.getSheet(sheetname);
-				  }
-				 int rown= newSheet.getLastRowNum();
+		public static String FetchTextBoxValuewithattributedisabled(WebElement element,String attributetype) {
+			String attributevalue = null;
+			try {
+				attributevalue=element.getAttribute(attributetype);
 				
-					 if(rown>=rownum) {
-						 row= newSheet.getRow(rownum);
-					 }
-					 else {
-						 row= newSheet.createRow(rownum);
-					 }
-				   cell = row.createCell(cellnum);  
-			       cell.setCellValue(value);
-		               FileOutputStream out = new FileOutputStream(
-		                   new File(ConfigReader.writeexcel()));
-		               workbook.write(out);
-		               workbook.close();
-		               out.close();
-		           }
-		           catch (Exception e) {
-		               e.printStackTrace();
-		           }
-		     
+			}
+			catch(Exception e) {
+				return null;
+			}
+			return attributevalue;
+	}
+		//DB Utils
+
+
+		/*
+		 * @description : executes select query & Insertion Query
+		 * @param  : SQL query,Application Instance,Username & password
+		 * @return : result of the query in the form of resultset
+		 * @author : SaiMadhuri Aturi
+		 */
+		public static ResultSet executeSelectQuery(String query, String applicationInstance, String username, String password) throws Exception{
+
+			ResultSet rs = null;
+			Connection con = null;
+			try {
+				// String jdbcUrl = "jdbc:mysql://localhost:3306/BORAJI";
+				Class.forName(ConfigReader.readJdbcDriver());
+				 con = DriverManager.getConnection(applicationInstance,username,password);
+				Statement st = con.createStatement();
+				//"INSERT INTO EMPLOYEE (ID,FIRST_NAME,LAST_NAME,STAT_CD) "+ "VALUES (1,'Lokesh','Gupta',5)" --For Insertion
+				//"SELECT ID,FIRST_NAME,LAST_NAME,STAT_CD FROM EMPLOYEE WHERE ID <= 10" --For Select Query
+				rs = st.executeQuery(query);
+			
+			} catch (Exception e) {
+				throw e;
+			}
+			finally {
+				con.close();
+			}
+			return rs;
+			}
+		/*
+		 * @description : executes update query and for Deletion also
+		 * @param  : SQL query,Application Instance,Username & password
+		 * @param  : applicationInstance
+		 * @return : NA
+		 * @author : SaiMadhuri Aturi
+		 */
+		public static void executeUpdateQuery(String query, String applicationInstance, String username, String password) throws Exception {
+			Connection con = null;
+			try {
+				Class.forName(ConfigReader.readJdbcDriver());
+				 con=DriverManager.getConnection(applicationInstance,username,password);
+				Statement st = con.createStatement();
+				//DELETE FROM EMPLOYEE WHERE ID >= 1  --For Deletion
+				st.executeUpdate(query);
+				} catch (Exception e) {
+				throw e;
+			}
+			finally {
+				con.close();
+			}
 		}
+			
 }
