@@ -122,29 +122,21 @@ public class Payment {
 		ElementUtil.selectFromDropdownByVisibleText(Payment_ElectronicDeliveryTypedd, electronicdeliverytypevalue);
 	}
 	public String FetchTotalAmount() {
-		String TotalAmountValue=Payment_TotalInvoiceAmountUSDValue.getAttribute("value").toString();
-		return TotalAmountValue;
+		return ElementUtil.FetchTextBoxValuewithattributedisabled(Payment_TotalInvoiceAmountUSDValue,"value");
 	}
 	public String FetchRemainingBalance() {
-		String TotalRemainingBalance=Payment_RemainingBalancetxt.getAttribute("value").toString();
-		return TotalRemainingBalance;
+		ElementUtil.waitUntilElementVisible(Payment_RemainingBalancetxt);
+		return ElementUtil.FetchTextBoxValuewithattribute(Payment_RemainingBalancetxt,"value");
 	}
 	public void clickPayNow() {
 	ElementUtil.clickElement(Payment_Paybtn);
 }
-public void check(int i) {
-	WebElement Payment_PaymentType=driver.findElement(By.xpath("//select[contains(@id,'PayType') and contains(@id,'"+i+"')]"));
-	System.out.println("id1 is:"+Payment_PaymentType.getAttribute("id")); //paymentVos_0__PayType
-	
-}
 public void selectPaymentType(int i,String PaymentTypeValue) {
 	WebElement Payment_PaymentType=driver.findElement(By.xpath("//select[contains(@id,'PayType') and contains(@id,'"+i+"')]"));
-	ElementUtil.waitUntilElementClickable(Payment_PaymentType);
 	ElementUtil.selectFromDropdownByVisibleText(Payment_PaymentType, PaymentTypeValue); //Cash,Check,Certified Check,E-check,Credit Card,Wire Transfer,EFT,Enterprise System Credit,IRP System Credit,IFTA System Credit,OPA System Credit,IFTA Bond
 }
 public void enterpaymentNoBasedonType(int i,String ExcelpassedValue,String PaymentNumberValue) {
 	WebElement Payment_PaymentNumbertxt=driver.findElement(By.xpath("//input[contains(@id,'paymentVos') and contains(@id,'PaymentNo')and contains(@id,'"+i+"')]"));
-	ElementUtil.waitUntilElementVisible(Payment_PaymentNumbertxt);
 	if(ExcelpassedValue.equalsIgnoreCase("Check")) {
 		ElementUtil.webEditTxt(Payment_PaymentNumbertxt, PaymentNumberValue);
 	}
@@ -165,7 +157,6 @@ public void enterpaymentNoBasedonType(int i,String ExcelpassedValue,String Payme
 public void enterPaymentAmountBasedonType(int i,String ExcelpassedValue,String PaymentAmountValue) {
 	WebElement Payment_PaymentType=driver.findElement(By.xpath("//select[contains(@id,'PayType') and contains(@id,'"+i+"')]"));
 	WebElement Payment_PaymentAmount=driver.findElement(By.xpath("//input[contains(@id,'paymentVos') and contains(@id,'PaymentAmount') and contains(@id,'"+i+"')]"));
-	ElementUtil.waitUntilElementVisible(Payment_PaymentAmount);
 	if(ExcelpassedValue.equalsIgnoreCase("Cash")) {
 		ElementUtil.webEditTxt(Payment_PaymentAmount, PaymentAmountValue);
 	}
@@ -297,7 +288,6 @@ public String FetchTotalAmountDue() {
 
 
 public String ValidateMessage1() {
-	
 	ElementUtil.highlightElement(driver, Payment_ValidationMessage1);
 	return ElementUtil.FetchTextBoxValuewithText(Payment_ValidationMessage1);
 }

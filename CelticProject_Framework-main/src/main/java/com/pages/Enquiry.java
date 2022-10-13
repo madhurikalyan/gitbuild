@@ -59,12 +59,6 @@ public void SupplementEnquiryvaluevalidation(String valuecheck) {
 }
 //Vehicle Enquiry
 
-public void check() {
-	List<WebElement>VINs=driver.findElements(with(By.tagName("td")).below(VehicleEnquiry_VIN));
-	for(int i=0;i<VINs.size();i++) {
-		System.out.print(i +" is:"+VINs.get(i).getText());
-	}
-}
 public void clickVehicleEnquiryUnitNo() {
 	if(ElementUtil.isPresentAndDisplayed(VehicleEnquiryGrid)) {
 		if(!(ElementUtil.FetchTextBoxValuewithattribute(VehicleEnquiry_UnitNo,"class").contains("asc"))) {
@@ -76,9 +70,7 @@ public void clickVehicleEnquiryUnitNo() {
 public String fetchVehicleEnquiryVIN(String i,String YearValue) {
 	String VIN_TableValue=null;
 	WebElement ExpiryYear=driver.findElement(By.xpath("//table[@id='VehInquiryGrid']/tbody/tr["+i+"]/td[5]"));
-	System.out.print("ExpiryYear is:"+ExpiryYear.getText());
 	WebElement VIN=driver.findElement(By.xpath("//table[@id='VehInquiryGrid']/tbody/tr["+i+"]/td[6]"));
-	System.out.print("VIN Value is:"+VIN.getText());
 	if(ElementUtil.isPresentAndDisplayed(VehicleEnquiryGrid)) {
 		if(ExpiryYear.getText().equalsIgnoreCase(YearValue)) {
 			VIN_TableValue=ElementUtil.FetchTextBoxValuewithText(VIN);
@@ -98,9 +90,7 @@ public void clickVehicleSupplementUnitNo() {
 public String FetchVehicleSupplementEnquiryVIN(String i,String YearValue) {
 	String VIN_TableValue=null;
 	WebElement ExpiryYear=driver.findElement(By.xpath("//tr["+i+"]//td[contains(@class,'Alignment')][4]"));
-	System.out.print("ExpiryYear is:"+ExpiryYear.getText());
 	WebElement VIN=driver.findElement(By.xpath("//tr["+i+"]//td[contains(@class,'Alignment')][8]"));
-	System.out.print("VIN Value is:"+VIN.getText());
 	if(ElementUtil.isPresentAndDisplayed(VehicleSupplementEnquiryGrid)) {
 		if(ExpiryYear.getText().equalsIgnoreCase(YearValue)) {
 			VIN_TableValue=ElementUtil.FetchTextBoxValuewithText(VIN);

@@ -80,7 +80,7 @@ public class Financepage {
 		ElementUtil.clickElement(DashboardFinancetab);
 	}
 	public void clickpostpayment() {
-		ElementUtil.clickElement(Finance_postpayment);
+		ElementUtil.clickElementUsingActions(Finance_postpayment);
 	}
 	
 	
@@ -116,7 +116,7 @@ public class Financepage {
 }
 	public void clickinstallmentpayment() throws InterruptedException {
 		ElementUtil.clickElement(Installment_instalpayment);
-		ElementUtil.sleepTime(2000);
+		//ElementUtil.sleepTime(2000);
 	}
 	public void clickandenterAccountNo(String accountnovalue) {
 		ElementUtil.webEditTxtChange(Installment_AccountNo,accountnovalue);
@@ -129,13 +129,14 @@ public class Financepage {
 	}
 	public void clickgrid() throws InterruptedException {
 		ElementUtil.clickElement(Installment_Grid);
-		ElementUtil.sleepTime(2000);
+		//ElementUtil.sleepTime(2000);
 	}
 
 	
 	
 	//Fetch values
 	public ArrayList<String> FetchTableHeader() {
+ElementUtil.waitUntilElementsVisible(Fee_Headers);
 		ArrayList<String> Headers_Array = new ArrayList<String>();
 		for(int i=0;i<Fee_Headers.size();i++) {
 			Headers_Array.add(ElementUtil.FetchTextBoxValuewithText(Fee_Headers.get(i)));
@@ -143,6 +144,7 @@ public class Financepage {
 		return Headers_Array;
 	}
 	public ArrayList<String> FetchTable_RowValues() {
+		ElementUtil.waitUntilElementsVisible(Fee_Row);
 		ArrayList<String> Juris_Array = new ArrayList<String>();
 		for(int i=0;i<Fee_Row.size();i++) {
 			Juris_Array.add(ElementUtil.FetchTextBoxValuewithText(Fee_Row.get(i)));

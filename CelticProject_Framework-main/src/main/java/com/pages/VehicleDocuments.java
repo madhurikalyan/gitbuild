@@ -34,24 +34,28 @@ public class VehicleDocuments {
 		ElementUtil.highlightElement(driver, Dashboard_VehicleDocuments);
 		ElementUtil.clickElementUsingActions(Dashboard_VehicleDocuments);
 	//	ElementUtil.clickElement(Dashboard_VehicleDocuments);
-		ElementUtil.sleepTime(2000);
+		//ElementUtil.sleepTime(2000);
 	}	
 	public void SelectHVUT(String HVUTValue) {
+		ElementUtil.waitUntilElementsVisible(Vehicle_HVUTFormdd);
 		for(int i=0;i<Vehicle_HVUTFormdd.size();i++) {
 			ElementUtil.selectFromDropdownByVisibleText(Vehicle_HVUTFormdd.get(i), HVUTValue);
 		}	
 	}
 	public void SelectLeaseContract(String HVUTValue) {
+		ElementUtil.waitUntilElementsVisible(Vehicle_LeaseContractdd);
 		for(int i=0;i<Vehicle_LeaseContractdd.size();i++) {
 			ElementUtil.selectFromDropdownByVisibleText(Vehicle_LeaseContractdd.get(i), HVUTValue);
 		}	
 	}
 	public void SelectTitleDocument(String HVUTValue) {
+		ElementUtil.waitUntilElementsVisible(Vehicle_TitleDocumentdd);
 		for(int i=0;i<Vehicle_TitleDocumentdd.size();i++) {
 			ElementUtil.selectFromDropdownByVisibleText(Vehicle_TitleDocumentdd.get(i), HVUTValue);
 		}	
 	}
 	public void SelectPlateReturn(String HVUTValue) {
+		ElementUtil.waitUntilElementsVisible(Vehicle_PlateReturndd);
 		for(int i=0;i<Vehicle_PlateReturndd.size();i++) {
 			ElementUtil.selectFromDropdownByVisibleText(Vehicle_PlateReturndd.get(i), HVUTValue);
 		}	
@@ -60,6 +64,7 @@ public class VehicleDocuments {
 	
 	//Fetch Values
 	public ArrayList<String> FetchTableHeader1() {
+		ElementUtil.waitUntilElementsVisible(Vehicle_TableHeader1);
 		ArrayList<String> Headers1_Array = new ArrayList<String>();
 		for(int i=0;i<Vehicle_TableHeader1.size();i++) {
 			Headers1_Array.add(ElementUtil.FetchTextBoxValuewithText(Vehicle_TableHeader1.get(i)));
@@ -67,6 +72,7 @@ public class VehicleDocuments {
 		return Headers1_Array;
 	}
 	public ArrayList<String> FetchTableHeader2() {
+		ElementUtil.waitUntilElementsVisible(Vehicle_Tableheader2);
 		ArrayList<String> Headers2_Array = new ArrayList<String>();
 		for(int i=0;i<Vehicle_Tableheader2.size();i++) {
 			Headers2_Array.add(ElementUtil.FetchTextBoxValuewithText(Vehicle_Tableheader2.get(i)));
@@ -74,6 +80,7 @@ public class VehicleDocuments {
 		return Headers2_Array;
 	}
 	public ArrayList<String> FetchTable_Rows() {
+		ElementUtil.waitUntilElementsVisible(Vehicle_rowvalues);
 		ArrayList<String> Row_Array = new ArrayList<String>();
 		for(int i=0;i<Vehicle_rowvalues.size();i++) {
 			Row_Array.add(ElementUtil.FetchTextBoxValuewithText(Vehicle_rowvalues.get(i)));

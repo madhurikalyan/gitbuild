@@ -54,13 +54,12 @@ public class WgtGroup {
 	}
 	
 	public String[] validateJurisWeightsedited() {
-		System.out.print("split check"+fetchJurwithdiffWeights());
-		String[] JurisList	=fetchJurwithdiffWeights().split("[,]", 0);
-		return JurisList;
+		return fetchJurwithdiffWeights().split("[,]", 0);
 	}
 	
 	
 	public ArrayList<String> FetchTableHeader() {
+		ElementUtil.waitUntilElementsVisible(Weight_TableHeader);
 		ArrayList<String>Headers_Array =new ArrayList<String>();
 		for(int i=0;i<Weight_TableHeader.size();i++) {
 			Headers_Array.add(ElementUtil.FetchTextBoxValuewithText(Weight_TableHeader.get(i)));
@@ -69,6 +68,7 @@ public class WgtGroup {
 	}
 	
 	public ArrayList<String> FetchTableRowData() {
+		ElementUtil.waitUntilElementsVisible(Weight_TableRows);
 		ArrayList<String>RowData_Array =new ArrayList<String>();
 		for(int i=0;i<Weight_TableRows.size();i++) {
 			RowData_Array.add(ElementUtil.FetchTextBoxValuewithText(Weight_TableRows.get(i)));
@@ -77,7 +77,6 @@ public class WgtGroup {
 	}
 	
 public String WeightValidatemessage() {
-		
 		ElementUtil.highlightElement(driver, Weight_Verificationmsg);
 		return ElementUtil.FetchTextBoxValuewithText(Weight_Verificationmsg);
 	}	

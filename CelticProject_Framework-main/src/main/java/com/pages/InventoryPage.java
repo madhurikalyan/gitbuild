@@ -42,7 +42,6 @@ public class InventoryPage {
 	@FindBy(xpath="//a[@title='Assign Inventory']") WebElement Inventory_AssignInventorylnk;
 	
 public void clickoperation() {
-	ElementUtil.waitUntilElementClickable(DashboardOperation);
 	ElementUtil.clickElement(DashboardOperation);
 }
 public void clickAssignInventory() {
@@ -50,11 +49,9 @@ public void clickAssignInventory() {
 	ElementUtil.clickElement(Inventory_AssignInventorylnk);
 }
 public void clickoninventory() {
-	ElementUtil.waitUntilElementClickable(DashboardInventory);
 	ElementUtil.clickElement(DashboardInventory);
 }
 public void clickoninventorystatus() {
-	ElementUtil.waitUntilElementClickable(Inventory_StatusInventory);
 	ElementUtil.clickElement(Inventory_StatusInventory);
 }
 public void selectinventorytype(String selectValue) {
@@ -95,8 +92,6 @@ public String ValidateMessage() {
 	 ElementUtil.highlightElement(driver, Inventory_ValidateMessage);
 	 return ElementUtil.FetchTextBoxValuewithText(Inventory_ValidateMessage);
 }
-public void Highlightthemessage() {
-	ElementUtil.highlightElement(driver, Inventory_ValidateMessage);
-}
+
 
 }

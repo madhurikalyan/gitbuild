@@ -65,13 +65,9 @@ public class VehicleAdd {
 	@FindBy(xpath="//label[@for='VehDtlMaxDesiredWeight']") WebElement Add_Details_GrossWeightlbl;
 	@FindBy(xpath="//input[@id='VehDtlMaxDesiredWeight']") WebElement Add_Details_GrossWeighttxt;
 
-	//@FindBy(xpath="//span[@aria-controls='CountyPlateExpiration_dateview']") WebElement Add_Details_PurhcaseExpiryDate;
-	//@FindBy(xpath="/html/body/div[5]/div/div/table/tbody/tr[3]/td[2]/a") WebElement Add_Details_PurchaseExpiryDateyear;
-	//@FindBy(xpath="//span[@class='k-icon k-i-calendar'][1]") WebElement Add_Details_Purchasedatecalender;
 	@FindBy(xpath="//label[@for='PurchaseDate']") WebElement Add_Details_PurchaseDatelbl;
 	@FindBy(xpath="//input[@id='PurchaseDate']") WebElement Add_Details_PurchaseDatedtpickert;
 
-//	@FindBy(xpath="//a[@title='Sunday, September 11, 2022']") WebElement Add_Deatils_PurchaseDate;
 	@FindBy(xpath="//label[@for='PurchasePrice']") WebElement Add_Details_PurchasePricelbl;
 	@FindBy(xpath="//input[@id='PurchasePrice']") WebElement Add_Details_PurchasePricetxt;
 
@@ -188,7 +184,7 @@ public void enterVINNumber(String VinNumberValue) {
 
 public void clickSearch() throws InterruptedException {
 	ElementUtil.clickElement(Add_Searchbtn);
-	ElementUtil.sleepTime(2000);
+	//ElementUtil.sleepTime(2000);
 }
 public void enterUnitNumber(String UnitNumber) {
 	ElementUtil.webEditTxtChange(Add_UnitNotxt, UnitNumber);
@@ -198,25 +194,14 @@ public void enterDetailsUnitNumber(String UnitNumberValue) {
 }
 public void selectBodyType(String BodyTypeValue) throws InterruptedException {
 	ElementUtil.selectFromDropdownByVisibleText(Add_Details_BodyTypedd, BodyTypeValue);
-	ElementUtil.sleepTime(1000);
+	//ElementUtil.sleepTime(1000);
 }
 public void selectWeightGroupNumber(String BodyTypeValue) {
 	ElementUtil.selectFromDropdownByVisibleText(Add_Details_WeightGroupNodd, BodyTypeValue);
 }
 public void enterseats(String SeatValue) {
 	try{
-	String attribute  = Add_Details_Seatstxt.getAttribute("data-val-required");
-	System.out.println("enabledis:"+Add_Details_Seatstxt.isEnabled());
-	System.out.println("value is:"+Add_Details_Seatstxt.getAttribute("value"));
-	System.out.println("readonly is:"+Add_Details_Seatstxt.getAttribute("readonly"));
-	System.out.println("tabindex is:"+Add_Details_Seatstxt.getAttribute("tabindex"));
-	System.out.println("data-val-required is:"+Add_Details_Seatstxt.getAttribute("data-val-required"));
-	System.out.println("data-val is:"+Add_Details_Seatstxt.getAttribute("data-val"));
-	
-	System.out.print("check the attribute:"+attribute);
-	//if(!(attribute.equalsIgnoreCase("true"))){
 	ElementUtil.webEditTxtChange(Add_Details_Seatstxt, SeatValue);
-	//}
 	}
 	catch (Exception e) {
 		// TODO: handle exception
@@ -249,7 +234,7 @@ public void enterUnladenWeight(String UnladeWeightValue) {
 	ElementUtil.webEditTxtChange(Add_Details_unladenWeighttxt, UnladeWeightValue);
 }
 public void EmptyenterPurchaseDate(String purchaseDate) {
-	if(Add_Details_PurchaseDatedtpickert.getAttribute("value").isEmpty()) {
+	if(ElementUtil.FetchTextBoxValuewithattribute(AddVehicle_AffidavitDocdd, "value").isEmpty()) {
 		ElementUtil.clickElement(Add_Details_PurchaseDatedtpickert);
 	ElementUtil.webEditTxt(Add_Details_PurchaseDatedtpickert,purchaseDate); }
 }
@@ -286,7 +271,7 @@ public void enterInStatePlateWeight(String InStatePlateWeightValue) {
 	ElementUtil.webEditTxtChange(Add_Details_InStateWeighttxt, InStatePlateWeightValue);
 }
 public void EmptyenterInStateExpirationDate(String InStateExpirationDateValue) {
-	if(Add_Details_InstateExpirationDatedtPicker.getAttribute("value").isEmpty()) {
+	if(ElementUtil.FetchTextBoxValuewithattribute(Add_Details_InstateExpirationDatedtPicker,"value").isEmpty()) {
 		ElementUtil.clickElement(Add_Details_InstateExpirationDatedtPicker);
 	ElementUtil.webEditTxt(Add_Details_InstateExpirationDatedtPicker,InStateExpirationDateValue); }
 	}
@@ -387,7 +372,7 @@ public void UpdatevehiclelistUnit(String UnitNumber) {
 }
 public void Updatevehiclelistsearch() throws InterruptedException {
 	ElementUtil.clickElement(VehicleList_VehicleSearch);
-	ElementUtil.sleepTime(1000);
+	//ElementUtil.sleepTime(1000);
 }
 public void Updatevehiclelistselectunit() {
 	ElementUtil.clickElement(VehicleList_Vehicleunit1);

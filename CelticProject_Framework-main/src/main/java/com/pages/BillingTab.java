@@ -125,7 +125,6 @@ public class BillingTab {
 	
 	
 	public void enterManualAdjBaseJur(String ManualAdjBaseJurValue) {
-		ElementUtil.waitUntilElementClickable(Billing_ManualAdjBaseJurtxt);
 		ElementUtil.webEditTxtChange(Billing_ManualAdjBaseJurtxt, ManualAdjBaseJurValue);
 	}
 	public void clickBatchBilling() {
@@ -154,7 +153,7 @@ public class BillingTab {
 public void clickReCalculate() throws InterruptedException {
 	ElementUtil.clickElement(Billing_ReCalculatebtn);
 	
-	ElementUtil.sleepTime(1000);
+	//ElementUtil.sleepTime(1000);
 }
 public void selectTVRElectronicDeliveryType(String TVRElectronicDeliveryTypeValue) {
 	ElementUtil.selectFromDropdownByVisibleText(Billing_TVRElectronicDeliveryTypedd,TVRElectronicDeliveryTypeValue);
@@ -166,6 +165,7 @@ public void enterEmailIDTxt(String EmailIDTxtValue) {
 	ElementUtil.webEditTxtChange(Billing_EmailIDTxt, EmailIDTxtValue);
 }
 public void expandManualAdjReason() throws Exception {
+	
 	if(ElementUtil.FetchTextBoxValuewithattribute(Billing_ManualAdjReasonCollapse,"aria-expanded").equalsIgnoreCase("false")) {
 		ElementUtil.clickElement(Billing_ManualAdjReasonCollapse);
 		}
@@ -227,16 +227,13 @@ public void  clickFeeOverrideReasonclearComments() {
 public void validateBillingtab(String textmsg) {
 	Boolean a=Billing_billingtab.getText().contains(textmsg);
 	if(a==true) {
-		System.out.println("true");
 		assert true;
 	}
 	else {
-		System.out.println("false");
 		assert false;
 	}
 }
 public String ValidateMessage() {
-	
 	ElementUtil.clickElement(Billing_Validationmessage);
 	ElementUtil.highlightElement(driver, Billing_Validationmessage);
 	return ElementUtil.FetchTextBoxValuewithText(Billing_Validationmessage);
@@ -418,11 +415,9 @@ public String fetchBilling_TVRNoOfDays() {
 
 public ArrayList<String> FetchTable_Headers() {
 	ArrayList<String> Headers_array = new ArrayList<String>();
-	System.out.println("headers Size in Billing screen is:"+Billing_GridHeaders.size());
 	for(int i=0;i<Billing_GridHeaders.size();i++) {
 		Headers_array.add(ElementUtil.FetchTextBoxValuewithText(Billing_GridHeaders.get(i)));
 	}
-	System.out.println("Headers Values are:"+Headers_array);
 	return Headers_array;
 }
 

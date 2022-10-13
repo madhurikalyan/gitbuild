@@ -75,9 +75,9 @@ import com.qa.factory.Driver_Factory;
 
 public class ElementUtil {
 	private static ElementUtil elementUtil;
-	static FileReader reader;
-	static JSONParser jsonparser = new JSONParser();
-	static JSONObject jsonObject = null;
+	private FileReader reader;
+	private JSONParser jsonparser = new JSONParser();
+	private JSONObject jsonObject = null;
 	String keyvalue=null;
 	public static WebDriver driver=Driver_Factory.getDriver();
 	//public static Assertion softAssert;
@@ -128,7 +128,7 @@ return content;
 	 * @return : JSON Object
 	 * @author : SaiMadhuri Aturi
 	 */
-	public static JSONObject getJSONObjectfromJSONFile() throws IOException, ParseException {
+	public  JSONObject getJSONObjectfromJSONFile() throws IOException, ParseException {
 
 		try {
 			reader = new FileReader(ConfigReader.readjson());
@@ -146,7 +146,7 @@ return content;
 	 * @return : value of respective key
 	 * @author : SaiMadhuri Aturi
 	 */
-	public static String getvalueFromJSONObject(String key) throws IOException, ParseException {
+	public  String getvalueFromJSONObject(String key) throws IOException, ParseException {
 		JSONObject jsonObject=getJSONObjectfromJSONFile();
 		String keyvalue=(String) jsonObject.get(key);
 		return keyvalue;
@@ -282,7 +282,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 			System.out.println("Vertical Position NumberY : " +NumberY);
 			Actions act= new Actions(driver);
 			act.moveByOffset( NumberX + 1 , NumberY).click().build().perform();
-			sleepTime(3000);
+			//sleepTime(3000);
 
 		}
 		catch(Exception e){
@@ -299,9 +299,11 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 	public static  void webEditTxtChange(WebElement inputObject,String value) {
 		try
 		{
-			wait = new WebDriverWait(driver, Duration.ofSeconds(250));
+			wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 			wait.until(ExpectedConditions.visibilityOf(inputObject));
+			
 			if(!value.equals("")) {
+				wait.until(ExpectedConditions.elementToBeClickable(inputObject));
 				inputObject.clear();
 
 				if(!value.equals("\"\"")) {
@@ -323,7 +325,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 	 */
 	public static void webCheckON(WebElement inputObject) {
 		try {
-			wait = new WebDriverWait(driver, Duration.ofSeconds(100));
+			wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 			wait.until(ExpectedConditions.visibilityOf(inputObject));
 			if(!inputObject.isSelected()) {
 				inputObject.click();
@@ -363,7 +365,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 	 */
 	public static void clickElement(WebElement element) {
 		try {
-			wait = new WebDriverWait(driver, Duration.ofSeconds(200));
+			wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 			wait.until(ExpectedConditions.elementToBeClickable(element));
 			element.click();
 		}
@@ -411,12 +413,14 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 		int attempts = 0;
 		while (attempts < 2) {
 			try {
+				wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+				wait.until(ExpectedConditions.elementToBeClickable(webElement));
 				webElement.click();
 				break;
 			}
 			catch (StaleElementReferenceException e) {
 				System.out.println(e.getMessage());
-				sleepTime(5000);
+				//sleepTime(5000);
 			}
 			attempts++;
 		}
@@ -446,7 +450,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 	 */
 	public static void waitUntilElementVisible(WebElement element) {
 		try {
-			wait = new WebDriverWait(driver, Duration.ofSeconds(100));
+			wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 			wait.until(ExpectedConditions.visibilityOf(element));
 		} catch (Exception e) {
 			throw e;
@@ -461,7 +465,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 	 */
 	public static void waitUntilElementsVisible(List<WebElement> element) {
 		try {
-			wait = new WebDriverWait(driver, Duration.ofSeconds(100));
+			wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 			wait.until(ExpectedConditions.visibilityOfAllElements(element));
 		} catch (Exception e) {
 			throw e;
@@ -476,7 +480,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 	 */
 	public static void waitUntilElementClickable(WebElement element) {
 		try {
-			wait = new WebDriverWait(driver, Duration.ofSeconds(200));
+			wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 			wait.until(ExpectedConditions.elementToBeClickable(element));
 
 		} catch (Exception e) {
@@ -643,7 +647,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 		try
 		{
 			donwloadButton.click();
-			sleepTime(1000); // wait for save pop up
+			//sleepTime(1000); // wait for save pop up
 
 			Robot robot = new Robot();
 			robot.setAutoDelay(250);
@@ -738,7 +742,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 					return ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
 				}
 			};
-			WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(100));
+			WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(60));
 			wait.until(pageLoadCondition);
 
 		} catch (Exception e) {
@@ -944,10 +948,10 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 
 		} catch (UnhandledAlertException e) {
 			((JavascriptExecutor) driver).executeScript("window.focus();");
-			sleepTime(500);
+			//sleepTime(500);
 			Robot robot = new Robot();
 			robot.keyPress(KeyEvent.VK_ENTER);
-			sleepTime(500);
+			//sleepTime(500);
 			robot.keyRelease(KeyEvent.VK_ENTER);
 		}
 	}
@@ -1110,7 +1114,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 	 * @return : string date
 	 * @author : Sai Madhuri Aturi
 	 */
-	public  String getDateInSpecifiedFormat(String requiredDateFormat, int days) throws Exception{
+	public  String getAddedDateInSpecifiedFormat(String requiredDateFormat, int days) throws Exception{
 		DateFormat dateFormat = new SimpleDateFormat(requiredDateFormat);
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.DATE, days);
@@ -1219,7 +1223,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 	public static  void webEditTxt(WebElement inputObject,String value) {
 		try
 		{
-				wait = new WebDriverWait(driver, Duration.ofSeconds(100));
+				wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 				wait.until(ExpectedConditions.elementToBeClickable(inputObject));
 				inputObject.sendKeys(value);
 		}
@@ -1286,7 +1290,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 	public static void selectFromDropdownByVisibleText(WebElement element, String option) {
 		try {
 			if(!option.equals("")) {
-				wait = new WebDriverWait(driver, Duration.ofSeconds(100));
+				wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 				wait.until(ExpectedConditions.elementToBeClickable(element));
 				Select select=new Select(element);
 				select.selectByVisibleText(option);
@@ -1320,7 +1324,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 	public static void selectFromDropdownByValue(WebElement element, String option) {
 		try {
 			if(!option.equals("")) {
-				wait = new WebDriverWait(driver, Duration.ofSeconds(200));
+				wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 				wait.until(ExpectedConditions.elementToBeClickable(element));
 				Select select=new Select(element);
 							select.selectByValue(option);
@@ -1338,10 +1342,10 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 	 * @author : Sai Madhuri Aturi
 	 */
 	public static boolean waitForJStoLoad() throws InterruptedException {
-		sleepTime(1000);
+		//sleepTime(1000);
 		Calendar c = Calendar.getInstance();
 		System.out.println(c.get(Calendar.SECOND)+" "+c.get(Calendar.MILLISECOND));
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 		// wait for jQuery to load
 		ExpectedCondition<Boolean> jQueryLoad = new ExpectedCondition<Boolean>() {
 			@Override
@@ -1374,7 +1378,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 
 	public static boolean validateDropdownSelected(WebElement element) {
 		try {
-			wait = new WebDriverWait(driver, Duration.ofSeconds(200));
+			wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 			wait.until(ExpectedConditions.visibilityOf(element));
 			Select select=new Select(element);
 			return select.getFirstSelectedOption().getText() == null;
@@ -1387,7 +1391,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 	}
 	public static String FetchDropdownSelectedValue(WebElement element) {
 		try {
-			wait = new WebDriverWait(driver, Duration.ofSeconds(200));
+			wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 			wait.until(ExpectedConditions.visibilityOf(element));
 			Select select=new Select(element);
 			return select.getFirstSelectedOption().getText();
@@ -1401,7 +1405,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 
 	public static boolean validateTextbox(WebElement element) {
 		try {
-			wait = new WebDriverWait(driver, Duration.ofSeconds(200));
+			wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 			wait.until(ExpectedConditions.visibilityOf(element));
 			return element.getAttribute("value").isEmpty();
 		}
@@ -1412,7 +1416,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 	}
 	public static String FetchTextBoxValuewithText(WebElement element) {
 		try {
-			wait = new WebDriverWait(driver, Duration.ofSeconds(200));
+			wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 			wait.until(ExpectedConditions.visibilityOf(element));
 			if(!(element.getText().isEmpty())) {
 				return element.getText();
@@ -1426,6 +1430,8 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 		public static String FetchTextBoxValuewithattribute(WebElement element,String attributetype) {
 			String attributevalue = null;
 			try {
+				wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+				wait.until(ExpectedConditions.visibilityOf(element));
 				if(element.isEnabled()) {
 					attributevalue=element.getAttribute(attributetype);
 				}
@@ -1438,8 +1444,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 		public static String FetchTextBoxValuewithattributedisabled(WebElement element,String attributetype) {
 			String attributevalue = null;
 			try {
-				attributevalue=element.getAttribute(attributetype);
-				
+				attributevalue=element.getAttribute(attributetype);	
 			}
 			catch(Exception e) {
 				return null;

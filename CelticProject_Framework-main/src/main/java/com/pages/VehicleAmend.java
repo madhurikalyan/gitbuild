@@ -200,13 +200,14 @@ public class VehicleAmend {
 	}
 	
 	public void selectUnitNoFromSuggestions() {
-		
 		AmendVehicle_ChangeVehUnitNotxt.sendKeys(Keys.ARROW_DOWN);
 		AmendVehicle_ChangeVehUnitNotxt.sendKeys(Keys.ENTER);
 	}
 	public void selectUnitNoFromExcel(String ChangeVehicleUnitNoValue) {
 		String text;
+		
 		do {
+			ElementUtil.waitUntilElementClickable(AmendVehicle_ChangeVehUnitNotxt);
 			AmendVehicle_ChangeVehUnitNotxt.sendKeys(Keys.ARROW_DOWN);
 			AmendVehicle_ChangeVehUnitNotxt.sendKeys(Keys.ENTER);
 			 text=AmendVehicle_ChangeVehUnitNotxt.getAttribute("value");
@@ -220,7 +221,7 @@ break;
 	}
 	public void clickSearch() throws InterruptedException {
 		ElementUtil.clickElement(AmendVehicle_Searchbtn);
-		ElementUtil.sleepTime(1000);
+		//ElementUtil.sleepTime(1000);
 	
 	}
 	
@@ -231,7 +232,7 @@ break;
 		ElementUtil.clickElement(AmendVehicle_TVRchk);
 	}
 	public void enterUnladenWeight(String unladenWeightValue) {
-		if(AmendVehicle_UnladenWeighttxt.getAttribute("value") == null) {
+		if(ElementUtil.FetchTextBoxValuewithattribute(AmendVehicle_UnladenWeighttxt,"value") == null) {
 			ElementUtil.webEditTxtChange(AmendVehicle_UnladenWeighttxt, unladenWeightValue);
 		}
 	}

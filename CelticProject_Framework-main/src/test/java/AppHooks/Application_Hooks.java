@@ -3,6 +3,9 @@ package AppHooks;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Properties;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -56,6 +59,9 @@ driver.quit();
 
 @After(order = 1)
 public void tearDown(Scenario scenario) throws Exception {
+	int c=0;
+	c++;
+	String exeTime = new SimpleDateFormat("ddMMYYYYHH").format(new Date());
 
 if (scenario.isFailed()) {
 // take screenshot:
@@ -65,8 +71,14 @@ scenario.attach(sourcePath, "image/png", screenshotName);
 
 TakesScreenshot ts = (TakesScreenshot)driver;
 File source=ts.getScreenshotAs(OutputType.FILE);
-FileUtils.copyFile(source, new File(config.readFailedScreenshotFile(),screenshotName+".png"));
-
+File f = new File(config.readPassedScreenshotFile()+"\\"+exeTime);
+if(f.exists() && !f.isDirectory()) { 
+	FileUtils.copyFile(source, new File(config.readFailedScreenshotFile()+"\\"+exeTime+c,screenshotName+".png"));
+	c++;
+}	
+else {
+FileUtils.copyFile(source, new File(config.readFailedScreenshotFile()+"\\"+exeTime,screenshotName+".png"));
+}
 }
 }
 

@@ -272,9 +272,8 @@ public class FleetTabPage {
 	
 	public void navigateToServiceProvider() throws Exception {
 		//ElementUtil.scrollToViewAndClickElement(Fleettab3);  //click on service Provider under Address details
-		ElementUtil.waitUntilElementClickable(Fleettab3);
 		ElementUtil.clickElement(Fleettab3);
-		ElementUtil.sleepTime(2000);
+		//ElementUtil.sleepTime(2000);
 		
 	}
 
@@ -345,9 +344,7 @@ public void selectCommodityClass(String CommodityClassValue) {
 }
 
 public void enterContactName(String contactnamevalue) {
-	//System.out.println("contact name:"+FleetDetails_ContactNametxt.getAttribute("value"));
 	Boolean valueexists=ElementUtil.validateTextbox(FleetDetails_ContactNametxt);
-	//System.out.println("check boolean status:"+valueexists);
 	if(valueexists== true) {
 	ElementUtil.webEditTxtChange(FleetDetails_ContactNametxt, contactnamevalue);
 	}
@@ -361,12 +358,12 @@ public void enterprimaryPhone(String PrimaryPhonevalue) {
 
 public void clickMailingAddress() throws InterruptedException {
 	ElementUtil.clickElement(Fleettab2);
-	ElementUtil.sleepTime(1000);
+	//ElementUtil.sleepTime(1000);
 }
 
 public void clickOnTimeMailingAddress() throws InterruptedException {
 	ElementUtil.clickElement(Fleettab4);
-	ElementUtil.sleepTime(1000);
+	//ElementUtil.sleepTime(1000);
 }
 
 

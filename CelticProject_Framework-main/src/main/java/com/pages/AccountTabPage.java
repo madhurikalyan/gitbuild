@@ -116,18 +116,15 @@ public class AccountTabPage {
 
 			
 	public void validateAccountstabPresence() {
-		ElementUtil.waitUntilElementVisible(AccountActMainTab);
 		ElementUtil.isPresentAndDisplayed(AccountActMainTab);
 		ElementUtil.highlightElement(driver, AccountActMainTab);
 	}
 		
 	public void checkEmailNotification() {
-		ElementUtil.waitUntilElementClickable(AccountEmailnotification);
 		ElementUtil.webCheckON(AccountEmailnotification);
 	}
 
 	public void checkFaxNotification() {
-		ElementUtil.waitUntilElementClickable(AccountFaxnotification);
 		ElementUtil.webCheckON(AccountFaxnotification);
 	}
 
@@ -160,7 +157,6 @@ public String fetchIFTAAccountNbrlbl() {
 }
 
 public String fetchIFTAAccountNbr() {
-	System.out.println("IFTA Check: "+ElementUtil.FetchTextBoxValuewithattributedisabled(AccountIFTAAccountNotxt,"value"));
 	return ElementUtil.FetchTextBoxValuewithattributedisabled(AccountIFTAAccountNotxt,"value");
 }
 
@@ -355,8 +351,9 @@ public String fetchAccountFaxnotification() {
 }
 
 
+//Validate messages
+
 public String ValidateMessage() {
-	
 	ElementUtil.highlightElement(driver, Account_VerificationMessage);
 	return ElementUtil.FetchTextBoxValuewithText(Account_VerificationMessage);
 }

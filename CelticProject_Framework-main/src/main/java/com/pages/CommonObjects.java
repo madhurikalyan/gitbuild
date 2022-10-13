@@ -14,6 +14,8 @@ public class CommonObjects {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
+	
+	@FindBy(xpath="//div[contains(@class,'validation')]//span") List<WebElement> ErrorMsgsList;
 	@FindBy(xpath="(//div[@class='PageHeader row']//h3)[1]") WebElement lefthdr;  //Account Details,FleetDetails ,Distance Details, Weight Group Selection Details, 
 	//Renewal Vehicle Processing, Vehicle Details
 	@FindBy(xpath="(//div[@class='PageHeader row']//h3)[2]") WebElement Righthdr; //Renew Fleet
@@ -107,11 +109,7 @@ public class CommonObjects {
 		
 		public void expandCommentSection() throws Exception {
 			if(ElementUtil.FetchTextBoxValuewithattribute(Commentssubhdr,"aria-expanded").equalsIgnoreCase("false")) {
-			//ElementUtil.clickElementUsingJavscriptExecutor(Commentssubhdr);
 			ElementUtil.scrollToViewAndClickElement(Commentssubhdr);
-			//ElementUtil.clickElementUsingActions(Commentssubhdr);
-			//ElementUtil.waitUntilElementClickable(Commentssubhdr);
-			//ElementUtil.clickElement(Commentssubhdr);
 			}
 		}		
 		public void enterComments(String commentsvalue) {
@@ -124,24 +122,19 @@ public class CommonObjects {
 			ElementUtil.webCheckON(DeleteAllowedCommentchk);
 		}
 		public void clickAddorUpdateComment() {
-			ElementUtil.waitUntilElementClickable(AddorUpdateCommentbtn);
 			ElementUtil.clickElement(AddorUpdateCommentbtn);
 		}
 		public void clickClearComment() {
-			ElementUtil.waitUntilElementClickable(RefreshCommentbtn);
 			ElementUtil.clickElement(RefreshCommentbtn);
 		}
 		public void clickProceed() throws InterruptedException {
-			ElementUtil.waitUntilElementClickable(Proceedbtn);
 			ElementUtil.clickElement(Proceedbtn);
-			ElementUtil.sleepTime(2000);
+			//ElementUtil.sleepTime(2000);
 		}
 		public void ClickConfirmCancel() {
-			ElementUtil.waitUntilElementClickable(ConfirmCancelbtn);
 			ElementUtil.clickElement(ConfirmCancelbtn);
 		}
 		public void clickRefresh() {
-			ElementUtil.waitUntilElementClickable(Refershbtn);
 			ElementUtil.clickElement(Refershbtn);
 		}
 		public void clickQuit() {
@@ -149,16 +142,12 @@ public class CommonObjects {
 			ElementUtil.clickElement(Quitbtn);
 		}
 		public void clickBack() {
-			ElementUtil.waitUntilElementClickable(Backbtn);
 			ElementUtil.clickElement(Backbtn);
 		}
 		public void clickCancelbtn() {
-			ElementUtil.waitUntilElementClickable(Cancelbtn);
 			ElementUtil.clickElement(Cancelbtn);
 		}
 		public void clickDonebtn() throws Exception {
-			ElementUtil.waitUntilElementClickable(Donebtn);
-		//	ElementUtil.clickElement(Donebtn);
 			ElementUtil.clickElementIgnoreStaleElementReferenceException(Donebtn);
 		}
 		public void validateErrorMessage(String errormessagevalue) {
@@ -173,8 +162,10 @@ public class CommonObjects {
 		}
 	public ArrayList<String> validateinfomsgs() {
 		ArrayList<String> InfoMsgs_Array = new ArrayList<String>();
-		for(int i=0;i<InfoMsgs.size();i++) {
-			InfoMsgs_Array.add(InfoMsgs.get(i).getText());	
+		if(!(ErrorMsgsList.isEmpty())) {
+			for(WebElement ele:ErrorMsgsList) {
+			InfoMsgs_Array.add(ele.getText());	
+			}
 		}
 		return InfoMsgs_Array;
 	}
@@ -184,4 +175,22 @@ public class CommonObjects {
 		checkDeleteAllowed();
 		clickAddorUpdateComment();
 	}
+	public String FetchErrorMessage(String ExpectederrorMessage) {
+		String ActualErrorMessage=null;
+		String ActualcumExpected=null;
+		for(WebElement ele:ErrorMsgsList) {
+			ActualErrorMessage	=ElementUtil.FetchTextBoxValuewithText(ele);
+			System.out.println("MadhuriB"+ActualErrorMessage);
+			if(ActualErrorMessage.equalsIgnoreCase(ExpectederrorMessage)) {
+				System.out.println("MadhuriC");
+				ActualcumExpected=ActualErrorMessage;
+				System.out.println("check2"+ActualcumExpected);
+				return ActualcumExpected;
+			}
+			System.out.println("MadhuriD");
+		}
+		return ActualcumExpected;
+		
+	}
+	
 }

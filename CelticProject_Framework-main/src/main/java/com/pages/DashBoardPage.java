@@ -51,23 +51,13 @@ public DashBoardPage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 	}
 
-	public void validatetitle() {
-		if(driver.getTitle().equalsIgnoreCase("Missouri Department of Transportation -  Enterprise")) {
-			assert true;
-			System.out.println("Current screen is Missouri Department of Transportation -  Enterprise");
-		}
-		else {
-			assert false;
-			System.out.println("Current screen is not Missouri Department of Transportation -  Enterprise");
-		}
-	}
 	public void clickServiceLink() throws InterruptedException {
 		ElementUtil.clickElementUsingActions(DashboardServicesLink);
-		ElementUtil.sleepTime(2000);
+		//ElementUtil.sleepTime(2000);
 	}
 	public void clickIRPLink() throws InterruptedException {
 		ElementUtil.clickElementUsingActions(DashboardIRPLink);
-		ElementUtil.sleepTime(2000);
+		//ElementUtil.sleepTime(2000);
 	}
 
 	public void validateIRPScreen(String title) throws InterruptedException {
@@ -78,53 +68,51 @@ public DashBoardPage(WebDriver driver) {
 		else {
 			assert false;
 		}
-		ElementUtil.sleepTime(2000);
+		//ElementUtil.sleepTime(2000);
 	}
 
 
 	public void clickRenewFleetLink() throws InterruptedException {
 		ElementUtil.clickElementUsingActions(DashboardRenewFleetLink);
-		ElementUtil.sleepTime(2000);
+		//ElementUtil.sleepTime(2000);
 	}
 public void validateMessage(CharSequence SuccessMessageValue) {
 	
 	if(Dashboard_Message.getText().contains(SuccessMessageValue)) { //Transaction is added to cart - 4113 successfully.
 		assert true;
-		System.out.println("Pass");
 	}
 	else {
 		assert false;
-		System.out.println("Fail");
 	}
 	
 }
 public void clickSupplementContinuance() throws InterruptedException {
 	ElementUtil.clickElementUsingActions(Dashboard_SupplementContinuancelnk);
-	ElementUtil.sleepTime(2000);
+	//ElementUtil.sleepTime(2000);
 }
 public void clickFleetEnquiry() throws InterruptedException {
 	ElementUtil.clickElementUsingActions(DashboardFleetEnquiry);
-	ElementUtil.sleepTime(2000);
+	//ElementUtil.sleepTime(2000);
 }
 public void clickVehicleEnquiry() throws InterruptedException {
 	ElementUtil.clickElementUsingActions(DashboardVehicleEnquiry);
-	ElementUtil.sleepTime(2000);
+	//ElementUtil.sleepTime(2000);
 }
 public void clickVehicleSupplementEnquiry() throws InterruptedException {
 	ElementUtil.clickElementUsingActions(DashboardVehicleSupplementEnquiry);
-	ElementUtil.sleepTime(2000);
+	//ElementUtil.sleepTime(2000);
 }
 public void clickSupplementEnquiry() throws InterruptedException {
 	ElementUtil.clickElementUsingActions(DashboardSupplementEnquiry);
-	ElementUtil.sleepTime(2000);
+	//ElementUtil.sleepTime(2000);
 }
 public void clickAccountEnquiry() throws InterruptedException {
 	ElementUtil.clickElementUsingActions(DashboardAccountEnquiry);
-	ElementUtil.sleepTime(2000);
+	//ElementUtil.sleepTime(2000);
 }
 public void clickSupplementDocuments() throws InterruptedException {
 	ElementUtil.clickElementUsingActions(DashboardSupplementDocuments);
-	ElementUtil.sleepTime(2000);
+	//ElementUtil.sleepTime(2000);
 }
 
 
@@ -132,14 +120,11 @@ public void enterAccountNo(String AccountNoValue) {
 	ElementUtil.webEditTxt(AccountNo, AccountNoValue);
 }
 public void validateErrorMessage(String ErrorMessgeValue) {
-	//GENPAY01 : [E] This transaction already exists in the cart.
 	if(Dashboard_ErrorMessge.getText().contains(ErrorMessgeValue)) {
 		assert true;
-		System.out.println("Pass");
 	}
 	else {
 		assert false;
-		System.out.println("Fail");
 	}
 	
 }
@@ -149,7 +134,7 @@ public void clickCartimg() {
 //Reinstatement
 public void clickFleetMore() throws InterruptedException {
 	ElementUtil.clickElement(Dashboard_FleetMore);
-	ElementUtil.sleepTime(2000);
+	//ElementUtil.sleepTime(2000);
 }
 public void clickFleetReinstatement() {
 	ElementUtil.clickElement(Dashoboad_More_FleetReinstatement);

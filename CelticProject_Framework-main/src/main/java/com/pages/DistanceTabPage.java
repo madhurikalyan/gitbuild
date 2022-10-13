@@ -123,19 +123,17 @@ public void enterEstimatedDistance(String EstimatedDistanceValue) {
 }
 
 //Reinstatement
-public void validateDistancetab(String textmsg) {
-	Boolean a=Distance_distanceTab.getText().contains(textmsg);
-	if(a==true) {
+public void validateDistancetab(String textmsg) {	
+	if(ElementUtil.FetchTextBoxValuewithText(Distance_distanceTab).contains(textmsg)==true) {
 		assert true;
 	}
 	else {
-
 		assert false;
 	}
 }
 
 public void validatesubhdr(String hdrvalue) {
-	if(Distance_Reinstatesubhdr.getText().contains(hdrvalue))
+	if(ElementUtil.FetchTextBoxValuewithText(Distance_Reinstatesubhdr).contains(hdrvalue))
 		assert true;
 }
 
@@ -251,15 +249,15 @@ public String DistanceActualDistConfirmation() {
 }
 
 public ArrayList<String> FetchTableHeader() {
+	ElementUtil.waitUntilElementsVisible(DistanceJurisTableHeader);
 	ArrayList<String> Headers_Array = new ArrayList<String>();
-	System.out.println("Size is:"+DistanceJurisTableHeader.size());
 	for(int i=0;i<DistanceJurisTableHeader.size();i++) {
 		Headers_Array.add(ElementUtil.FetchTextBoxValuewithText(DistanceJurisTableHeader.get(i)));
 	}
-	System.out.println("Headers Array is:"+Headers_Array);
 	return Headers_Array;
 }
 public ArrayList<String> FetchTable_Juris() {
+	ElementUtil.waitUntilElementsVisible(Distance_Juris);
 	ArrayList<String> Juris_Array = new ArrayList<String>();
 	for(int i=0;i<Distance_Juris.size();i++) {
 		Juris_Array.add(ElementUtil.FetchTextBoxValuewithText(Distance_Juris.get(i)));
@@ -267,6 +265,7 @@ public ArrayList<String> FetchTable_Juris() {
 	return Juris_Array;
 }
 public ArrayList<String> FetchTable_Percent() {
+	ElementUtil.waitUntilElementsVisible(Distance_percent);
 	ArrayList<String> Percent_Array = new ArrayList<String>();
 	for(int i=0;i<Distance_percent.size();i++) {
 		Percent_Array.add(ElementUtil.FetchTextBoxValuewithText(Distance_percent.get(i)));
@@ -274,6 +273,7 @@ public ArrayList<String> FetchTable_Percent() {
 	return Percent_Array;
 }
 public ArrayList<String> FetchTable_DistanceMiles() {
+	ElementUtil.waitUntilElementsVisible(Distance_Distance);
 	ArrayList<String> DistanceMiles_Array = new ArrayList<String>();
 	for(int i=0;i<Distance_Distance.size();i++) {
 		DistanceMiles_Array.add(ElementUtil.FetchTextBoxValuewithattribute(Distance_Distance.get(i),"value"));
@@ -283,18 +283,15 @@ public ArrayList<String> FetchTable_DistanceMiles() {
 
 
 public String DistanceValidateMessage1() {
-	
 	ElementUtil.highlightElement(driver, Distance_Verificationmsg1);
 	return ElementUtil.FetchTextBoxValuewithText(Distance_Verificationmsg1);
 }
 public String DistanceValidateMessage2() {
-	
 	ElementUtil.highlightElement(driver, Distance_Verificationmsg2);
 	return ElementUtil.FetchTextBoxValuewithText(Distance_Verificationmsg2);
 }
 
 public String DistanceValidateMessage3() {
-	
 	ElementUtil.highlightElement(driver, Distance_Verificationmsg3);
 	return ElementUtil.FetchTextBoxValuewithText(Distance_Verificationmsg3);
 }

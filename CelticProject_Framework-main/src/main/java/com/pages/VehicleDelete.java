@@ -74,7 +74,7 @@ public class VehicleDelete {
 	public  int selectRowinaTable(String Unitvalue) {
 		int i;
 		int j;
-		System.out.println("DeleteVehicle_RowinTable.size() is:"+DeleteVehicle_RowinTable.size());
+		ElementUtil.waitUntilElementsVisible(DeleteVehicle_RowinTable);
 		for(i=1;i<=DeleteVehicle_RowinTable.size();i++) {
 			List<WebElement>cellvalueineachrow=driver.findElements(By.xpath("//table[@id='DeleteVehicleGrid']/tbody/tr["+i+"]//td[contains(@class,'leftAlign')]"));
 			//starting the loop from 2 because the Row contains checkbox for which text doesn't contain in locators
@@ -90,7 +90,6 @@ public class VehicleDelete {
 	public void deleteFewVehicles(String vehiclesCount,String plateStatusValue,String PlateReturnedValue, String AffidavitDocumentValue, String DeleteCommentsValue) {
 		for(int i=1;i<=Integer.valueOf(vehiclesCount);i++) {
 			if(i>Integer.valueOf(ElementUtil.FetchTextBoxValuewithText(Showingentries).indexOf("to "))) {
-				System.out.println("Vehicle about to delete is: "+i);
 				ElementUtil.clickElement(Nextlink);
 				break;
 			}

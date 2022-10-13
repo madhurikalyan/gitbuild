@@ -49,7 +49,6 @@ public class WgtGroupAdd {
 	
 	
 	public void enterWeightGroupNo(String WeightGroupNoValue) {
-		ElementUtil.waitUntilElementClickable(AddWgtGroup_WeightGroupNotxt);
 		ElementUtil.webEditTxtChange(AddWgtGroup_WeightGroupNotxt, WeightGroupNoValue);
 	}
 	public void selectMaxGrossWeight(String MaxGrossWeightValue) {
@@ -67,13 +66,11 @@ public class WgtGroupAdd {
 	
 	public void enterWeight_JuriValue( String Juri) {
 		ElementUtil.waitUntilElementsVisible(EditWgtGroup_JurisList);
-		String GrossWeight=FetchMaxGrossWeight();
-		int GrossWeightint =Integer.valueOf(GrossWeight);
+		int GrossWeightint =Integer.valueOf(FetchMaxGrossWeight());
 		
 		//MO,AL,AR,AZ,CA,CO,CT,DC
 		for(int i=0;i<EditWgtGroup_JurisList.size();i++) {
-			Boolean valuexists=ElementUtil.validateTextbox(EditWgtGroup_JurisList.get(i));
-			if(EditWgtGroup_JurisList.get(i).getText().equalsIgnoreCase(Juri)) { //"MO - MISSOURI"
+			if(ElementUtil.FetchTextBoxValuewithText(EditWgtGroup_JurisList.get(i)).equalsIgnoreCase(Juri)) { //"MO - MISSOURI"
 				ElementUtil.webEditTxtChange(EditWgtGroup_Weighttxt.get(i),String.valueOf(GrossWeightint-1));
 				break;
 			}

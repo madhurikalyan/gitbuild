@@ -1,10 +1,7 @@
 package Parallel;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import org.apache.log4j.Logger;
-import org.testng.Assert;
 import com.pages.AccountTabPage;
 import com.pages.BillingTab;
 import com.pages.CommonObjects;
@@ -27,43 +24,46 @@ import com.pages.WgtGroupAdd;
 import com.qa.factory.Driver_Factory;
 import com.qa.util.ConfigReader;
 import com.qa.util.ElementUtil;
-import com.qa.util.ExcelReader;
+import com.qa.util.ExcelUtil;
 import com.qa.util.Screenshot_Utility;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class RWC_001 {
-	
-	 LoginPage loginpage = new LoginPage(Driver_Factory.getDriver());
-	 DashBoardPage dashboardpage = new DashBoardPage(Driver_Factory.getDriver());
-	 AccountTabPage accounttabpage = new AccountTabPage(Driver_Factory.getDriver());
-	 FleetTabPage fleettabpage = new FleetTabPage(Driver_Factory.getDriver());
-	 FleetPage fleetpage = new FleetPage(Driver_Factory.getDriver());
-	 CommonObjects commonobjects = new CommonObjects(Driver_Factory.getDriver());
-	 DistanceTabPage distancetabpage = new DistanceTabPage(Driver_Factory.getDriver());
-	WgtGroup wgtgroup = new WgtGroup(Driver_Factory.getDriver());
-	WgtGroupAdd wgtgroupadd = new WgtGroupAdd(Driver_Factory.getDriver());
-	VehicleTabPage Vehicletabpage = new VehicleTabPage(Driver_Factory.getDriver());
-	VehicleAmend vehicleAmend =new VehicleAmend(Driver_Factory.getDriver());
-	VehicleDelete vehicleDelete =new VehicleDelete(Driver_Factory.getDriver());
-	BillingTab billingtab = new BillingTab(Driver_Factory.getDriver());
-	Payment pay =new Payment(Driver_Factory.getDriver());
-	PaymentTab paymenttab = new PaymentTab(Driver_Factory.getDriver());
-	InventoryPage inventorypage = new InventoryPage(Driver_Factory.getDriver());
-	InstallmentPage installmentpage = new InstallmentPage(Driver_Factory.getDriver());
-	VehicleAdd vehicleadd= new VehicleAdd(Driver_Factory.getDriver());
-	Financepage financepage =new Financepage(Driver_Factory.getDriver());
-	
+
+	private LoginPage loginpage = new LoginPage(Driver_Factory.getDriver());
+	private DashBoardPage dashboardpage = new DashBoardPage(Driver_Factory.getDriver());
+	private AccountTabPage accounttabpage = new AccountTabPage(Driver_Factory.getDriver());
+	private FleetTabPage fleettabpage = new FleetTabPage(Driver_Factory.getDriver());
+	private FleetPage fleetpage = new FleetPage(Driver_Factory.getDriver());
+	private CommonObjects commonobjects = new CommonObjects(Driver_Factory.getDriver());
+	private DistanceTabPage distancetabpage = new DistanceTabPage(Driver_Factory.getDriver());
+	private WgtGroup wgtgroup = new WgtGroup(Driver_Factory.getDriver());
+	private WgtGroupAdd wgtgroupadd = new WgtGroupAdd(Driver_Factory.getDriver());
+	private VehicleTabPage Vehicletabpage = new VehicleTabPage(Driver_Factory.getDriver());
+	private VehicleAmend vehicleAmend =new VehicleAmend(Driver_Factory.getDriver());
+	private VehicleDelete vehicleDelete =new VehicleDelete(Driver_Factory.getDriver());
+	private BillingTab billingtab = new BillingTab(Driver_Factory.getDriver());
+	private Payment pay =new Payment(Driver_Factory.getDriver());
+	private PaymentTab paymenttab = new PaymentTab(Driver_Factory.getDriver());
+	private InventoryPage inventorypage = new InventoryPage(Driver_Factory.getDriver());
+	private InstallmentPage installmentpage = new InstallmentPage(Driver_Factory.getDriver());
+	private VehicleAdd vehicleadd= new VehicleAdd(Driver_Factory.getDriver());
+	private Financepage financepage =new Financepage(Driver_Factory.getDriver());
+
 	int RowNo=1;
-	
-	ElementUtil eleutil =new ElementUtil();
+
+	private ElementUtil eleutil =new ElementUtil();
 	private Screenshot_Utility screenshotUtil =new Screenshot_Utility();
-	ConfigReader config=new ConfigReader();
-	Logger log = Logger.getLogger(RWC_001.class); 
+	private ConfigReader config=new ConfigReader();
+	private Logger log = Logger.getLogger(RWC_001.class); 
+	private ExcelUtil excelutil=null;
+	//	private ExcelUtil excelutilWrite=null;
 	@Given("User login as a Internal user")
 	public void user_login_as_a_internal_user() throws Exception {
-
+		excelutil = new ExcelUtil(config.readRWCexcel());
+		//excelutilWrite=new ExcelUtil(config.writeexcel());
 		Driver_Factory.getDriver().get(config.readLoginURL());
 		log.info("****************************** Login to the application  *****************************************");
 		screenshotUtil.captureScreenshot("ApplicationLogin");
@@ -89,24 +89,47 @@ public class RWC_001 {
 	}
 	@Then("User will provide all the Account Number Details to start with IRP Transaction")
 	public void user_will_provide_all_the_account_number_details_to_start_with_irp_transaction() throws IOException, Exception {
-		fleetpage.enterAccountNo(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"PreSetup",RowNo,0));
+		fleetpage.enterAccountNo(excelutil.getCellData("PreSetup","AccountNumber",RowNo));
 		log.info("*** Enter Account Number ***");
 		screenshotUtil.captureScreenshot("Entering AccountNumber");
-		fleetpage.enterFleetNo(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"PreSetup",RowNo,2));
+		fleetpage.enterFleetNo(excelutil.getCellData("PreSetup","FleetNumber",RowNo));
 		log.info("*** Enter FleetNo ***");
 		screenshotUtil.captureScreenshot("Entering FleetNumber");
-		fleetpage.enterFleetyear(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"PreSetup",RowNo,3));
+		fleetpage.enterFleetyear(excelutil.getCellData("PreSetup","Fleet Expiration Year",RowNo));
 		log.info("*** Click FleetYear ***");
 		screenshotUtil.captureScreenshot("Entering FleetYear");
 		commonobjects.clickProceed();	
-        
+
 	}
 
-	@Then("User will navigate to account section and fill the data and validate message {string}")
-	public void user_will_navigate_to_account_section_and_fill_the_data_and_validate_message(String expSucces) throws Exception, Exception {
+	@Then("User will navigate to account section and fill the data")
+	public void user_will_navigate_to_account_section_and_fill_the_data_and_validate_message() throws Exception, Exception {
 
 		//Fetch Values
-		ExcelReader.updateExcel("Account", 0, 0, accounttabpage.fetchMCECustomernolbl());
+		/*excelutilWrite.setCellData("Account",accounttabpage.fetchMCECustomernolbl(),0,accounttabpage.fetchMCECustomernolbl());
+		excelutilWrite.setCellData("Account","accounttabpage.fetchMCECustomernolbl()",RowNo,accounttabpage.fetchMCECustomerno());
+		excelutilWrite.setCellData("Account",accounttabpage.fetchRegistrationTypelbl(),0,accounttabpage.fetchRegistrationTypelbl());
+		excelutilWrite.setCellData("Account",accounttabpage.fetchRegistrationTypelbl(), RowNo,accounttabpage.fetchRegistrationType());
+		excelutilWrite.setCellData("Account",accounttabpage.fetchAccountCarrierTypelbl(),0,accounttabpage.fetchAccountCarrierTypelbl());
+		excelutilWrite.setCellData("Account",accounttabpage.fetchAccountCarrierTypelbl(), RowNo,accounttabpage.fetchAccountCarrierType());
+		excelutilWrite.setCellData("Account",accounttabpage.fetchIFTAAccountNbrlbl(),0,accounttabpage.fetchIFTAAccountNbrlbl());
+		excelutilWrite.setCellData("Account",accounttabpage.fetchIFTAAccountNbrlbl(),RowNo,accounttabpage.fetchIFTAAccountNbr());
+		excelutilWrite.setCellData("Account",accounttabpage.fetchAccountCustomerStatuslbl(),0,accounttabpage.fetchAccountCustomerStatuslbl());
+		excelutilWrite.setCellData("Account",accounttabpage.fetchAccountCustomerStatuslbl(),RowNo,accounttabpage.fetchAccountCustomerStatus());
+		excelutilWrite.setCellData("Account",accounttabpage.fetchAccountStreet0lbl(),0,accounttabpage.fetchAccountStreet0lbl());
+		excelutilWrite.setCellData("Account",accounttabpage.fetchAccountStreet0lbl(),RowNo,accounttabpage.fetchAccountStreet0());
+		excelutilWrite.setCellData("Account",accounttabpage.fetchAccountZip0lbl(),0,accounttabpage.fetchAccountZip0lbl());
+		excelutilWrite.setCellData("Account",accounttabpage.fetchAccountZip0lbl(),RowNo,accounttabpage.fetchAccountZip0());
+		excelutilWrite.setCellData("Account",accounttabpage.fetchAccountJur0lbl(),0,accounttabpage.fetchAccountJur0lbl());
+		excelutilWrite.setCellData("Account",accounttabpage.fetchAccountJur0lbl(), RowNo,accounttabpage.fetchAccountJur0());
+		excelutilWrite.setCellData("Account",accounttabpage.fetchAccountCity0lbl(),0,accounttabpage.fetchAccountCity0lbl());
+		excelutilWrite.setCellData("Account",accounttabpage.fetchAccountCity0lbl(),RowNo,accounttabpage.fetchAccountCity0());
+		excelutilWrite.setCellData("Account",accounttabpage.fetchAccountCounty0lbl(),0,accounttabpage.fetchAccountCounty0lbl());
+		excelutilWrite.setCellData("Account",accounttabpage.fetchAccountCounty0lbl(), RowNo,accounttabpage.fetchAccountCounty0());
+		excelutilWrite.setCellData("Account",accounttabpage.fetchAccountCountry0lbl(),0,accounttabpage.fetchAccountCountry0lbl());
+		excelutilWrite.setCellData("Account",accounttabpage.fetchAccountCountry0lbl(),RowNo,accounttabpage.fetchAccountCountry0());*/
+
+		/*ExcelReader.updateExcel("Account", 0, 0, accounttabpage.fetchMCECustomernolbl());
 		ExcelReader.updateExcel("Account",RowNo,0, accounttabpage.fetchMCECustomerno());
 		ExcelReader.updateExcel("Account", 0, 1, accounttabpage.fetchRegistrationTypelbl());
 		ExcelReader.updateExcel("Account", RowNo, 1, accounttabpage.fetchRegistrationType());
@@ -153,7 +176,7 @@ public class RWC_001 {
 		ExcelReader.updateExcel("Account", RowNo, 20, accounttabpage.fetchAccountContactname());
 		ExcelReader.updateExcel("Account", 0, 21, accounttabpage.fetchAccountEmaillbl());
 		ExcelReader.updateExcel("Account", RowNo, 21, accounttabpage.fetchAccountEmail());
-		
+
 		ExcelReader.updateExcel("Account", 0, 22, accounttabpage.fetchAccountPrimaryPhonelbl());
 		ExcelReader.updateExcel("Account", RowNo, 22, accounttabpage.fetchAccountPrimaryPhone());
 		ExcelReader.updateExcel("Account", 0, 23, accounttabpage.fetchAccountAlternatePhonelbl());
@@ -164,30 +187,25 @@ public class RWC_001 {
 		ExcelReader.updateExcel("Account", RowNo, 25, accounttabpage.fetchAccountEmailnotification());
 		ExcelReader.updateExcel("Account", 0, 26, accounttabpage.fetchAccountFaxnotificationlbl());
 		ExcelReader.updateExcel("Account", RowNo, 26, accounttabpage.fetchAccountFaxnotification());
-
+		 */
 		//-------------------------------
-		String actualSuccMessg = accounttabpage.ValidateMessage();
-		Assert.assertEquals(actualSuccMessg, expSucces);
-		log.info(actualSuccMessg);
-		screenshotUtil.captureScreenshot("ValidationMessage");
-		
-
+		log.info(commonobjects.validateinfomsgs());
 		accounttabpage.checkEmailNotification();
-			log.info("*** Check Email Notification ***");
-			screenshotUtil.captureScreenshot("Check EmailNotification");
-			commonobjects.provideComments(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"AccountTab",RowNo,0));
-			log.info("*** Enter Comments ***");
-			screenshotUtil.captureScreenshot("Enter Comments in Account Section");
-			
-			commonobjects.clickProceed();
-//Account Verification Screen
-			commonobjects.clickProceed();
-		}
+		log.info("*** Check Email Notification ***");
+		screenshotUtil.captureScreenshot("Check EmailNotification");
+		commonobjects.provideComments(excelutil.getCellData("AccountTab","Comments",RowNo));
+		log.info("*** Enter Comments ***");
+		screenshotUtil.captureScreenshot("Enter Comments in Account Section");
 
-		@Then("User will navigate to Fleet section and fill the data and validate message {string} {string} {string}")
-	public void user_will_navigate_to_fleet_section_and_fill_the_data_and_validate_message(String expSucces1, String expSucces2, String expSucces3) throws Exception {
-//Fetch Values
-			ExcelReader.updateExcel("Fleet", 0, 0, fleettabpage.fetchRegistrationtypelbl());
+		commonobjects.clickProceed();
+		//Account Verification Screen
+		commonobjects.clickProceed();
+	}
+
+	@Then("User will navigate to Fleet section and fill the data and validate message  {string}")
+	public void user_will_navigate_to_fleet_section_and_fill_the_data_and_validate_message(String expSucces) throws Exception {
+		//Fetch Values
+		/*	ExcelReader.updateExcel("Fleet", 0, 0, fleettabpage.fetchRegistrationtypelbl());
 			ExcelReader.updateExcel("Fleet", RowNo, 0, fleettabpage.fetchRegistrationtype());
 			ExcelReader.updateExcel("Fleet", 0, 1, fleettabpage.fetchfltstatuslbl());
 			ExcelReader.updateExcel("Fleet", RowNo, 1, fleettabpage.fetchfltstatus());
@@ -323,91 +341,74 @@ public class RWC_001 {
 			ExcelReader.updateExcel("Fleet",RowNo, 59, fleettabpage.FleetDetails_InstallmentAgreement());
 			ExcelReader.updateExcel("Fleet", 0, 60, fleettabpage.FleetDetails_PowerOfAttorneylbl());
 			ExcelReader.updateExcel("Fleet",RowNo, 60, fleettabpage.FleetDetails_PowerOfAttorney());
-			
+
 			ExcelReader.updateExcel("Fleet", 0, 61, fleettabpage.FleetDetails_HVUTFormlbl());
 			ExcelReader.updateExcel("Fleet",RowNo, 61, fleettabpage.FleetDetails_HVUTForm());
 			ExcelReader.updateExcel("Fleet", 0, 62, fleettabpage.FleetDetails_PropertyTaxlbl());
 			ExcelReader.updateExcel("Fleet",RowNo, 62, fleettabpage.FleetDetails_PropertyTax());
-			String actualSuccMessg1 = fleettabpage.FleetValidateMessage1();
-			
-			Assert.assertEquals(actualSuccMessg1, expSucces1);
-			
-			log.info(actualSuccMessg1);
-			screenshotUtil.captureScreenshot("ValidateMessage");
-					
-	        String actualSuccMessg2 = fleettabpage.FleetValidateMessage2();
-			
-			Assert.assertEquals(actualSuccMessg2, expSucces2);
-			
-			log.info(actualSuccMessg2);
-			
-			screenshotUtil.captureScreenshot("ValidateMessage");
+		 */		
 
-					
-	     String actualSuccMessg3 = fleettabpage.FleetValidateMessage3();
-			
-			Assert.assertEquals(actualSuccMessg3, expSucces3);
-			
-			log.info(actualSuccMessg3);
-			
-			screenshotUtil.captureScreenshot("ValidateMessage");
 
-					
-			fleettabpage.navigateToServiceProvider();
-			log.info("*** navigateToServiceProvider ***");
-			screenshotUtil.captureScreenshot("Navigate to Service provider");
-			
-			fleettabpage.clickPowerOfAttroney();
-			log.info("*** Click PowerofAttroney ***");
-			screenshotUtil.captureScreenshot("Check Power of Attroney");
-			
-			fleettabpage.enterEmailID(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"FleetTab",RowNo,0));
-			log.info("*** Entering the Emailid ***");
-			screenshotUtil.captureScreenshot("Entering the Emailid");
-			//Expiration Date through Excel
+		log.info(commonobjects.validateinfomsgs());
+		log.info("Message in Fleet Screen"+commonobjects.FetchErrorMessage(expSucces));
+		screenshotUtil.captureScreenshot("Message in Fleet Screen 1");
+
+
+		fleettabpage.navigateToServiceProvider();
+		log.info("*** navigateToServiceProvider ***");
+		screenshotUtil.captureScreenshot("Navigate to Service provider");
+
+		fleettabpage.clickPowerOfAttroney();
+		log.info("*** Click PowerofAttroney ***");
+		screenshotUtil.captureScreenshot("Check Power of Attroney");
+
+		fleettabpage.enterEmailID(excelutil.getCellData("FleetTab","Email iD",RowNo));
+		log.info("*** Entering the Emailid ***");
+		screenshotUtil.captureScreenshot("Entering the Emailid");
+		//Expiration Date through Excel
 		//	fleettabpage.selectExpirationDate(ExcelReader.FetchDataFromSheet(config.readRWCexcel(), "FleetTab", 2, 13));
-			//Expiration Date through System
-			fleettabpage.selectExpirationDate(eleutil.getDateInSpecifiedFormat("MMddYYYY",2));
-			log.info("*** Selecting the Expiration Date ***");
-			screenshotUtil.captureScreenshot("Selecting the Expiration Date");
-			
-			fleettabpage.selectIRPRequirementForm(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"FleetTab",RowNo,1));
-			log.info("*** Selecting the IRPRequirementForm ***");
-			screenshotUtil.captureScreenshot("Selecting the IRPRequirementForm");
-			
-			fleettabpage.selectStatementofUnderstanding(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"FleetTab",RowNo,2));		
-			log.info("*** Selecting StatementofUnderstanding ***");
-			screenshotUtil.captureScreenshot("Selecting StatementofUnderstanding");
-			
-			fleettabpage.selectInstallmentAgreement(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"FleetTab",RowNo,3));
-			log.info("*** Selecting InstallmentAgreement ***");
-			screenshotUtil.captureScreenshot("Selecting InstallmentAgreement");
-			
-			fleettabpage.selectPowerOfAttroney(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"FleetTab",RowNo,4));
-			log.info("*** Selecting PowerOfAttroney ***");
-			screenshotUtil.captureScreenshot("Selecting PowerOfAttroney");
-			
-			fleettabpage.selectHVUTForm(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"FleetTab",RowNo,5));
-			log.info("*** Selecting HVUTForm ***");
-			screenshotUtil.captureScreenshot("Selecting HVUTForm");		
-			
-			fleettabpage.selectPropertyTax(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"FleetTab",RowNo,6));
-			log.info("*** Selecting PropertyTax ***");
-			screenshotUtil.captureScreenshot("Selecting PropertyTax");		
-			
-			commonobjects.provideComments(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"FleetTab",RowNo,7));
-			log.info("*** Enter Comments ***");
-			screenshotUtil.captureScreenshot("Enter Comments in Fleet Section");
-			
-			commonobjects.clickProceed();
-			//Fleet Verification Screen
-			commonobjects.clickProceed();
-		}
-			
-			@Then("User will navigate to Distance section and fill the data and validate message {string} {string} {string}")
-			public void user_will_navigate_to_distance_section_and_fill_the_data_and_validate_message(String expSucces1, String expSucces2, String expSucces3) throws Exception, Exception {
-			    //Fetch Values
-				 ExcelReader.updateExcel("Distance",0,0,distancetabpage.DistanceReportingPeriodFromlbl()); 
+		//Expiration Date through System
+		fleettabpage.selectExpirationDate(eleutil.getAddedDateInSpecifiedFormat("MMddYYYY",2));
+		log.info("*** Selecting the Expiration Date ***");
+		screenshotUtil.captureScreenshot("Selecting the Expiration Date");
+
+		fleettabpage.selectIRPRequirementForm(excelutil.getCellData("FleetTab","IRP Requirements Form",RowNo));
+		log.info("*** Selecting the IRPRequirementForm ***");
+		screenshotUtil.captureScreenshot("Selecting the IRPRequirementForm");
+
+		fleettabpage.selectStatementofUnderstanding(excelutil.getCellData("FleetTab","Statement of Understanding",RowNo));		
+		log.info("*** Selecting StatementofUnderstanding ***");
+		screenshotUtil.captureScreenshot("Selecting StatementofUnderstanding");
+
+		fleettabpage.selectInstallmentAgreement(excelutil.getCellData("FleetTab","Installment Agreement",RowNo));
+		log.info("*** Selecting InstallmentAgreement ***");
+		screenshotUtil.captureScreenshot("Selecting InstallmentAgreement");
+
+		fleettabpage.selectPowerOfAttroney(excelutil.getCellData("FleetTab","Power of Attorney",RowNo));
+		log.info("*** Selecting PowerOfAttroney ***");
+		screenshotUtil.captureScreenshot("Selecting PowerOfAttroney");
+
+		fleettabpage.selectHVUTForm(excelutil.getCellData("FleetTab","HVUT - Form 2290",RowNo));
+		log.info("*** Selecting HVUTForm ***");
+		screenshotUtil.captureScreenshot("Selecting HVUTForm");		
+
+		fleettabpage.selectPropertyTax(excelutil.getCellData("FleetTab","Property Tax",RowNo));
+		log.info("*** Selecting PropertyTax ***");
+		screenshotUtil.captureScreenshot("Selecting PropertyTax");		
+
+		commonobjects.provideComments(excelutil.getCellData("FleetTab","Comments",RowNo));
+		log.info("*** Enter Comments ***");
+		screenshotUtil.captureScreenshot("Enter Comments in Fleet Section");
+
+		commonobjects.clickProceed();
+		//Fleet Verification Screen
+		commonobjects.clickProceed();
+	}
+
+	@Then("User will navigate to Distance section and fill the data and validate message {string} {string}")
+	public void user_will_navigate_to_distance_section_and_fill_the_data_and_validate_message(String expSucces1, String expSucces2) throws Exception, Exception {
+		//Fetch Values
+		/*	 ExcelReader.updateExcel("Distance",0,0,distancetabpage.DistanceReportingPeriodFromlbl()); 
 				  ExcelReader.updateExcel("Distance",RowNo,0,distancetabpage.DistanceReportingPeriodFrom ()); 
 				  ExcelReader.updateExcel("Distance",0,1,distancetabpage.DistanceReportingPeriodTolbl ()); 
 				  ExcelReader.updateExcel("Distance",RowNo,1,distancetabpage.DistanceReportingPeriodTo()); 
@@ -417,22 +418,22 @@ public class RWC_001 {
 				  ExcelReader.updateExcel("Distance",RowNo,3,distancetabpage.DistanceEstimatedDistanceChart()); 
 				  ExcelReader.updateExcel("Distance",0,4,distancetabpage.DistanceOverrideContJurlbl ()); 
 				  ExcelReader.updateExcel("Distance",RowNo,4,distancetabpage.DistanceOverrideContJur()); 
-				  
+
 				  ExcelReader.updateExcel("Distance",0,5,distancetabpage.DistanceEstimatedDistancelbl());
 				  ExcelReader.updateExcel("Distance",RowNo,5,distancetabpage.DistanceEstimatedDistance());
 				  ExcelReader.updateExcel("Distance",0,6,distancetabpage.DistanceActualDistancelbl()); 
 				  ExcelReader.updateExcel("Distance",RowNo,6,distancetabpage.DistanceActualDistance()); 
-				  
+
 				  ExcelReader.updateExcel("Distance",0,7,distancetabpage.DistanceTotalFleetDistancelbl()); 
 				  ExcelReader.updateExcel("Distance",RowNo,7,distancetabpage.DistanceTotalFleetDistance()); 
-				  
+
 				  ExcelReader.updateExcel("Distance",0,8,distancetabpage.DistanceFRPMlgQuetionlbl());
 				  ExcelReader.updateExcel("Distance",RowNo,8,distancetabpage.DistanceFRPMlgQuetion());
 				  ExcelReader.updateExcel("Distance",0,9,distancetabpage.DistanceDistanceTypelbl());
 				  ExcelReader.updateExcel("Distance",RowNo,9,distancetabpage.DistanceDistanceType());
 				  ExcelReader.updateExcel("Distance",0,10,distancetabpage.DistanceActualDistConfirmationlbl());
 				  ExcelReader.updateExcel("Distance",RowNo,10,distancetabpage.DistanceActualDistConfirmation());
-				 
+
 				//Juris Table Verification
 			     	//Juris Table header
 			     	ArrayList<String> TableHeadervalues=distancetabpage.FetchTableHeader();
@@ -445,55 +446,40 @@ public class RWC_001 {
 			    	ArrayList<String>  Percent_values=distancetabpage.FetchTable_Percent();
 			    	int j=0;
 			     	for(int i=0;i<Juris_values.size();i++) {
-			     		
+
 			     	ExcelReader.updateExcel("Distance_Juris", RowNo,i+j,Juris_values.get(i));  //0 0 13
 			     	j++; 
 			     	ExcelReader.updateExcel("Distance_Juris", RowNo,i+j,Distance_values.get(i)); //01 14
 			     	j++;
 			     	ExcelReader.updateExcel("Distance_Juris", RowNo,i+j,Percent_values.get(i)); //02 15
 			     	}
-			     	
-				String actualSuccMessg1 = distancetabpage.DistanceValidateMessage1();
-				
-				Assert.assertEquals(actualSuccMessg1, expSucces1);
-						
-				log.info(actualSuccMessg1);
-				screenshotUtil.captureScreenshot("ValidateMessage");
-	
-				
-				String actualSuccMessg2 = distancetabpage.DistanceValidateMessage2();
-				
-				Assert.assertEquals(actualSuccMessg2, expSucces2);
-				
-				log.info(actualSuccMessg2);
-				screenshotUtil.captureScreenshot("ValidateMessage");
+		 */	
+		log.info(commonobjects.validateinfomsgs());
+		log.info("Message in Distance Screen"+commonobjects.FetchErrorMessage(expSucces1));
 
-				distancetabpage.enterAllDistanceValue(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"DistanceTab",RowNo,1));   	
-				//distancetabpage.enterMODistanceValue(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"DistanceTab",RowNo,0), ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"DistanceTab",RowNo,1));
-				log.info("*** Enter MODistanceValue ***");
-				screenshotUtil.captureScreenshot("Enter MODistanceValue");
-				
-				commonobjects.provideComments(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"DistanceTab",RowNo,2));
-				log.info("*** Enter Comments ***");
-				screenshotUtil.captureScreenshot("Enter Comments in Distance Section");
-				
-		     	commonobjects.clickProceed();
-		     	
-			    String actualSuccMessg3 = distancetabpage.DistanceValidateMessage3();
-				
-				Assert.assertEquals(actualSuccMessg3, expSucces3);
+		screenshotUtil.captureScreenshot("Message in Distance Screen 1");
+		log.info("Message in Distance Screen"+commonobjects.FetchErrorMessage(expSucces2));
+		screenshotUtil.captureScreenshot("Message in Distance Screen1 ");
 
-				log.info(actualSuccMessg3);
-				screenshotUtil.captureScreenshot("ValidateMessage");
-				
-				commonobjects.clickProceed();
+		distancetabpage.enterAllDistanceValue(excelutil.getCellData("DistanceTab","Distance",RowNo));   	
+		//distancetabpage.enterMODistanceValue(excelutil.getCellData("DistanceTab","Juri",RowNo), excelutil.getCellData("DistanceTab","Distance",RowNo));
+		log.info("*** Enter MODistanceValue ***");
+		screenshotUtil.captureScreenshot("Enter MODistanceValue");
 
-			}
+		commonobjects.provideComments(excelutil.getCellData("DistanceTab","Comments",RowNo));
+		log.info("*** Enter Comments ***");
+		screenshotUtil.captureScreenshot("Enter Comments in Distance Section");
+
+		commonobjects.clickProceed();
+
+		commonobjects.clickProceed();
+
+	}
 
 	@Then("User will navigate to Weight group section and fill the data ans validate message {string}")
 	public void user_will_navigate_to_weight_group_section_and_fill_the_data_ans_validate_message(String expSucces) throws Exception {
 		//Fetch Values into Excel
-				ArrayList<String>  headervalues=wgtgroup.FetchTableHeader();
+		/*		ArrayList<String>  headervalues=wgtgroup.FetchTableHeader();
 				for(int i=0;i<headervalues.size();i++) {
 					ExcelReader.updateExcel("WeightGroup",0,i,headervalues.get(i));
 				}
@@ -501,70 +487,64 @@ public class RWC_001 {
 				for(int i=0;i<RowDatavalues.size();i++) {
 					ExcelReader.updateExcel("WeightGroup",RowNo,i,RowDatavalues.get(i));
 				}
-				
-		String actualSuccMessage = wgtgroup.WeightValidatemessage();
-		
-		Assert.assertEquals(actualSuccMessage, expSucces);
-		log.info(actualSuccMessage);
-		screenshotUtil.captureScreenshot("ValidateMessage");
+		 */	
+		log.info(commonobjects.validateinfomsgs());
+		log.info("Message in Weight Group Screen"+commonobjects.FetchErrorMessage(expSucces));
+		screenshotUtil.captureScreenshot("Message in Weight Group Screen 1");
 
-		
 		wgtgroup.clickAddWeightGroup();
 		log.info("*** Click AddweightGroup ***");
 		screenshotUtil.captureScreenshot("Click AddweightGroup");
 		//Add Weight Group Screen
-		String WeightGroupCount_Excel=ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"WeightGrouptab",RowNo,1);
-		
+		String WeightGroupCount_Excel=excelutil.getCellData("WeightGrouptab","TotalWeightGroups",RowNo);
+
 		for(int weightcount=0;weightcount<Integer.valueOf(WeightGroupCount_Excel);weightcount++) {
-		int j=2;
-		wgtgroupadd.selectWeightGroupType(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"WeightGrouptab",RowNo,weightcount+j));
-		
-		log.info("*** Select WeightGroupType ***");
-		screenshotUtil.captureScreenshot("Select WeightGroupType");
-	     j++;
-		wgtgroupadd.enterWeightGroupNo(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"WeightGrouptab",RowNo,weightcount+j));
-		log.info("*** Enter WeightGroup No ***");
-		screenshotUtil.captureScreenshot("Enter WeightGroup No");
-		j++;
-		wgtgroupadd.selectMaxGrossWeight(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"WeightGrouptab",RowNo,weightcount+j));
-		log.info("*** Select MaxGross Weight ***");
-		screenshotUtil.captureScreenshot("Select MaxGross Weight");
-		ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"DistanceTab",RowNo,1);
-		commonobjects.clickProceed();
-		
-		commonobjects.clickProceed();
+			wgtgroupadd.selectWeightGroupType(excelutil.getCellData("WeightGrouptab","WeightGroup Type"+String.valueOf(weightcount),RowNo));
+
+			log.info("*** Select WeightGroupType ***");
+			screenshotUtil.captureScreenshot("Select WeightGroupType");
+			wgtgroupadd.enterWeightGroupNo(excelutil.getCellData("WeightGrouptab","Weight Group No."+String.valueOf(weightcount),RowNo));
+			log.info("*** Enter WeightGroup No ***");
+			screenshotUtil.captureScreenshot("Enter WeightGroup No");
+			wgtgroupadd.selectMaxGrossWeight(excelutil.getCellData("WeightGrouptab","Max Gross Weight"+String.valueOf(weightcount),RowNo));
+			log.info("*** Select MaxGross Weight ***");
+			screenshotUtil.captureScreenshot("Select MaxGross Weight");
+			commonobjects.clickProceed();
+
+			commonobjects.clickProceed();
 		}
-		
+
 		//Weight Group Screen
 		//Edit Existing Weight Group
 		wgtgroup.clickHandimg();
-		
-		String Juri_ExcelCount=ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"WeightJuris",RowNo,0);
-		for(int i=0;i<Integer.valueOf(Juri_ExcelCount);i++) {
-		String Juri_Excel=ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"WeightJuris",RowNo,i+1);
-		wgtgroupadd.enterWeight_JuriValue(Juri_Excel);
-		}
-			commonobjects.clickProceed();
-			// Weight Group Verification Screen
-			commonobjects.clickProceed();
-			
-			//Validating JUR WITH DIFFERENT WEIGHTS
-			String[] weightlist=wgtgroup.validateJurisWeightsedited(); //[AL, AR, AZ]
-			for(int i=0;i<Integer.valueOf(Juri_ExcelCount);i++) {
-				String Juri_Excel=ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"WeightJuris",RowNo,i+1);
-				if(weightlist[i].equalsIgnoreCase(Juri_Excel)){
-					assert true;
-				}
-			}
-			
-			//In Weight Group Screen	
-				commonobjects.clickDonebtn();
-				}
 
-	@Then("User will navigate to add, amend vehicle as per the requirement and Validate the message {string} {string} {string}")
-public void user_will_navigate_to_add_amend_vehicle_as_per_the_requirement_and_validate_the_message(String expSucces, String expSucces2, String expSucces3) throws Exception {
+		String Juri_ExcelCount=excelutil.getCellData("WeightJuris","Juris Count",RowNo);
+		for(int i=0;i<Integer.valueOf(Juri_ExcelCount);i++) {
+			String Juri_Excel=excelutil.getCellData("WeightJuris","Juri"+String.valueOf(i),RowNo);
+			wgtgroupadd.enterWeight_JuriValue(Juri_Excel);
+		}
+		commonobjects.clickProceed();
+		// Weight Group Verification Screen
+		commonobjects.clickProceed();
+	//	ArrayList<String> FetchInfoMessages1=commonobjects.validateinfomsgs();
+		log.info(commonobjects.validateinfomsgs());
+		//Validating JUR WITH DIFFERENT WEIGHTS
+		String[] weightlist=wgtgroup.validateJurisWeightsedited(); //[AL, AR, AZ]
+		for(int i=0;i<Integer.valueOf(Juri_ExcelCount);i++) {
+			String Juri_Excel=excelutil.getCellData("WeightJuris","Juri"+String.valueOf(i),RowNo);
+			if(weightlist[i].equalsIgnoreCase(Juri_Excel)){
+				assert true;
+			}
+		}
+
+		//In Weight Group Screen	
+		commonobjects.clickDonebtn();
+	}
+
+	@Then("User will navigate to Add vehicle and validate the message {string} {string} {string}")
+	public void user_will_navigate_to_Add_vehicle_and_validate_the_message(String expSucces, String expSucces2, String expSucces3) throws Exception {
 		//Fetch values from Vehicle screen
-		ExcelReader.updateExcel("VehicleTab",0,0,Vehicletabpage.FetchAmendVehiclelbl()); 
+		/*	ExcelReader.updateExcel("VehicleTab",0,0,Vehicletabpage.FetchAmendVehiclelbl()); 
 		ExcelReader.updateExcel("VehicleTab",RowNo,0,Vehicletabpage.FetchAmendVehicle ()); 
 		ExcelReader.updateExcel("VehicleTab",0,1,Vehicletabpage.FetchAddVehicleslbl ()); 
 		ExcelReader.updateExcel("VehicleTab",RowNo,1,Vehicletabpage.FetchAddVehicles()); 
@@ -572,179 +552,172 @@ public void user_will_navigate_to_add_amend_vehicle_as_per_the_requirement_and_v
 		ExcelReader.updateExcel("VehicleTab",RowNo,2,Vehicletabpage.FetchdeleteVehicle()); 
 		ExcelReader.updateExcel("VehicleTab",0,3,Vehicletabpage.FetchRenewVehiclelbl()); 
 		ExcelReader.updateExcel("VehicleTab",RowNo,3,Vehicletabpage.FetchRenewVehicle());  
-		int NoofVehiclestoAmend=Integer.valueOf(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"VehicleTab",RowNo,5));
-	if(NoofVehiclestoAmend>0) {
+		 */
+		log.info(commonobjects.validateinfomsgs());
+		int NoofVehiclestoAmend=Integer.valueOf(excelutil.getCellData("VehicleTab","NoofVehiclestoAmend",RowNo));
+		if(NoofVehiclestoAmend>0) {
+
+			Vehicletabpage.clickAmendVehicleRadioButton();
+			log.info("*** Click AmendVehicle RadioButton ***");
+			screenshotUtil.captureScreenshot("Click AmendVehicle RadioButton");
+
+			commonobjects.clickProceed();
+			log.info(commonobjects.validateinfomsgs());
+
+			log.info("Message in Amend Vehicle Screen"+commonobjects.FetchErrorMessage(expSucces));
+			screenshotUtil.captureScreenshot("Message in Amend Vehicle Screen 1");
+
+
+			for(int i=0;i<NoofVehiclestoAmend;i++) {
+				if(NoofVehiclestoAmend>10) {
+					vehicleAmend.selectUnitNoFromSuggestions();
+					log.info("*** Select Unit number ***");
+					screenshotUtil.captureScreenshot("Select Unit number");
+				}
+				else {
+					vehicleAmend.selectUnitNoFromExcel(excelutil.getCellData("VehicleAmendTab","Unit"+String.valueOf(i),RowNo));
+					log.info("*** Enter Unit number ***");
+					screenshotUtil.captureScreenshot("Enter Unit number");
+				}
+				vehicleAmend.clickSearch();
+
+
+				Vehicletabpage.vehiclevalidatemessage();
+				if(i==0){
+					vehicleAmend.selectWeightGroupNo(excelutil.getCellData("WeightGrouptab","Vehicle_WeightGroupNo",RowNo));
+					log.info("*** Enter WeightGroupNo ***");
+					screenshotUtil.captureScreenshot("Enter WeightGroupNo");
+					log.info("Message in Amend Vehicle Screen"+commonobjects.FetchErrorMessage(expSucces2));
+					screenshotUtil.captureScreenshot("Message in Amend Vehicle Screen 2");
+				}
+
+				vehicleAmend.enterUnladenWeight(excelutil.getCellData("VehicleTab","unladenWeight",RowNo));
+				log.info("*** Enter UnladenWeight ***");
+				screenshotUtil.captureScreenshot("Enter UnladenWeight");
+
+
+				vehicleAmend.clickTVR();
+				log.info("*** Click TVR ***");
+				screenshotUtil.captureScreenshot("Click TVR");
+
+				vehicleAmend.selectSafetyChangedd(excelutil.getCellData("VehicleTab","Safety Change",RowNo));
+				log.info("*** Select Safety Changedd ***");
+				screenshotUtil.captureScreenshot("Select Safety Changedd");
+
+				vehicleAmend.selectHVUTForm2290(excelutil.getCellData("VehicleTab","HVUT - Form",RowNo));
+				log.info("*** Select HVUTForm2290 ***");
+				screenshotUtil.captureScreenshot("Select HVUTForm2290");
+
+				vehicleAmend.selectLeaseContract(excelutil.getCellData("VehicleTab","Lease Contract",RowNo));
+				log.info("*** Select LeaseContract ***");
+				screenshotUtil.captureScreenshot("Select LeaseContract");
+
+				vehicleAmend.selectTitleDocument(excelutil.getCellData("VehicleTab","Title Document",RowNo));
+				log.info("*** Select TitleDocument ***");
+				screenshotUtil.captureScreenshot("Select TitleDocument");
+
+				vehicleAmend.selectPlateReturndoc(excelutil.getCellData("VehicleTab","Plate Returned Document",RowNo));
+				log.info("*** Select PlateReturndoc ***");
+				screenshotUtil.captureScreenshot("Select PlateReturndoc");
+
+				vehicleAmend.selectAffidavitDoc(excelutil.getCellData("VehicleTab","Affidavit document",RowNo));
+				log.info("*** Select AffidavitDoc ***");
+				screenshotUtil.captureScreenshot("Select AffidavitDoc");
+
+				vehicleAmend.selectPropertyTax(excelutil.getCellData("VehicleTab","Property Tax",RowNo));
+				log.info("*** Select PropertyTax ***");
+				screenshotUtil.captureScreenshot("Select PropertyTax");
+
+				commonobjects.provideComments(excelutil.getCellData("VehicleTab","Ammend_Comments",RowNo));
+
+				log.info("*** Enter Comments ***");
+				screenshotUtil.captureScreenshot("Enter Comments in Distance Section");
+
+				commonobjects.clickProceed();
+				//Verification Screen
+				commonobjects.clickProceed();
+				log.info("essage in Amend Vehicle Screen "+commonobjects.FetchErrorMessage(expSucces3));
+				screenshotUtil.captureScreenshot("Message in Amend Vehicle Screen");
+
+			}// End of for Loop
+			commonobjects.clickDonebtn();
+			log.info(commonobjects.validateinfomsgs());
+		} //End of vehicle ammend if loop
+	}
+
+
+	@Then("User will Delete vehicle as per the requiremnet and validate the message {string}")
+	public void user_will_delete_vehicle_as_per_the_requiremnet_and_validate_the_message(String expSucces) throws Exception {
+
+		log.info(commonobjects.validateinfomsgs());
+		int NoofVehiclestoDelete=Integer.valueOf(excelutil.getCellData("VehicleTab","NoOfVehiclesToDelete",RowNo));	
+		if(NoofVehiclestoDelete>0) {
+			Vehicletabpage.clickDeleteVehicleRadioButton();
+			log.info("**** Click DeleteVehicle ****");
+			screenshotUtil.captureScreenshot("Click Delete Vehicle");
 			
-		Vehicletabpage.clickAmendVehicleRadioButton();
-		log.info("*** Click AmendVehicle RadioButton ***");
-		screenshotUtil.captureScreenshot("Click AmendVehicle RadioButton");
-					
-		commonobjects.clickProceed();
-		
-		String actualSuccMessage = Vehicletabpage.VehicleValidateMessage1();
-		
-		Assert.assertEquals(actualSuccMessage, expSucces);
+			commonobjects.clickProceed();
+			log.info(commonobjects.validateinfomsgs());
+			//below lines of code for deleting the vehicles from suggestion box
+			String Vehiclescount=excelutil.getCellData("VehicleTab","NoOfVehiclesToDelete",RowNo);
+			String PlateStatus=excelutil.getCellData("VehicleTab","Delete_PlateStatus",RowNo);
+			String PlateReturnedDocument=excelutil.getCellData("VehicleTab","Delete_PlateReturnedDocument",RowNo);
+			String AffidavitDocument=excelutil.getCellData("VehicleTab","Delete_AffidavitDocument",RowNo);
+			String Comments=excelutil.getCellData("VehicleTab","Delete_Comments",RowNo);
 
-		log.info(actualSuccMessage);
-		screenshotUtil.captureScreenshot("ValidateMessage");
-
-		
-		for(int i=0;i<NoofVehiclestoAmend;i++) {
-			if(NoofVehiclestoAmend>10) {
-				vehicleAmend.selectUnitNoFromSuggestions();
-				log.info("*** Select Unit number ***");
-				screenshotUtil.captureScreenshot("Select Unit number");
+			if(NoofVehiclestoDelete>10) {
+				vehicleDelete.deleteFewVehicles(Vehiclescount, PlateStatus, PlateReturnedDocument, AffidavitDocument, Comments);
+				commonobjects.clickProceed();
+				commonobjects.clickProceed();
 			}
 			else {
-				vehicleAmend.selectUnitNoFromExcel(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"VehicleAmendTab",RowNo,i));
-				log.info("*** Enter Unit number ***");
-				screenshotUtil.captureScreenshot("Enter Unit number");
-			}
-			vehicleAmend.clickSearch();
+
+				for(int j=0;j<NoofVehiclestoDelete;j++) {
+					//Enter unit # to filter & delete
+					vehicleDelete.enterUnitNo(excelutil.getCellData("VehicleDeleteTab","Unit"+String.valueOf(j),RowNo));
+					log.info("*** Delete vehicle Enter Unit number ***");
+					screenshotUtil.captureScreenshot("Delete vehicle Enter Unit number");
+
+					vehicleDelete.clickonSearch();
+					vehicleDelete.ClickCheckBoxFromGrid();
+
+					vehicleDelete.selectPlateStatus(PlateStatus);
+					log.info("***DeleteVehicle Select PlateStatus ***");
+					screenshotUtil.captureScreenshot("DeleteVehicle Select PlateStatus");
+
+					vehicleDelete.selectPlateReturnedDocument(PlateReturnedDocument);
+					log.info("***DeleteVehicle Select PlateReturndoc ***");
+					screenshotUtil.captureScreenshot("DeleteVehicle Select PlateReturndoc");
+
+					vehicleDelete.selectAffidavitDocument(AffidavitDocument);
+					log.info("***DeleteVehicle Select AffidavitDoc ***");
+					screenshotUtil.captureScreenshot("DeleteVehicle Select AffidavitDoc");
 
 
-			Vehicletabpage.vehiclevalidatemessage();
-			if(i==0){
-				vehicleAmend.selectWeightGroupNo(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"WeightGrouptab",RowNo,0));
-				log.info("*** Enter WeightGroupNo ***");
-				screenshotUtil.captureScreenshot("Enter WeightGroupNo");
-				String actualSuccMessage2 = Vehicletabpage.VehicleValidateMessage2();
-				Assert.assertEquals(actualSuccMessage2, expSucces2);
-				log.info(actualSuccMessage2);
-				screenshotUtil.captureScreenshot("ValidateMessage");
-			}
-			
-			
-			vehicleAmend.enterUnladenWeight(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"VehicleTab",RowNo,14));
-			log.info("*** Enter UnladenWeight ***");
-			screenshotUtil.captureScreenshot("Enter UnladenWeight");
-			
-			
-			vehicleAmend.clickTVR();
-			log.info("*** Click TVR ***");
-			screenshotUtil.captureScreenshot("Click TVR");
-		
-			vehicleAmend.selectSafetyChangedd(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"VehicleTab",RowNo,29));
-			log.info("*** Select Safety Changedd ***");
-			screenshotUtil.captureScreenshot("Select Safety Changedd");
-			
-			vehicleAmend.selectHVUTForm2290(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"VehicleTab",RowNo,36));
-			log.info("*** Select HVUTForm2290 ***");
-			screenshotUtil.captureScreenshot("Select HVUTForm2290");
-			
-			vehicleAmend.selectLeaseContract(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"VehicleTab",RowNo,37));
-			log.info("*** Select LeaseContract ***");
-			screenshotUtil.captureScreenshot("Select LeaseContract");
-			
-			vehicleAmend.selectTitleDocument(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"VehicleTab",RowNo,38));
-			log.info("*** Select TitleDocument ***");
-			screenshotUtil.captureScreenshot("Select TitleDocument");
-			
-			vehicleAmend.selectPlateReturndoc(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"VehicleTab",RowNo,39));
-			log.info("*** Select PlateReturndoc ***");
-			screenshotUtil.captureScreenshot("Select PlateReturndoc");
-			
-			vehicleAmend.selectAffidavitDoc(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"VehicleTab",RowNo,40));
-			log.info("*** Select AffidavitDoc ***");
-			screenshotUtil.captureScreenshot("Select AffidavitDoc");
-			
-			vehicleAmend.selectPropertyTax(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"VehicleTab",RowNo,41));
-			log.info("*** Select PropertyTax ***");
-			screenshotUtil.captureScreenshot("Select PropertyTax");
-			
-			commonobjects.provideComments(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"VehicleTab",RowNo,42));
-			
-			log.info("*** Enter Comments ***");
-			screenshotUtil.captureScreenshot("Enter Comments in Distance Section");
-			
-			commonobjects.clickProceed();
-			//Verification Screen
-			commonobjects.clickProceed();
-			
-			String actualSuccMessage3 = Vehicletabpage.VehicleValidateMessage3();
-			Assert.assertEquals(actualSuccMessage3, expSucces3);
-			log.info(actualSuccMessage3);
-			screenshotUtil.captureScreenshot("ValidateMessage");
-			
-		}// End of for Loop
+					vehicleDelete.entercomments(Comments);
+					log.info("*** DeleteVehicle Comment ***");
+					screenshotUtil.captureScreenshot("DeleteVehicle Comment");
+
+					commonobjects.clickProceed();
+					commonobjects.clickProceed();
+				}//End of For Loop
+			} //End of if loop
+
+			log.info(commonobjects.validateinfomsgs());
+			log.info("Message in Delete Vehicle Screen"+commonobjects.FetchErrorMessage(expSucces));
+			screenshotUtil.captureScreenshot("Message in Delete Vehicle Screen 1");
+
 			commonobjects.clickDonebtn();
-	} //End of vehicle ammend if loop
-}
-			@Then("User will Delete Vehicle as per the requiremnet and navigate to billing validate the message {string} {string} {string} {string} {string}")
-	public void user_will_delete_vehicle_as_per_the_requiremnet_and_navigate_to_billing_validate_the_message(String expSucces, String expSucces2, String expSucces3, String expSucces4, String expSucces5) throws Exception {
-
-		String actualSuccMessage = vehicleDelete.DeleteValidationMessage();
-		Assert.assertEquals(actualSuccMessage, expSucces);
-		log.info(actualSuccMessage);
-		screenshotUtil.captureScreenshot("ValidateMessage");
-		log.info(actualSuccMessage);
-		screenshotUtil.captureScreenshot("ValidateMessage");
-
-		int NoofVehiclestoDelete=Integer.valueOf(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"VehicleTab",RowNo,0));
-	if(NoofVehiclestoDelete>0) {
-		Vehicletabpage.clickDeleteVehicleRadioButton();
-		log.info("**** Click DeleteVehicle ****");
-		screenshotUtil.captureScreenshot("Click Delete Vehicle");
-		commonobjects.clickProceed();
-		//below lines of code for deleting the vehicles from suggestion box
-		String Vehiclescount=ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"VehicleTab",RowNo,0);
-		String PlateStatus=ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"VehicleTab",RowNo,1);
-		String PlateReturnedDocument=ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"VehicleTab",RowNo,2);
-		String AffidavitDocument=ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"VehicleTab",RowNo,3);
-		String Comments=ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"VehicleTab",RowNo,4);
-		
-		if(NoofVehiclestoDelete>10) {
-			vehicleDelete.deleteFewVehicles(Vehiclescount, PlateStatus, PlateReturnedDocument, AffidavitDocument, Comments);
-		commonobjects.clickProceed();
-		commonobjects.clickProceed();
-}
-		else {
-
-		for(int j=0;j<NoofVehiclestoDelete;j++) {
-			//Enter unit # to filter & delete
-			vehicleDelete.enterUnitNo(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"VehicleDeleteTab",RowNo,j));
-			log.info("*** Delete vehicle Enter Unit number ***");
-			screenshotUtil.captureScreenshot("Delete vehicle Enter Unit number");
-			
-			vehicleDelete.clickonSearch();
-			vehicleDelete.ClickCheckBoxFromGrid();
-			
-			vehicleDelete.selectPlateStatus(PlateStatus);
-			log.info("***DeleteVehicle Select PlateStatus ***");
-			screenshotUtil.captureScreenshot("DeleteVehicle Select PlateStatus");
-			
-			vehicleDelete.selectPlateReturnedDocument(PlateReturnedDocument);
-			log.info("***DeleteVehicle Select PlateReturndoc ***");
-			screenshotUtil.captureScreenshot("DeleteVehicle Select PlateReturndoc");
-
-			vehicleDelete.selectAffidavitDocument(AffidavitDocument);
-			log.info("***DeleteVehicle Select AffidavitDoc ***");
-			screenshotUtil.captureScreenshot("DeleteVehicle Select AffidavitDoc");
-			
-			
-			vehicleDelete.entercomments(Comments);
-			log.info("*** DeleteVehicle Comment ***");
-			screenshotUtil.captureScreenshot("DeleteVehicle Comment");
-			
-				commonobjects.clickProceed();
-				commonobjects.clickProceed();
-		}//End of For Loop
-		} //End of if loop
-
-		String actualSuccMessage2 = vehicleDelete.DeleteValidationMessage();
-				
-				Assert.assertEquals(actualSuccMessage2, expSucces2);
-				log.info(actualSuccMessage2);
-				screenshotUtil.captureScreenshot("ValidateMessage");
-				
-				commonobjects.clickDonebtn();
-	}//End of vehicle Delete if loop
-	//verification screen before going to billing screen -Vehicles cancel from Vehicle List
+			log.info(commonobjects.validateinfomsgs());
+		}//End of vehicle Delete if loop
+	}
+	@Then("User will confirm cancel {string}")
+	public void user_will_confirm_cancel(String expSucces) throws Exception {
+		//verification screen before going to billing screen -Vehicles cancel from Vehicle List
 		Vehicletabpage.clickVehicleList();
 		log.info("*** Click VehicleList ***");
 		screenshotUtil.captureScreenshot("Click VehicleList");
-		
-		vehicleadd.enterUnitNumber(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"VehicleDeleteTab",RowNo,0));
+		vehicleadd	.enterUnitNumber(excelutil.getCellData("VehicleDeleteTab","Unit0",RowNo));
 		log.info("*** Select Unit No ***");
 		screenshotUtil.captureScreenshot("Select Unit No");
 
@@ -754,49 +727,56 @@ public void user_will_navigate_to_add_amend_vehicle_as_per_the_requirement_and_v
 		vehicleadd.Updatevehiclelistselectunit();
 		commonobjects.ClickConfirmCancel();
 		eleutil.handleAlert();
-		
-		String actualSuccMessage3 = vehicleDelete.DeleteValidationMessage();
-		Assert.assertEquals(actualSuccMessage3, expSucces3);
-		log.info(actualSuccMessage3);
-		screenshotUtil.captureScreenshot("ValidateMessage");
+		log.info(commonobjects.validateinfomsgs());
+		log.info("Message in Vehicle Cancel Screen"+commonobjects.FetchErrorMessage(expSucces));
+		screenshotUtil.captureScreenshot("Message in Vehicle Cancel Screen 1");
 
 		commonobjects.clickBack();
-		//verification screen before going to billing screen -Vehicle to be Amended from Vehicle List
-				Vehicletabpage.clickAmendVehicleRadioButton();
-				
-				commonobjects.clickProceed();
-				
-				vehicleAmend.selectUnitNoFromExcel(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"VehicleDeleteTab",RowNo,0));
-				
-				vehicleAmend.clickSearch();
-				
-				vehicleAmend.enterUnladenWeight(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"VehicleTab",RowNo,14));
-				
-				vehicleAmend.clickTVR();
-				vehicleAmend.selectSafetyChangedd(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"VehicleTab",RowNo,29));
-				
-				vehicleAmend.selectHVUTForm2290(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"VehicleTab",RowNo,36));
-				
-				vehicleAmend.selectLeaseContract(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"VehicleTab",RowNo,37));
-				
-				vehicleAmend.selectTitleDocument(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"VehicleTab",RowNo,38));
-				
-				vehicleAmend.selectPlateReturndoc(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"VehicleTab",RowNo,39));
-				
-				vehicleAmend.selectAffidavitDoc(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"VehicleTab",RowNo,40));
-				
-				vehicleAmend.selectPropertyTax(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"VehicleTab",RowNo,41));
+		log.info(commonobjects.validateinfomsgs());
+	}
+	@Then("User will navigate to vehicle list to update existing vehicle")
+	public void user_will_navigate_to_vehicle_list_to_update_existing_vehicle() throws Exception {
 
-				commonobjects.clickProceed();
-				//AMend Verification Screen
-				commonobjects.clickProceed();
-				//To move from Amend Screen to Renewal Vehicle Processing
-				commonobjects.clickDonebtn();
+		//verification screen before going to billing screen -Vehicle to be Amended from Vehicle List
+		Vehicletabpage.clickAmendVehicleRadioButton();
+
+		commonobjects.clickProceed();
+
+		vehicleAmend.selectUnitNoFromExcel(excelutil.getCellData("VehicleDeleteTab","Unit0",RowNo));
+
+		vehicleAmend.clickSearch();
+
+		vehicleAmend.enterUnladenWeight(excelutil.getCellData("VehicleUpdate","unladen Weight",RowNo));
+
+		vehicleAmend.clickTVR();
+		vehicleAmend.selectSafetyChangedd(excelutil.getCellData("VehicleUpdate","Safety Change",RowNo));
+
+		vehicleAmend.selectHVUTForm2290(excelutil.getCellData("VehicleUpdate","HVUT - Form 2290",RowNo));
+
+		vehicleAmend.selectLeaseContract(excelutil.getCellData("VehicleUpdate","Lease Contract",RowNo));
+
+		vehicleAmend.selectTitleDocument(excelutil.getCellData("VehicleUpdate","Title Document",RowNo));
+
+		vehicleAmend.selectPlateReturndoc(excelutil.getCellData("VehicleUpdate","Plate Returned Document",RowNo));
+
+		vehicleAmend.selectAffidavitDoc(excelutil.getCellData("VehicleUpdate","Affidavit document",RowNo));
+
+		vehicleAmend.selectPropertyTax(excelutil.getCellData("VehicleUpdate","Property Tax",RowNo));
+
+		commonobjects.clickProceed();
+		//AMend Verification Screen
+		commonobjects.clickProceed();
+		//To move from Amend Screen to Renewal Vehicle Processing
+		commonobjects.clickDonebtn();
 		//TO move from Renewal Vehicle Processing to Billing Screen						
-				commonobjects.clickDonebtn();
-				
-				//Fetch values from Biling Screen
-				ExcelReader.updateExcel("Billing",0,0,billingtab.fetchRegisterMonthlbl());
+		commonobjects.clickDonebtn();
+
+	}
+	@Then("User will navigate to billing to verify as well to adjust the cost & Waive Fees {string}")
+	public void user_will_navigate_to_billing_to_verify_as_well_to_adjust_the_cost_waive_fees(String expSucces) throws Exception {
+
+		//Fetch values from Biling Screen
+		/*	ExcelReader.updateExcel("Billing",0,0,billingtab.fetchRegisterMonthlbl());
 				  ExcelReader.updateExcel("Billing",RowNo,0,billingtab.fetchRegisterMonth()); 
 				  ExcelReader.updateExcel("Billing",0,1,billingtab.fetchNoOfVehiclesinSupplbl()); 
 				  ExcelReader.updateExcel("Billing",RowNo,1,billingtab.fetchNoOfVehiclesinSupp()); 
@@ -816,7 +796,7 @@ public void user_will_navigate_to_add_amend_vehicle_as_per_the_requirement_and_v
 				  ExcelReader.updateExcel("Billing",RowNo,8,billingtab.fetchPaymentDate());
 				  ExcelReader.updateExcel("Billing",0,9,billingtab.fetchExchangeRatelbl());
 				  ExcelReader.updateExcel("Billing",RowNo,9,billingtab.fetchExchangeRate());
-				  
+
 				  ExcelReader.updateExcel("Billing",0,10,billingtab.fetchManualAdjBaseJurlbl());
 				  ExcelReader.updateExcel("Billing",RowNo,10,billingtab.fetchManualAdjBaseJur());
 				  ExcelReader.updateExcel("Billing",0,11,billingtab.fetchBilling_BatchBillinglbl());
@@ -833,7 +813,7 @@ public void user_will_navigate_to_add_amend_vehicle_as_per_the_requirement_and_v
 				  ExcelReader.updateExcel("Billing",RowNo,17,billingtab.fetchBilling_Email());
 				  ExcelReader.updateExcel("Billing",0,18,billingtab.FetchInvoiceReportTypelbl());
 				  ExcelReader.updateExcel("Billing",RowNo,18,billingtab.fetchBilling_InvoiceReportType());
-				  
+
 				  ArrayList<String> TableHeadervalues=billingtab.FetchTable_Headers();
 			    	for(int i=0;i<TableHeadervalues.size();i++) {
 			    		System.out.println("header value in Billing:"+TableHeadervalues.get(i));
@@ -848,80 +828,73 @@ public void user_will_navigate_to_add_amend_vehicle_as_per_the_requirement_and_v
 			    		j++;
 			    		ExcelReader.updateExcel("Billing",RowNo,i+j,TableFeeAmount.get(i));
 			    	}
+		 */
+		log.info(commonobjects.validateinfomsgs());
+		billingtab.clickTVR();
+		log.info("*** Click TVR ***");
+		screenshotUtil.captureScreenshot("Click TVR");
 
-				billingtab.clickTVR();
-				log.info("*** Click TVR ***");
-				screenshotUtil.captureScreenshot("Click TVR");
-				
-				billingtab.clickInstallmentPlan();
-				log.info("*** Click Installement Plan ***");
-				screenshotUtil.captureScreenshot("Click Installement Plan");
-				
-				billingtab.selectElectronicDeliveryType(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"BillingTab",RowNo,14));
-				log.info("*** Select Electronic DeliveryType ***");
-				screenshotUtil.captureScreenshot("Select Electronic DeliveryType");
-				
-				commonobjects.provideComments(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"BillingTab",RowNo,17));
-				commonobjects.clickProceed();
-				
-				billingtab.enterManualAdjBaseJur(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"BillingTab",RowNo,2));
-				log.info("*** Enter ManualAdjBaseJur ***");
-				screenshotUtil.captureScreenshot("Enter ManualAdjBaseJur");
-				
-				billingtab.clickReCalculate();
-				log.info("*** Click Recalculate ***");
-				screenshotUtil.captureScreenshot("Click Recalculate");
-				
-				String actualSuccMessage4 = billingtab.ValidateMessage2(); //Manual billing
-				Assert.assertEquals(actualSuccMessage4, expSucces4);
-				log.info(actualSuccMessage4);
-				screenshotUtil.captureScreenshot("ValidateMessage");
-				
-				billingtab.expandManualAdjReason();
-				billingtab.enterManualAdjReasonComments(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"BillingTab",RowNo,18));
-				log.info("*** Enter ManualAdjReason Comments ***");
-				screenshotUtil.captureScreenshot("Enter ManualAdjReason Comments");
-				billingtab.clickManualAdjReasonDeleteAllowed();
-				billingtab.clickManualAdjReasonAddorUpdateComments();
-				
-				commonobjects.clickProceed();
-				
-			    billingtab.selectGradeCrossingFee(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"BillingTab",RowNo,6));  
-			    log.info("*** Select GradeCrossingFee ***");
-				screenshotUtil.captureScreenshot("Select GradeCrossingFee");
-				
-				billingtab.clickReCalculate();
-				log.info("*** Click Recalculate ***");
-				screenshotUtil.captureScreenshot("Click Recalculate");
-				
-				String actualSuccMessage5 = billingtab.ValidateMessage2(); //Fee Overriden
-				Assert.assertEquals(actualSuccMessage5, expSucces5);
-				log.info(actualSuccMessage5);
-				screenshotUtil.captureScreenshot("ValidateMessage");
+		billingtab.clickInstallmentPlan();
+		log.info("*** Click Installement Plan ***");
+		screenshotUtil.captureScreenshot("Click Installement Plan");
 
-				//commonobjects.validateErrorMessage(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"BillingTab",RowNo,20));
-				billingtab.expandFeeOverrideReason();
-				
-				billingtab.enterFeeOverrideReasonComments(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"BillingTab",RowNo,19));
-				
-				log.info("*** Enter FeeOverrideReason Comments ***");
-				screenshotUtil.captureScreenshot("Enter FeeOverrideReason Comments");
-				
-				billingtab.clickFeeOverrideReasonDeleteAllowed();
-				billingtab.clickFeeOverrideReasonAddorUpdateComments();
-				
-				billingtab.clickReCalculate();
-				
-				commonobjects.clickProceed();
-				
-				eleutil.CloseFirstChildWindow();
-			
-		}
-			
-		@Then("User will navigate to Payment Tab and fill the requirement and validate message {string} {string} {string}")
-		public void user_will_navigate_to_payment_tab_and_fill_the_requirement_and_validate_message(String expSucces, String expSucces2, String expSucces3) throws Exception, Exception {
-			//Fetch Values from Payment Tab
-			  ExcelReader.updateExcel("PaymentTab",0,0,paymenttab.FetchEnterpriseSystemCreditlbl());
+		billingtab.selectElectronicDeliveryType(excelutil.getCellData("BillingTab","Electronic Delivery Type",RowNo));
+		log.info("*** Select Electronic DeliveryType ***");
+		screenshotUtil.captureScreenshot("Select Electronic DeliveryType");
+
+		commonobjects.provideComments(excelutil.getCellData("BillingTab","Billing_Comments",RowNo));
+		commonobjects.clickProceed();
+
+		billingtab.enterManualAdjBaseJur(excelutil.getCellData("BillingTab","Manual Adj. Base Jur.",RowNo));
+		log.info("*** Enter ManualAdjBaseJur ***");
+		screenshotUtil.captureScreenshot("Enter ManualAdjBaseJur");
+
+		billingtab.clickReCalculate();
+		log.info("*** Click Recalculate ***");
+		screenshotUtil.captureScreenshot("Click Recalculate");
+
+		log.info("Message in Biling Screen"+commonobjects.FetchErrorMessage(expSucces));
+		screenshotUtil.captureScreenshot("Message in Biling Screen 1");
+
+		billingtab.expandManualAdjReason();
+		billingtab.enterManualAdjReasonComments(excelutil.getCellData("BillingTab","ManualReason",RowNo));
+		log.info("*** Enter ManualAdjReason Comments ***");
+		screenshotUtil.captureScreenshot("Enter ManualAdjReason Comments");
+		billingtab.clickManualAdjReasonDeleteAllowed();
+		billingtab.clickManualAdjReasonAddorUpdateComments();
+
+		commonobjects.clickProceed();
+		log.info(commonobjects.validateinfomsgs());
+		billingtab.selectGradeCrossingFee(excelutil.getCellData("BillingTab","Grade Crossing Fee",RowNo));  
+		log.info("*** Select GradeCrossingFee ***");
+		screenshotUtil.captureScreenshot("Select GradeCrossingFee");
+
+		billingtab.clickReCalculate();
+		log.info("*** Click Recalculate ***");
+		screenshotUtil.captureScreenshot("Click Recalculate");
+		log.info(commonobjects.validateinfomsgs());
+		billingtab.expandFeeOverrideReason();
+
+		billingtab.enterFeeOverrideReasonComments(excelutil.getCellData("BillingTab","FeeOverrideReasonComments",RowNo));
+
+		log.info("*** Enter FeeOverrideReason Comments ***");
+		screenshotUtil.captureScreenshot("Enter FeeOverrideReason Comments");
+
+		billingtab.clickFeeOverrideReasonDeleteAllowed();
+		billingtab.clickFeeOverrideReasonAddorUpdateComments();
+
+		billingtab.clickReCalculate();
+		log.info(commonobjects.validateinfomsgs());
+		commonobjects.clickProceed();
+		log.info(commonobjects.validateinfomsgs());
+		eleutil.CloseFirstChildWindow();
+
+	}
+
+	@Then("User will navigate to Payment Tab to input the data and validate message {string} {string} {string}")
+	public void user_will_navigate_to_payment_tab_to_input_the_data_and_validate_message(String expSucces, String expSucces2, String expSucces3) throws Exception {
+		//Fetch Values from Payment Tab
+		/*	  ExcelReader.updateExcel("PaymentTab",0,0,paymenttab.FetchEnterpriseSystemCreditlbl());
 			  ExcelReader.updateExcel("PaymentTab",RowNo,0,paymenttab.FetchEnterpriseSystemCredit()); 
 			  ExcelReader.updateExcel("PaymentTab",0,1,paymenttab.FetchIRPSystemCreditlbl()); 
 			  ExcelReader.updateExcel("PaymentTab",RowNo,1,paymenttab.FetchIRPSystemCredit()); 
@@ -931,14 +904,14 @@ public void user_will_navigate_to_add_amend_vehicle_as_per_the_requirement_and_v
 			  ExcelReader.updateExcel("PaymentTab",RowNo,3,paymenttab.FetchInvoiceNumber ()); 
 			  ExcelReader.updateExcel("PaymentTab",0,4,paymenttab.FetchPaymentReciptDatelbl()); 
 			  ExcelReader.updateExcel("PaymentTab",RowNo,4,paymenttab.FetchPaymentReciptDate()); 
-			  
+
 			  ExcelReader.updateExcel("PaymentTab",0,5,paymenttab.FetchManualAdjBaseJurlbl());
 			  ExcelReader.updateExcel("PaymentTab",RowNo,5,paymenttab.FetchManualAdjBaseJur()); 
 			  ExcelReader.updateExcel("PaymentTab",0,6,paymenttab.FetchBatchCredentiallbl()); 
 			  ExcelReader.updateExcel("PaymentTab",RowNo,6,paymenttab.FetchBatchCredential()); 
 			  ExcelReader.updateExcel("PaymentTab",0,7,paymenttab.FetchWireTransferFeelbl()); 
 			  ExcelReader.updateExcel("PaymentTab",RowNo,7,paymenttab.FetchWireTransferFee()); 
-			
+
 			  ArrayList<String> Payment_TableHeadervalues=paymenttab.FetchTable_Headers();
 		    	for(int i=0;i<Payment_TableHeadervalues.size();i++) {
 		    		ExcelReader.updateExcel("PaymentTab",0,i+8,Payment_TableHeadervalues.get(i));
@@ -952,77 +925,64 @@ public void user_will_navigate_to_add_amend_vehicle_as_per_the_requirement_and_v
 		    		k++;
 		    		ExcelReader.updateExcel("PaymentTab",RowNo,i+k,Payment_TableFeeAmount.get(i));
 		    	}
+		 */
+		
+		log.info(commonobjects.validateinfomsgs());
+		log.info("Message in Payment Screen"+commonobjects.FetchErrorMessage(expSucces));
+		screenshotUtil.captureScreenshot("Message in Payment Screen 1");
+		log.info("Message in Payment Screen"+ commonobjects.FetchErrorMessage(expSucces2));
+		screenshotUtil.captureScreenshot("Message in Payment Screen 2");
 
-			String actualSuccMessage = paymenttab.ValidateMessage1();
-			Assert.assertEquals(actualSuccMessage, expSucces);
-			
-			log.info(actualSuccMessage);
-			screenshotUtil.captureScreenshot("ValidateMessage");
+		log.info("Message in Payment Screen"+commonobjects.FetchErrorMessage(expSucces3));
+		screenshotUtil.captureScreenshot("Message in Payment Screen 3");
 
-			
-			String actualSuccMessage2 = paymenttab.ValidateMessage2();
-			Assert.assertEquals(actualSuccMessage2, expSucces2);
 
-			log.info(actualSuccMessage2);
-			screenshotUtil.captureScreenshot("ValidateMessage");
+		pay.selectElectronicDeliverytype(excelutil.getCellData("Payment","ElectronicDeliveryType",RowNo));
 
-			
-			String actualSuccMessage3 = paymenttab.ValidateMessage3();
-			Assert.assertEquals(actualSuccMessage3, expSucces3);
-			
-			log.info(actualSuccMessage3);
-			screenshotUtil.captureScreenshot("ValidateMessage");
+		log.info("***Select Delivery type***");
+		commonobjects.clickProceed();
+		log.info(commonobjects.validateinfomsgs());
+		paymenttab.clickAddtoCart();
+		log.info("***Click Add to Cart**");
+		log.info(commonobjects.validateinfomsgs());
+		paymenttab.ValidateMessage4();
 
-			
-			pay.selectElectronicDeliverytype(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"Payment",RowNo,4));
-			
-			log.info("***Select Delivery type***");
-			commonobjects.clickProceed();
-			
-			paymenttab.clickAddtoCart();
-			log.info("***Click Add to Cart**");
-			
-			paymenttab.ValidateMessage4();
-			
-			
-		}
 
-		@Then("User will navigate to Supplementary Tab and validate the meesage {string}")
-		public void user_will_navigate_to_supplementary_tab_and_validate_the_meesage(String expSucces) throws Exception, Exception {
+	}
 
-			
-			paymenttab.clicksupplcont();
-			log.info("***Click Supplement continue***");
-			screenshotUtil.captureScreenshot("Click Supplement continue");
+	@Then("User will navigate to supplement continuance and validate the meesage {string}")
+	public void user_will_navigate_to_supplement_continuance_and_validate_the_meesage(String expSucces) throws Exception, Exception {
+		log.info(commonobjects.validateinfomsgs());
+		paymenttab.clicksupplcont();
+		log.info("***Click Supplement continue***");
+		screenshotUtil.captureScreenshot("Click Supplement continue");
 
-			fleetpage.enterAccountNo(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"PreSetup",RowNo,0));
-			//paymenttab.clickandenteraccno(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"PreSetup",1,0));
-			
-			commonobjects.clickProceed(); 
+		fleetpage.enterAccountNo(excelutil.getCellData("PreSetup","AccountNumber",RowNo));
 
-			String actualSuccMessage = paymenttab.ValidateMessage5();
-			Assert.assertEquals(actualSuccMessage, expSucces);	
-			log.info(actualSuccMessage);
-			screenshotUtil.captureScreenshot("Validate Message");
-		}
+		commonobjects.clickProceed(); 
+		log.info(commonobjects.validateinfomsgs());
+		log.info("Message in Fleet Screen"+commonobjects.FetchErrorMessage(expSucces));
+		screenshotUtil.captureScreenshot("Message in Fleet Screen");
 
-		@Then("User will navigate to payment tab and Fill the requirement")
-		public void user_will_navigate_to_payment_tab_and_fill_the_requirement() throws Exception, Exception {
+	}
 
-			//commonobjects.clickQuit();
-			
-			paymenttab.clickverifyaddtocart();
-			
-			log.info("***Verify Cart***");
-			screenshotUtil.captureScreenshot("Verify Cart");
-			pay.clickPayNow();  
-			
-			log.info("***Click Paynow***");
-			screenshotUtil.captureScreenshot("Click Paynow");
-			commonobjects.clickProceed();
-			
-			//Fetch Values from Cart payment
-			ExcelReader.updateExcel("PaymentScreen",0,0,pay.FetchMCECustomerIdlbl());
+	@Then("User will navigate to payment tab and fill the requirement")
+	public void user_will_navigate_to_payment_tab_and_fill_the_requirement() throws Exception, Exception {
+
+		//commonobjects.clickQuit();
+		log.info(commonobjects.validateinfomsgs());
+		paymenttab.clickverifyaddtocart();
+
+		log.info("***Verify Cart***");
+		screenshotUtil.captureScreenshot("Verify Cart");
+		pay.clickPayNow();  
+
+		log.info("***Click Paynow***");
+		screenshotUtil.captureScreenshot("Click Paynow");
+		commonobjects.clickProceed();
+		log.info(commonobjects.validateinfomsgs());
+		//Fetch Values from Cart payment
+		/*		ExcelReader.updateExcel("PaymentScreen",0,0,pay.FetchMCECustomerIdlbl());
 			  ExcelReader.updateExcel("PaymentScreen",RowNo,0,pay.FetchMCECustomerId()); 
 			  ExcelReader.updateExcel("PaymentScreen",0,1,pay.FetchlegalNamelbl()); 
 			  ExcelReader.updateExcel("PaymentScreen",RowNo,1,pay.FetchlegalName()); 
@@ -1036,7 +996,7 @@ public void user_will_navigate_to_add_amend_vehicle_as_per_the_requirement_and_v
 			  ExcelReader.updateExcel("PaymentScreen",RowNo,5,pay.FetchIftaSystemCredit()); 
 			  ExcelReader.updateExcel("PaymentScreen",0,6,pay.FetchOpaSystemCreditlbl());
 			  ExcelReader.updateExcel("PaymentScreen",RowNo,6,pay.FetchOpaSystemCredit());
-			
+
 			  //Invoice Grid
 			  ArrayList<String> TableHeadervalues=pay.FetchTable_Headers();
 		    	for(int i=0;i<TableHeadervalues.size();i++) {
@@ -1047,201 +1007,185 @@ public void user_will_navigate_to_add_amend_vehicle_as_per_the_requirement_and_v
 			  for(int i=0;i<Table_Invoice.size();i++) {
 				  ExcelReader.updateExcel("PaymentScreen",RowNo,i+7,Table_Invoice.get(i));
 		    	}
-			  
+
 			  ExcelReader.updateExcel("PaymentScreen",0,12,pay.FetchTotalAmountDuelbl());
 			  ExcelReader.updateExcel("PaymentScreen",RowNo,12,pay.FetchTotalAmountDue());
-			
-			  paymenttab.clickpaymentadd();
-			for(int i=0; i<2;i++) {
-				String PaymentType=ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"Payment",RowNo,i+1);
-				String PaymentNumberValue=ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"Payment",RowNo,0);
-				pay.selectPaymentType(i,PaymentType);	
-				log.info("***Payment Type***");
-				screenshotUtil.captureScreenshot("Payment Type"+i);
-				
-				
-				pay.enterpaymentNoBasedonType(i,PaymentType,PaymentNumberValue);
-				log.info("***Payment Number based on Payment Type***");
-				screenshotUtil.captureScreenshot("Payment Number based on  Payment Type"+i);
-				
-				if(i==0) {
-					String totalAmount=pay.FetchTotalAmount();
-					String cashAmount=String.valueOf(Double.valueOf(totalAmount)/2);
-					pay.enterPaymentAmountBasedonType(i,PaymentType,cashAmount);
-				}
-				
-				if(i==1) {
-					String RemainingAmount=pay.FetchRemainingBalance();
-					pay.enterPaymentAmountBasedonType(i,PaymentType,RemainingAmount);
-				}
-				log.info("***Payment Amount based on Payment Type***");
-				screenshotUtil.captureScreenshot("Payment Amount based on  Payment Type"+i);
-				
+		 */		
+		paymenttab.clickpaymentadd();
+		for(int i=0; i<2;i++) {
+
+			String PaymentType=excelutil.getCellData("Payment","PaymentType"+i,RowNo);
+			String PaymentNumberValue=excelutil.getCellData("Payment","PaymentChequeNo",RowNo);
+			pay.selectPaymentType(i,PaymentType);	
+			log.info("***Payment Type***");
+			screenshotUtil.captureScreenshot("Payment Type"+i);
+
+
+			pay.enterpaymentNoBasedonType(i,PaymentType,PaymentNumberValue);
+			log.info("***Payment Number based on Payment Type***");
+			screenshotUtil.captureScreenshot("Payment Number based on  Payment Type"+i);
+
+			String totalAmount=pay.FetchTotalAmount();
+			log.info("totalAmount is "+totalAmount);
+			String cashAmount=String.format("%.2f",(Double.valueOf(totalAmount)/2));
+
+			if(i==0) {
+				pay.enterPaymentAmountBasedonType(i,PaymentType,cashAmount);
 			}
-			
-			pay.selectPaymentReceipt(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"Payment",RowNo,3));
-			
-			log.info("***Enter Payment type and amount***");
-			commonobjects.clickProceed();
-			
-			commonobjects.clickProceed();
 
-			eleutil.CloseFirstChildWindow();
-		}
-		  @Then("user will Validate Message {string} {string}{string}{string}")
-public void user_will_validate_message(String expSucces, String expSucces2, String expSucces3, String expSucces4) throws Exception, Exception {
+			if(i==1) {
+				String RemainingAmount=pay.FetchRemainingBalance();
+				pay.enterPaymentAmountBasedonType(i,PaymentType,RemainingAmount);
+			}
+			log.info("***Payment Amount based on Payment Type***");
+			screenshotUtil.captureScreenshot("Payment Amount based on  Payment Type"+i);
 
-			String actualSuccMessage = pay.ValidateMessage1();
-			Assert.assertEquals(actualSuccMessage,expSucces);
-			log.info(actualSuccMessage);
-			screenshotUtil.captureScreenshot("ValidateMessage");
-			
-			String actualSuccMessage2 = pay.ValidateMessage2();
-			Assert.assertEquals(actualSuccMessage2,expSucces2);
-			log.info(actualSuccMessage2);
-			screenshotUtil.captureScreenshot("Validate Message");
-			
-			String actualSuccMessage3 =	pay.ValidateMessage3();
-			Assert.assertEquals(actualSuccMessage3,expSucces3);
-			log.info(actualSuccMessage3);
-			screenshotUtil.captureScreenshot("ValidateMessage");
-			
-			String actualSuccMessage4 =pay.ValidateMessage4();
-			Assert.assertEquals(actualSuccMessage4,expSucces4);
-			log.info(actualSuccMessage4);
-			screenshotUtil.captureScreenshot("ValidateMessage");
 		}
 
-		@Then("User Navigate to inventry tab and fill the data and validate the message {string} {string}")
-		public void user_navigate_to_inventry_tab_and_fill_the_data_and_validate_the_message(String expSucces, String expSucces2) throws Exception, Exception {
-	
-			inventorypage.clickoperation();
-			
+		pay.selectPaymentReceipt(excelutil.getCellData("Payment","Payment receipt",RowNo));
+
+		log.info("***Enter Payment type and amount***");
+		commonobjects.clickProceed();
+
+		commonobjects.clickProceed();
+		log.info(commonobjects.validateinfomsgs());
+		eleutil.CloseFirstChildWindow();
+	}
+	@Then("user will validate message {string} {string}")
+	public void user_will_validate_message(String expSucces, String expSucces2) throws Exception {
+		log.info("Message in Payment Screen "+commonobjects.FetchErrorMessage(expSucces));
+		screenshotUtil.captureScreenshot("Message in Payment Screen 1");
+		log.info("Message in Payment Screen "+commonobjects.FetchErrorMessage(expSucces2));
+		screenshotUtil.captureScreenshot("Message in Payment Screen 2");
+	}
+
+	@Then("User navigate to inventory tab to input the data and validate the message {string} {string}")
+	public void user_navigate_to_inventory_tab_to_input_the_data_and_validate_the_message(String expSucces, String expSucces2) throws Exception {
+
+		inventorypage.clickoperation();
+
 		inventorypage.clickoninventory();
-		
+
 		inventorypage.clicknewinventory();
-	
-	log.info("***Click Inventory***");
-	screenshotUtil.captureScreenshot("Click Inventory");
-		inventorypage.selectnewinventorytype(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"InventoryTab",RowNo,0));
-		
-		
-		String actualSuccMessage = inventorypage.ValidateMessage();
-		Assert.assertEquals(actualSuccMessage,expSucces);
-		log.info(actualSuccMessage);
-		screenshotUtil.captureScreenshot("Validate Message");
-		
-		inventorypage.selectnewsubinventorytype(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"InventoryTab",RowNo,1));
-		
-		inventorypage.enterfromno(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"InventoryTab",RowNo,2)); //modify
-		
-		inventorypage.enterquantity(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"InventoryTab",RowNo,3));
-		
-		inventorypage.enteryear(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"InventoryTab",RowNo,4));
-		
-		
+
+		log.info("***Click Inventory***");
+		screenshotUtil.captureScreenshot("Click Inventory");
+		log.info(commonobjects.validateinfomsgs());
+		inventorypage.selectnewinventorytype(excelutil.getCellData("InventoryTab","Inventory_Newintype",RowNo));
+		log.info("Message in Inventory Screen"+commonobjects.FetchErrorMessage(expSucces));
+
+		screenshotUtil.captureScreenshot("Message in Inventory Screen");
+
+		inventorypage.selectnewsubinventorytype(excelutil.getCellData("InventoryTab","Inventory_Subtype",RowNo));
+
+		inventorypage.enterfromno(excelutil.getCellData("InventoryTab","FromNo",RowNo)); //modify
+
+		inventorypage.enterquantity(excelutil.getCellData("InventoryTab","Quantity",RowNo));
+
+		inventorypage.enteryear(excelutil.getCellData("InventoryTab","Year",RowNo));
+
+
 		log.info("***Enter details for new inventory***");
 		screenshotUtil.captureScreenshot("Enter details for new inventory");
 		commonobjects.clickProceed();
-		
+
 		commonobjects.clickProceed();
-		
-
-		String actualSuccMessage2 = inventorypage.ValidateMessage();
-		Assert.assertEquals(actualSuccMessage2,expSucces2);
-		
-		log.info(actualSuccMessage2);
-		screenshotUtil.captureScreenshot("Validate Message");
+		log.info(commonobjects.validateinfomsgs());
+		log.info("Message in Payment Screen"+commonobjects.FetchErrorMessage(expSucces2));
+		screenshotUtil.captureScreenshot("Message in Inventory Screen 2");
 		commonobjects.clickQuit();
+	}
+	@Then("Assign the inventory to proceed further {string} {string}")
+	public void assign_the_inventory_to_proceed_further(String expSucces, String expSucces2) throws Exception, Exception {
+
 		inventorypage.clickAssignInventory();
-	
-		inventorypage.selectnewinventorytype(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"InventoryTab",RowNo,0));
-		
-	inventorypage.Highlightthemessage();
-	inventorypage.selectnewsubinventorytype(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"InventoryTab",RowNo,1));
-	
-	inventorypage.enterfromno(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"InventoryTab",RowNo,2)); //modify
-	
-	inventorypage.enterquantity(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"InventoryTab",RowNo,3));
-	
-	inventorypage.enteryear(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"InventoryTab",RowNo,4));
-	
-	log.info("***Enter details in Assign Inventory***");
-	screenshotUtil.captureScreenshot("Enter details in Assign Inventory");
-	
-	commonobjects.clickProceed();
-	
-	commonobjects.clickProceed();
-	
-	inventorypage.Highlightthemessage();
-	
-	commonobjects.clickQuit();
-		}
+		log.info(commonobjects.validateinfomsgs());
+		inventorypage.selectnewinventorytype(excelutil.getCellData("InventoryTab","Inventory_Newintype",RowNo));
+		log.info("Message in Inventory Screen "+commonobjects.FetchErrorMessage(expSucces));
 
-		@Then("user navite to Financetab and navigate to installment payment and fill the data and valite the message {string} {string}")
-		public void user_navite_to_financetab_and_navigate_to_installment_payment_and_fill_the_data_and_valite_the_message(String expSucces, String expSucces2) throws Exception, Exception {
+		screenshotUtil.captureScreenshot("Message in Inventory Screen 1");
 
-			
-			financepage.clickfinance();
-			
-			financepage.clickpostpayment();
-			
-			financepage.enterMCEid(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"PreSetup",RowNo,1));
-			
-			financepage.clicksearch();
-			
-			financepage.clickoncartid();
-			
-			financepage.clickservice();
-			
-			financepage.clickIRP();
-			
-			financepage.clickinstallmentpayment();
-			
-			financepage.clickandenterAccountNo(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"PreSetup",RowNo,0));
-			
-			financepage.clickandenterfleet(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"PreSetup",RowNo,2));
-			
-			financepage.clickandenterfleetyear(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"PreSetup",RowNo,5));
-			
-			commonobjects.clickProceed();
-		
-			financepage.clickgrid();
-			
-			commonobjects.clickProceed();
-			
-			commonobjects.clickProceed();
-			
-			financepage.selectpaymenttype(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"Payment",RowNo,1));
-			
-			String totalAmount=pay.FetchTotalAmount();
-			
-			financepage.entercashamount(totalAmount);
-			
-			pay.selectPaymentReceipt(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"Payment",RowNo,3));
-			
-			log.info("Enter the details in installement payment and proceed");
-			screenshotUtil.captureScreenshot("Enter the details in installement payment and proceed");
-			
-			commonobjects.clickProceed();
-			
-			commonobjects.clickProceed();
+		inventorypage.selectnewsubinventorytype(excelutil.getCellData("InventoryTab","Inventory_Subtype",RowNo));
+
+		inventorypage.enterfromno(excelutil.getCellData("InventoryTab","FromNo",RowNo)); //modify
+
+		inventorypage.enterquantity(excelutil.getCellData("InventoryTab","Quantity",RowNo));
+
+		inventorypage.enteryear(excelutil.getCellData("InventoryTab","Year",RowNo));
+
+		log.info("***Enter details in Assign Inventory***");
+		screenshotUtil.captureScreenshot("Enter details in Assign Inventory");
+
+		commonobjects.clickProceed();
+
+		commonobjects.clickProceed();
+		log.info(commonobjects.validateinfomsgs());
+		log.info("Message in Inventory Screen"+commonobjects.FetchErrorMessage(expSucces2));
+		screenshotUtil.captureScreenshot("Message in Inventory Screen 2");
 
 
-			String actualSuccMessage = installmentpage.ValidateMessage1();
-			Assert.assertEquals(actualSuccMessage,expSucces);
-			log.info(actualSuccMessage);
-			screenshotUtil.captureScreenshot("Validate Message");
-			
-			String actualSuccMessage2 = installmentpage.ValidateMessage2();
-			Assert.assertEquals(actualSuccMessage2,expSucces2);
-
-			log.info(actualSuccMessage2);
-			screenshotUtil.captureScreenshot("Validate Message");
-					
+		commonobjects.clickQuit();
 	}
 
-		
+	@Then("user navigate to post payment for 2nd installment payment and fill the data and validate the message {string} {string}")
+	public void user_navigate_to_post_payment_for_2nd_installment_payment_and_fill_the_data_and_validate_the_message(String expSucces, String expSucces2) throws Exception {
+
+
+		financepage.clickfinance();
+
+		financepage.clickpostpayment();
+		log.info(commonobjects.validateinfomsgs());
+		financepage.enterMCEid(excelutil.getCellData("PreSetup","MCENumber",RowNo));
+
+		financepage.clicksearch();
+
+		financepage.clickoncartid();
+
+		financepage.clickservice();
+
+		financepage.clickIRP();
+
+		financepage.clickinstallmentpayment();
+
+		financepage.clickandenterAccountNo(excelutil.getCellData("PreSetup","AccountNumber",RowNo));
+
+		financepage.clickandenterfleet(excelutil.getCellData("PreSetup","FleetNumber",RowNo));
+
+		financepage.clickandenterfleetyear(excelutil.getCellData("PreSetup","Vehicle and Installment Fleet Expiration Year",RowNo));
+
+		commonobjects.clickProceed();
+
+		financepage.clickgrid();
+
+		commonobjects.clickProceed();
+
+		commonobjects.clickProceed();
+		log.info(commonobjects.validateinfomsgs());
+		financepage.selectpaymenttype(excelutil.getCellData("Payment","PaymentType0",RowNo));
+
+		String totalAmount=pay.FetchTotalAmount();
+
+		financepage.entercashamount(totalAmount);
+
+		pay.selectPaymentReceipt(excelutil.getCellData("Payment","Payment receipt",RowNo));
+
+		log.info("Enter the details in installement payment and proceed");
+		screenshotUtil.captureScreenshot("Enter the details in installement payment and proceed");
+
+		commonobjects.clickProceed();
+
+		commonobjects.clickProceed();
+		log.info(commonobjects.validateinfomsgs());
+		log.info("Message in post Payment Screen"+commonobjects.FetchErrorMessage(expSucces));
+
+		screenshotUtil.captureScreenshot("Message in post Payment Screen 1");
+		log.info("Message in Post Payment Screen "+commonobjects.FetchErrorMessage(expSucces2));
+
+		screenshotUtil.captureScreenshot("Message in post Payment Screen 2");
+
 	}
-	
-	
+
+
+}
+
+

@@ -122,7 +122,7 @@ public String VehicleValidateMessage1() {
 
 
 public String VehicleValidateMessage2() {
-	 
+	 ElementUtil.waitUntilElementVisible(Vehicle_Verificationmessage2);
 	 ElementUtil.highlightElement(driver, Vehicle_Verificationmessage2);
 	 return ElementUtil.FetchTextBoxValuewithText(Vehicle_Verificationmessage2);
 }

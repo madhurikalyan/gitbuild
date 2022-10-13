@@ -81,14 +81,12 @@ public class PaymentTab {
 public void clickPayNow() throws InterruptedException {
 	ElementUtil.scrollIntoView(Payment_PayNowbtn);
 	ElementUtil.clickElement(Payment_PayNowbtn);
-	ElementUtil.sleepTime(2000);
+	//ElementUtil.sleepTime(2000);
 }
 public void clickAddtoCart() {
-	ElementUtil.waitUntilElementClickable(Payment_AddToCartbtn);
 	ElementUtil.clickElement(Payment_AddToCartbtn);
 }	
 public void clickpaymentadd() {
-	ElementUtil.waitUntilElementClickable(PaymentAdd);
 	ElementUtil.clickElement(PaymentAdd);
 }
 /*public void clickandenteraccno(String accountnovalue) {
@@ -96,7 +94,6 @@ ElementUtil.clickElement(Accountno);
 ElementUtil.webEditTxtChange(Accountno,accountnovalue);
 }*/
 public void clicksupplcont() {
-	ElementUtil.waitUntilElementClickable(Supplement_Cont);
 	ElementUtil.clickElement(Supplement_Cont);
 }
 public void validatemessage(String TransactionexistMeesage) {
@@ -104,7 +101,6 @@ public void validatemessage(String TransactionexistMeesage) {
 	Assert.assertEquals(Addtocart_Msg.getText(), TransactionexistMeesage);
 }
 public void clickverifyaddtocart() {
-	ElementUtil.waitUntilElementClickable(VerifyAddtocart);
 	ElementUtil.clickElement(VerifyAddtocart);
 }
 
@@ -168,7 +164,6 @@ public ArrayList<String> FetchTable_Headers() {
 	for(int i=0;i<Billing_GridHeaders.size();i++) {
 		Headers_array.add(ElementUtil.FetchTextBoxValuewithText(Billing_GridHeaders.get(i)));
 	}
-	System.out.println("Headers is Payment tab is:"+Headers_array);
 	return Headers_array;
 }
 
@@ -177,7 +172,6 @@ public ArrayList<String> FetchTable_FeeType() {
 	for(int i=0;i<Billing_FeeType.size();i++) {
 		FeeType_Array.add(ElementUtil.FetchTextBoxValuewithattribute(Billing_FeeType.get(i),"value"));
 	}
-	System.out.println("Fee Type is Payment tab is:"+FeeType_Array);
 	return FeeType_Array;
 }
 public ArrayList<String> FetchTable_FeeAmount() {
@@ -185,7 +179,6 @@ public ArrayList<String> FetchTable_FeeAmount() {
 	for(int i=0;i<Billing_FeeAmount.size();i++) {
 		FeeAmount_Array.add(ElementUtil.FetchTextBoxValuewithattribute(Billing_FeeAmount.get(i),"value"));
 	}
-	System.out.println("Fee Amount is Payment tab is:"+FeeAmount_Array);
 	return FeeAmount_Array;
 }
 

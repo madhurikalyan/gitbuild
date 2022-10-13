@@ -152,8 +152,6 @@ public String SupplementDocuments_PowerOfAttorney() {
 		ElementUtil.selectFromDropdownByVisibleText(SupplementDocuments_InstallmentAgreement, Installment);
 	}
 	public void SelectPowerofattony(String PowerofAttony) {
-	
 	ElementUtil.selectFromDropdownByVisibleText(SupplementDocuments_Powerofattony, PowerofAttony);
-	
 }
 }
