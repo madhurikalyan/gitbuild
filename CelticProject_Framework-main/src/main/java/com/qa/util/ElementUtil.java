@@ -9,15 +9,9 @@ package com.qa.util;
  *
  */
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -28,7 +22,6 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 import java.io.File;
-import java.io.FileInputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.Connection;
@@ -68,30 +61,21 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
-import com.qa.factory.Driver_Factory;
+import com.qa.factory.DriverFactory;
 
 
 public class ElementUtil {
 	private static ElementUtil elementUtil;
-	private FileReader reader;
-	private JSONParser jsonparser = new JSONParser();
-	private JSONObject jsonObject = null;
-	String keyvalue=null;
-	public static WebDriver driver=Driver_Factory.getDriver();
-	//public static Assertion softAssert;
+	public static WebDriver driver=DriverFactory.getDriver();
 	public static WebDriverWait wait;
 	public static String mainWindow;
-	public static ExtentHtmlReporter htmlReporter;
-	public static ExtentReports extentReport;
-	
-public static ElementUtil getInstance(){
+	ConfigReader config=new ConfigReader();
 
+	
+	public static ElementUtil getInstance(){
 		if(elementUtil==null){
 			elementUtil= new ElementUtil();
 		}
-
 		return elementUtil;
 }
 public static int getPageCount(PDDocument doc) {
@@ -129,9 +113,10 @@ return content;
 	 * @author : SaiMadhuri Aturi
 	 */
 	public  JSONObject getJSONObjectfromJSONFile() throws IOException, ParseException {
-
+		 JSONParser jsonparser = new JSONParser();
+		  JSONObject jsonObject = null;
 		try {
-			reader = new FileReader(ConfigReader.readjson());
+			 FileReader reader = new FileReader(config.readjson());
 			Object obj = jsonparser.parse(reader);
 			jsonObject = (JSONObject)obj;
 		} catch (FileNotFoundException e) {
@@ -1460,13 +1445,13 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 		 * @return : result of the query in the form of resultset
 		 * @author : SaiMadhuri Aturi
 		 */
-		public static ResultSet executeSelectQuery(String query, String applicationInstance, String username, String password) throws Exception{
+		public  ResultSet executeSelectQuery(String query, String applicationInstance, String username, String password) throws Exception{
 
 			ResultSet rs = null;
 			Connection con = null;
 			try {
 				// String jdbcUrl = "jdbc:mysql://localhost:3306/BORAJI";
-				Class.forName(ConfigReader.readJdbcDriver());
+				Class.forName(config.readJdbcDriver());
 				 con = DriverManager.getConnection(applicationInstance,username,password);
 				Statement st = con.createStatement();
 				//"INSERT INTO EMPLOYEE (ID,FIRST_NAME,LAST_NAME,STAT_CD) "+ "VALUES (1,'Lokesh','Gupta',5)" --For Insertion
@@ -1488,10 +1473,10 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 		 * @return : NA
 		 * @author : SaiMadhuri Aturi
 		 */
-		public static void executeUpdateQuery(String query, String applicationInstance, String username, String password) throws Exception {
+		public  void executeUpdateQuery(String query, String applicationInstance, String username, String password) throws Exception {
 			Connection con = null;
 			try {
-				Class.forName(ConfigReader.readJdbcDriver());
+				Class.forName(config.readJdbcDriver());
 				 con=DriverManager.getConnection(applicationInstance,username,password);
 				Statement st = con.createStatement();
 				//DELETE FROM EMPLOYEE WHERE ID >= 1  --For Deletion

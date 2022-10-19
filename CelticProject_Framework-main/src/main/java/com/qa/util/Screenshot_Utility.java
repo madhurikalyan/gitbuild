@@ -6,9 +6,9 @@ import java.util.Date;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import com.qa.factory.Driver_Factory;
+import com.qa.factory.DriverFactory;
 
-public class Screenshot_Utility extends Driver_Factory{
+public class Screenshot_Utility extends DriverFactory{
 	
 	private ConfigReader config =new ConfigReader();
 public  void captureScreenshot(String screenshotName) throws Exception {

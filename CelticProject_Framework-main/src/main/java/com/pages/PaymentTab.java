@@ -75,7 +75,9 @@ public class PaymentTab {
 @FindBy(xpath="//input[@id='paymentVos_0__PaymentAmount']") WebElement Payment_Amount;
 
 @FindBy(xpath="//th[contains(@class,'sorting_disabled')and not( contains(@class,'hidden'))]") List<WebElement> Billing_GridHeaders;
+@FindBy(xpath="//th[contains(@class,'sorting_disabled')and contains(text(),'Type')]") WebElement Billing_GridFeeType;
 @FindBy(xpath="//input[contains(@id,'FeeDetailRows_')and contains(@id,'_FeeDescription')]") List<WebElement> Billing_FeeType;
+@FindBy(xpath="//th[contains(@class,'sorting_disabled')and contains(text(),'Amt')]") WebElement Billing_GridFeeAmount;
 @FindBy(xpath="//input[contains(@id,'FeeDetailRows_')and contains(@id,'_FeeAmount')]") List<WebElement> Billing_FeeAmount;
 
 public void clickPayNow() throws InterruptedException {
@@ -166,50 +168,35 @@ public ArrayList<String> FetchTable_Headers() {
 	}
 	return Headers_array;
 }
+public String FetchHeaderFeeType() {
+	return ElementUtil.FetchTextBoxValuewithText(Billing_GridFeeType);
+}
 
 public ArrayList<String> FetchTable_FeeType() {
 	ArrayList<String> FeeType_Array = new ArrayList<String>();
 	for(int i=0;i<Billing_FeeType.size();i++) {
-		FeeType_Array.add(ElementUtil.FetchTextBoxValuewithattribute(Billing_FeeType.get(i),"value"));
+		FeeType_Array.add(ElementUtil.FetchTextBoxValuewithattributedisabled(Billing_FeeType.get(i),"value"));
 	}
 	return FeeType_Array;
 }
+public String FetchHeaderFeeAmount() {
+	return ElementUtil.FetchTextBoxValuewithText(Billing_GridFeeAmount);
+}
+
 public ArrayList<String> FetchTable_FeeAmount() {
 	ArrayList<String> FeeAmount_Array = new ArrayList<String>();
 	for(int i=0;i<Billing_FeeAmount.size();i++) {
-		FeeAmount_Array.add(ElementUtil.FetchTextBoxValuewithattribute(Billing_FeeAmount.get(i),"value"));
+		FeeAmount_Array.add(ElementUtil.FetchTextBoxValuewithattributedisabled(Billing_FeeAmount.get(i),"value"));
 	}
 	return FeeAmount_Array;
 }
 
-public String ValidateMessage1() {
-	ElementUtil.highlightElement(driver, Payment_Validationmessage1);
-	return ElementUtil.FetchTextBoxValuewithText(Payment_Validationmessage1);
-	
+
+public String FetchElectronicDeliveryTypelbl() {
+	return ElementUtil.FetchTextBoxValuewithText(Payment_ElectronicDeliveryTypelbl);
 }
-public String ValidateMessage2() {
-	ElementUtil.highlightElement(driver, Payment_Validationmessage2);
-	return ElementUtil.FetchTextBoxValuewithText(Payment_Validationmessage2);
-	
+public String FetchElectronicDeliveryType() {
+	return ElementUtil.FetchDropdownSelectedValue(Payment_ElectronicDeliveryTypedd);
 }
-public String ValidateMessage3() {
-	ElementUtil.highlightElement(driver, Payment_Validationmessage3);
-	return ElementUtil.FetchTextBoxValuewithText(Payment_Validationmessage3);
-	
-}
-
-public void ValidateMessage4() {
-	ElementUtil.highlightElement(driver, Payment_Validationmessage4);
-}
-
-public String ValidateMessage5() {
-	ElementUtil.highlightElement(driver, Supplement_Validationmessage5);
-	return ElementUtil.FetchTextBoxValuewithText(Supplement_Validationmessage5);
-	
-}
-
-
-
-
 
 }

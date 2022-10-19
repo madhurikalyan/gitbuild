@@ -1,20 +1,12 @@
 package com.qa.util;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DateUtil;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -23,21 +15,14 @@ public class ExcelUtil {
 	private  FileInputStream fis = null;
 	private    XSSFWorkbook workbook = null;
 	private   XSSFSheet sheet = null;
-	private XSSFRow row = null;
 	private XSSFCell cell = null;
-	private File file=null;
 	private Map<String, Integer> columns = new HashMap<>();
 	private String cellvalue=null;
-	 private  FileOutputStream fos = null;
-	 private   Workbook workbookC = null;
-	 private boolean bool;
-	 private  Sheet newSheet;
-	 private  Row rowC =null;
-	 private Cell cellC=null;;
-	public ExcelUtil(String xlFilePath)
+
+	
+	 public ExcelUtil(String xlFilePath)
 	    {
 	    	try {
-	    	file = new File(xlFilePath);
 	        fis = new FileInputStream(xlFilePath);
 	        workbook = new XSSFWorkbook(fis);
 	    	} catch (FileNotFoundException e) {
@@ -54,10 +39,8 @@ public class ExcelUtil {
 					e.printStackTrace();
 				}	}
 	    }
-	 
 	    @SuppressWarnings("incomplete-switch")
-		public  String getCellData(String SheetName,String ColumnName,int rownum)  {
-			
+		public  String getCellData(String SheetName,String ColumnName,int rownum) throws IOException  {
 			try {
 			 sheet = workbook.getSheet(SheetName);
 			 //adding all the column header names to the map 'columns'
@@ -91,8 +74,9 @@ public class ExcelUtil {
 			e.printStackTrace();
 		}
 			 return cellvalue;
+			
 	}
-	    public void setCellData(String sheetname, String ColumnName,int rownum,String text) throws Exception {
+	/*    public void setCellData(String sheetname, String ColumnName,int rownum,String text) throws Exception {
 	    	try
 	    	{
 	    		System.out.print("Started SetCellData");
@@ -130,16 +114,15 @@ public class ExcelUtil {
 	   			newSheet.getRow(0).forEach(cell0 ->{
 		                columns.put(cell0.getStringCellValue(), cell0.getColumnIndex());
 		            });
-	   			System.out.print("Step9");
 	   			System.out.print("getLastCellNum"+newSheet.getRow(0).getLastCellNum());
-          /*  for (int i = 0; i < newSheet.getRow(0).getLastCellNum()+1; i++) {
+           for (int i = 0; i < newSheet.getRow(0).getLastCellNum()+1; i++) {
             	System.out.print("Step3"+i);
                 if (newSheet.getRow(0).getCell(i).getStringCellValue().trim().equals(ColumnName))
                 {
                 	System.out.print("Step3"+i+"1");
                     col_Num = i;
                 }
-            }*/
+            }
 	   			if(columns.containsKey(ColumnName)) {
 	   				System.out.print("ColumnName"+ColumnName);
 	   				col_Num=columns.get(ColumnName);
@@ -171,8 +154,19 @@ public class ExcelUtil {
 	    	{
 	    		ex.printStackTrace();
 	    	}
+	    	finally {
+	    	try {
+				if(workbook!= null) {
+				workbook.close(); }
+				fis.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+	    	}
 	    } 
-	    public  void SetColumnname(String sheetname, String ColumnName,int rownum) throws Exception {
+	    */
+	    
+	/*    public  void SetColumnname(String sheetname, String ColumnName,int rownum) throws Exception {
 	   	try {
 	   		fis = new FileInputStream(new File(ConfigReader.writeexcel()));
 	   	    workbookC = WorkbookFactory.create(fis);
@@ -201,10 +195,14 @@ public class ExcelUtil {
 	   		 //adding all the column header names to the map 'columns'
 			 sheet.getRow(0).forEach(cell0 ->{
 	                columns.put(cell0.getStringCellValue(), cell0.getColumnIndex());   });
+			 int lastcellNum=rowC.getLastCellNum();
 			if( !(columns.containsKey(ColumnName))){
 				System.out.print("Excel Check");
-				System.out.println("rowC.getLastCellNum() "+rowC.getLastCellNum());
-				cellC = rowC.createCell(rowC.getLastCellNum());
+				System.out.println("rowC.getLastCellNum() "+lastcellNum);
+				if(lastcellNum<0) {
+					lastcellNum=1;
+				}
+				cellC = rowC.createCell(lastcellNum);
 			}
 				cell.setCellValue(ColumnName);
 				fos  = new FileOutputStream(ConfigReader.writeexcel());
@@ -222,7 +220,7 @@ public class ExcelUtil {
             }
 	   		  
 	   	}
-	   }
+	   }*/
 
 	/*    public  void setCellData(String sheetname, String ColumnName,int rownum,String value) throws Exception {
 	   	  Boolean bool = null;

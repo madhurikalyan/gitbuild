@@ -167,7 +167,9 @@ public String fetchAccountCustomerStatuslbl() {
 public String fetchAccountCustomerStatus() {
 	return ElementUtil.FetchTextBoxValuewithattribute(AccountCustomerStatustxt,"value");
 }
-
+public String fetchAccountstab1() {
+	return ElementUtil.FetchTextBoxValuewithText(Accounttab1);
+}
 public String fetchAccountStreet0lbl() {
 	return ElementUtil.FetchTextBoxValuewithText(AccountStreet0lbl);
 }
@@ -218,7 +220,9 @@ public String fetchAccountCountry0() {
 public void clickMailingAddress() {
 	ElementUtil.clickElement(Accounttab2);
 }
-
+public String fetchAccountstab2() {
+	return ElementUtil.FetchTextBoxValuewithText(Accounttab2);
+}
 public String fetchAccountStreet1lbl() {
 	return ElementUtil.FetchTextBoxValuewithText(AccountStreet1lbl);
 }

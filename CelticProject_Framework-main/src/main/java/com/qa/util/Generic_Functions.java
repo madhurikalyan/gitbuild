@@ -5,14 +5,13 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Base64;
 import java.util.Date;
-
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
-import com.qa.factory.Driver_Factory;
+import com.qa.factory.DriverFactory;
 
-public class Generic_Functions extends Driver_Factory{
+public class Generic_Functions extends DriverFactory{
 
 	
 	

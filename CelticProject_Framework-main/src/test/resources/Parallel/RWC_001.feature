@@ -16,6 +16,6 @@ And User will navigate to Payment Tab to input the data and validate message "GE
 Then User will navigate to supplement continuance and validate the meesage "GENPAY01 : [E] This transaction already exists in the cart."
 Then User will navigate to payment tab and fill the requirement 
 And user will validate message "Payment Receipt generated successfully" "Credentials generated successfully."
-Then User navigate to inventory tab to input the data and validate the message "ENTINV56 : [I] Length of From No. must be 6 with inventory format ##@@#@ where # must be numeric and @ must be alphabetic." "ENTINV06 : [I] Inventory has been added successfully."
-And Assign the inventory to proceed further "ENTINV56 : [I] Length of From No. must be 6 with inventory format ##@@#@ where # must be numeric and @ must be alphabetic." "Inventory has been assigned successfully."
+#Then User navigate to inventory tab to input the data and validate the message "ENTINV56 : [I] Length of From No. must be 6 with inventory format ##@@#@ where # must be numeric and @ must be alphabetic." "ENTINV06 : [I] Inventory has been added successfully."
+#And Assign the inventory to proceed further "ENTINV56 : [I] Length of From No. must be 6 with inventory format ##@@#@ where # must be numeric and @ must be alphabetic." "Inventory has been assigned successfully."
 #Then user navigate to post payment for 2nd installment payment and fill the data and validate the message "PAY14 : [I] Payment completed successfully." "GEN24 : [I] Payment Receipt generated successfully."

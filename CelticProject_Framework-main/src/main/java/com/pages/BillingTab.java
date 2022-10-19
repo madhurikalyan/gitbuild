@@ -75,6 +75,10 @@ public class BillingTab {
 	
 	//select[@id='selectEDC']
 	@FindBy(xpath="//th[contains(@class,'sorting_disabled')and not( contains(@class,'hidden'))]") List<WebElement> Billing_GridHeaders;
+	@FindBy(xpath="//th[contains(@class,'sorting_disabled')and not( contains(@class,'hidden')) and contains(text(),'Type')]") WebElement Billing_GridFeeType;
+	@FindBy(xpath="//th[contains(@class,'sorting_disabled')and not( contains(@class,'hidden')) and contains(text(),'Amt')]") WebElement Billing_GridFeeAmount;
+	@FindBy(xpath="//th[contains(@class,'sorting_disabled')and not( contains(@class,'hidden')) and contains(text(),'Waive')]") WebElement Billing_GridWaive;
+	
 	@FindBy(xpath="//input[contains(@id,'FeeDetailRows_')and contains(@id,'_FeeDescription')]") List<WebElement> Billing_FeeType;
 	@FindBy(xpath="//input[contains(@id,'FeeDetailRows_')and contains(@id,'_FeeAmount')]") List<WebElement> Billing_FeeAmount;
 	
@@ -420,18 +424,26 @@ public ArrayList<String> FetchTable_Headers() {
 	}
 	return Headers_array;
 }
-
+public String fetchBilling_GridFeeType() {
+	return ElementUtil.FetchTextBoxValuewithText(Billing_GridFeeType);
+}
+public String fetchBilling_GridFeeAmount() {
+	return ElementUtil.FetchTextBoxValuewithText(Billing_GridFeeAmount);
+}
+public String fetchBilling_GridWaive() {
+	return ElementUtil.FetchTextBoxValuewithText(Billing_GridWaive);
+}
 public ArrayList<String> FetchTable_FeeType() {
 	ArrayList<String> FeeType_Array = new ArrayList<String>();
 	for(int i=0;i<Billing_FeeType.size();i++) {
-		FeeType_Array.add(ElementUtil.FetchTextBoxValuewithattribute(Billing_FeeType.get(i),"value"));
+		FeeType_Array.add(ElementUtil.FetchTextBoxValuewithattributedisabled(Billing_FeeType.get(i),"value"));
 	}
 	return FeeType_Array;
 }
 	public ArrayList<String> FetchTable_FeeAmount() {
 		ArrayList<String> FeeAmount_Array = new ArrayList<String>();
 		for(int i=0;i<Billing_FeeAmount.size();i++) {
-			FeeAmount_Array.add(ElementUtil.FetchTextBoxValuewithattribute(Billing_FeeAmount.get(i),"value"));
+			FeeAmount_Array.add(ElementUtil.FetchTextBoxValuewithattributedisabled(Billing_FeeAmount.get(i),"value"));
 		}
 		return FeeAmount_Array;
 }

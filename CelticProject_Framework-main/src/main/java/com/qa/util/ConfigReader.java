@@ -8,10 +8,10 @@ import java.util.Properties;
 public class ConfigReader {
 
 	public static String URL;
-	public static Properties prop;
+	public  Properties prop;
 
 
-	public static Properties init_prop() throws IOException {
+	public  Properties init_prop() throws IOException {
 		prop = new Properties();
 		FileInputStream ip = null ;
 		try {
@@ -28,7 +28,7 @@ public class ConfigReader {
 		return prop;
 	}
 	
-	public static  String readjson() throws IOException {
+	public   String readjson() throws IOException {
 		return init_prop().getProperty("readjson");
 	}
 	
@@ -65,6 +65,26 @@ public class ConfigReader {
 		throw e;
 		}
 		}
+	public  String readAmendVehicleCondition() throws Exception {
+		try
+		{
+			return init_prop().getProperty("AmendVehicleCondition");
+		}
+		catch (Exception e){
+			e.printStackTrace();
+		throw e;
+		}
+		}
+	public  String readDeleteVehicleCondition() throws Exception {
+		try
+		{
+			return init_prop().getProperty("DeleteVehicleCondition");
+		}
+		catch (Exception e){
+			e.printStackTrace();
+		throw e;
+		}
+		}
 	public  String getApplicationName() throws Exception {
 		try
 		{
@@ -75,7 +95,7 @@ public class ConfigReader {
 		throw e;
 		}
 		}
-	public  static String readJdbcDriver() throws Exception {
+	public   String readJdbcDriver() throws Exception {
 		try
 		{
 			return init_prop().getProperty("ApplicationName");
@@ -107,7 +127,7 @@ public class ConfigReader {
 		}
 		}
 
-	public static String writeexcel() throws Exception {
+	public  String writeexcel() throws Exception {
 		try
 		{
 			return init_prop().getProperty("writeExcel");
@@ -118,7 +138,7 @@ public class ConfigReader {
 		}
 		}
 	
-	public static  String readRWCexcel() throws Exception {
+	public   String readRWCexcel() throws Exception {
 		try
 		{
 			return init_prop().getProperty("RWCexcel");

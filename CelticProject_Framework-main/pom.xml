@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>MODOT</groupId>
-	<artifactId>MODOT</artifactId>
+	<groupId>CelticProject_Framework-main</groupId>
+	<artifactId>CelticProject_Framework-main</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -196,7 +196,7 @@ maven-failsafe-plugin is designed for running integration tests, and decouples f
 				<configuration>
 					<!--  include parallel runner file to run with maven when we want to execute with jenkins  -->
 					<includes>
-						<include>**/MyTestRunner_Class.java</include>
+						<include>**/MyTestRunner.java</include>
 					</includes>
 					<parallel>methods</parallel>
 					<useUnlimitedThreads>false</useUnlimitedThreads>

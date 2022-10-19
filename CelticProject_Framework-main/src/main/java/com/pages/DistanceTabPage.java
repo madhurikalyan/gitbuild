@@ -90,8 +90,9 @@ public class DistanceTabPage {
 			@FindBy(xpath="//input[contains(@id,'MileageDataVMList') and contains(@id,'_Mileage') and not (contains(@id,'Type'))]") List<WebElement> Distance_Distance;  //text
 			@FindBy(xpath="//input[contains(@id,'MileageDataVMList') and contains(@id,'Percent')]/preceding-sibling::span") List<WebElement> Distance_percent; //text
 					
-			
-			
+			@FindBy(xpath="//table[@id='dtlstJurisdiction']//tr/th[not(contains(@class,'hidden')) and contains(text(),'Jur')]") WebElement DistanceJurisTableHeader_Juri; //take text
+			@FindBy(xpath="//table[@id='dtlstJurisdiction']//tr/th[not(contains(@class,'hidden')) and contains(text(),'Dist')]") WebElement DistanceJurisTableHeader_Distance; //take text
+			@FindBy(xpath="//table[@id='dtlstJurisdiction']//tr/th[not(contains(@class,'hidden')) and contains(text(),'Percent')]") WebElement DistanceJurisTableHeader_Percent; //take text
 			
 public void selectYesOrNo(String selectvalue) {
 	ElementUtil.waitUntilElementsVisible(Distance_ReportingPeriodQuestionrd);
@@ -138,6 +139,21 @@ public void validatesubhdr(String hdrvalue) {
 }
 
 //Fetch Details
+
+
+public String DistanceJurisTableHeader_Juri() {
+	return ElementUtil.FetchTextBoxValuewithText(DistanceJurisTableHeader_Juri);
+}
+
+public String DistanceJurisTableHeader_Distance() {
+	return ElementUtil.FetchTextBoxValuewithText(DistanceJurisTableHeader_Distance);
+}
+
+public String DistanceJurisTableHeader_Percent() {
+	return ElementUtil.FetchTextBoxValuewithText(DistanceJurisTableHeader_Percent);
+}
+
+
 public String DistanceReportingPeriodFromlbl() {
 	return ElementUtil.FetchTextBoxValuewithText(Distance_ReportingperiodFromlbl);
 }
@@ -231,7 +247,7 @@ public String DistanceDistanceTypelbl() {
 }
 
 public String DistanceDistanceType() {
-	return ElementUtil.FetchTextBoxValuewithattribute(Distance_DistanceTypedd,"value");
+	return ElementUtil.FetchDropdownSelectedValue(Distance_DistanceTypedd);
 }
 public String DistanceActualDistConfirmationlbl() {
 	return ElementUtil.FetchTextBoxValuewithText(Distance_ActualDistanceQuestionlbl);

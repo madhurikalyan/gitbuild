@@ -381,6 +381,18 @@ public void clickOnTimeMailingAddress() throws InterruptedException {
 
 
 //---------------------------------------------
+public String fetchFleetTabBusinessAddress() {
+	return ElementUtil.FetchTextBoxValuewithText(Fleettab1);
+}
+public String fetchFleetTabMailingAddress() {
+	return ElementUtil.FetchTextBoxValuewithText(Fleettab2);
+}
+public String fetchFleetTabServiceProviderAddress() {
+	return ElementUtil.FetchTextBoxValuewithText(Fleettab3);
+}
+public String fetchFleetTabOneTimeMailingAddress() {
+	return ElementUtil.FetchTextBoxValuewithText(Fleettab4);
+}
 public String fetchRegistrationtypelbl() {
 	return ElementUtil.FetchTextBoxValuewithText(FleetRegistrationtypelbl);
 }
@@ -490,7 +502,7 @@ public String FleetJur1lbl() {
 }
 
 public String FleetJur1() {
-	return ElementUtil.FetchTextBoxValuewithattribute(FleetJur1dd,"value");
+	return ElementUtil.FetchDropdownSelectedValue(FleetJur1dd);
 }
 public String FleetCity1lbl() {
 	return ElementUtil.FetchTextBoxValuewithText(FleetCity1lbl);
@@ -541,7 +553,7 @@ public String FleetServiceProviderlbl() {
 }
 
 public String FleetServiceProvider() {
-	return ElementUtil.FetchTextBoxValuewithText(FleetServiceProviderdd);
+	return ElementUtil.FetchDropdownSelectedValue(FleetServiceProviderdd);
 }
 public String FleetServiceLegalNamelbl() {
 	return ElementUtil.FetchTextBoxValuewithText(FleetLegalNamelbl);
@@ -562,7 +574,14 @@ public String FleetService_PowerOfAttroneylbl() {
 }
 
 public String FleetService_PowerOfAttroney() {
-	return ElementUtil.FetchTextBoxValuewithattribute(FleetService_PowerOfAttroneychk,"value");
+	boolean boolstatus=false;
+	if(ElementUtil.FetchTextBoxValuewithattribute(FleetService_PowerOfAttroneychk,"checked")==null){
+		boolstatus=false;
+	}
+	else {
+		boolstatus=true;
+	}
+	return Boolean.toString(boolstatus);
 }
 public String FleetService_PowerOfAttroneyEffDatelbl() {
 	return ElementUtil.FetchTextBoxValuewithText(FleetService_PowerOfAttroneyEffDatelbl);
@@ -621,7 +640,7 @@ public String FleetService_Jurlbl() {
 }
 
 public String FleetService_Jur() {
-	return ElementUtil.FetchDropdownSelectedValue(FleetService_Jurtxt);
+	return ElementUtil.FetchTextBoxValuewithattribute(FleetService_Jurtxt,"value");
 }
 public String FleetService_ZipCodelbl() {
 	return ElementUtil.FetchTextBoxValuewithText(FleetService_ZipCodelbl);
@@ -659,7 +678,7 @@ public String FleetServiceMailing_Jurlbl() {
 }
 
 public String FleetServiceMailing_Jur() {
-	return ElementUtil.FetchTextBoxValuewithattribute(FleetServiceMailing_Jurtxt,"value");
+	return ElementUtil.FetchDropdownSelectedValue(FleetServiceMailing_Jurtxt);
 }
 public String FleetServiceMailing_Citylbl() {
 	return ElementUtil.FetchTextBoxValuewithText(FleetServiceMailing_Citylbl);

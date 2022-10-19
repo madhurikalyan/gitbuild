@@ -180,14 +180,10 @@ public class CommonObjects {
 		String ActualcumExpected=null;
 		for(WebElement ele:ErrorMsgsList) {
 			ActualErrorMessage	=ElementUtil.FetchTextBoxValuewithText(ele);
-			System.out.println("MadhuriB"+ActualErrorMessage);
 			if(ActualErrorMessage.equalsIgnoreCase(ExpectederrorMessage)) {
-				System.out.println("MadhuriC");
 				ActualcumExpected=ActualErrorMessage;
-				System.out.println("check2"+ActualcumExpected);
 				return ActualcumExpected;
 			}
-			System.out.println("MadhuriD");
 		}
 		return ActualcumExpected;
 		

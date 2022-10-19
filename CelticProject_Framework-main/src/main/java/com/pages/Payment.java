@@ -40,7 +40,7 @@ public class Payment {
 	@FindBy(xpath="//label[@for='OPAEsc']") WebElement Payment_OpaSystemCreditlbl;
 	
 	@FindBy(xpath="//table[@id='gvTransactionDetail']//tr[1]/th") List<WebElement> Payment_tableHeaderRow;
-    @FindBy(xpath="//table[@id='gvTransactionDetail']/tbody/tr/td/span") List<WebElement> Payment_InvoiceRow;
+    @FindBy(xpath="//table[@id='gvTransactionDetail']/tbody/tr[1]/td/span") List<WebElement> Payment_InvoiceRow;
 	@FindBy(xpath="//strong[contains(text(),'Total')]") WebElement Payment_TotalAmountDuelbl;
     @FindBy(xpath="//input[@name='totalInvoiceAmountUSD']") WebElement Payment_TotalInvoiceAmount;
     
@@ -286,7 +286,7 @@ public String FetchTotalAmountDue() {
 	return ElementUtil.FetchTextBoxValuewithattribute(Payment_TotalInvoiceAmount,"value");
 }
 
-
+/*
 public String ValidateMessage1() {
 	ElementUtil.highlightElement(driver, Payment_ValidationMessage1);
 	return ElementUtil.FetchTextBoxValuewithText(Payment_ValidationMessage1);
@@ -305,7 +305,7 @@ public String ValidateMessage4() {
 	return ElementUtil.FetchTextBoxValuewithText(Payment_ValidationMessage4);
 }
 
-
+*/
 
 
 
