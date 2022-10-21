@@ -200,6 +200,8 @@ public class VehicleAmend {
 	}
 	
 	public void selectUnitNoFromSuggestions() {
+		ElementUtil.waitUntilElementClickable(AmendVehicle_ChangeVehUnitNotxt);
+		ElementUtil.clickElement(AmendVehicle_ChangeVehUnitNotxt);
 		AmendVehicle_ChangeVehUnitNotxt.sendKeys(Keys.ARROW_DOWN);
 		AmendVehicle_ChangeVehUnitNotxt.sendKeys(Keys.ENTER);
 	}
@@ -208,6 +210,7 @@ public class VehicleAmend {
 		
 		do {
 			ElementUtil.waitUntilElementClickable(AmendVehicle_ChangeVehUnitNotxt);
+			
 			AmendVehicle_ChangeVehUnitNotxt.sendKeys(Keys.ARROW_DOWN);
 			AmendVehicle_ChangeVehUnitNotxt.sendKeys(Keys.ENTER);
 			 text=AmendVehicle_ChangeVehUnitNotxt.getAttribute("value");
@@ -310,7 +313,10 @@ break;
 	
 	
 	
-	
+	//Fetch Value 
+	public String fetchAmendVehicleBodyType() {
+		return ElementUtil.FetchDropdownSelectedValue(AmendVehicle_Bodytypedd);
+	}
 	
 	
 	

@@ -10,7 +10,7 @@ import io.cucumber.testng.CucumberOptions;
 				"json:target/cucumber-reportreport.json"},
 		monochrome = true,
 		publish = true,
-		glue = { "Parallel","AppHooks" },
+		glue = { "parallel","apphooks" },
 		features = { "src/test/resources/parallel/RWC_001.feature"}
 		)
 

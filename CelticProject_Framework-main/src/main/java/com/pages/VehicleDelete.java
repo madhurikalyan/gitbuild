@@ -87,26 +87,43 @@ public class VehicleDelete {
 		}
 		return i;
 	}
-	public void deleteFewVehicles(String vehiclesCount,String plateStatusValue,String PlateReturnedValue, String AffidavitDocumentValue, String DeleteCommentsValue) {
+	public void deleteFewVehicles(String vehiclesCount,String plateStatusValue,String PlateReturnedValue, String AffidavitDocumentValue, String DeleteCommentsValue) throws InterruptedException {
+		int j=0;
+		String showresultsTo=null;
 		for(int i=1;i<=Integer.valueOf(vehiclesCount);i++) {
-			if(i>Integer.valueOf(ElementUtil.FetchTextBoxValuewithText(Showingentries).indexOf("to "))) {
+			System.out.println("i value before loop is"+i);
+			 showresultsTo=ElementUtil.FetchTextBoxValuewithText(Showingentries);
+			System.out.println("mad"+showresultsTo.substring(showresultsTo.indexOf("to ")+3,showresultsTo.indexOf("of ")));
+			System.out.println("madA"+showresultsTo.substring(showresultsTo.indexOf("to ")+3,showresultsTo.indexOf("of ")).trim());
+			System.out.println("madB"+Integer.valueOf(showresultsTo.substring(showresultsTo.indexOf("to ")+3,showresultsTo.indexOf("of ")-1).trim()));
+			System.out.println("Madhuri"+Integer.valueOf(showresultsTo.substring(showresultsTo.indexOf("to ")+3,showresultsTo.indexOf("of ")-1)));
+			System.out.println("madC"+Integer.valueOf(showresultsTo.substring(showresultsTo.indexOf("Showing ")+8,showresultsTo.indexOf("to")).trim()));
+			
+			
+			if(i>Integer.valueOf(showresultsTo.substring(showresultsTo.indexOf("to ")+3,showresultsTo.indexOf("of ")-1))) {
 				ElementUtil.clickElement(Nextlink);
-				break;
-			}
+				ElementUtil.waitUntilElementClickable(DeleteVehicle_Searchbtn);
+				i=i-1;
+				}
+			else {
+				 showresultsTo=ElementUtil.FetchTextBoxValuewithText(Showingentries);
+				j=(i+1-(Integer.valueOf(showresultsTo.substring(showresultsTo.indexOf("Showing ")+8,showresultsTo.indexOf("to")).trim())));
+				System.out.println("j is:"+j);
 			//Click the check box for each untill we reach the count to delete the vehicles
-			WebElement checkBoxCheck=driver.findElement(By.xpath("//table[@id='DeleteVehicleGrid']/tbody/tr["+i+"]/td[1]/input[@title='Select']"));
+			WebElement checkBoxCheck=driver.findElement(By.xpath("//table[@id='DeleteVehicleGrid']/tbody/tr["+j+"]/td[1]/input[@title='Select']"));
 			ElementUtil.clickElement(checkBoxCheck);
-			WebElement PlateStatus=driver.findElement(By.xpath("//table[@id='DeleteVehicleGrid']/tbody/tr["+i+"]/td[5]//select"));
+			WebElement PlateStatus=driver.findElement(By.xpath("//table[@id='DeleteVehicleGrid']/tbody/tr["+j+"]/td[5]//select"));
 			ElementUtil.selectFromDropdownByVisibleText(PlateStatus,plateStatusValue);
 			//Plate Returned Document
-		    WebElement PlateReturnedDocument=driver.findElement(By.xpath("//table[@id='DeleteVehicleGrid']/tbody/tr["+i+"]/td[7]//select"));
+		    WebElement PlateReturnedDocument=driver.findElement(By.xpath("//table[@id='DeleteVehicleGrid']/tbody/tr["+j+"]/td[7]//select"));
 			ElementUtil.selectFromDropdownByVisibleText(PlateReturnedDocument,PlateReturnedValue);
 			//Affidavit Document
-			WebElement AffidavitDocument=driver.findElement(By.xpath("//table[@id='DeleteVehicleGrid']/tbody/tr["+i+"]/td[8]//select"));
+			WebElement AffidavitDocument=driver.findElement(By.xpath("//table[@id='DeleteVehicleGrid']/tbody/tr["+j+"]/td[8]//select"));
 			ElementUtil.selectFromDropdownByVisibleText(AffidavitDocument,AffidavitDocumentValue);
 			//Delete Comments
-			WebElement DeleteComments=driver.findElement(By.xpath("//table[@id='DeleteVehicleGrid']/tbody/tr["+i+"]/td[9]/textarea"));
+			WebElement DeleteComments=driver.findElement(By.xpath("//table[@id='DeleteVehicleGrid']/tbody/tr["+j+"]/td[9]/textarea"));
 		    ElementUtil.webEditTxtChange(DeleteComments, DeleteCommentsValue);
+			}
 		}
 	}
 	public void ClickCheckBoxFromGrid() {

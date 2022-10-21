@@ -109,7 +109,7 @@ public class RWC_001 {
 	@Then("User will navigate to account section and fill the data")
 	public void user_will_navigate_to_account_section_and_fill_the_data_and_validate_message() throws Exception, Exception {
 		//Fetch Values
-		excelutilWrite.setCellData("Account",accounttabpage.fetchMCECustomernolbl(),RowNo,accounttabpage.fetchMCECustomerno());
+	/*	excelutilWrite.setCellData("Account",accounttabpage.fetchMCECustomernolbl(),RowNo,accounttabpage.fetchMCECustomerno());
 		excelutilWrite.setCellData("Account",accounttabpage.fetchRegistrationTypelbl(), RowNo,accounttabpage.fetchRegistrationType());
 		excelutilWrite.setCellData("Account",accounttabpage.fetchAccountCarrierTypelbl(), RowNo,accounttabpage.fetchAccountCarrierType());
 		excelutilWrite.setCellData("Account",accounttabpage.fetchIFTAAccountNbrlbl(),RowNo,accounttabpage.fetchIFTAAccountNbr());
@@ -141,7 +141,7 @@ public class RWC_001 {
 		excelutilWrite.setCellData("Account",accounttabpage.fetchAccountFaxNolbl(),RowNo,accounttabpage.fetchAccountFaxNo());
 		excelutilWrite.setCellData("Account",accounttabpage.fetchAccountEmailnotificationlbl(), RowNo,accounttabpage.fetchAccountEmailnotification());
 		excelutilWrite.setCellData("Account",accounttabpage.fetchAccountFaxnotificationlbl(),RowNo,accounttabpage.fetchAccountFaxnotification());
-
+*/
 		log.info(commonobjects.validateinfomsgs());
 		accounttabpage.checkEmailNotification();
 		log.info("*** Check Email Notification ***");
@@ -158,7 +158,7 @@ public class RWC_001 {
 	@Then("User will navigate to Fleet section and fill the data and validate message  {string}")
 	public void user_will_navigate_to_fleet_section_and_fill_the_data_and_validate_message(String expSucces) throws Exception {
 		//Fetch Fleet Details screen 
-		excelutilWrite.setCellData("Fleet",fleettabpage.fetchRegistrationtypelbl(), RowNo,fleettabpage.fetchRegistrationtype());
+	/*	excelutilWrite.setCellData("Fleet",fleettabpage.fetchRegistrationtypelbl(), RowNo,fleettabpage.fetchRegistrationtype());
 		excelutilWrite.setCellData("Fleet",fleettabpage.fetchfltstatuslbl(),RowNo,fleettabpage.fetchfltstatus());
 		excelutilWrite.setCellData("Fleet",fleettabpage.fetchcarriertypelbl(), RowNo,fleettabpage.fetchcarriertype());
 		excelutilWrite.setCellData("Fleet",fleettabpage.fetchDBANamelbl(),RowNo, fleettabpage.fetchDBAName());
@@ -231,6 +231,7 @@ public class RWC_001 {
 		excelutilWrite.setCellData("Fleet",fleettabpage.FleetDetails_HVUTFormlbl(),RowNo, fleettabpage.FleetDetails_HVUTForm());
 		excelutilWrite.setCellData("Fleet",fleettabpage.FleetDetails_PropertyTaxlbl(), RowNo,fleettabpage.FleetDetails_PropertyTax());
 	
+	*/
 		log.info(commonobjects.validateinfomsgs());
 		log.info("Message in Fleet Screen "+commonobjects.FetchErrorMessage(expSucces));
 		screenshotUtil.captureScreenshot("Message in Fleet Screen 1");
@@ -289,7 +290,7 @@ public class RWC_001 {
 
 	@Then("User will navigate to Distance section and fill the data and validate message {string} {string}")
 	public void user_will_navigate_to_distance_section_and_fill_the_data_and_validate_message(String expSucces1, String expSucces2) throws Exception, Exception {
-		excelutilWrite.setCellData("Distance",distancetabpage.DistanceReportingPeriodFromlbl(), RowNo,distancetabpage.DistanceReportingPeriodFrom());
+	/*	excelutilWrite.setCellData("Distance",distancetabpage.DistanceReportingPeriodFromlbl(), RowNo,distancetabpage.DistanceReportingPeriodFrom());
 		excelutilWrite.setCellData("Distance",distancetabpage.DistanceReportingPeriodTolbl(), RowNo,distancetabpage.DistanceReportingPeriodTo());
 		excelutilWrite.setCellData("Distance",distancetabpage.DistanceUsdotNbrlbl(), RowNo,distancetabpage.DistanceUsdotNbr());
 		excelutilWrite.setCellData("Distance",distancetabpage.DistanceEstimatedDistanceChartlbl(), RowNo,distancetabpage.DistanceEstimatedDistanceChart());
@@ -314,6 +315,7 @@ public class RWC_001 {
 	    	excelutilWrite.setCellData("Distance_Juris",distancetabpage.DistanceJurisTableHeader_Distance()+i, RowNo,Distance_values.get(i));
 	    	excelutilWrite.setCellData("Distance_Juris",distancetabpage.DistanceJurisTableHeader_Percent()+i, RowNo,Percent_values.get(i));
 	    	}
+	    	*/
 	    	//Juris list
 	    	/*	ArrayList<String>  Juris_values=distancetabpage.FetchTable_Juris();
 	    	ArrayList<String>  Distance_values=distancetabpage.FetchTable_DistanceMiles();
@@ -354,15 +356,26 @@ public class RWC_001 {
 	@Then("User will navigate to Weight group section and fill the data ans validate message {string}")
 	public void user_will_navigate_to_weight_group_section_and_fill_the_data_ans_validate_message(String expSucces) throws Exception {
 		//Fetch Values into Excel
-		ArrayList<String>  headervalues=wgtgroup.FetchTableHeader();
+	/*	ArrayList<String>  headervalues=wgtgroup.FetchTableHeader();
 		ArrayList<String>  RowDatavalues=wgtgroup.FetchTableRowData();
-		int j=0;
+		int j,k=0;
 		for(int i=0;i<RowDatavalues.size();i++) {
-			log.info("Weight Group headervalues"+headervalues.get(i));
-			log.info("Weight Group RowDatavalues"+RowDatavalues.get(i));
-			excelutilWrite.setCellData("WeightGroup",headervalues.get(i)+j, RowNo,RowDatavalues.get(i));
-			j+=1;
-		}
+			if(i>5){
+				  j=i%6;
+				  if(j==0){
+				      k++;
+				  }
+				  excelutilWrite.setCellData("WeightGroup",headervalues.get(j)+k, RowNo,RowDatavalues.get(i));
+				  log.info("Weight Group headervalues"+headervalues.get(j));
+				  log.info("Weight Group RowDatavalues"+RowDatavalues.get(i));
+			}
+             else{
+        	  excelutilWrite.setCellData("WeightGroup",headervalues.get(i)+k, RowNo,RowDatavalues.get(i)); 
+        	  log.info("Weight Group headervalues"+headervalues.get(i));
+			  log.info("Weight Group RowDatavalues"+RowDatavalues.get(i));
+         }
+
+		}*/
 		/*		ArrayList<String>  headervalues=wgtgroup.FetchTableHeader();
 				for(int i=0;i<headervalues.size();i++) {
 					ExcelReader.updateExcel("WeightGroup",0,i,headervalues.get(i));
@@ -428,11 +441,11 @@ public class RWC_001 {
 
 	@Then("User will navigate to Add vehicle and validate the message {string} {string} {string}")
 	public void user_will_navigate_to_Add_vehicle_and_validate_the_message(String expSucces, String expSucces2, String expSucces3) throws Exception {
-		excelutilWrite.setCellData("VehicleTab",Vehicletabpage.FetchAmendVehiclelbl(), RowNo,Vehicletabpage.FetchAmendVehicle());
+	/*	excelutilWrite.setCellData("VehicleTab",Vehicletabpage.FetchAmendVehiclelbl(), RowNo,Vehicletabpage.FetchAmendVehicle());
 		excelutilWrite.setCellData("VehicleTab",Vehicletabpage.FetchAddVehicleslbl(), RowNo,Vehicletabpage.FetchAddVehicles());
 		excelutilWrite.setCellData("VehicleTab",Vehicletabpage.FetchdeleteVehiclelbl(), RowNo,Vehicletabpage.FetchdeleteVehicle());
 		excelutilWrite.setCellData("VehicleTab",Vehicletabpage.FetchRenewVehiclelbl(), RowNo,Vehicletabpage.FetchRenewVehicle());
-
+*/
 		/*	ExcelReader.updateExcel("VehicleTab",0,0,Vehicletabpage.FetchAmendVehiclelbl()); 
 		ExcelReader.updateExcel("VehicleTab",RowNo,0,Vehicletabpage.FetchAmendVehicle ()); 
 		ExcelReader.updateExcel("VehicleTab",0,1,Vehicletabpage.FetchAddVehicleslbl ()); 
@@ -472,16 +485,21 @@ public class RWC_001 {
 				}
 				vehicleAmend.clickSearch();
 
-
-				Vehicletabpage.vehiclevalidatemessage();
-				if(i==0){
+				
+					if(vehicleAmend.fetchAmendVehicleBodyType().equalsIgnoreCase("CG - Converter Gear") || 
+					   vehicleAmend.fetchAmendVehicleBodyType().equalsIgnoreCase("MT - Motor Totor")||
+					   vehicleAmend.fetchAmendVehicleBodyType().equalsIgnoreCase("RT - Road Truck")||
+					   vehicleAmend.fetchAmendVehicleBodyType().equalsIgnoreCase("TK - Straight Truck")||
+					   vehicleAmend.fetchAmendVehicleBodyType().equalsIgnoreCase("TR - Tractor")||
+					   vehicleAmend.fetchAmendVehicleBodyType().equalsIgnoreCase("TT - Truck Tractor") ||
+					   vehicleAmend.fetchAmendVehicleBodyType().equalsIgnoreCase("WR - Wrecker")) {
 					vehicleAmend.selectWeightGroupNo(excelutil.getCellData("WeightGrouptab","Vehicle_WeightGroupNo",RowNo));
+					
 					log.info("*** Enter WeightGroupNo ***");
 					screenshotUtil.captureScreenshot("Enter WeightGroupNo");
 					log.info("Message in Amend Vehicle Screen"+commonobjects.FetchErrorMessage(expSucces2));
 					screenshotUtil.captureScreenshot("Message in Amend Vehicle Screen 2");
-				}
-
+					}
 				vehicleAmend.enterUnladenWeight(excelutil.getCellData("VehicleTab","unladenWeight",RowNo));
 				log.info("*** Enter UnladenWeight ***");
 				screenshotUtil.captureScreenshot("Enter UnladenWeight");
@@ -608,14 +626,18 @@ public class RWC_001 {
 		Vehicletabpage.clickVehicleList();
 		log.info("*** Click VehicleList ***");
 		screenshotUtil.captureScreenshot("Click VehicleList");
-		vehicleadd	.enterUnitNumber(excelutil.getCellData("VehicleDeleteTab","Unit0",RowNo));
-		log.info("*** Select Unit No ***");
-		screenshotUtil.captureScreenshot("Select Unit No");
+		
+		int NoofVehiclestoDelete=Integer.valueOf(excelutil.getCellData("VehicleTab","NoOfVehiclesToDelete",RowNo));	
+		if(NoofVehiclestoDelete<Integer.valueOf(config.readDeleteVehicleCondition())) {
+			vehicleadd	.enterUnitNumber(excelutil.getCellData("VehicleDeleteTab","Unit0",RowNo));
+			log.info("*** Select Unit No ***");
+			screenshotUtil.captureScreenshot("Select Unit No");
 
-		vehicleAmend.clickSearch();
-		log.info("*** Search Unit No ***");
-		screenshotUtil.captureScreenshot("Search Unit No");
-		vehicleadd.Updatevehiclelistselectunit();
+			vehicleAmend.clickSearch();
+			log.info("*** Search Unit No ***");
+			screenshotUtil.captureScreenshot("Search Unit No");
+		}
+		vehicleadd.selectFirstHandIcon();
 		commonobjects.ClickConfirmCancel();
 		eleutil.handleAlert();
 		log.info(commonobjects.validateinfomsgs());
@@ -666,7 +688,7 @@ public class RWC_001 {
 	@Then("User will navigate to billing to verify as well to adjust the cost & Waive Fees {string}")
 	public void user_will_navigate_to_billing_to_verify_as_well_to_adjust_the_cost_waive_fees(String expSucces) throws Exception {
 		//Fetch values from Biling Screen
-		excelutilWrite.setCellData("Billing",billingtab.fetchRegisterMonthlbl(),RowNo,billingtab.fetchRegisterMonth());
+	/*	excelutilWrite.setCellData("Billing",billingtab.fetchRegisterMonthlbl(),RowNo,billingtab.fetchRegisterMonth());
 		excelutilWrite.setCellData("Billing",billingtab.fetchNoOfVehiclesinSupplbl(),RowNo,billingtab.fetchNoOfVehiclesinSupp());
 		excelutilWrite.setCellData("Billing",billingtab.fetchSupplementStatuslbl(),RowNo,billingtab.fetchSupplementStatus());
 		excelutilWrite.setCellData("Billing",billingtab.fetchEnterpriseSystemCreditlbl(),RowNo,billingtab.fetchEnterpriseSystemCredit());
@@ -693,7 +715,7 @@ public class RWC_001 {
 			  excelutilWrite.setCellData("BillingGrid",billingtab.fetchBilling_GridFeeType()+i,RowNo,TableFeeType.get(i));
 			  excelutilWrite.setCellData("BillingGrid",billingtab.fetchBilling_GridFeeAmount()+i,RowNo,TableFeeAmount.get(i));
 			 }
-
+*/
 		  
 		/*	ExcelReader.updateExcel("Billing",0,0,billingtab.fetchRegisterMonthlbl());
 		  ExcelReader.updateExcel("Billing",RowNo,0,billingtab.fetchRegisterMonth()); 
@@ -753,7 +775,7 @@ public class RWC_001 {
 		billingtab.clickTVR();
 		log.info("*** Click TVR ***");
 		screenshotUtil.captureScreenshot("Click TVR");
-		excelutilWrite.setCellData("Billing",billingtab.fetchBilling_TVRNoOfDayslbl(),RowNo,billingtab.fetchBilling_TVRNoOfDays());
+//		excelutilWrite.setCellData("Billing",billingtab.fetchBilling_TVRNoOfDayslbl(),RowNo,billingtab.fetchBilling_TVRNoOfDays());
 		billingtab.clickInstallmentPlan();
 		log.info("*** Click Installement Plan ***");
 		screenshotUtil.captureScreenshot("Click Installement Plan");
@@ -814,7 +836,7 @@ public class RWC_001 {
 	@Then("User will navigate to Payment Tab to input the data and validate message {string} {string} {string}")
 	public void user_will_navigate_to_payment_tab_to_input_the_data_and_validate_message(String expSucces, String expSucces2, String expSucces3) throws Exception {
 		//Fetch Values from Cart payment
-		excelutilWrite.setCellData("PaymentTab",paymenttab.FetchEnterpriseSystemCreditlbl(),RowNo,paymenttab.FetchEnterpriseSystemCredit());
+	/*	excelutilWrite.setCellData("PaymentTab",paymenttab.FetchEnterpriseSystemCreditlbl(),RowNo,paymenttab.FetchEnterpriseSystemCredit());
 		excelutilWrite.setCellData("PaymentTab",paymenttab.FetchIRPSystemCreditlbl(),RowNo,paymenttab.FetchIRPSystemCredit());
 		excelutilWrite.setCellData("PaymentTab",paymenttab.FetchInvoiceDatelbl(),RowNo,paymenttab.FetchInvoiceDate());
 		excelutilWrite.setCellData("PaymentTab",paymenttab.FetchInvoiceNumberlbl(),RowNo,paymenttab.FetchInvoiceNumber());
@@ -829,6 +851,7 @@ public class RWC_001 {
 			  excelutilWrite.setCellData("PaymentTab",paymenttab.FetchHeaderFeeType()+i,RowNo,Payment_TableFeeType.get(i));
 			  excelutilWrite.setCellData("PaymentTab",paymenttab.FetchHeaderFeeAmount()+i,RowNo,Payment_TableFeeAmount.get(i));
 	    	}
+	    	*/
 		//Fetch Values from Payment Tab
 		/*	  ExcelReader.updateExcel("PaymentTab",0,0,paymenttab.FetchEnterpriseSystemCreditlbl());
 			  ExcelReader.updateExcel("PaymentTab",RowNo,0,paymenttab.FetchEnterpriseSystemCredit()); 
@@ -917,7 +940,7 @@ public class RWC_001 {
 		commonobjects.clickProceed();
 		log.info(commonobjects.validateinfomsgs());
 		//Fetch Values from 
-		excelutilWrite.setCellData("PaymentScreen",pay.FetchMCECustomerIdlbl(),RowNo,pay.FetchMCECustomerId());
+	/*	excelutilWrite.setCellData("PaymentScreen",pay.FetchMCECustomerIdlbl(),RowNo,pay.FetchMCECustomerId());
 		excelutilWrite.setCellData("PaymentScreen",pay.FetchlegalNamelbl(),RowNo,pay.FetchlegalName());
 		excelutilWrite.setCellData("PaymentScreen",pay.FetchInvoiceDatelbl(),RowNo,pay.FetchInvoiceDate());
 		excelutilWrite.setCellData("PaymentScreen",pay.FetchEnterpriseSystemCreditlbl(),RowNo,pay.FetchEnterpriseSystemCredit());
@@ -931,6 +954,7 @@ public class RWC_001 {
 		  for(int i=0;i<Table_Invoice.size();i++) {
 			  excelutilWrite.setCellData("PaymentScreen",TableHeadervalues.get(i),RowNo,Table_Invoice.get(i));
 	    	}
+	    	*/
 		paymenttab.clickpaymentadd();
 		for(int i=0; i<2;i++) {
 

@@ -374,7 +374,7 @@ public void Updatevehiclelistsearch() throws InterruptedException {
 	ElementUtil.clickElement(VehicleList_VehicleSearch);
 	//ElementUtil.sleepTime(1000);
 }
-public void Updatevehiclelistselectunit() {
+public void selectFirstHandIcon() {
 	ElementUtil.clickElement(VehicleList_Vehicleunit1);
 }
 public void UpdateFactoryPrice(String FactoryPrice) {
