@@ -708,28 +708,20 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 		File dstFile = new File(filePath+filename+"."+extension);
 		System.out.println("DesiredPath is "+dstFile);
 		int i = 0;
-		//for(int j=0;j<100;j++) {
 		if(dstFile.exists()) {
-			System.out.println("checkA");
 		while (dstFile.exists ()) {
-			System.out.println("checkB");
 		    i += 1;
-		    System.out.println("checkC");
 		    DesiredPath = filePath + filename + " (" + i + ")"+"."+extension;
-		    System.out.println("checkD");
-		    dstFile = new File(filePath + filename + " (" + i + ")"+"."+extension);
+		   // dstFile = new File(filePath + filename + " (" + i + ")"+"."+extension);
 		}
-		System.out.println("checkE");
 		}
 		else {
-			System.out.println("checkF");
 			 DesiredPath=filePath+filename+"."+extension;
 		}
 		System.out.println("DesiredPath is :"+DesiredPath);
-		//}
 		return DesiredPath;
     }
-	/*
+		/*
 	 * @description : delete file from directory if exists
 	 * @param  : filePath
 	 * @return : NA

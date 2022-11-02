@@ -807,6 +807,7 @@ public class RWC_001 {
 	}
 	@Then("User will navigate to billing to verify as well to adjust the cost & Waive Fees {string}")
 	public void user_will_navigate_to_billing_to_verify_as_well_to_adjust_the_cost_waive_fees(String expSucces) throws Exception {
+		commonobjects.clickDoneBtn();
 		//Fetch values from Biling Screen
 		excelutilWrite.setCellData("Billing",billingtab.fetchRegisterMonthlbl(),RowNo,billingtab.fetchRegisterMonth());
 		excelutilWrite.setCellData("Billing",billingtab.fetchNoOfVehiclesinSupplbl(),RowNo,billingtab.fetchNoOfVehiclesinSupp());
@@ -914,26 +915,18 @@ public class RWC_001 {
 
 		billingtab.clickReCalculate();
 		log.info(commonobjects.validateInfoMsgs());
-		commonobjects.clickProceed();
-		log.info(commonobjects.validateInfoMsgs());
-	//	eleutil.CloseFirstChildWindow();
-		String mainWindow=eleutil.GetParentWindow();
+		//eleutil.CloseFirstChildWindow();
+		String mainwidow=eleutil.GetParentWindow();
 		commonobjects.clickProceed();
 		commonobjects.waitForSpinner();
 		eleutil.waitForTwoWindow(2);
-		System.out.println("Waited for window to appear");
 		String childWindow=eleutil.SwitchtoFirstChildWindow();
 		eleutil.saveAsFile();
-		System.out.println("save as");
-		String desiredPath=eleutil.checkFileExistence(config.readDownloadFolder(),"Billing","pdf");
-		System.out.println("desiredPath in RWC_001 is"+desiredPath);
-		eleutil.uploadFile(desiredPath);
-		System.out.println("uploaded File");
-		System.out.println("window about to close"+childWindow);
+		String DesiredPath=eleutil.checkFileExistence(config.readDownloadFolder(),"Billing","pdf");
+		eleutil.uploadFile(DesiredPath);
+		//To call the AutoIt script
 		eleutil.closeSpecificWindow(childWindow);
-		System.out.println("window has been closed");
-		eleutil.SwitchSpecificWindow(mainWindow);
-		System.out.println("Switched to window");
+		eleutil.SwitchSpecificWindow(mainwidow);
 	}
 
 	@Then("User will navigate to Payment Tab to input the data and validate message {string} {string} {string}")
@@ -1087,21 +1080,22 @@ public class RWC_001 {
 
 		pay.selectPaymentReceipt(excelutil.getCellData("Payment","Payment receipt",RowNo));
 		log.info("***Enter Payment type and amount***");
-		commonobjects.clickProceed();
-		commonobjects.clickProceed();
-		log.info(commonobjects.validateInfoMsgs());
-	//	eleutil.CloseFirstChildWindow();
-		String mainWindow=eleutil.GetParentWindow();
+		String mainwidow=eleutil.GetParentWindow();
 		commonobjects.clickProceed();
 		commonobjects.waitForSpinner();
+		commonobjects.clickProceed();
+		commonobjects.waitForSpinner();
+		
+		log.info(commonobjects.validateInfoMsgs());
+	//	eleutil.CloseFirstChildWindow();
 		eleutil.waitForTwoWindow(2);
 		String childWindow=eleutil.SwitchtoFirstChildWindow();
 		eleutil.saveAsFile();
-		String desiredPath=eleutil.checkFileExistence(config.readDownloadFolder(),"Billing","pdf");
-		eleutil.uploadFile(desiredPath);
+		String DesiredPath=eleutil.checkFileExistence(config.readDownloadFolder(),"Payment","pdf");
+		eleutil.uploadFile(DesiredPath);
+		//To call the AutoIt script
 		eleutil.closeSpecificWindow(childWindow);
-		eleutil.SwitchSpecificWindow(mainWindow);
-	
+		eleutil.SwitchSpecificWindow(mainwidow);
 	}
 	@Then("user will validate message {string} {string}")
 	public void user_will_validate_message(String expSucces, String expSucces2) throws Exception {
