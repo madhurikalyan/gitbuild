@@ -704,21 +704,18 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 	public String checkFileExistence(String filePath,String filename,String extension) // the name of the zip file which is obtained, is passed in this method
     {
 		String DesiredPath=filePath+filename+"."+extension;
-		System.out.println("DesiredPath is "+DesiredPath);
 		File dstFile = new File(filePath+filename+"."+extension);
-		System.out.println("DesiredPath is "+dstFile);
 		int i = 0;
 		if(dstFile.exists()) {
 		while (dstFile.exists ()) {
 		    i += 1;
 		    DesiredPath = filePath + filename + " (" + i + ")"+"."+extension;
-		   // dstFile = new File(filePath + filename + " (" + i + ")"+"."+extension);
+		   dstFile = new File(filePath + filename + " (" + i + ")"+"."+extension);
 		}
 		}
 		else {
 			 DesiredPath=filePath+filename+"."+extension;
 		}
-		System.out.println("DesiredPath is :"+DesiredPath);
 		return DesiredPath;
     }
 		/*
@@ -881,19 +878,14 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 	 * @throws Exception
 	 */
 	public static void selectDateFromDatePickerCV(WebElement dateElement, String dateString) throws Exception {
-
-		System.out.println(dateString);
 		Date requestedDate = new SimpleDateFormat("dd/MM/yyyy").parse(dateString);
 
 		String month = new SimpleDateFormat("MMMM").format(requestedDate);
 		String mon=month.substring(0, 3);
-		//System.out.println(mon);
 
 		String day = new SimpleDateFormat("d").format(requestedDate);
-		//System.out.println(day);
 
 		String year = new SimpleDateFormat("yyyy").format(requestedDate);
-		//System.out.println(year);
 
 		scrollToViewAndClickElement(dateElement);
 
@@ -904,7 +896,6 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 		selectYear.selectByVisibleText(year);
 		for (WebElement element : driver.findElements(By.xpath("//table[@class='ui-datepicker-calendar']//td[@data-handler='selectDay'] "))) {
 			if (element.getText().trim().equals(day)) {
-				System.out.println(element.getText());
 				element.click();
 				break;
 			}
@@ -1009,19 +1000,14 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 		Date date1 = dateToBeModified;
 		Date date2 = inputDate;
 		String dateToBeEntered = null;
-
-		System.out.println("date1 : " + sdf.format(date1));
-		System.out.println("date2 : " + sdf.format(date2));
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(inputDate);
 		if (date1.compareTo(date2) >= 0) {
-			System.out.println("Date1 is after Date2");
 			cal.add(Calendar.DATE, 1);
 			dateToBeEntered = sdf.format(cal.getTime());
 		} else if (date1.compareTo(date2) < 0) {
 			cal.add(Calendar.DATE, 0);
 			dateToBeEntered = sdf.format(cal.getTime());
-			System.out.println("Date1 is before Date2");
 		}
 
 		return dateToBeEntered;
@@ -1034,7 +1020,6 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 	 */
 	public void CloseFirstChildWindow() throws Exception{
 		mainWindow=driver.getWindowHandle();
-		System.out.print("mainWindow is :"+mainWindow);
 		Set<String> set =driver.getWindowHandles();
 		// Using Iterator to iterate with in windows
 		Iterator<String> itr= set.iterator();
@@ -1042,7 +1027,6 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 			String childWindow=itr.next();
 			// Compare whether the main windows is not equal to child window. If not equal, we will close.
 			if(!mainWindow.equals(childWindow)){
-				System.out.println("childWindow is:"+childWindow);
 				driver.switchTo().window(childWindow);
 				driver.close();
 				driver.switchTo().window(mainWindow);
@@ -1116,10 +1100,6 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 
 		//calculating number of days in between
 		long noOfDaysBetween = ChronoUnit.DAYS.between(dateBefore, dateAfter);
-
-		//displaying the number of days
-		System.out.println(noOfDaysBetween);
-
 		return (int) noOfDaysBetween;
 
 	}
@@ -1127,7 +1107,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 	 * @description : returns current date in specified date format
 	 * @param  : required date pattern
 	 * @return : current date in string format
-	 * @author : vSai Madhuri Aturi
+	 * @author : 
 	 */
 	public  String getCurrentDateInSpecifiedFormat(String requiredDateFormat) throws Exception{
 		DateFormat dateFormat = new SimpleDateFormat(requiredDateFormat);
@@ -1138,7 +1118,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 	 * @description : returns required date in specified date format
 	 * @param  : required date pattern and number of days from current date(for past date @days should be -ve and for future date it should be +ve and for current date it should be zero)
 	 * @return : string date
-	 * @author : Sai Madhuri Aturi
+	 * @author : 
 	 */
 	public  String getAddedDateInSpecifiedFormat(String requiredDateFormat, int days) throws Exception{
 		DateFormat dateFormat = new SimpleDateFormat(requiredDateFormat);
@@ -1151,13 +1131,12 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 	 * @description : returns required past/future date in specified date format with reference to given input date
 	 * @param  : reference date and how many days previous/next to the reference date
 	 * @return : string date
-	 * @author : Sai Madhuri Aturi
+	 * @author : 
 	 */
 	public static String selectPastOrFutureDate(String requiredDateFormat,String inputDate, int days) throws ParseException, java.text.ParseException {
 		SimpleDateFormat sdf = new SimpleDateFormat(requiredDateFormat);
 		Date date = sdf.parse(inputDate);
 		String dateToBeEntered = null;
-		System.out.println("date : " + sdf.format(date));
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(date);
 		cal.add(Calendar.DATE, days);
@@ -1165,7 +1144,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 		return dateToBeEntered;
 	}
 	/*
-	 * @Author : Sai Madhuri Aturi
+	 * @Author : 
 	 * @description : Getting current system date
 	 */
 	public static List<Object> currentDate() {
@@ -1327,27 +1306,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 			throw e;
 		}
 	}
-	/*
-	 * @description : select an option from drop down using visible text
-	 * @param  : element
-	 * @param  : timeout for element to be present in seconds
-	 * @return : NA
-	 * @author : Sai Madhuri Aturi
-	 */
-	/*public static String selectedfromdropdown(WebElement element) {
-		try {
-				Select select=new Select(element);
-				System.out.println("webelement is;"+select.getFirstSelectedOption());
-				String selectedvalue=select.getFirstSelectedOption().getAttribute("value");
-		} catch (Exception e) {
-
-			throw e;
-		}
-		String selectedvalue = null;
-		return selectedvalue;
-	}*/
-
-	public static void selectFromDropdownByValue(WebElement element, String option) {
+		public static void selectFromDropdownByValue(WebElement element, String option) {
 		try {
 			if(!option.equals("")) {
 				wait = new WebDriverWait(driver, Duration.ofSeconds(60));
@@ -1365,12 +1324,11 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 	 * @description : waits for javascript and jquery to finish loading
 	 * @param  : chckbox element
 	 * @return : NA
-	 * @author : Sai Madhuri Aturi
+	 * @author : 
 	 */
 	public static boolean waitForJStoLoad() throws InterruptedException {
 		//sleepTime(1000);
 		Calendar c = Calendar.getInstance();
-		System.out.println(c.get(Calendar.SECOND)+" "+c.get(Calendar.MILLISECOND));
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 		// wait for jQuery to load
 		ExpectedCondition<Boolean> jQueryLoad = new ExpectedCondition<Boolean>() {
@@ -1394,7 +1352,6 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 		};
 		boolean a = wait.until(jQueryLoad)&&wait.until(jsLoad);
 		Calendar c1 = Calendar.getInstance();
-		System.out.println(c.get(Calendar.SECOND)+" "+c1.get(Calendar.MILLISECOND));
 		return a;
 	}
 	public static void mouseoveronElement(WebDriver driver,WebElement element) {

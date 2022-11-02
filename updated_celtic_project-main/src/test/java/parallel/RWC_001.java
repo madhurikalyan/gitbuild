@@ -397,6 +397,7 @@ public class RWC_001 {
 			}
 
 		}
+		
 		String actualmessage = commonobjects.fetchErrorMessage(expSucces);
 		try {
 		Assert.assertEquals(actualmessage, expSucces);
@@ -436,26 +437,25 @@ public class RWC_001 {
 
 		//Weight Group Screen
 		//Edit Existing Weight Group
-		/*	wgtgroup.clickHandimg();
+			wgtgroup.clickHandImg();
 
-		String Juri_ExcelCount=excelutil.getCellData("WeightJuris","Juris Count",RowNo);
-		for(int i=0;i<Integer.valueOf(Juri_ExcelCount);i++) {
-			String Juri_Excel=excelutil.getCellData("WeightJuris","Juri"+String.valueOf(i),RowNo);
-			wgtgroupadd.enterWeight_JuriValue(Juri_Excel);
+		String juriExcelCount=excelutil.getCellData("WeightJuris","Juris Count",RowNo);
+		for(int i=0;i<Integer.valueOf(juriExcelCount);i++) {
+			String juriExcel=excelutil.getCellData("WeightJuris","Juri"+String.valueOf(i),RowNo);
+			wgtgroupadd.enterWeightJuriValue(juriExcel);
 		}
 		commonobjects.clickProceed();
 		// Weight Group Verification Screen
 		commonobjects.clickProceed();
-	//	ArrayList<String> FetchInfoMessages1=commonobjects.validateInfoMsgs();
 		log.info(commonobjects.validateInfoMsgs());
 		//Validating JUR WITH DIFFERENT WEIGHTS
 		String[] weightlist=wgtgroup.validateJurisWeightsedited(); //[AL, AR, AZ]
-		for(int i=0;i<Integer.valueOf(Juri_ExcelCount);i++) {
+		for(int i=0;i<Integer.valueOf(juriExcelCount);i++) {
 			String Juri_Excel=excelutil.getCellData("WeightJuris","Juri"+String.valueOf(i),RowNo);
 			if(weightlist[i].equalsIgnoreCase(Juri_Excel)){
 				assert true;
 			}
-		}*/
+		}
 
 		//In Weight Group Screen	
 		commonobjects.clickDoneBtn();
@@ -467,6 +467,7 @@ public class RWC_001 {
 		excelutilWrite.setCellData("VehicleTab",Vehicletabpage.fetchAddVehiclesLbl(), RowNo,Vehicletabpage.fetchAddVehicles());
 		excelutilWrite.setCellData("VehicleTab",Vehicletabpage.fetchDeleteVehicleLbl(), RowNo,Vehicletabpage.fetchDeleteVehicle());
 		excelutilWrite.setCellData("VehicleTab",Vehicletabpage.fetchRenewVehicleLbl(), RowNo,Vehicletabpage.fetchRenewVehicle());
+		
 		log.info(commonobjects.validateInfoMsgs());
 
 		int NoofVehiclestoAmend=Integer.valueOf(excelutil.getCellData("VehicleTab","NoofVehiclestoAmend",RowNo));
@@ -598,7 +599,6 @@ public class RWC_001 {
 
 	@Then("User will Delete vehicle as per the requiremnet and validate the message {string}")
 	public void user_will_delete_vehicle_as_per_the_requiremnet_and_validate_the_message(String expSucces) throws Exception {
-		System.out.println("Proceed7");
 		log.info(commonobjects.validateInfoMsgs());
 		int NoofVehiclestoDelete=Integer.valueOf(excelutil.getCellData("VehicleTab","NoOfVehiclesToDelete",RowNo));	
 		if(NoofVehiclestoDelete>0) {
@@ -768,7 +768,6 @@ public class RWC_001 {
 		commonobjects.clickProceed();
 		log.info(commonobjects.validateInfoMsgs());
 		//below lines of code for deleting the vehicles from suggestion box
-		String vehiclesCount=excelutil.getCellData("VehicleTab","NoOfVehiclesToDelete",RowNo);
 		String plateStatus=excelutil.getCellData("VehicleTab","Delete_PlateStatus",RowNo);
 		String plateReturnedDocument=excelutil.getCellData("VehicleTab","Delete_PlateReturnedDocument",RowNo);
 		String affidavitDocument=excelutil.getCellData("VehicleTab","Delete_AffidavitDocument",RowNo);
@@ -807,7 +806,6 @@ public class RWC_001 {
 	}
 	@Then("User will navigate to billing to verify as well to adjust the cost & Waive Fees {string}")
 	public void user_will_navigate_to_billing_to_verify_as_well_to_adjust_the_cost_waive_fees(String expSucces) throws Exception {
-		commonobjects.clickDoneBtn();
 		//Fetch values from Biling Screen
 		excelutilWrite.setCellData("Billing",billingtab.fetchRegisterMonthlbl(),RowNo,billingtab.fetchRegisterMonth());
 		excelutilWrite.setCellData("Billing",billingtab.fetchNoOfVehiclesinSupplbl(),RowNo,billingtab.fetchNoOfVehiclesinSupp());
@@ -836,6 +834,7 @@ public class RWC_001 {
 			excelutilWrite.setCellData("BillingGrid",billingtab.fetchBillingGridFeeType()+i,RowNo,TableFeeType.get(i));
 			excelutilWrite.setCellData("BillingGrid",billingtab.fetchBillingGridFeeAmount()+i,RowNo,TableFeeAmount.get(i));
 		}	
+		
 		log.info(commonobjects.validateInfoMsgs());
 	
 		billingtab.clickTVR();
@@ -895,10 +894,6 @@ public class RWC_001 {
 			log.info("*** Waived off for "+FeeDescriptiontoWaiveOff +"  "+" with Reason "+ FeeWaiveOffReason + " ***");
 			screenshotUtil.captureScreenshot("Waived off Fee");
 		}
-		/*billingtab.selectGradeCrossingFee(excelutil.getCellData("BillingTab","Grade Crossing Fee",RowNo));  
-		log.info("*** Select GradeCrossingFee ***");
-		screenshotUtil.captureScreenshot("Select GradeCrossingFee");*/
-
 		billingtab.clickReCalculate();
 		log.info("*** Click Recalculate ***");
 		screenshotUtil.captureScreenshot("Click Recalculate");
@@ -923,7 +918,9 @@ public class RWC_001 {
 		String childWindow=eleutil.SwitchtoFirstChildWindow();
 		eleutil.saveAsFile();
 		String DesiredPath=eleutil.checkFileExistence(config.readDownloadFolder(),"Billing","pdf");
+		Thread.sleep(4000);
 		eleutil.uploadFile(DesiredPath);
+		Thread.sleep(4000);
 		//To call the AutoIt script
 		eleutil.closeSpecificWindow(childWindow);
 		eleutil.SwitchSpecificWindow(mainwidow);
@@ -947,6 +944,7 @@ public class RWC_001 {
 			excelutilWrite.setCellData("PaymentTab",paymenttab.FetchHeaderFeeType()+i,RowNo,Payment_TableFeeType.get(i));
 			excelutilWrite.setCellData("PaymentTab",paymenttab.FetchHeaderFeeAmount()+i,RowNo,Payment_TableFeeAmount.get(i));
 		}
+	
 		log.info(commonobjects.validateInfoMsgs());
 		String actualmessage = commonobjects.fetchErrorMessage(expSucces);
 		try {
@@ -989,6 +987,7 @@ public class RWC_001 {
 		commonobjects.clickProceed();
 		log.info(commonobjects.validateInfoMsgs());
 		
+		//Navigates to Payment Verification Screen
 		paymenttab.clickAddtoCart();
 		log.info("***Click Add to Cart**");
 		log.info(commonobjects.validateInfoMsgs());
@@ -1092,7 +1091,9 @@ public class RWC_001 {
 		String childWindow=eleutil.SwitchtoFirstChildWindow();
 		eleutil.saveAsFile();
 		String DesiredPath=eleutil.checkFileExistence(config.readDownloadFolder(),"Payment","pdf");
+		Thread.sleep(4000);
 		eleutil.uploadFile(DesiredPath);
+		Thread.sleep(4000);
 		//To call the AutoIt script
 		eleutil.closeSpecificWindow(childWindow);
 		eleutil.SwitchSpecificWindow(mainwidow);
