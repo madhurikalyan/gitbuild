@@ -12,7 +12,6 @@ import com.celtic.automation.cmcs.pages.DistanceTabPage;
 import com.celtic.automation.cmcs.pages.Financepage;
 import com.celtic.automation.cmcs.pages.FleetPage;
 import com.celtic.automation.cmcs.pages.FleetTabPage;
-import com.celtic.automation.cmcs.pages.InstallmentPage;
 import com.celtic.automation.cmcs.pages.InventoryPage;
 import com.celtic.automation.cmcs.pages.LoginPage;
 import com.celtic.automation.cmcs.pages.Payment;
@@ -20,6 +19,7 @@ import com.celtic.automation.cmcs.pages.PaymentTab;
 import com.celtic.automation.cmcs.pages.VehicleAdd;
 import com.celtic.automation.cmcs.pages.VehicleAmend;
 import com.celtic.automation.cmcs.pages.VehicleDelete;
+import com.celtic.automation.cmcs.pages.VehicleList;
 import com.celtic.automation.cmcs.pages.VehicleTabPage;
 import com.celtic.automation.cmcs.pages.WgtGroup;
 import com.celtic.automation.cmcs.pages.WgtGroupAdd;
@@ -52,12 +52,13 @@ public class RWC_001 {
 	private Payment pay =new Payment(DriverFactory.getDriver());
 	private PaymentTab paymenttab = new PaymentTab(DriverFactory.getDriver());
 	private InventoryPage inventorypage = new InventoryPage(DriverFactory.getDriver());
-	private InstallmentPage installmentpage = new InstallmentPage(DriverFactory.getDriver());
 	private VehicleAdd vehicleadd= new VehicleAdd(DriverFactory.getDriver());
 	private Financepage financepage =new Financepage(DriverFactory.getDriver());
-
+	private VehicleList vehiclelist =new VehicleList(DriverFactory.getDriver());
+	
 	private int RowNo=1;
-
+	private String cancelDeletedVehicle=null;
+	private String cancelAmendedVehicle=null;
 	private ElementUtil eleutil =new ElementUtil();
 	private Screenshot_Utility screenshotUtil =new Screenshot_Utility();
 	private ConfigReader config=new ConfigReader();
@@ -65,6 +66,8 @@ public class RWC_001 {
 	private ReadExcelUtil excelutil=null;
 	private WriteExcelUtil excelutilWrite=null;
 	private ErrorCollector error = new ErrorCollector();
+	private String className = this.getClass().getName().split("[.]")[1];
+	
 	
 	@Given("User login as a Internal user")
 	public void user_login_as_a_internal_user() throws Exception {
@@ -72,26 +75,26 @@ public class RWC_001 {
 		excelutilWrite=new WriteExcelUtil();
 		DriverFactory.getDriver().get(config.readLoginURL());
 		log.info("****************************** Login to the application  *****************************************");
-		screenshotUtil.captureScreenshot("ApplicationLogin");
+		screenshotUtil.captureScreenshot(className,"ApplicationLogin");
 		loginpage.enterUsername(config.readLoginInternalUser());
 		log.info("*** Enter Username ***");
-		screenshotUtil.captureScreenshot("Username");
+		screenshotUtil.captureScreenshot(className,"Username");
 		loginpage.enterPassword(config.readpswrd());
 		log.info("*** Enter Password ***");
-		screenshotUtil.captureScreenshot("Password");
+		screenshotUtil.captureScreenshot(className,"Password");
 		loginpage.clickLoginBtn();
 		log.info("*** Click Login ***");
-		screenshotUtil.captureScreenshot("Login");
+		screenshotUtil.captureScreenshot(className,"Login");
 	}
 
 	@When("User will navigate to the IRPLink")
 	public void user_will_navigate_to_the_irp_link() throws Exception {
 		dashboardpage.clickIRPLink();
 		log.info("*** Click IRP ***");
-		screenshotUtil.captureScreenshot("IRP");
+		screenshotUtil.captureScreenshot(className,"IRP");
 		dashboardpage.clickRenewFleetLink();
 		log.info("*** Click RenewFleet ***");
-		screenshotUtil.captureScreenshot("RenewFleet");
+		screenshotUtil.captureScreenshot(className,"RenewFleet");
 	}
 
 	@Then("User will provide all the Account Number Details to start with IRP Transaction")
@@ -99,13 +102,13 @@ public class RWC_001 {
 
 		fleetpage.enterAccountNo(excelutil.getCellData("PreSetup","AccountNumber",RowNo));
 		log.info("*** Enter Account Number ***");
-		screenshotUtil.captureScreenshot("Entering AccountNumber");
+		screenshotUtil.captureScreenshot(className,"Entering AccountNumber");
 		fleetpage.enterFleetNo(excelutil.getCellData("PreSetup","FleetNumber",RowNo));
 		log.info("*** Enter FleetNo ***");
-		screenshotUtil.captureScreenshot("Entering FleetNumber");
+		screenshotUtil.captureScreenshot(className,"Entering FleetNumber");
 		fleetpage.enterFleetyear(excelutil.getCellData("PreSetup","Fleet Expiration Year",RowNo));
 		log.info("*** Click FleetYear ***");
-		screenshotUtil.captureScreenshot("Entering FleetYear");
+		screenshotUtil.captureScreenshot(className,"Entering FleetYear");
 		commonobjects.clickProceed();	
 
 	}
@@ -149,10 +152,10 @@ public class RWC_001 {
 		log.info(commonobjects.validateInfoMsgs());
 		accounttabpage.checkEmailNotification();
 		log.info("*** Check Email Notification ***");
-		screenshotUtil.captureScreenshot("Check EmailNotification");
+		screenshotUtil.captureScreenshot(className,"Check EmailNotification");
 		commonobjects.provideComments(excelutil.getCellData("AccountTab","Comments",RowNo));
 		log.info("*** Enter Comments ***");
-		screenshotUtil.captureScreenshot("Enter Comments in Account Section");
+		screenshotUtil.captureScreenshot(className,"Enter Comments in Account Section");
 
 		commonobjects.clickProceed();
 		//Account Verification Screen
@@ -244,59 +247,59 @@ public class RWC_001 {
 			error.addError(e);
 		}
 				
-		CommonStep.scenario.log("Message in Fleet Screen"+expSucces);
+		CommonStep.scenario.log("Message in Fleet Screen"+actualtext);
 		
 
 		log.info(commonobjects.validateInfoMsgs());
 		log.info("Message in Fleet Screen "+commonobjects.fetchErrorMessage(expSucces));
-		screenshotUtil.captureScreenshot("Message in Fleet Screen 1");
+		screenshotUtil.captureScreenshot(className,"Message in Fleet Screen 1");
 
 
 		fleettabpage.navigateToServiceProvider();
 		log.info("*** navigateToServiceProvider ***");
-		screenshotUtil.captureScreenshot("Navigate to Service provider");
+		screenshotUtil.captureScreenshot(className,"Navigate to Service provider");
 
 		fleettabpage.clickPowerOfAttroney();
 		log.info("*** Click PowerofAttroney ***");
-		screenshotUtil.captureScreenshot("Check Power of Attroney");
+		screenshotUtil.captureScreenshot(className,"Check Power of Attroney");
 
 		fleettabpage.enterEmailID(excelutil.getCellData("FleetTab","Email iD",RowNo));
 		log.info("*** Entering the Emailid ***");
-		screenshotUtil.captureScreenshot("Entering the Emailid");
+		screenshotUtil.captureScreenshot(className,"Entering the Emailid");
 		//Expiration Date through Excel
 		//	fleettabpage.selectExpirationDate(ExcelReader.FetchDataFromSheet(config.readRWCexcel(), "FleetTab", 2, 13));
 		//Expiration Date through System
 		fleettabpage.selectExpirationDate(eleutil.getAddedDateInSpecifiedFormat("MMddYYYY",2));
 		log.info("*** Selecting the Expiration Date ***");
-		screenshotUtil.captureScreenshot("Selecting the Expiration Date");
+		screenshotUtil.captureScreenshot(className,"Selecting the Expiration Date");
 
 		fleettabpage.selectIRPRequirementForm(excelutil.getCellData("FleetTab","IRP Requirements Form",RowNo));
 		log.info("*** Selecting the IRPRequirementForm ***");
-		screenshotUtil.captureScreenshot("Selecting the IRPRequirementForm");
+		screenshotUtil.captureScreenshot(className,"Selecting the IRPRequirementForm");
 
 		fleettabpage.selectStatementofUnderstanding(excelutil.getCellData("FleetTab","Statement of Understanding",RowNo));		
 		log.info("*** Selecting StatementofUnderstanding ***");
-		screenshotUtil.captureScreenshot("Selecting StatementofUnderstanding");
+		screenshotUtil.captureScreenshot(className,"Selecting StatementofUnderstanding");
 
 		fleettabpage.selectInstallmentAgreement(excelutil.getCellData("FleetTab","Installment Agreement",RowNo));
 		log.info("*** Selecting InstallmentAgreement ***");
-		screenshotUtil.captureScreenshot("Selecting InstallmentAgreement");
+		screenshotUtil.captureScreenshot(className,"Selecting InstallmentAgreement");
 
 		fleettabpage.selectPowerOfAttroney(excelutil.getCellData("FleetTab","Power of Attorney",RowNo));
 		log.info("*** Selecting PowerOfAttroney ***");
-		screenshotUtil.captureScreenshot("Selecting PowerOfAttroney");
+		screenshotUtil.captureScreenshot(className,"Selecting PowerOfAttroney");
 
 		fleettabpage.selectHVUTForm(excelutil.getCellData("FleetTab","HVUT - Form 2290",RowNo));
 		log.info("*** Selecting HVUTForm ***");
-		screenshotUtil.captureScreenshot("Selecting HVUTForm");		
+		screenshotUtil.captureScreenshot(className,"Selecting HVUTForm");		
 
 		fleettabpage.selectPropertyTax(excelutil.getCellData("FleetTab","Property Tax",RowNo));
 		log.info("*** Selecting PropertyTax ***");
-		screenshotUtil.captureScreenshot("Selecting PropertyTax");		
+		screenshotUtil.captureScreenshot(className,"Selecting PropertyTax");		
 
 		commonobjects.provideComments(excelutil.getCellData("FleetTab","Comments",RowNo));
 		log.info("*** Enter Comments ***");
-		screenshotUtil.captureScreenshot("Enter Comments in Fleet Section");
+		screenshotUtil.captureScreenshot(className,"Enter Comments in Fleet Section");
 
 		commonobjects.clickProceed();
 		//Fleet Verification Screen
@@ -339,12 +342,12 @@ public class RWC_001 {
 		catch(Throwable e) {
 			error.addError(e);
 		}
-		CommonStep.scenario.log("Message in Distance Screen"+ expSucces1);
+		CommonStep.scenario.log("Message in Distance Screen"+ actualmessage);
 	
 		log.info(commonobjects.validateInfoMsgs());
 		log.info("Message in Distance Screen"+commonobjects.fetchErrorMessage(expSucces1));
 
-		screenshotUtil.captureScreenshot("Message in Distance Screen 1");
+		screenshotUtil.captureScreenshot(className,"Message in Distance Screen 1");
 		
 		String actualmessage2 = commonobjects.fetchErrorMessage(expSucces2);
 		try {
@@ -353,20 +356,20 @@ public class RWC_001 {
 		catch(Throwable e) {
 			error.addError(e);
 		}
-		CommonStep.scenario.log("Message in Distance Screen"+ expSucces2);
+		CommonStep.scenario.log("Message in Distance Screen"+ actualmessage2);
 	
 		log.info("Message in Distance Screen"+commonobjects.fetchErrorMessage(expSucces1));
 
-		screenshotUtil.captureScreenshot("Message in Distance Screen 1");
+		screenshotUtil.captureScreenshot(className,"Message in Distance Screen 1");
 		
 		distancetabpage.enterAllDistanceValue(excelutil.getCellData("DistanceTab","Distance",RowNo));   	
 		//distancetabpage.enterMODistanceValue(excelutil.getCellData("DistanceTab","Juri",RowNo), excelutil.getCellData("DistanceTab","Distance",RowNo));
 		log.info("*** Enter MODistanceValue ***");
-		screenshotUtil.captureScreenshot("Enter MODistanceValue");
+		screenshotUtil.captureScreenshot(className,"Enter MODistanceValue");
 
 		commonobjects.provideComments(excelutil.getCellData("DistanceTab","Comments",RowNo));
 		log.info("*** Enter Comments ***");
-		screenshotUtil.captureScreenshot("Enter Comments in Distance Section");
+		screenshotUtil.captureScreenshot(className,"Enter Comments in Distance Section");
 
 		commonobjects.clickProceed();
 
@@ -406,16 +409,16 @@ public class RWC_001 {
 			error.addError(e);
 		}
 		
-		CommonStep.scenario.log("Message in Weight Group Screen"+expSucces);
+		CommonStep.scenario.log("Message in Weight Group Screen"+actualmessage);
 	
 
 		log.info(commonobjects.validateInfoMsgs());
 		log.info("Message in Weight Group Screen"+commonobjects.fetchErrorMessage(expSucces));
-		screenshotUtil.captureScreenshot("Message in Weight Group Screen 1");
+		screenshotUtil.captureScreenshot(className,"Message in Weight Group Screen 1");
 
 		wgtgroup.clickAddWeightGroup();
 		log.info("*** Click AddweightGroup ***");
-		screenshotUtil.captureScreenshot("Click AddweightGroup");
+		screenshotUtil.captureScreenshot(className,"Click AddweightGroup");
 		//Add Weight Group Screen
 		String WeightGroupCount_Excel=excelutil.getCellData("WeightGrouptab","TotalWeightGroups",RowNo);
 
@@ -423,13 +426,13 @@ public class RWC_001 {
 			wgtgroupadd.selectWeightGroupType(excelutil.getCellData("WeightGrouptab","WeightGroup Type"+String.valueOf(weightcount),RowNo));
 
 			log.info("*** Select WeightGroupType ***");
-			screenshotUtil.captureScreenshot("Select WeightGroupType");
+			screenshotUtil.captureScreenshot(className,"Select WeightGroupType");
 			wgtgroupadd.enterWeightGroupNo(excelutil.getCellData("WeightGrouptab","Weight Group No."+String.valueOf(weightcount),RowNo));
 			log.info("*** Enter WeightGroup No ***");
-			screenshotUtil.captureScreenshot("Enter WeightGroup No");
+			screenshotUtil.captureScreenshot(className,"Enter WeightGroup No");
 			wgtgroupadd.selectMaxGrossWeight(excelutil.getCellData("WeightGrouptab","Max Gross Weight"+String.valueOf(weightcount),RowNo));
 			log.info("*** Select MaxGross Weight ***");
-			screenshotUtil.captureScreenshot("Select MaxGross Weight");
+			screenshotUtil.captureScreenshot(className,"Select MaxGross Weight");
 			commonobjects.clickProceed();
 
 			commonobjects.clickProceed();
@@ -475,7 +478,7 @@ public class RWC_001 {
 
 			Vehicletabpage.clickAmendVehicleRadioButton();
 			log.info("*** Click AmendVehicle RadioButton ***");
-			screenshotUtil.captureScreenshot("Click AmendVehicle RadioButton");
+			screenshotUtil.captureScreenshot(className,"Click AmendVehicle RadioButton");
 
 			commonobjects.clickProceed();
 			log.info(commonobjects.validateInfoMsgs());
@@ -487,22 +490,22 @@ public class RWC_001 {
 			catch(Throwable e) {
 				error.addError(e);
 			}
-			CommonStep.scenario.log("Message in Amend Vehicle Screen"+expSucces);
+			CommonStep.scenario.log("Message in Amend Vehicle Screen"+actualmessage);
 
 			log.info("Message in Amend Vehicle Screen"+commonobjects.fetchErrorMessage(expSucces));
-			screenshotUtil.captureScreenshot("Message in Amend Vehicle Screen 1");
+			screenshotUtil.captureScreenshot(className,"Message in Amend Vehicle Screen 1");
 
 
 			for(int i=0;i<NoofVehiclestoAmend;i++) {
 				if(NoofVehiclestoAmend>Integer.valueOf(config.readAmendVehicleCondition())) {
 					vehicleAmend.selectUnitNoFromSuggestions();
 					log.info("*** Select Unit number ***");
-					screenshotUtil.captureScreenshot("Select Unit number");
+					screenshotUtil.captureScreenshot(className,"Select Unit number");
 				}
 				else {
 					vehicleAmend.enterUnitNo(excelutil.getCellData("VehicleAmendTab","Unit"+String.valueOf(i),RowNo));
 					log.info("*** Enter Unit number ***");
-					screenshotUtil.captureScreenshot("Enter Unit number");
+					screenshotUtil.captureScreenshot(className,"Enter Unit number");
 				}
 				vehicleAmend.clickSearch();
 
@@ -517,7 +520,7 @@ public class RWC_001 {
 					vehicleAmend.selectWeightGroupNo(excelutil.getCellData("WeightGrouptab","Vehicle_WeightGroupNo",RowNo));
 
 					log.info("*** Enter WeightGroupNo ***");
-					screenshotUtil.captureScreenshot("Enter WeightGroupNo");
+					screenshotUtil.captureScreenshot(className,"Enter WeightGroupNo");
 					String actualmessage1 = commonobjects.fetchErrorMessage(expSucces2);
 					try {
 					Assert.assertEquals(actualmessage1, expSucces2);
@@ -525,52 +528,52 @@ public class RWC_001 {
 					catch(Throwable e) {
 						error.addError(e);
 					}
-					CommonStep.scenario.log("Message in Amend Vehicle Screen"+expSucces2);
+					CommonStep.scenario.log("Message in Amend Vehicle Screen"+actualmessage1);
 				
 					log.info("Message in Amend Vehicle Screen"+commonobjects.fetchErrorMessage(expSucces2));
-					screenshotUtil.captureScreenshot("Message in Amend Vehicle Screen 2");
+					screenshotUtil.captureScreenshot(className,"Message in Amend Vehicle Screen 2");
 				}
 				vehicleAmend.enterUnladenWeight(excelutil.getCellData("VehicleTab","unladenWeight",RowNo));
 				log.info("*** Enter UnladenWeight ***");
-				screenshotUtil.captureScreenshot("Enter UnladenWeight");
+				screenshotUtil.captureScreenshot(className,"Enter UnladenWeight");
 
 
 				vehicleAmend.clickTVR();
 				log.info("*** Click TVR ***");
-				screenshotUtil.captureScreenshot("Click TVR");
+				screenshotUtil.captureScreenshot(className,"Click TVR");
 
 				vehicleAmend.selectSafetyChangedd(excelutil.getCellData("VehicleTab","Safety Change",RowNo));
 				log.info("*** Select Safety Changedd ***");
-				screenshotUtil.captureScreenshot("Select Safety Changedd");
+				screenshotUtil.captureScreenshot(className,"Select Safety Changedd");
 
 				vehicleAmend.selectHVUTForm2290(excelutil.getCellData("VehicleTab","HVUT - Form",RowNo));
 				log.info("*** Select HVUTForm2290 ***");
-				screenshotUtil.captureScreenshot("Select HVUTForm2290");
+				screenshotUtil.captureScreenshot(className,"Select HVUTForm2290");
 
 				vehicleAmend.selectLeaseContract(excelutil.getCellData("VehicleTab","Lease Contract",RowNo));
 				log.info("*** Select LeaseContract ***");
-				screenshotUtil.captureScreenshot("Select LeaseContract");
+				screenshotUtil.captureScreenshot(className,"Select LeaseContract");
 
 				vehicleAmend.selectTitleDocument(excelutil.getCellData("VehicleTab","Title Document",RowNo));
 				log.info("*** Select TitleDocument ***");
-				screenshotUtil.captureScreenshot("Select TitleDocument");
+				screenshotUtil.captureScreenshot(className,"Select TitleDocument");
 
 				vehicleAmend.selectPlateReturndoc(excelutil.getCellData("VehicleTab","Plate Returned Document",RowNo));
 				log.info("*** Select PlateReturndoc ***");
-				screenshotUtil.captureScreenshot("Select PlateReturndoc");
+				screenshotUtil.captureScreenshot(className,"Select PlateReturndoc");
 
 				vehicleAmend.selectAffidavitDoc(excelutil.getCellData("VehicleTab","Affidavit document",RowNo));
 				log.info("*** Select AffidavitDoc ***");
-				screenshotUtil.captureScreenshot("Select AffidavitDoc");
+				screenshotUtil.captureScreenshot(className,"Select AffidavitDoc");
 
 				vehicleAmend.selectPropertyTax(excelutil.getCellData("VehicleTab","Property Tax",RowNo));
 				log.info("*** Select PropertyTax ***");
-				screenshotUtil.captureScreenshot("Select PropertyTax");
+				screenshotUtil.captureScreenshot(className,"Select PropertyTax");
 
 				commonobjects.provideComments(excelutil.getCellData("VehicleTab","Ammend_Comments",RowNo));
 
 				log.info("*** Enter Comments ***");
-				screenshotUtil.captureScreenshot("Enter Comments in Distance Section");
+				screenshotUtil.captureScreenshot(className,"Enter Comments in Distance Section");
 
 				commonobjects.clickProceed();
 				//Verification Screen
@@ -583,11 +586,11 @@ public class RWC_001 {
 				catch(Throwable e) {
 					error.addError(e);
 				}
-				CommonStep.scenario.log("Message in Amend Vehicle Screen "+expSucces3);
+				CommonStep.scenario.log("Message in Amend Vehicle Screen "+actualmessage2);
 			
 				
 				log.info("essage in Amend Vehicle Screen "+commonobjects.fetchErrorMessage(expSucces3));
-				screenshotUtil.captureScreenshot("Message in Amend Vehicle Screen");
+				screenshotUtil.captureScreenshot(className,"Message in Amend Vehicle Screen");
 
 			}// End of for Loop
 			commonobjects.clickDoneBtn();
@@ -603,7 +606,7 @@ public class RWC_001 {
 		if(NoofVehiclestoDelete>0) {
 			Vehicletabpage.clickDeleteVehicleRadioButton();
 			log.info("**** Click DeleteVehicle ****");
-			screenshotUtil.captureScreenshot("Click Delete Vehicle");
+			screenshotUtil.captureScreenshot(className,"Click Delete Vehicle");
 
 			commonobjects.clickProceed();
 			log.info(commonobjects.validateInfoMsgs());
@@ -625,27 +628,27 @@ public class RWC_001 {
 					//Enter unit # to filter & delete
 					vehicleDelete.enterUnitNo(excelutil.getCellData("VehicleDeleteTab","Unit"+String.valueOf(j),RowNo));
 					log.info("*** Delete vehicle Enter Unit number ***");
-					screenshotUtil.captureScreenshot("Delete vehicle Enter Unit number");
+					screenshotUtil.captureScreenshot(className,"Delete vehicle Enter Unit number");
 
 					vehicleDelete.clickonSearch();
 					vehicleDelete.ClickCheckBoxFromGrid();
 
 					vehicleDelete.selectPlateStatus(PlateStatus);
 					log.info("***DeleteVehicle Select PlateStatus ***");
-					screenshotUtil.captureScreenshot("DeleteVehicle Select PlateStatus");
+					screenshotUtil.captureScreenshot(className,"DeleteVehicle Select PlateStatus");
 
 					vehicleDelete.selectPlateReturnedDocument(PlateReturnedDocument);
 					log.info("***DeleteVehicle Select PlateReturndoc ***");
-					screenshotUtil.captureScreenshot("DeleteVehicle Select PlateReturndoc");
+					screenshotUtil.captureScreenshot(className,"DeleteVehicle Select PlateReturndoc");
 
 					vehicleDelete.selectAffidavitDocument(AffidavitDocument);
 					log.info("***DeleteVehicle Select AffidavitDoc ***");
-					screenshotUtil.captureScreenshot("DeleteVehicle Select AffidavitDoc");
+					screenshotUtil.captureScreenshot(className,"DeleteVehicle Select AffidavitDoc");
 
 
 					vehicleDelete.entercomments(Comments);
 					log.info("*** DeleteVehicle Comment ***");
-					screenshotUtil.captureScreenshot("DeleteVehicle Comment");
+					screenshotUtil.captureScreenshot(className,"DeleteVehicle Comment");
 
 					commonobjects.clickProceed();
 					commonobjects.clickProceed();
@@ -658,11 +661,11 @@ public class RWC_001 {
 			catch(Throwable e) {
 				error.addError(e);
 			}
-			CommonStep.scenario.log("Message in Delete Vehicle Screen"+expSucces);
+			CommonStep.scenario.log("Message in Delete Vehicle Screen"+actualmessage);
 			
 			log.info(commonobjects.validateInfoMsgs());
 			log.info("Message in Delete Vehicle Screen"+commonobjects.fetchErrorMessage(expSucces));
-			screenshotUtil.captureScreenshot("Message in Delete Vehicle Screen 1");
+			screenshotUtil.captureScreenshot(className,"Message in Delete Vehicle Screen 1");
 			commonobjects.clickDoneBtn();
 			log.info(commonobjects.validateInfoMsgs());
 		}//End of vehicle Delete if loop
@@ -672,35 +675,43 @@ public class RWC_001 {
 		//verification screen before going to billing screen -Vehicles cancel from Vehicle List
 		Vehicletabpage.clickVehicleList();
 		log.info("*** Click VehicleList ***");
-		screenshotUtil.captureScreenshot("Click VehicleList");
+		screenshotUtil.captureScreenshot(className,"Click VehicleList");
+		 cancelAmendedVehicle=vehiclelist.fetchRequiredUnitNumber("AMEND");
+		 log.info("Cancelling the recently Amended Vehicle"+cancelAmendedVehicle);
 			//Canceling the Amended Vehicle
-		vehicleadd.enterUnitNumber(excelutil.getCellData("VehicleAmendTab","Unit0",RowNo));
+	//	vehicleadd.enterUnitNumber(excelutil.getCellData("VehicleAmendTab","Unit0",RowNo));
+		vehicleadd.enterUnitNumber(cancelAmendedVehicle);
 		log.info("*** Select Unit No ***");
-		screenshotUtil.captureScreenshot("Select Unit No");
+		screenshotUtil.captureScreenshot(className,"Select Unit No");
 
 		vehicleAmend.clickSearch();
 		log.info("*** Search Unit No ***");
-		screenshotUtil.captureScreenshot("Search Unit No");
+		//screenshotUtil.captureScreenshot(className,"Search Unit No");
 		//	}
 		vehicleadd.selectFirstHandIcon();
 		commonobjects.clickCancelBtn();
 		eleutil.handleAlert();
 		log.info(commonobjects.validateInfoMsgs());
 		log.info("Message in Vehicle Cancel Screen"+commonobjects.fetchErrorMessage(expSucces));
-		screenshotUtil.captureScreenshot("Message in Vehicle Cancel Screen 1");
+		screenshotUtil.captureScreenshot(className,"Message in Vehicle Cancel Screen 1");
 
 		//Canceling the Deleted Vehicle
 		Vehicletabpage.clickVehicleList();
 		log.info("*** Click VehicleList ***");
-		screenshotUtil.captureScreenshot("Click VehicleList");
-
-		vehicleadd.enterUnitNumber(excelutil.getCellData("VehicleDeleteTab","Unit0",RowNo));
+		screenshotUtil.captureScreenshot(className,"Click VehicleList");
+		 cancelDeletedVehicle=vehiclelist.fetchRequiredUnitNumber("DELETE");
+		//Canceling the Amended Vehicle
+//	vehicleadd.enterUnitNumber(excelutil.getCellData("VehicleAmendTab","Unit0",RowNo));
+		 log.info("Cancelling the recently Deleted Vehicle"+cancelDeletedVehicle);
+	vehicleadd.enterUnitNumber(cancelDeletedVehicle);
+	
+	//	vehicleadd.enterUnitNumber(excelutil.getCellData("VehicleDeleteTab","Unit0",RowNo));
 		log.info("*** Select Unit No ***");
-		screenshotUtil.captureScreenshot("Select Unit No");
+		screenshotUtil.captureScreenshot(className,"Select Unit No");
 
 		vehicleAmend.clickSearch();
 		log.info("*** Search Unit No ***");
-		screenshotUtil.captureScreenshot("Search Unit No");
+		screenshotUtil.captureScreenshot(className,"Search Unit No");
 		//	}
 		vehicleadd.selectFirstHandIcon();
 		commonobjects.ClickConfirmCancel();
@@ -715,11 +726,11 @@ public class RWC_001 {
 		catch(Throwable e) {
 			error.addError(e);
 		}
-		CommonStep.scenario.log("Message in Vehicle Cancel Screen"+ expSucces);
+		CommonStep.scenario.log("Message in Vehicle Cancel Screen"+ actualmessage);
 	
 		
 		log.info("Message in Vehicle Cancel Screen"+commonobjects.fetchErrorMessage(expSucces));
-		screenshotUtil.captureScreenshot("Message in Vehicle Cancel Screen 1");
+		screenshotUtil.captureScreenshot(className,"Message in Vehicle Cancel Screen 1");
 
 		commonobjects.clickBack();
 		log.info(commonobjects.validateInfoMsgs());
@@ -732,8 +743,9 @@ public class RWC_001 {
 		Vehicletabpage.clickAmendVehicleRadioButton();
 
 		commonobjects.clickProceed();
-
-		vehicleAmend.enterUnitNo(excelutil.getCellData("VehicleAmendTab","Unit0",RowNo));
+		log.info("Amending the recently Cancelled Vehicle"+cancelAmendedVehicle);
+		vehicleAmend.enterUnitNo(cancelAmendedVehicle);
+		//vehicleAmend.enterUnitNo(excelutil.getCellData("VehicleAmendTab","Unit0",RowNo));
 
 		vehicleAmend.clickSearch();
 
@@ -762,7 +774,7 @@ public class RWC_001 {
 		//Delete the recently cancelled vehicle
 		Vehicletabpage.clickDeleteVehicleRadioButton();
 		log.info("**** Click DeleteVehicle ****");
-		screenshotUtil.captureScreenshot("Click Delete Vehicle");
+		screenshotUtil.captureScreenshot(className,"Click Delete Vehicle");
 
 		commonobjects.clickProceed();
 		log.info(commonobjects.validateInfoMsgs());
@@ -771,29 +783,32 @@ public class RWC_001 {
 		String plateReturnedDocument=excelutil.getCellData("VehicleTab","Delete_PlateReturnedDocument",RowNo);
 		String affidavitDocument=excelutil.getCellData("VehicleTab","Delete_AffidavitDocument",RowNo);
 		String Comments=excelutil.getCellData("VehicleTab","Delete_Comments",RowNo);
-		vehicleDelete.enterUnitNo(excelutil.getCellData("VehicleDeleteTab","Unit0",RowNo));
+		log.info("Deleting the recently Cancelled Vehicle"+cancelDeletedVehicle);
+		vehicleDelete.enterUnitNo(cancelDeletedVehicle);
+		
+		//vehicleDelete.enterUnitNo(excelutil.getCellData("VehicleDeleteTab","Unit0",RowNo));
 		log.info("*** Delete vehicle Enter Unit number ***");
-		screenshotUtil.captureScreenshot("Delete vehicle Enter Unit number");
+		screenshotUtil.captureScreenshot(className,"Delete vehicle Enter Unit number");
 
 		vehicleDelete.clickonSearch();
 		vehicleDelete.ClickCheckBoxFromGrid();
 
 		vehicleDelete.selectPlateStatus(plateStatus);
 		log.info("***DeleteVehicle Select PlateStatus ***");
-		screenshotUtil.captureScreenshot("DeleteVehicle Select PlateStatus");
+		screenshotUtil.captureScreenshot(className,"DeleteVehicle Select PlateStatus");
 
 		vehicleDelete.selectPlateReturnedDocument(plateReturnedDocument);
 		log.info("***DeleteVehicle Select PlateReturndoc ***");
-		screenshotUtil.captureScreenshot("DeleteVehicle Select PlateReturndoc");
+		screenshotUtil.captureScreenshot(className,"DeleteVehicle Select PlateReturndoc");
 
 		vehicleDelete.selectAffidavitDocument(affidavitDocument);
 		log.info("***DeleteVehicle Select AffidavitDoc ***");
-		screenshotUtil.captureScreenshot("DeleteVehicle Select AffidavitDoc");
+		screenshotUtil.captureScreenshot(className,"DeleteVehicle Select AffidavitDoc");
 
 
 		vehicleDelete.entercomments(Comments);
 		log.info("*** DeleteVehicle Comment ***");
-		screenshotUtil.captureScreenshot("DeleteVehicle Comment");
+		screenshotUtil.captureScreenshot(className,"DeleteVehicle Comment");
 
 		commonobjects.clickProceed();
 		commonobjects.clickProceed();
@@ -838,26 +853,26 @@ public class RWC_001 {
 	
 		billingtab.clickTVR();
 		log.info("*** Click TVR ***");
-		screenshotUtil.captureScreenshot("Click TVR");
+		screenshotUtil.captureScreenshot(className,"Click TVR");
 excelutilWrite.setCellData("Billing",billingtab.fetchBillingTVRNoOfDayslbl(),RowNo,billingtab.fetchBilling_TVRNoOfDays());
 		billingtab.clickInstallmentPlan();
 		log.info("*** Click Installement Plan ***");
-		screenshotUtil.captureScreenshot("Click Installement Plan");
+		screenshotUtil.captureScreenshot(className,"Click Installement Plan");
 
 		billingtab.selectElectronicDeliveryType(excelutil.getCellData("BillingTab","Electronic Delivery Type",RowNo));
 		log.info("*** Select Electronic DeliveryType ***");
-		screenshotUtil.captureScreenshot("Select Electronic DeliveryType");
+		screenshotUtil.captureScreenshot(className,"Select Electronic DeliveryType");
 
 		commonobjects.provideComments(excelutil.getCellData("BillingTab","Billing_Comments",RowNo));
 		commonobjects.clickProceed();
 
 		billingtab.enterManualAdjBaseJur(excelutil.getCellData("BillingTab","Manual Adj. Base Jur.",RowNo));
 		log.info("*** Enter ManualAdjBaseJur ***");
-		screenshotUtil.captureScreenshot("Enter ManualAdjBaseJur");
+		screenshotUtil.captureScreenshot(className,"Enter ManualAdjBaseJur");
 
 		billingtab.clickReCalculate();
 		log.info("*** Click Recalculate ***");
-		screenshotUtil.captureScreenshot("Click Recalculate");
+		screenshotUtil.captureScreenshot(className,"Click Recalculate");
 		String actualmessage = commonobjects.fetchErrorMessage(expSucces);
 		try {
 		Assert.assertEquals(actualmessage, expSucces);
@@ -865,15 +880,15 @@ excelutilWrite.setCellData("Billing",billingtab.fetchBillingTVRNoOfDayslbl(),Row
 		catch(Throwable e) {
 			error.addError(e);
 		}
-		CommonStep.scenario.log("Message in Biling Screen"+ expSucces);
+		CommonStep.scenario.log("Message in Biling Screen"+ actualmessage);
 		
 		log.info("Message in Biling Screen"+commonobjects.fetchErrorMessage(expSucces));
-		screenshotUtil.captureScreenshot("Message in Biling Screen 1");
+		screenshotUtil.captureScreenshot(className,"Message in Biling Screen 1");
 
 		billingtab.expandManualAdjReason();
 		billingtab.enterManualAdjReasonComments(excelutil.getCellData("BillingTab","ManualReason",RowNo));
 		log.info("*** Enter ManualAdjReason Comments ***");
-		screenshotUtil.captureScreenshot("Enter ManualAdjReason Comments");
+		screenshotUtil.captureScreenshot(className,"Enter ManualAdjReason Comments");
 		billingtab.clickManualAdjReasonDeleteAllowed();
 		billingtab.clickManualAdjReasonAddorUpdateComments();
 
@@ -891,18 +906,18 @@ excelutilWrite.setCellData("Billing",billingtab.fetchBillingTVRNoOfDayslbl(),Row
 			String FeeWaiveOffReason=excelutil.getCellData("BillingTab","Grade Crossing Fee Waive Off",RowNo);
 			billingtab.selectWaiveOff(FeeDescriptiontoWaiveOff,FeeWaiveOffReason);
 			log.info("*** Waived off for "+FeeDescriptiontoWaiveOff +"  "+" with Reason "+ FeeWaiveOffReason + " ***");
-			screenshotUtil.captureScreenshot("Waived off Fee");
+			screenshotUtil.captureScreenshot(className,"Waived off Fee");
 		}
 		billingtab.clickReCalculate();
 		log.info("*** Click Recalculate ***");
-		screenshotUtil.captureScreenshot("Click Recalculate");
+		screenshotUtil.captureScreenshot(className,"Click Recalculate");
 		log.info(commonobjects.validateInfoMsgs());
 		billingtab.expandFeeOverrideReason();
 
 		billingtab.enterFeeOverrideReasonComments(excelutil.getCellData("BillingTab","FeeOverrideReasonComments",RowNo));
 
 		log.info("*** Enter FeeOverrideReason Comments ***");
-		screenshotUtil.captureScreenshot("Enter FeeOverrideReason Comments");
+		screenshotUtil.captureScreenshot(className,"Enter FeeOverrideReason Comments");
 
 		billingtab.clickFeeOverrideReasonDeleteAllowed();
 		billingtab.clickFeeOverrideReasonAddorUpdateComments();
@@ -956,7 +971,7 @@ excelutilWrite.setCellData("Billing",billingtab.fetchBillingTVRNoOfDayslbl(),Row
 		CommonStep.scenario.log("Message in Payment Screen"+ expSucces);
 		
 				log.info("Message in Payment Screen"+commonobjects.fetchErrorMessage(expSucces));
-		screenshotUtil.captureScreenshot("Message in Payment Screen 1");
+		screenshotUtil.captureScreenshot(className,"Message in Payment Screen 1");
 		
 		
 		String actualmessage2 = commonobjects.fetchErrorMessage(expSucces2);
@@ -970,7 +985,7 @@ excelutilWrite.setCellData("Billing",billingtab.fetchBillingTVRNoOfDayslbl(),Row
 		CommonStep.scenario.log("Message in Payment Screen"+ expSucces2);
 		
 		log.info("Message in Payment Screen"+ commonobjects.fetchErrorMessage(expSucces2));
-		screenshotUtil.captureScreenshot("Message in Payment Screen 2");
+		screenshotUtil.captureScreenshot(className,"Message in Payment Screen 2");
 		String actualmessage3 = commonobjects.fetchErrorMessage(expSucces3);
 		try {
 		Assert.assertEquals(actualmessage3, expSucces3);
@@ -981,7 +996,7 @@ excelutilWrite.setCellData("Billing",billingtab.fetchBillingTVRNoOfDayslbl(),Row
 		CommonStep.scenario.log("Message in Payment Screen"+ expSucces3);
 	
 		log.info("Message in Payment Screen"+commonobjects.fetchErrorMessage(expSucces3));
-		screenshotUtil.captureScreenshot("Message in Payment Screen 3");
+		screenshotUtil.captureScreenshot(className,"Message in Payment Screen 3");
 		pay.selectElectronicDeliverytype(excelutil.getCellData("Payment","ElectronicDeliveryType",RowNo));
 		log.info("***Select Delivery type***");
 		commonobjects.clickProceed();
@@ -999,7 +1014,7 @@ excelutilWrite.setCellData("Billing",billingtab.fetchBillingTVRNoOfDayslbl(),Row
 		log.info(commonobjects.validateInfoMsgs());
 		paymenttab.clicksupplcont();
 		log.info("***Click Supplement continue***");
-		screenshotUtil.captureScreenshot("Click Supplement continue");
+		screenshotUtil.captureScreenshot(className,"Click Supplement continue");
 		fleetpage.enterAccountNo(excelutil.getCellData("PreSetup","AccountNumber",RowNo));
 		commonobjects.clickProceed(); 
 		log.info(commonobjects.validateInfoMsgs());
@@ -1012,7 +1027,7 @@ excelutilWrite.setCellData("Billing",billingtab.fetchBillingTVRNoOfDayslbl(),Row
 		}
 		CommonStep.scenario.log("Message in Fleet Screen"+ expSucces);
 		log.info("Message in Fleet Screen"+commonobjects.fetchErrorMessage(expSucces));
-		screenshotUtil.captureScreenshot("Message in Fleet Screen");
+		screenshotUtil.captureScreenshot(className,"Message in Fleet Screen");
 	}
 
 	@Then("User will navigate to payment tab and fill the requirement")
@@ -1022,11 +1037,11 @@ excelutilWrite.setCellData("Billing",billingtab.fetchBillingTVRNoOfDayslbl(),Row
 		paymenttab.clickVerifyAddToCart();
 
 		log.info("***Verify Cart***");
-		screenshotUtil.captureScreenshot("Verify Cart");
+		screenshotUtil.captureScreenshot(className,"Verify Cart");
 		pay.clickPayNow();  
 
 		log.info("***Click Paynow***");
-		screenshotUtil.captureScreenshot("Click Paynow");
+		screenshotUtil.captureScreenshot(className,"Click Paynow");
 		commonobjects.clickProceed();
 		log.info(commonobjects.validateInfoMsgs());
 		//Fetch Values from 
@@ -1052,12 +1067,12 @@ excelutilWrite.setCellData("Billing",billingtab.fetchBillingTVRNoOfDayslbl(),Row
 			String PaymentNumberValue=excelutil.getCellData("Payment","PaymentChequeNo",RowNo);
 			pay.selectPaymentType(i,PaymentType);	
 			log.info("***Payment Type***");
-			screenshotUtil.captureScreenshot("Payment Type"+i);
+			screenshotUtil.captureScreenshot(className,"Payment Type"+i);
 
 
 			pay.enterpaymentNoBasedonType(i,PaymentType,PaymentNumberValue);
 			log.info("***Payment Number based on Payment Type***");
-			screenshotUtil.captureScreenshot("Payment Number based on  Payment Type"+i);
+			screenshotUtil.captureScreenshot(className,"Payment Number based on  Payment Type"+i);
 
 			String totalAmount=pay.FetchTotalAmount();
 			log.info("totalAmount is "+totalAmount);
@@ -1072,7 +1087,7 @@ excelutilWrite.setCellData("Billing",billingtab.fetchBillingTVRNoOfDayslbl(),Row
 				pay.enterPaymentAmountBasedonType(i,PaymentType,RemainingAmount);
 			}
 			log.info("***Payment Amount based on Payment Type***");
-			screenshotUtil.captureScreenshot("Payment Amount based on  Payment Type"+i);
+			screenshotUtil.captureScreenshot(className,"Payment Amount based on  Payment Type"+i);
 
 		}
 
@@ -1111,7 +1126,7 @@ excelutilWrite.setCellData("Billing",billingtab.fetchBillingTVRNoOfDayslbl(),Row
 		CommonStep.scenario.log("Message in Payment Screen "+ expSucces);
 		
 		log.info("Message in Payment Screen "+commonobjects.fetchErrorMessage(expSucces));
-		screenshotUtil.captureScreenshot("Message in Payment Screen 1");
+		screenshotUtil.captureScreenshot(className,"Message in Payment Screen 1");
 		
 		String actualmessage1 = commonobjects.fetchErrorMessage(expSucces2);
 		try {
@@ -1122,7 +1137,7 @@ excelutilWrite.setCellData("Billing",billingtab.fetchBillingTVRNoOfDayslbl(),Row
 		}
 		CommonStep.scenario.log("Message in Payment Screen "+ expSucces2);
 		log.info("Message in Payment Screen "+commonobjects.fetchErrorMessage(expSucces2));
-		screenshotUtil.captureScreenshot("Message in Payment Screen 2");
+		screenshotUtil.captureScreenshot(className,"Message in Payment Screen 2");
 	}
 
 	@Then("User navigate to inventory tab to input the data and validate the message {string} {string}")
@@ -1131,7 +1146,7 @@ excelutilWrite.setCellData("Billing",billingtab.fetchBillingTVRNoOfDayslbl(),Row
 		inventorypage.clickOnInventory();
 		inventorypage.clickNewInventory();
 		log.info("***Click Inventory***");
-		screenshotUtil.captureScreenshot("Click Inventory");
+		screenshotUtil.captureScreenshot(className,"Click Inventory");
 		log.info(commonobjects.validateInfoMsgs());
 		inventorypage.selectNewInventoryType(excelutil.getCellData("InventoryTab","Inventory_Newintype",RowNo));
 		String actualmessage = commonobjects.fetchErrorMessage(expSucces);
@@ -1146,7 +1161,7 @@ excelutilWrite.setCellData("Billing",billingtab.fetchBillingTVRNoOfDayslbl(),Row
 		
 		log.info("Message in Inventory Screen"+commonobjects.fetchErrorMessage(expSucces));
 
-		screenshotUtil.captureScreenshot("Message in Inventory Screen");
+		screenshotUtil.captureScreenshot(className,"Message in Inventory Screen");
 
 		inventorypage.selectNewSubInventoryType(excelutil.getCellData("InventoryTab","Inventory_Subtype",RowNo));
 
@@ -1158,7 +1173,7 @@ excelutilWrite.setCellData("Billing",billingtab.fetchBillingTVRNoOfDayslbl(),Row
 
 
 		log.info("***Enter details for new inventory***");
-		screenshotUtil.captureScreenshot("Enter details for new inventory");
+		screenshotUtil.captureScreenshot(className,"Enter details for new inventory");
 		commonobjects.clickProceed();
 
 		commonobjects.clickProceed();
@@ -1175,7 +1190,7 @@ excelutilWrite.setCellData("Billing",billingtab.fetchBillingTVRNoOfDayslbl(),Row
 		CommonStep.scenario.log("Message in Payment Screen"+ expSucces2);
 	
 		log.info("Message in Payment Screen"+commonobjects.fetchErrorMessage(expSucces2));
-		screenshotUtil.captureScreenshot("Message in Inventory Screen 2");
+		screenshotUtil.captureScreenshot(className,"Message in Inventory Screen 2");
 		commonobjects.clickQuit();
 	}
 	@Then("Assign the inventory to proceed further {string} {string}")
@@ -1195,7 +1210,7 @@ excelutilWrite.setCellData("Billing",billingtab.fetchBillingTVRNoOfDayslbl(),Row
 	
 		log.info("Message in Inventory Screen "+commonobjects.fetchErrorMessage(expSucces));
 
-		screenshotUtil.captureScreenshot("Message in Inventory Screen 1");
+		screenshotUtil.captureScreenshot(className,"Message in Inventory Screen 1");
 
 		inventorypage.selectNewSubInventoryType(excelutil.getCellData("InventoryTab","Inventory_Subtype",RowNo));
 
@@ -1206,7 +1221,7 @@ excelutilWrite.setCellData("Billing",billingtab.fetchBillingTVRNoOfDayslbl(),Row
 		inventorypage.enterYear(excelutil.getCellData("InventoryTab","Year",RowNo));
 
 		log.info("***Enter details in Assign Inventory***");
-		screenshotUtil.captureScreenshot("Enter details in Assign Inventory");
+		screenshotUtil.captureScreenshot(className,"Enter details in Assign Inventory");
 
 		commonobjects.clickProceed();
 
@@ -1222,7 +1237,7 @@ excelutilWrite.setCellData("Billing",billingtab.fetchBillingTVRNoOfDayslbl(),Row
 		CommonStep.scenario.log("Message in Inventory Screen"+ expSucces2);
 		
 		log.info("Message in Inventory Screen"+commonobjects.fetchErrorMessage(expSucces2));
-		screenshotUtil.captureScreenshot("Message in Inventory Screen 2");
+		screenshotUtil.captureScreenshot(className,"Message in Inventory Screen 2");
 
 
 		commonobjects.clickQuit();
@@ -1271,7 +1286,7 @@ excelutilWrite.setCellData("Billing",billingtab.fetchBillingTVRNoOfDayslbl(),Row
 		pay.selectPaymentReceipt(excelutil.getCellData("Payment","Payment receipt",RowNo));
 
 		log.info("Enter the details in installement payment and proceed");
-		screenshotUtil.captureScreenshot("Enter the details in installement payment and proceed");
+		screenshotUtil.captureScreenshot(className,"Enter the details in installement payment and proceed");
 
 		commonobjects.clickProceed();
 
@@ -1288,7 +1303,7 @@ excelutilWrite.setCellData("Billing",billingtab.fetchBillingTVRNoOfDayslbl(),Row
 		
 		log.info("Message in post Payment Screen"+commonobjects.fetchErrorMessage(expSucces));
 
-		screenshotUtil.captureScreenshot("Message in post Payment Screen 1");
+		screenshotUtil.captureScreenshot(className,"Message in post Payment Screen 1");
 		
 		String actualmessage1 = commonobjects.fetchErrorMessage(expSucces2);
 		
@@ -1302,7 +1317,7 @@ excelutilWrite.setCellData("Billing",billingtab.fetchBillingTVRNoOfDayslbl(),Row
 		
 		log.info("Message in Post Payment Screen "+commonobjects.fetchErrorMessage(expSucces2));
 
-		screenshotUtil.captureScreenshot("Message in post Payment Screen 2");
+		screenshotUtil.captureScreenshot(className,"Message in post Payment Screen 2");
 
 	}
 

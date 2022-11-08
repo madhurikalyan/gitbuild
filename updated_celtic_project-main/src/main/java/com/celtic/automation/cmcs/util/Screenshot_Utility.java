@@ -11,10 +11,10 @@ import com.celtic.automation.cmcs.factory.DriverFactory;
 public class Screenshot_Utility extends DriverFactory{
 	
 	private ConfigReader config =new ConfigReader();
-public  void captureScreenshot(String screenshotName) throws Exception {
+public  void captureScreenshot(String classname,String screenshotName) throws Exception {
 	int c=0;
 	c++;
-	String exeTime = new SimpleDateFormat("ddMMYYYYHH").format(new Date());
+	String exeTime = new SimpleDateFormat("hh:mm").format(new Date());
 		TakesScreenshot ts = (TakesScreenshot)getDriver();
 	File source=ts.getScreenshotAs(OutputType.FILE);
 	//get recently created folder under test-output which contains celtic-spark name  recentcreatedfile=./test-output\\celtic-Spark 07-Nov-22 12-10-53\\
@@ -22,10 +22,10 @@ public  void captureScreenshot(String screenshotName) throws Exception {
 	String recentCreatedFile=ElementUtil.getfolder(fileLocation);
 	File f = new File(recentCreatedFile);
 	if(f.exists()) { 
-		FileUtils.copyFile(source, new File(recentCreatedFile+"\\"+"Screenshot",screenshotName+".png"));	
+		FileUtils.copyFile(source, new File(recentCreatedFile+"\\"+"Screenshot"+"\\"+classname,screenshotName+".png"));	
 	}	
 	else {
-		FileUtils.copyFile(source, new File(fileLocation+"\\"+"Screenshot"+"\\"+exeTime,screenshotName+".png"));
+		FileUtils.copyFile(source, new File(fileLocation+"\\"+"Screenshot"+"\\"+classname+exeTime,screenshotName+".png"));
 	}
 	
 	

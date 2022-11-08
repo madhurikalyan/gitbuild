@@ -36,6 +36,7 @@ public class RIN_001 {
 	private ElementUtil eleutil =new ElementUtil();
 	private Screenshot_Utility screenshotUtil =new Screenshot_Utility();
 	private Reinstatement reinstate =new Reinstatement(DriverFactory.getDriver());
+	String className = this.getClass().getName().split("[.]")[1];
 	
 @Given("User login as an Internal user")
 public void user_login_as_an_internal_user() throws Exception {
@@ -44,32 +45,32 @@ public void user_login_as_an_internal_user() throws Exception {
 	
 	DriverFactory.getDriver().get(config.readLoginURL());
 	log.info("****************************** Login to the application  *****************************************");
-	screenshotUtil.captureScreenshot("ApplicationLogin");
+	screenshotUtil.captureScreenshot(className,"ApplicationLogin");
 	loginpage.enterUsername(config.readLoginInternalUser());
 	log.info("*** Enter Username ***");
-	screenshotUtil.captureScreenshot("Username");
+	screenshotUtil.captureScreenshot(className,"Username");
 	loginpage.enterPassword(config.readpswrd());
 	log.info("*** Enter Password ***");
-	screenshotUtil.captureScreenshot("Password");
+	screenshotUtil.captureScreenshot(className,"Password");
 	loginpage.clickLoginBtn();
 	log.info("*** Click Login ***");
-	screenshotUtil.captureScreenshot("Login");
+	screenshotUtil.captureScreenshot(className,"Login");
 }
 	@When("User will navigate to IRP & Reinstate Fleet")
 	public void user_will_navigate_to_irp_reinstate_fleet() throws Exception {
 		
 		dashboardpage.clickIRPLink();
 		log.info("*** Click IRP ***");
-		screenshotUtil.captureScreenshot("IRP");
+		screenshotUtil.captureScreenshot(className,"IRP");
 	
 		commonobjects.waitForSpinner();
 		dashboardpage.clickFleetMore();
 		log.info("*** Click Fleet More ***");
-		screenshotUtil.captureScreenshot("FleetMore");
+		screenshotUtil.captureScreenshot(className,"FleetMore");
 		
 		dashboardpage.clickFleetReinstatement();
 		log.info("*** Click Fleet Reinstatement ***");
-		screenshotUtil.captureScreenshot("FleetReinstatement");
+		screenshotUtil.captureScreenshot(className,"FleetReinstatement");
 		commonobjects.waitForSpinner();
 	}
 
@@ -77,11 +78,11 @@ public void user_login_as_an_internal_user() throws Exception {
 	public void user_will_provide_all_the_inputs_select_the_record_on_the_grid() throws Exception {
 		fleetpage.enterAccountNo(excelutil.getCellData("PreSetup","AccountNumber",RowNo));
 		log.info("*** Enter Account Number ***");
-		screenshotUtil.captureScreenshot("Entering AccountNumber");
+		screenshotUtil.captureScreenshot(className,"Entering AccountNumber");
 	
 		fleetpage.enterLastInactiveDays(excelutil.getCellData("PreSetup","InactiveDate",RowNo));
 		log.info("*** Enter Last Inactive Days ***");
-		screenshotUtil.captureScreenshot("Entering Last Inactive Days");
+		screenshotUtil.captureScreenshot(className,"Entering Last Inactive Days");
 		
 		commonobjects.clickProceed();	
 		//select 1st record
@@ -114,7 +115,7 @@ public void user_login_as_an_internal_user() throws Exception {
 		//land on the billing page
 		billingtab.enterreceiptdate(excelutil.getCellData("Billing","LastReceiptDate",RowNo));
 		log.info("*** Enter  Receipt  Date ***");
-		screenshotUtil.captureScreenshot("Entering Receipt Date");
+		screenshotUtil.captureScreenshot(className,"Entering Receipt Date");
 		
 		commonobjects.clickProceed();
 	}
@@ -124,7 +125,7 @@ public void user_login_as_an_internal_user() throws Exception {
 		//Validating the information message
 		commonobjects.validateInfoMessage(excelutil.getCellData("Billing","InformationMessage",RowNo));
 		log.info("*** Validating the information Message ***");
-		screenshotUtil.captureScreenshot("Validating Information Message");
+		screenshotUtil.captureScreenshot(className,"Validating Information Message");
 		
 		dashboardpage.clickLogout();
 

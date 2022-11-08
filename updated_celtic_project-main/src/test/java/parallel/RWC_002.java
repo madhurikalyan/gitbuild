@@ -68,7 +68,8 @@ public class RWC_002 extends DriverFactory {
 		private ReadExcelUtil excelutil=null;
 		private WriteExcelUtil excelutilWrite=null;
 		private ErrorCollector error = new ErrorCollector();
-
+		String className = this.getClass().getName().split("[.]")[1];
+		
 		@Given("User login as Internal user")
 		public void user_login_as_internal_user() throws Exception {
 			excelutil = new ReadExcelUtil(config.readRWCexcel());
@@ -76,26 +77,26 @@ public class RWC_002 extends DriverFactory {
 			excelutilWrite=new WriteExcelUtil();
 			DriverFactory.getDriver().get(config.readLoginURL());
 			log.info("****************************** Login to the application  *****************************************");
-			screenshotUtil.captureScreenshot("ApplicationLogin");
+			screenshotUtil.captureScreenshot(className,"ApplicationLogin");
 			loginpage.enterUsername(config.readLoginInternalUser());
 			log.info("*** Enter Username ***");
-			screenshotUtil.captureScreenshot("Username");
+			screenshotUtil.captureScreenshot(className,"Username");
 			loginpage.enterPassword(config.readpswrd());
 			log.info("*** Enter Password ***");
-			screenshotUtil.captureScreenshot("Password");
+			screenshotUtil.captureScreenshot(className,"Password");
 			loginpage.clickLoginBtn();
 			log.info("*** Click Login ***");
-			screenshotUtil.captureScreenshot("Login");
+			screenshotUtil.captureScreenshot(className,"Login");
 		}
 
 		@When("User will navigate to IRP")
 		public void user_will_navigate_to_irp()  throws Exception {
 			dashboardpage.clickIRPLink();
 			log.info("*** Click IRP ***");
-			screenshotUtil.captureScreenshot("IRP");
+			screenshotUtil.captureScreenshot(className,"IRP");
 			dashboardpage.clickRenewFleetLink();
 			log.info("*** Click RenewFleet ***");
-			screenshotUtil.captureScreenshot("RenewFleet");
+			screenshotUtil.captureScreenshot(className,"RenewFleet");
 		}
 
 	@Then("User will navigate to renew fleet and search for  Reinstated Account Number")
@@ -151,10 +152,10 @@ public class RWC_002 extends DriverFactory {
 		log.info(commonobjects.validateInfoMsgs());
 		accounttabpage.checkEmailNotification();
 		log.info("*** Check Email Notification ***");
-		screenshotUtil.captureScreenshot("Check EmailNotification");
+		screenshotUtil.captureScreenshot(className,"Check EmailNotification");
 		commonobjects.provideComments(excelutil.getCellData("AccountTab","Comments",RowNo));
 		log.info("*** Enter Comments ***");
-		screenshotUtil.captureScreenshot("Enter Comments in Account Section");
+		screenshotUtil.captureScreenshot(className,"Enter Comments in Account Section");
 
 		//commonobjects.clickProceed();
 	
