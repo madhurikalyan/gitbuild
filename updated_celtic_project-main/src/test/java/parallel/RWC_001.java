@@ -56,7 +56,7 @@ public class RWC_001 {
 	private VehicleAdd vehicleadd= new VehicleAdd(DriverFactory.getDriver());
 	private Financepage financepage =new Financepage(DriverFactory.getDriver());
 
-	int RowNo=1;
+	private int RowNo=1;
 
 	private ElementUtil eleutil =new ElementUtil();
 	private Screenshot_Utility screenshotUtil =new Screenshot_Utility();
@@ -65,11 +65,10 @@ public class RWC_001 {
 	private ReadExcelUtil excelutil=null;
 	private WriteExcelUtil excelutilWrite=null;
 	private ErrorCollector error = new ErrorCollector();
-
+	
 	@Given("User login as a Internal user")
 	public void user_login_as_a_internal_user() throws Exception {
 		excelutil = new ReadExcelUtil(config.readRWCexcel());
-		//excelutil.meth(config.readRWCexcel());
 		excelutilWrite=new WriteExcelUtil();
 		DriverFactory.getDriver().get(config.readLoginURL());
 		log.info("****************************** Login to the application  *****************************************");
@@ -94,6 +93,7 @@ public class RWC_001 {
 		log.info("*** Click RenewFleet ***");
 		screenshotUtil.captureScreenshot("RenewFleet");
 	}
+
 	@Then("User will provide all the Account Number Details to start with IRP Transaction")
 	public void user_will_provide_all_the_account_number_details_to_start_with_irp_transaction() throws IOException, Exception {
 
@@ -320,7 +320,7 @@ public class RWC_001 {
 		
 		//Juris Table Verification
 		//Juris Table header
-		ArrayList<String> TableHeadervalues=distancetabpage.fetchTableHeader();
+
 		ArrayList<String>  Juris_values=distancetabpage.FetchTable_Juris();
 		ArrayList<String>  Distance_values=distancetabpage.FetchTable_DistanceMiles();
 		ArrayList<String>  Percent_values=distancetabpage.FetchTable_Percent();
@@ -500,7 +500,6 @@ public class RWC_001 {
 					screenshotUtil.captureScreenshot("Select Unit number");
 				}
 				else {
-					//vehicleAmend.selectUnitNoFromExcel(excelutil.getCellData("VehicleAmendTab","Unit"+String.valueOf(i),RowNo));
 					vehicleAmend.enterUnitNo(excelutil.getCellData("VehicleAmendTab","Unit"+String.valueOf(i),RowNo));
 					log.info("*** Enter Unit number ***");
 					screenshotUtil.captureScreenshot("Enter Unit number");
@@ -840,7 +839,7 @@ public class RWC_001 {
 		billingtab.clickTVR();
 		log.info("*** Click TVR ***");
 		screenshotUtil.captureScreenshot("Click TVR");
-	excelutilWrite.setCellData("Billing",billingtab.fetchBillingTVRNoOfDayslbl(),RowNo,billingtab.fetchBilling_TVRNoOfDays());
+excelutilWrite.setCellData("Billing",billingtab.fetchBillingTVRNoOfDayslbl(),RowNo,billingtab.fetchBilling_TVRNoOfDays());
 		billingtab.clickInstallmentPlan();
 		log.info("*** Click Installement Plan ***");
 		screenshotUtil.captureScreenshot("Click Installement Plan");
@@ -910,18 +909,19 @@ public class RWC_001 {
 
 		billingtab.clickReCalculate();
 		log.info(commonobjects.validateInfoMsgs());
-		//eleutil.CloseFirstChildWindow();
+		
 		String mainwidow=eleutil.GetParentWindow();
 		commonobjects.clickProceed();
 		commonobjects.waitForSpinner();
 		eleutil.waitForTwoWindow(2);
 		String childWindow=eleutil.SwitchtoFirstChildWindow();
 		eleutil.saveAsFile();
-		String DesiredPath=eleutil.checkFileExistence(config.readDownloadFolder(),"Billing","pdf");
-		Thread.sleep(4000);
+	String fileLocation=System.getProperty("user.dir")+"\\"+config.readDownloadFolder();
+	log.info("fileLocation"+fileLocation);
+		String DesiredPath=eleutil.checkFileExistence(fileLocation,"Billing","pdf");
+		Thread.sleep(4000); //to wait for the PDF Load completely
 		eleutil.uploadFile(DesiredPath);
-		Thread.sleep(4000);
-		//To call the AutoIt script
+		Thread.sleep(4000); //to display the file upload is completed
 		eleutil.closeSpecificWindow(childWindow);
 		eleutil.SwitchSpecificWindow(mainwidow);
 	}
@@ -1018,7 +1018,6 @@ public class RWC_001 {
 	@Then("User will navigate to payment tab and fill the requirement")
 	public void user_will_navigate_to_payment_tab_and_fill_the_requirement() throws Exception, Exception {
 
-		//commonobjects.clickQuit();
 		log.info(commonobjects.validateInfoMsgs());
 		paymenttab.clickVerifyAddToCart();
 
@@ -1086,15 +1085,16 @@ public class RWC_001 {
 		commonobjects.waitForSpinner();
 		
 		log.info(commonobjects.validateInfoMsgs());
-	//	eleutil.CloseFirstChildWindow();
 		eleutil.waitForTwoWindow(2);
 		String childWindow=eleutil.SwitchtoFirstChildWindow();
 		eleutil.saveAsFile();
-		String DesiredPath=eleutil.checkFileExistence(config.readDownloadFolder(),"Payment","pdf");
-		Thread.sleep(4000);
+		String fileLocation=System.getProperty("user.dir")+"\\"+config.readDownloadFolder();
+		log.info("fileLocation"+fileLocation);
+		String DesiredPath=eleutil.checkFileExistence(fileLocation,"Payment","pdf");
+		Thread.sleep(4000);  //to wait for the PDF Load completely
 		eleutil.uploadFile(DesiredPath);
-		Thread.sleep(4000);
-		//To call the AutoIt script
+		Thread.sleep(4000); //to display the file upload is completed
+		
 		eleutil.closeSpecificWindow(childWindow);
 		eleutil.SwitchSpecificWindow(mainwidow);
 	}

@@ -12,6 +12,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import com.celtic.automation.cmcs.factory.DriverFactory;
 import com.celtic.automation.cmcs.util.ConfigReader;
+import com.celtic.automation.cmcs.util.ElementUtil;
 import com.celtic.automation.cmcs.util.Generic_Functions;
 import io.cucumber.java.After;
 import io.cucumber.java.AfterStep;
@@ -20,65 +21,69 @@ import io.cucumber.java.Scenario;
 
 public class Application_Hooks {
 
-private DriverFactory driverFactory;
-private WebDriver driver;
-Properties prop;
-private ConfigReader config =new ConfigReader();
+	private DriverFactory driverFactory;
+	private WebDriver driver;
+	Properties prop;
+	private ConfigReader config =new ConfigReader();
 
-public static Scenario scenario;
+	public static Scenario scenario;
 
 
-@Before()
-public void launchBrowser(Scenario scenario) {
-driverFactory = new DriverFactory();
-try {
-driver = driverFactory.initdriver(config.readBrowser());
-} catch (IOException e) {
-// TODO Auto-generated catch block
-e.printStackTrace();
+	@Before()
+	public void launchBrowser(Scenario scenario) {
+		driverFactory = new DriverFactory();
+		try {
+			driver = driverFactory.initdriver(config.readBrowser());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+	}
+	@AfterStep
+	public void as(Scenario scenario) throws Exception
+	{
+		scenario.attach(Generic_Functions.getByteScreenshot(), "image/png", "anyname");
+
+	}
+
+
+	@After(order = 0)
+	public void quitBrowser() {
+		driver.quit();
+	}
+
+
+
+
+	@After(order = 1)
+	public void tearDown(Scenario scenario) throws Exception {
+		int c=0;
+		String exeTime = new SimpleDateFormat("ddMMYYYYHH").format(new Date());
+
+		if (scenario.isFailed()) {
+			// take screenshot:
+			String screenshotName = scenario.getName().replaceAll(" ", "_");
+			byte[] sourcePath = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+			scenario.attach(sourcePath, "image/png", screenshotName);
+
+			TakesScreenshot ts = (TakesScreenshot)driver;
+			File source=ts.getScreenshotAs(OutputType.FILE);
+			String fileLocation=System.getProperty("user.dir")+"\\"+config.readPassedScreenshotFile();
+			 
+			String recentCreatedFile=ElementUtil.getfolder(fileLocation);
+			File f = new File(recentCreatedFile);
+			
+			if(f.exists()) { 
+				FileUtils.copyFile(source, new File(recentCreatedFile+"\\"+"Screenshot_Failed",screenshotName+".png"));	
+			}
+			else {
+				FileUtils.copyFile(source, new File(fileLocation+"\\"+"Screenshot_Failed"+"\\"+exeTime,screenshotName+".png"));
+			}
+	
+		}
+	}
+
 }
 
-
-}
-@AfterStep
-public void as(Scenario scenario) throws Exception
-{
-
-scenario.attach(Generic_Functions.getByteScreenshot(), "image/png", "anyname");
-}
-
-
-@After(order = 0)
-public void quitBrowser() {
-driver.quit();
-}
-
-
-
-
-@After(order = 1)
-public void tearDown(Scenario scenario) throws Exception {
-	int c=0;
-	c++;
-	String exeTime = new SimpleDateFormat("ddMMYYYYHH").format(new Date());
-
-if (scenario.isFailed()) {
-// take screenshot:
-String screenshotName = scenario.getName().replaceAll(" ", "_");
-byte[] sourcePath = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-scenario.attach(sourcePath, "image/png", screenshotName);
-
-TakesScreenshot ts = (TakesScreenshot)driver;
-File source=ts.getScreenshotAs(OutputType.FILE);
-File f = new File(config.readPassedScreenshotFile()+"\\"+exeTime);
-if(f.exists() && !f.isDirectory()) { 
-	FileUtils.copyFile(source, new File(config.readFailedScreenshotFile()+"\\"+exeTime+c,screenshotName+".png"));
-	c++;
-}	
-else {
-FileUtils.copyFile(source, new File(config.readFailedScreenshotFile()+"\\"+exeTime,screenshotName+".png"));
-}
-}
-}
-
-}

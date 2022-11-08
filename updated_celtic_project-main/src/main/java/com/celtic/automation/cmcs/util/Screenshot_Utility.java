@@ -17,13 +17,15 @@ public  void captureScreenshot(String screenshotName) throws Exception {
 	String exeTime = new SimpleDateFormat("ddMMYYYYHH").format(new Date());
 		TakesScreenshot ts = (TakesScreenshot)getDriver();
 	File source=ts.getScreenshotAs(OutputType.FILE);
-	File f = new File(config.readPassedScreenshotFile()+"\\"+exeTime);
-	if(f.exists() && !f.isDirectory()) { 
-		FileUtils.copyFile(source, new File(config.readPassedScreenshotFile()+"\\"+exeTime+c,screenshotName+".png"));
-		c++;
+	//get recently created folder under test-output which contains celtic-spark name  recentcreatedfile=./test-output\\celtic-Spark 07-Nov-22 12-10-53\\
+	String fileLocation=System.getProperty("user.dir")+"\\"+config.readPassedScreenshotFile(); 
+	String recentCreatedFile=ElementUtil.getfolder(fileLocation);
+	File f = new File(recentCreatedFile);
+	if(f.exists()) { 
+		FileUtils.copyFile(source, new File(recentCreatedFile+"\\"+"Screenshot",screenshotName+".png"));	
 	}	
 	else {
-		FileUtils.copyFile(source, new File(config.readPassedScreenshotFile()+"\\"+exeTime,screenshotName+".png"));
+		FileUtils.copyFile(source, new File(fileLocation+"\\"+"Screenshot"+"\\"+exeTime,screenshotName+".png"));
 	}
 	
 	

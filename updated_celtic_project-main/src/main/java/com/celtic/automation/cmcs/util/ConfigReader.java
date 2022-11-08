@@ -220,16 +220,6 @@ public class ConfigReader {
 		throw e;
 		}
 		}
-	public  String readFailedScreenshotFile() throws Exception {
-		try
-		{
-			return init_prop().getProperty("ScreenshotFail");
-		}
-		catch (Exception e){
-			e.printStackTrace();
-		throw e;
-		}
-		}
 	public  String readDownloadFolder() throws Exception {
 		try
 		{

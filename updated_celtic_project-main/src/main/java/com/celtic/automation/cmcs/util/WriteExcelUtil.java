@@ -14,15 +14,11 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 
 public class WriteExcelUtil {
-	/*private  FileInputStream fis = null;
 	private Map<String, Integer> columns =null;
-	private Cell cellC=null;;
-	ConfigReader config=new ConfigReader();*/
-	private Map<String, Integer> columns =null;
-
+	
 	public  void setCellData(String sheetname, String columnName, int rownum,String value) throws IOException {
 		FileInputStream fis = null;
-		
+		 
 		Cell cellC=null;;
 		ConfigReader config=new ConfigReader();
 		Workbook workbook = null;

@@ -11,6 +11,8 @@ package com.celtic.automation.cmcs.util;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URI;
+
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -26,6 +28,7 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -42,6 +45,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
 import org.apache.commons.io.FileUtils;
@@ -1486,5 +1490,51 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 				con.close();
 			}
 		}
-			
+
+		public static File getLastModified(String directoryFilePath)
+		{
+		    File directory = new File(directoryFilePath);
+		    File[] files = directory.listFiles(File::isFile);
+		    long lastModifiedTime = Long.MIN_VALUE;
+		    File chosenFile = null;
+
+		    if (files != null)
+		    {
+		        for (File file : files)
+		        {
+		        	System.out.println("File name is"+file.getName());
+		        	if(file.getName().contains("celtic-Spark")) {
+		            if (file.lastModified() > lastModifiedTime)
+		            {
+		                chosenFile = file;
+		                lastModifiedTime = file.lastModified();
+		            }
+		        	}
+		        }
+		    }
+
+		    return chosenFile;
+		}
+		public static String getfolder(String filepath) {
+			File mostRecent = null;
+			String mostRecentFilePath = null;
+			Path parentFolder = Paths.get(filepath);
+			 
+			Optional<File> mostRecentFileOrFolder =
+			    Arrays
+			        .stream(parentFolder.toFile().listFiles())
+			        .max(
+			            (f1, f2) -> Long.compare(f1.lastModified(),
+			                f2.lastModified()));
+			 
+			if (mostRecentFileOrFolder.isPresent()) {
+			     mostRecent = mostRecentFileOrFolder.get();
+			     if(mostRecent.getName().contains("celtic-Spark")) {
+			    	 mostRecentFilePath= mostRecent.getPath();
+			    
+			     }
+		}
+			return mostRecentFilePath; 
+}
+
 }
