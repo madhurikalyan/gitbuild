@@ -11,16 +11,12 @@ package com.celtic.automation.cmcs.util;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.URI;
-
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import com.celtic.automation.cmcs.factory.DriverFactory;
-
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.Toolkit;
@@ -90,7 +86,7 @@ public static int getPageCount(PDDocument doc) {
 	return pageCount;
 	
 }
-public static void sleepTime(long milliseconds) {
+public  void sleepTime(long milliseconds) {
 	try {
 		Thread.sleep(milliseconds);
 	} catch (InterruptedException e) {
@@ -106,7 +102,6 @@ public static void sleepTime(long milliseconds) {
 	BufferedInputStream bf = new BufferedInputStream(in);
 	PDDocument doc = PDDocument.load(bf);
 	int numberOfPages = getPageCount(doc);
-	System.out.println("The total number of pages "+numberOfPages);
 	String content = new PDFTextStripper().getText(doc);
 	doc.close();
 
@@ -122,7 +117,7 @@ return content;
 		 JSONParser jsonparser = new JSONParser();
 		  JSONObject jsonObject = null;
 		try {
-			 FileReader reader = new FileReader(config.readjson());
+			 FileReader reader = new FileReader(config.readJson());
 			Object obj = jsonparser.parse(reader);
 			jsonObject = (JSONObject)obj;
 		} catch (FileNotFoundException e) {
@@ -187,7 +182,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
         try {
             webDriverWait.until(waitCondition);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+        	e.printStackTrace();
         }
     }
 	 public static void untilAjaxCallIsDone(WebDriver webDriver, Duration timeOutInSeconds) {
@@ -268,9 +263,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 			Point point = sliderElement.getLocation();
 			// Store value of elements as pixels in integers x and y
 			int NumberX=point.getX();
-			System.out.println("Horizontal Position NumberX : " +NumberX);
 			int NumberY=point.getY();
-			System.out.println("Vertical Position NumberY : " +NumberY);
 			Actions act= new Actions(driver);
 			act.moveByOffset( NumberX + 1 , NumberY).click().build().perform();
 			//sleepTime(3000);
@@ -410,8 +403,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 				break;
 			}
 			catch (StaleElementReferenceException e) {
-				System.out.println(e.getMessage());
-				//sleepTime(5000);
+				e.printStackTrace();
 			}
 			attempts++;
 		}
@@ -425,8 +417,6 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 	public static void refreshWebpage() {
 		try {
 			driver.navigate().refresh();
-
-
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -634,7 +624,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 	 * @return : NA
 	 * @author : 
 	 */
-	public static void downloadFileIE(WebElement donwloadButton) throws Exception {
+	public  void downloadFileIE(WebElement donwloadButton) throws Exception {
 		try
 		{
 			donwloadButton.click();
@@ -803,7 +793,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 	 * @param element
 	 * @throws InterruptedException
 	 */
-	public static void opendownloadedDocument(WebElement element) throws Exception {
+	public  void opendownloadedDocument(WebElement element) throws Exception {
 
 		element.click();
 		try
@@ -829,7 +819,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 	 * @param element
 	 * @throws InterruptedException
 	 */
-	public static void closeDownloadedDocument(WebElement element) throws Exception {
+	public  void closeDownloadedDocument(WebElement element) throws Exception {
 
 		element.click();
 		try
@@ -1128,7 +1118,6 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 		DateFormat dateFormat = new SimpleDateFormat(requiredDateFormat);
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.DATE, days);
-		System.out.println(dateFormat.format(cal.getTime()));
 		return dateFormat.format(cal.getTime());
 	}
 	/*
@@ -1332,7 +1321,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 	 */
 	public static boolean waitForJStoLoad() throws InterruptedException {
 		//sleepTime(1000);
-		Calendar c = Calendar.getInstance();
+		//Calendar c = Calendar.getInstance();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 		// wait for jQuery to load
 		ExpectedCondition<Boolean> jQueryLoad = new ExpectedCondition<Boolean>() {
@@ -1355,7 +1344,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 			}
 		};
 		boolean a = wait.until(jQueryLoad)&&wait.until(jsLoad);
-		Calendar c1 = Calendar.getInstance();
+	//	Calendar c1 = Calendar.getInstance();
 		return a;
 	}
 	public static void mouseoveronElement(WebDriver driver,WebElement element) {
@@ -1502,7 +1491,6 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 		    {
 		        for (File file : files)
 		        {
-		        	System.out.println("File name is"+file.getName());
 		        	if(file.getName().contains("celtic-Spark")) {
 		            if (file.lastModified() > lastModifiedTime)
 		            {

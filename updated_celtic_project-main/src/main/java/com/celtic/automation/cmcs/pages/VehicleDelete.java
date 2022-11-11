@@ -91,15 +91,7 @@ public class VehicleDelete {
 		int j=0;
 		String showresultsTo=null;
 		for(int i=1;i<=Integer.valueOf(vehiclesCount);i++) {
-			System.out.println("i value before loop is"+i);
 			 showresultsTo=ElementUtil.FetchTextBoxValuewithText(showInGentries);
-			System.out.println("mad"+showresultsTo.substring(showresultsTo.indexOf("to ")+3,showresultsTo.indexOf("of ")));
-			System.out.println("madA"+showresultsTo.substring(showresultsTo.indexOf("to ")+3,showresultsTo.indexOf("of ")).trim());
-			System.out.println("madB"+Integer.valueOf(showresultsTo.substring(showresultsTo.indexOf("to ")+3,showresultsTo.indexOf("of ")-1).trim()));
-			System.out.println("Madhuri"+Integer.valueOf(showresultsTo.substring(showresultsTo.indexOf("to ")+3,showresultsTo.indexOf("of ")-1)));
-			System.out.println("madC"+Integer.valueOf(showresultsTo.substring(showresultsTo.indexOf("Showing ")+8,showresultsTo.indexOf("to")).trim()));
-			
-			
 			if(i>Integer.valueOf(showresultsTo.substring(showresultsTo.indexOf("to ")+3,showresultsTo.indexOf("of ")-1))) {
 				ElementUtil.clickElement(nextLink);
 				ElementUtil.waitUntilElementClickable(deleteVehicleSearchBtn);
@@ -108,7 +100,6 @@ public class VehicleDelete {
 			else {
 				 showresultsTo=ElementUtil.FetchTextBoxValuewithText(showInGentries);
 				j=(i+1-(Integer.valueOf(showresultsTo.substring(showresultsTo.indexOf("Showing ")+8,showresultsTo.indexOf("to")).trim())));
-				System.out.println("j is:"+j);
 			//Click the check box for each untill we reach the count to delete the vehicles
 			WebElement checkBoxCheck=driver.findElement(By.xpath("//table[@id='DeleteVehicleGrid']/tbody/tr["+j+"]/td[1]/input[@title='Select']"));
 			ElementUtil.clickElement(checkBoxCheck);

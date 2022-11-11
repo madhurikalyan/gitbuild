@@ -1,26 +1,23 @@
 package parallel;
 
 
-
 import java.io.IOException;
 import org.apache.log4j.Logger;
 import com.celtic.automation.cmcs.factory.DriverFactory;
 import com.celtic.automation.cmcs.pages.BillingTab;
 import com.celtic.automation.cmcs.pages.CommonObjects;
 import com.celtic.automation.cmcs.pages.DashBoardPage;
-import com.celtic.automation.cmcs.pages.DistanceTabPage;
 import com.celtic.automation.cmcs.pages.FleetPage;
-import com.celtic.automation.cmcs.pages.FleetTabPage;
 import com.celtic.automation.cmcs.pages.LoginPage;
 import com.celtic.automation.cmcs.pages.Reinstatement;
 import com.celtic.automation.cmcs.util.ConfigReader;
-import com.celtic.automation.cmcs.util.ElementUtil;
 import com.celtic.automation.cmcs.util.ReadExcelUtil;
 import com.celtic.automation.cmcs.util.Screenshot_Utility;
 import com.celtic.automation.cmcs.util.WriteExcelUtil;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+
 
 public class RIN_001 {
 	private LoginPage loginpage = new LoginPage(DriverFactory.getDriver());
@@ -29,27 +26,28 @@ public class RIN_001 {
 	private CommonObjects commonobjects = new CommonObjects(DriverFactory.getDriver());
 	private BillingTab billingtab = new BillingTab(DriverFactory.getDriver());
 	private ConfigReader config=new ConfigReader();
-	int RowNo=2;
+	private	int readRowNo=3;
+	private int writeRowNo=4;
 	private ReadExcelUtil excelutil=null;
 	private WriteExcelUtil excelutilWrite=null;
 	private Logger log = Logger.getLogger(RWC_001.class); 
-	private ElementUtil eleutil =new ElementUtil();
 	private Screenshot_Utility screenshotUtil =new Screenshot_Utility();
 	private Reinstatement reinstate =new Reinstatement(DriverFactory.getDriver());
-	String className = this.getClass().getName().split("[.]")[1];
+	private String className = this.getClass().getName().split("[.]")[1];
 	
 @Given("User login as an Internal user")
 public void user_login_as_an_internal_user() throws Exception {
 	excelutil = new ReadExcelUtil(config.readRINexcel());
 	excelutilWrite=new WriteExcelUtil();
-	
+	excelutilWrite.setCellData(config.writeRinExcel(),"Sheet1","Account",writeRowNo,"30942");
+
 	DriverFactory.getDriver().get(config.readLoginURL());
 	log.info("****************************** Login to the application  *****************************************");
 	screenshotUtil.captureScreenshot(className,"ApplicationLogin");
 	loginpage.enterUsername(config.readLoginInternalUser());
 	log.info("*** Enter Username ***");
 	screenshotUtil.captureScreenshot(className,"Username");
-	loginpage.enterPassword(config.readpswrd());
+	loginpage.enterPassword(config.readPswrd());
 	log.info("*** Enter Password ***");
 	screenshotUtil.captureScreenshot(className,"Password");
 	loginpage.clickLoginBtn();
@@ -76,11 +74,11 @@ public void user_login_as_an_internal_user() throws Exception {
 
 	@Then("User will provide all the inputs & select the record on the grid")
 	public void user_will_provide_all_the_inputs_select_the_record_on_the_grid() throws Exception {
-		fleetpage.enterAccountNo(excelutil.getCellData("PreSetup","AccountNumber",RowNo));
+		fleetpage.enterAccountNo(excelutil.getCellData("PreSetup","AccountNumber",readRowNo));
 		log.info("*** Enter Account Number ***");
 		screenshotUtil.captureScreenshot(className,"Entering AccountNumber");
 	
-		fleetpage.enterLastInactiveDays(excelutil.getCellData("PreSetup","InactiveDate",RowNo));
+		fleetpage.enterLastInactiveDays(excelutil.getCellData("PreSetup","InactiveDate",readRowNo));
 		log.info("*** Enter Last Inactive Days ***");
 		screenshotUtil.captureScreenshot(className,"Entering Last Inactive Days");
 		
@@ -95,17 +93,17 @@ public void user_login_as_an_internal_user() throws Exception {
 		//Land on the Distance page
 		//distancetabpage.validatesubhdr(ExcelReader.FetchDataFromSheet(ConfigReader.readRINexcel(),"PreSetup",rownum,2));
 		log.info(commonobjects.validateInfoMsgs());
-		excelutilWrite.setCellData("Distance",reinstate.distanceReportingPeriodFromlbl(),RowNo,reinstate.distanceReportingPeriodFrom());
-		excelutilWrite.setCellData("Distance",reinstate.distanceReportingPeriodTolbl(), RowNo,reinstate.distanceReportingPeriodTo());
-		excelutilWrite.setCellData("Distance",reinstate.distanceUsdotNbrlbl(), RowNo,reinstate.distanceUsdotNbr());
-		excelutilWrite.setCellData("Distance",reinstate.distanceEstimatedDistanceChartlbl(), RowNo,reinstate.distanceEstimatedDistanceChart());
-		excelutilWrite.setCellData("Distance",reinstate.distanceOverrideContJurlbl(), RowNo,reinstate.distanceOverrideContJur());
-		excelutilWrite.setCellData("Distance",reinstate.distanceEstimatedDistancelbl(), RowNo,reinstate.distanceEstimatedDistance());
-		excelutilWrite.setCellData("Distance",reinstate.distanceActualDistancelbl(), RowNo,reinstate.distanceActualDistance());
-		excelutilWrite.setCellData("Distance",reinstate.distanceTotalFleetDistancelbl(), RowNo,reinstate.distanceTotalFleetDistance());
-		excelutilWrite.setCellData("Distance",reinstate.distanceFRPMlgQuetionlbl(), RowNo,reinstate.distanceFRPMlgQuetion());
-		excelutilWrite.setCellData("Distance",reinstate.distanceDistanceTypelbl(), RowNo,reinstate.distanceDistanceType());
-		excelutilWrite.setCellData("Distance",reinstate.distanceActualDistConfirmationlbl(), RowNo,reinstate.distanceActualDistConfirmation());
+		excelutilWrite.setCellData(config.writeRinExcel(),"Distance",reinstate.distanceReportingPeriodFromlbl(),writeRowNo,reinstate.distanceReportingPeriodFrom());
+		excelutilWrite.setCellData(config.writeRinExcel(),"Distance",reinstate.distanceReportingPeriodTolbl(), writeRowNo,reinstate.distanceReportingPeriodTo());
+		excelutilWrite.setCellData(config.writeRinExcel(),"Distance",reinstate.distanceUsdotNbrlbl(), writeRowNo,reinstate.distanceUsdotNbr());
+		excelutilWrite.setCellData(config.writeRinExcel(),"Distance",reinstate.distanceEstimatedDistanceChartlbl(), writeRowNo,reinstate.distanceEstimatedDistanceChart());
+		excelutilWrite.setCellData(config.writeRinExcel(),"Distance",reinstate.distanceOverrideContJurlbl(), writeRowNo,reinstate.distanceOverrideContJur());
+		excelutilWrite.setCellData(config.writeRinExcel(),"Distance",reinstate.distanceEstimatedDistancelbl(), writeRowNo,reinstate.distanceEstimatedDistance());
+		excelutilWrite.setCellData(config.writeRinExcel(),"Distance",reinstate.distanceActualDistancelbl(), writeRowNo,reinstate.distanceActualDistance());
+		excelutilWrite.setCellData(config.writeRinExcel(),"Distance",reinstate.distanceTotalFleetDistancelbl(), writeRowNo,reinstate.distanceTotalFleetDistance());
+		excelutilWrite.setCellData(config.writeRinExcel(),"Distance",reinstate.distanceFRPMlgQuetionlbl(), writeRowNo,reinstate.distanceFRPMlgQuetion());
+		excelutilWrite.setCellData(config.writeRinExcel(),"Distance",reinstate.distanceDistanceTypelbl(), writeRowNo,reinstate.distanceDistanceType());
+		excelutilWrite.setCellData(config.writeRinExcel(),"Distance",reinstate.distanceActualDistConfirmationlbl(), writeRowNo,reinstate.distanceActualDistConfirmation());
 
 		commonobjects.clickProceed();
 				}
@@ -113,7 +111,7 @@ public void user_login_as_an_internal_user() throws Exception {
 	@Then("User will navigate to billing Page & provide mandatory inputs & proceed")
 	public void user_will_navigate_to_billing_page_provide_mandatory_inputs_proceed() throws IOException, Exception {
 		//land on the billing page
-		billingtab.enterreceiptdate(excelutil.getCellData("Billing","LastReceiptDate",RowNo));
+		billingtab.enterreceiptdate(excelutil.getCellData("Billing","LastReceiptDate",readRowNo));
 		log.info("*** Enter  Receipt  Date ***");
 		screenshotUtil.captureScreenshot(className,"Entering Receipt Date");
 		
@@ -123,7 +121,7 @@ public void user_login_as_an_internal_user() throws Exception {
 	@Then("User will validate the Success Information Message")
 	public void user_will_validate_the_success_information_message() throws IOException, Exception {
 		//Validating the information message
-		commonobjects.validateInfoMessage(excelutil.getCellData("Billing","InformationMessage",RowNo));
+		commonobjects.validateInfoMessage(excelutil.getCellData("Billing","InformationMessage",readRowNo));
 		log.info("*** Validating the information Message ***");
 		screenshotUtil.captureScreenshot(className,"Validating Information Message");
 		

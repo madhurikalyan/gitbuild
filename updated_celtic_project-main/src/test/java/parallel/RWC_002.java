@@ -72,7 +72,7 @@ public class RWC_002 extends DriverFactory {
 		
 		@Given("User login as Internal user")
 		public void user_login_as_internal_user() throws Exception {
-			excelutil = new ReadExcelUtil(config.readRWCexcel());
+			excelutil = new ReadExcelUtil(config.readRwcExcel());
 			//excelutil.meth(config.readRWCexcel());
 			excelutilWrite=new WriteExcelUtil();
 			DriverFactory.getDriver().get(config.readLoginURL());
@@ -81,7 +81,7 @@ public class RWC_002 extends DriverFactory {
 			loginpage.enterUsername(config.readLoginInternalUser());
 			log.info("*** Enter Username ***");
 			screenshotUtil.captureScreenshot(className,"Username");
-			loginpage.enterPassword(config.readpswrd());
+			loginpage.enterPassword(config.readPswrd());
 			log.info("*** Enter Password ***");
 			screenshotUtil.captureScreenshot(className,"Password");
 			loginpage.clickLoginBtn();
@@ -114,38 +114,38 @@ public class RWC_002 extends DriverFactory {
 	public void user_should_navigate_to_account_screen_and_provides_all_the_required_input_to_proceed()
 			throws Exception {
 		//Fetch Values
-		excelutilWrite.setCellData("Account",accounttabpage.fetchMCECustomernolbl(),RowNo,accounttabpage.fetchMCECustomerno());
-		excelutilWrite.setCellData("Account",accounttabpage.fetchRegistrationTypelbl(), RowNo,accounttabpage.fetchRegistrationType());
-		excelutilWrite.setCellData("Account",accounttabpage.fetchAccountCarrierTypeLbl(), RowNo,accounttabpage.fetchAccountCarrierType());
-		excelutilWrite.setCellData("Account",accounttabpage.fetchIFTAAccountNbrlbl(),RowNo,accounttabpage.fetchIFTAAccountNbr());
-		excelutilWrite.setCellData("Account",accounttabpage.fetchAccountCustomerStatusLbl(),RowNo,accounttabpage.fetchAccountCustomerStatus());
+		excelutilWrite.setCellData(config.writeRwcExcel(),"Account",accounttabpage.fetchMCECustomernolbl(),RowNo,accounttabpage.fetchMCECustomerno());
+		excelutilWrite.setCellData(config.writeRwcExcel(),"Account",accounttabpage.fetchRegistrationTypelbl(), RowNo,accounttabpage.fetchRegistrationType());
+		excelutilWrite.setCellData(config.writeRwcExcel(),"Account",accounttabpage.fetchAccountCarrierTypeLbl(), RowNo,accounttabpage.fetchAccountCarrierType());
+		excelutilWrite.setCellData(config.writeRwcExcel(),"Account",accounttabpage.fetchIFTAAccountNbrlbl(),RowNo,accounttabpage.fetchIFTAAccountNbr());
+		excelutilWrite.setCellData(config.writeRwcExcel(),"Account",accounttabpage.fetchAccountCustomerStatusLbl(),RowNo,accounttabpage.fetchAccountCustomerStatus());
 
-		excelutilWrite.setCellData("Account",accounttabpage.fetchAccountsTab1()+accounttabpage.fetchAccountStreet0Lbl(),RowNo,accounttabpage.fetchAccountStreet0());
-		excelutilWrite.setCellData("Account",accounttabpage.fetchAccountsTab1()+accounttabpage.fetchAccountZip0lbl(),RowNo,accounttabpage.fetchAccountZip0());
-		excelutilWrite.setCellData("Account",accounttabpage.fetchAccountsTab1()+accounttabpage.fetchAccountJur0lbl(), RowNo,accounttabpage.fetchAccountJur0());
-		excelutilWrite.setCellData("Account",accounttabpage.fetchAccountsTab1()+accounttabpage.fetchAccountCity0lbl(),RowNo,accounttabpage.fetchAccountCity0());
-		excelutilWrite.setCellData("Account",accounttabpage.fetchAccountsTab1()+accounttabpage.fetchAccountCounty0lbl(), RowNo,accounttabpage.fetchAccountCounty0());
-		excelutilWrite.setCellData("Account",accounttabpage.fetchAccountsTab1()+accounttabpage.fetchAccountCountry0lbl(),RowNo,accounttabpage.fetchAccountCountry0());
+		excelutilWrite.setCellData(config.writeRwcExcel(),"Account",accounttabpage.fetchAccountsTab1()+accounttabpage.fetchAccountStreet0Lbl(),RowNo,accounttabpage.fetchAccountStreet0());
+		excelutilWrite.setCellData(config.writeRwcExcel(),"Account",accounttabpage.fetchAccountsTab1()+accounttabpage.fetchAccountZip0lbl(),RowNo,accounttabpage.fetchAccountZip0());
+		excelutilWrite.setCellData(config.writeRwcExcel(),"Account",accounttabpage.fetchAccountsTab1()+accounttabpage.fetchAccountJur0lbl(), RowNo,accounttabpage.fetchAccountJur0());
+		excelutilWrite.setCellData(config.writeRwcExcel(),"Account",accounttabpage.fetchAccountsTab1()+accounttabpage.fetchAccountCity0lbl(),RowNo,accounttabpage.fetchAccountCity0());
+		excelutilWrite.setCellData(config.writeRwcExcel(),"Account",accounttabpage.fetchAccountsTab1()+accounttabpage.fetchAccountCounty0lbl(), RowNo,accounttabpage.fetchAccountCounty0());
+		excelutilWrite.setCellData(config.writeRwcExcel(),"Account",accounttabpage.fetchAccountsTab1()+accounttabpage.fetchAccountCountry0lbl(),RowNo,accounttabpage.fetchAccountCountry0());
 
 		accounttabpage.clickMailingAddress();
-		excelutilWrite.setCellData("Account",accounttabpage.fetchAccountsTab2()+accounttabpage.fetchAccountStreet1lbl(),RowNo,accounttabpage.fetchAccountStreet1());
-		excelutilWrite.setCellData("Account",accounttabpage.fetchAccountsTab2()+accounttabpage.fetchAccountZip1lbl(), RowNo,accounttabpage.fetchAccountZip1());
-		excelutilWrite.setCellData("Account",accounttabpage.fetchAccountsTab2()+accounttabpage.fetchAccountJur1lbl(), RowNo,accounttabpage.fetchAccountJur1());
-		excelutilWrite.setCellData("Account",accounttabpage.fetchAccountsTab2()+accounttabpage.fetchAccountCity1lbl(),RowNo,accounttabpage.fetchAccountCity1());
-		excelutilWrite.setCellData("Account",accounttabpage.fetchAccountsTab2()+accounttabpage.fetchAccountCounty1lbl(),RowNo,accounttabpage.fetchAccountCounty1());
-		excelutilWrite.setCellData("Account",accounttabpage.fetchAccountsTab2()+accounttabpage.fetchAccountCountry1lbl(),RowNo,accounttabpage.fetchAccountCountry1());
-		excelutilWrite.setCellData("Account",accounttabpage.fetchAccountsTab2()+accounttabpage.fetchAccountAttentionTolbl(),RowNo,accounttabpage.fetchAccountAttentionTo());
+		excelutilWrite.setCellData(config.writeRwcExcel(),"Account",accounttabpage.fetchAccountsTab2()+accounttabpage.fetchAccountStreet1lbl(),RowNo,accounttabpage.fetchAccountStreet1());
+		excelutilWrite.setCellData(config.writeRwcExcel(),"Account",accounttabpage.fetchAccountsTab2()+accounttabpage.fetchAccountZip1lbl(), RowNo,accounttabpage.fetchAccountZip1());
+		excelutilWrite.setCellData(config.writeRwcExcel(),"Account",accounttabpage.fetchAccountsTab2()+accounttabpage.fetchAccountJur1lbl(), RowNo,accounttabpage.fetchAccountJur1());
+		excelutilWrite.setCellData(config.writeRwcExcel(),"Account",accounttabpage.fetchAccountsTab2()+accounttabpage.fetchAccountCity1lbl(),RowNo,accounttabpage.fetchAccountCity1());
+		excelutilWrite.setCellData(config.writeRwcExcel(),"Account",accounttabpage.fetchAccountsTab2()+accounttabpage.fetchAccountCounty1lbl(),RowNo,accounttabpage.fetchAccountCounty1());
+		excelutilWrite.setCellData(config.writeRwcExcel(),"Account",accounttabpage.fetchAccountsTab2()+accounttabpage.fetchAccountCountry1lbl(),RowNo,accounttabpage.fetchAccountCountry1());
+		excelutilWrite.setCellData(config.writeRwcExcel(),"Account",accounttabpage.fetchAccountsTab2()+accounttabpage.fetchAccountAttentionTolbl(),RowNo,accounttabpage.fetchAccountAttentionTo());
 
-		excelutilWrite.setCellData("Account",accounttabpage.fetchAccountUSDOTNolbl(), RowNo,accounttabpage.fetchAccountUSDOTNo());
-		excelutilWrite.setCellData("Account",accounttabpage.fetchAccountTPIDlbl(),RowNo,accounttabpage.fetchAccountTPID());
-		excelutilWrite.setCellData("Account",accounttabpage.fetchAccountContactnamelbl(), RowNo,accounttabpage.fetchAccountContactname());
-		excelutilWrite.setCellData("Account",accounttabpage.fetchAccountEmaillbl(),RowNo,accounttabpage.fetchAccountEmail());
+		excelutilWrite.setCellData(config.writeRwcExcel(),"Account",accounttabpage.fetchAccountUSDOTNolbl(), RowNo,accounttabpage.fetchAccountUSDOTNo());
+		excelutilWrite.setCellData(config.writeRwcExcel(),"Account",accounttabpage.fetchAccountTPIDlbl(),RowNo,accounttabpage.fetchAccountTPID());
+		excelutilWrite.setCellData(config.writeRwcExcel(),"Account",accounttabpage.fetchAccountContactnamelbl(), RowNo,accounttabpage.fetchAccountContactname());
+		excelutilWrite.setCellData(config.writeRwcExcel(),"Account",accounttabpage.fetchAccountEmaillbl(),RowNo,accounttabpage.fetchAccountEmail());
 
-		excelutilWrite.setCellData("Account",accounttabpage.fetchAccountPrimaryPhonelbl(),RowNo,accounttabpage.fetchAccountPrimaryPhone());
-		excelutilWrite.setCellData("Account",accounttabpage.fetchAccountAlternatePhonelbl(), RowNo,accounttabpage.fetchAccountAlternatePhone());
-		excelutilWrite.setCellData("Account",accounttabpage.fetchAccountFaxNolbl(),RowNo,accounttabpage.fetchAccountFaxNo());
-		excelutilWrite.setCellData("Account",accounttabpage.fetchAccountEmailnotificationlbl(), RowNo,accounttabpage.fetchAccountEmailnotification());
-		excelutilWrite.setCellData("Account",accounttabpage.fetchAccountFaxnotificationlbl(),RowNo,accounttabpage.fetchAccountFaxnotification());
+		excelutilWrite.setCellData(config.writeRwcExcel(),"Account",accounttabpage.fetchAccountPrimaryPhonelbl(),RowNo,accounttabpage.fetchAccountPrimaryPhone());
+		excelutilWrite.setCellData(config.writeRwcExcel(),"Account",accounttabpage.fetchAccountAlternatePhonelbl(), RowNo,accounttabpage.fetchAccountAlternatePhone());
+		excelutilWrite.setCellData(config.writeRwcExcel(),"Account",accounttabpage.fetchAccountFaxNolbl(),RowNo,accounttabpage.fetchAccountFaxNo());
+		excelutilWrite.setCellData(config.writeRwcExcel(),"Account",accounttabpage.fetchAccountEmailnotificationlbl(), RowNo,accounttabpage.fetchAccountEmailnotification());
+		excelutilWrite.setCellData(config.writeRwcExcel(),"Account",accounttabpage.fetchAccountFaxnotificationlbl(),RowNo,accounttabpage.fetchAccountFaxnotification());
 
 		log.info(commonobjects.validateInfoMsgs());
 		// In Account Page
@@ -171,78 +171,78 @@ public class RWC_002 extends DriverFactory {
 	public void user_should_navigate_to_fleet_screen_and_update_fleet_expiration_date_fleet_type_commodity_class_and_proceed_further()
 			throws IOException, Exception {
 		//Fetch Fleet Details screen 
-				excelutilWrite.setCellData("Fleet",fleettabpage.fetchRegistrationtypelbl(), RowNo,fleettabpage.fetchRegistrationtype());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fetchfltstatuslbl(),RowNo,fleettabpage.fetchfltstatus());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fetchcarriertypelbl(), RowNo,fleettabpage.fetchcarriertype());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fetchDBANamelbl(),RowNo, fleettabpage.fetchDBAName());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fetchRegistrationtypelbl(), RowNo,fleettabpage.fetchRegistrationtype());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fetchfltstatuslbl(),RowNo,fleettabpage.fetchfltstatus());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fetchcarriertypelbl(), RowNo,fleettabpage.fetchcarriertype());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fetchDBANamelbl(),RowNo, fleettabpage.fetchDBAName());
 
-				excelutilWrite.setCellData("Fleet",fleettabpage.fetchFleetTabBusinessAddress()+fleettabpage.fleetStreet0Lbl(),RowNo,fleettabpage.fleetStreet0());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fetchFleetTabBusinessAddress()+fleettabpage.fleetZip0Lbl(),RowNo,fleettabpage.fleetZip0());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fetchFleetTabBusinessAddress()+fleettabpage.fleetJur0Lbl(), RowNo,fleettabpage.fleetJur0());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fetchFleetTabBusinessAddress()+fleettabpage.fleetCity0Lbl(),RowNo, fleettabpage.fleetCity0());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fetchFleetTabBusinessAddress()+fleettabpage.fleetCounty0Lbl(), RowNo,fleettabpage.fleetCounty0());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fetchFleetTabBusinessAddress()+fleettabpage.fleetCountry0Lbl(),RowNo,fleettabpage.FleetCountry0());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fetchFleetTabBusinessAddress()+fleettabpage.fleetNonDeliverable0Lbl(), RowNo,fleettabpage.fleetNonDeliverable0());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fetchFleetTabBusinessAddress()+fleettabpage.fleetStreet0Lbl(),RowNo,fleettabpage.fleetStreet0());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fetchFleetTabBusinessAddress()+fleettabpage.fleetZip0Lbl(),RowNo,fleettabpage.fleetZip0());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fetchFleetTabBusinessAddress()+fleettabpage.fleetJur0Lbl(), RowNo,fleettabpage.fleetJur0());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fetchFleetTabBusinessAddress()+fleettabpage.fleetCity0Lbl(),RowNo, fleettabpage.fleetCity0());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fetchFleetTabBusinessAddress()+fleettabpage.fleetCounty0Lbl(), RowNo,fleettabpage.fleetCounty0());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fetchFleetTabBusinessAddress()+fleettabpage.fleetCountry0Lbl(),RowNo,fleettabpage.FleetCountry0());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fetchFleetTabBusinessAddress()+fleettabpage.fleetNonDeliverable0Lbl(), RowNo,fleettabpage.fleetNonDeliverable0());
 
 				fleettabpage.clickMailingAddress();
-				excelutilWrite.setCellData("Fleet",fleettabpage.fetchFleetTabMailingAddress()+fleettabpage.fleetStreet1Lbl(),RowNo,fleettabpage.fleetStreet1());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fetchFleetTabMailingAddress()+fleettabpage.fleetZip1Lbl(),RowNo,fleettabpage.fleetZip1());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fetchFleetTabMailingAddress()+fleettabpage.fleetJur1Lbl(), RowNo,fleettabpage.fleetJur1());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fetchFleetTabMailingAddress()+fleettabpage.fleetCity1Lbl(),RowNo, fleettabpage.FleetCity1());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fetchFleetTabMailingAddress()+fleettabpage.fleetCounty1Lbl(), RowNo,fleettabpage.fleetCounty1());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fetchFleetTabMailingAddress()+fleettabpage.fleetCountry1Lbl(),RowNo,fleettabpage.fleetCountry1());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fetchFleetTabMailingAddress()+fleettabpage.fleetNonDeliverable1Lbl(), RowNo,fleettabpage.fleetNonDeliverable1());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fetchFleetTabMailingAddress()+fleettabpage.fleetAttentionToLbl(), RowNo,fleettabpage.fleetAttentionTO());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fetchFleetTabMailingAddress()+fleettabpage.fleetStreet1Lbl(),RowNo,fleettabpage.fleetStreet1());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fetchFleetTabMailingAddress()+fleettabpage.fleetZip1Lbl(),RowNo,fleettabpage.fleetZip1());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fetchFleetTabMailingAddress()+fleettabpage.fleetJur1Lbl(), RowNo,fleettabpage.fleetJur1());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fetchFleetTabMailingAddress()+fleettabpage.fleetCity1Lbl(),RowNo, fleettabpage.FleetCity1());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fetchFleetTabMailingAddress()+fleettabpage.fleetCounty1Lbl(), RowNo,fleettabpage.fleetCounty1());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fetchFleetTabMailingAddress()+fleettabpage.fleetCountry1Lbl(),RowNo,fleettabpage.fleetCountry1());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fetchFleetTabMailingAddress()+fleettabpage.fleetNonDeliverable1Lbl(), RowNo,fleettabpage.fleetNonDeliverable1());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fetchFleetTabMailingAddress()+fleettabpage.fleetAttentionToLbl(), RowNo,fleettabpage.fleetAttentionTO());
 
 				fleettabpage.navigateToServiceProvider();
-				excelutilWrite.setCellData("Fleet",fleettabpage.fetchFleetTabServiceProviderAddress()+fleettabpage.fleetServiceProviderLbl(), RowNo,fleettabpage.fleetServiceProvider());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fetchFleetTabServiceProviderAddress()+fleettabpage.fleetServiceLegalNameLbl(),RowNo,fleettabpage.fleetServiceLegalName());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fetchFleetTabServiceProviderAddress()+fleettabpage.fleetServiceDBANameLbl(), RowNo,fleettabpage.fleetServiceDBAName());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fetchFleetTabServiceProviderAddress()+fleettabpage.fleetServicePowerOfAttroneyLbl(),RowNo, fleettabpage.fleetServicePowerOfAttroney());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fetchFleetTabServiceProviderAddress()+fleettabpage.fleetServicePowerOfAttroneyEffDateLbl(), RowNo,fleettabpage.fleetServicePowerOfAttroneyEffDate());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fetchFleetTabServiceProviderAddress()+fleettabpage.fleetServicePowerOfAttroneyExpDateLbl(),RowNo,fleettabpage.fleetServicePowerOfAttroneyExpDate());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fetchFleetTabServiceProviderAddress()+fleettabpage.fleetServiceEmailIdLbl(), RowNo,fleettabpage.fleetServiceEmailId());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fetchFleetTabServiceProviderAddress()+fleettabpage.fleetServicePhoneNoLbl(),RowNo, fleettabpage.fleetServicePhoneNo());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fetchFleetTabServiceProviderAddress()+fleettabpage.fleetServiceFaxNoLbl(), RowNo,fleettabpage.fleetServiceFaxNo());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fetchFleetTabServiceProviderAddress()+fleettabpage.fleetServiceStreetLbl(),RowNo,fleettabpage.fleetServiceStreet());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fetchFleetTabServiceProviderAddress()+fleettabpage.fleetServiceCityLbl(), RowNo,fleettabpage.fleetServiceCity());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fetchFleetTabServiceProviderAddress()+fleettabpage.fleetServiceJurLbl(),RowNo, fleettabpage.fleetServiceJur());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fetchFleetTabServiceProviderAddress()+fleettabpage.fleetServiceZipCodeLbl(), RowNo,fleettabpage.fleetServiceZipCode());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fetchFleetTabServiceProviderAddress()+fleettabpage.fleetServiceCountryLbl(),RowNo,fleettabpage.fleetServiceCountry());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fetchFleetTabServiceProviderAddress()+fleettabpage.fleetServiceProviderLbl(), RowNo,fleettabpage.fleetServiceProvider());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fetchFleetTabServiceProviderAddress()+fleettabpage.fleetServiceLegalNameLbl(),RowNo,fleettabpage.fleetServiceLegalName());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fetchFleetTabServiceProviderAddress()+fleettabpage.fleetServiceDBANameLbl(), RowNo,fleettabpage.fleetServiceDBAName());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fetchFleetTabServiceProviderAddress()+fleettabpage.fleetServicePowerOfAttroneyLbl(),RowNo, fleettabpage.fleetServicePowerOfAttroney());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fetchFleetTabServiceProviderAddress()+fleettabpage.fleetServicePowerOfAttroneyEffDateLbl(), RowNo,fleettabpage.fleetServicePowerOfAttroneyEffDate());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fetchFleetTabServiceProviderAddress()+fleettabpage.fleetServicePowerOfAttroneyExpDateLbl(),RowNo,fleettabpage.fleetServicePowerOfAttroneyExpDate());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fetchFleetTabServiceProviderAddress()+fleettabpage.fleetServiceEmailIdLbl(), RowNo,fleettabpage.fleetServiceEmailId());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fetchFleetTabServiceProviderAddress()+fleettabpage.fleetServicePhoneNoLbl(),RowNo, fleettabpage.fleetServicePhoneNo());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fetchFleetTabServiceProviderAddress()+fleettabpage.fleetServiceFaxNoLbl(), RowNo,fleettabpage.fleetServiceFaxNo());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fetchFleetTabServiceProviderAddress()+fleettabpage.fleetServiceStreetLbl(),RowNo,fleettabpage.fleetServiceStreet());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fetchFleetTabServiceProviderAddress()+fleettabpage.fleetServiceCityLbl(), RowNo,fleettabpage.fleetServiceCity());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fetchFleetTabServiceProviderAddress()+fleettabpage.fleetServiceJurLbl(),RowNo, fleettabpage.fleetServiceJur());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fetchFleetTabServiceProviderAddress()+fleettabpage.fleetServiceZipCodeLbl(), RowNo,fleettabpage.fleetServiceZipCode());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fetchFleetTabServiceProviderAddress()+fleettabpage.fleetServiceCountryLbl(),RowNo,fleettabpage.fleetServiceCountry());
 
 				fleettabpage.clickOnTimeMailingAddress();
-				excelutilWrite.setCellData("Fleet",fleettabpage.fetchFleetTabOneTimeMailingAddress()+fleettabpage.fleetServiceMailingStreetLbl(), RowNo,fleettabpage.fleetServiceMailingStreet());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fetchFleetTabOneTimeMailingAddress()+fleettabpage.fleetServiceMailingZipCodeLbl(),RowNo, fleettabpage.fleetServiceMailingZipCode());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fetchFleetTabOneTimeMailingAddress()+fleettabpage.fleetServiceMailingJurLbl(), RowNo,fleettabpage.fleetServiceMailingJur());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fetchFleetTabOneTimeMailingAddress()+fleettabpage.fleetServiceMailingCityLbl(),RowNo,fleettabpage.fleetServiceMailingCity());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fetchFleetTabOneTimeMailingAddress()+fleettabpage.fleetServiceMailingCountyLbl(), RowNo,fleettabpage.fleetServiceMailingCounty());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fetchFleetTabOneTimeMailingAddress()+fleettabpage.fleetServiceMailingCountryLbl(),RowNo, fleettabpage.fleetServiceMailingCountry());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fetchFleetTabOneTimeMailingAddress()+fleettabpage.fleetServiceMailingAttentionToLbl(), RowNo,fleettabpage.fleetServiceMailingAttentionTo());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fetchFleetTabOneTimeMailingAddress()+fleettabpage.fleetServiceMailingStreetLbl(), RowNo,fleettabpage.fleetServiceMailingStreet());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fetchFleetTabOneTimeMailingAddress()+fleettabpage.fleetServiceMailingZipCodeLbl(),RowNo, fleettabpage.fleetServiceMailingZipCode());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fetchFleetTabOneTimeMailingAddress()+fleettabpage.fleetServiceMailingJurLbl(), RowNo,fleettabpage.fleetServiceMailingJur());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fetchFleetTabOneTimeMailingAddress()+fleettabpage.fleetServiceMailingCityLbl(),RowNo,fleettabpage.fleetServiceMailingCity());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fetchFleetTabOneTimeMailingAddress()+fleettabpage.fleetServiceMailingCountyLbl(), RowNo,fleettabpage.fleetServiceMailingCounty());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fetchFleetTabOneTimeMailingAddress()+fleettabpage.fleetServiceMailingCountryLbl(),RowNo, fleettabpage.fleetServiceMailingCountry());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fetchFleetTabOneTimeMailingAddress()+fleettabpage.fleetServiceMailingAttentionToLbl(), RowNo,fleettabpage.fleetServiceMailingAttentionTo());
 
-				excelutilWrite.setCellData("Fleet",fleettabpage.fleetDetailsContactNameLbl(),RowNo,fleettabpage.fleetDetailsContactName());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fleetDetailsEmailIdLbl(), RowNo,fleettabpage.fleetDetailsEmailId());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fleetDetailsPrimaryCellNbrLbl(),RowNo, fleettabpage.fleetDetailsPrimaryCellNbr());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fleetDetailsAlternateCellNbrLbl(), RowNo,fleettabpage.fleetDetailsAlternateCellNbr());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fleetDetailsFaxNoLbl(),RowNo, fleettabpage.fleetDetailsFaxNo());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fleetDetailsTpIdLbl(), RowNo,fleettabpage.fleetDetailsTPID());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fleetDetailsUsdotNbrLbl(),RowNo,fleettabpage.fleetDetailsUsdotNbr());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fleetDetailsChangeVehUsdotTinLbl(), RowNo,fleettabpage.fleetDetailsChangeVehUsdotTin());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fleetDetailsFltTypeLbl(),RowNo, fleettabpage.fleetDetailsFltType());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fleetDetailsCommodityClassLbl(), RowNo,fleettabpage.fleetDetailsCommodityClass());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fleetDetailsFltEffDateLbl(),RowNo,fleettabpage.fleetDetailsFltEffDatedtPicker());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fleetDetailsFltExpDateLbl(), RowNo,fleettabpage.fleetDetailsFltExpDate());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fleetDetailsChangeAddrOnUsdotLbl(),RowNo, fleettabpage.fleetDetailsChangeAddrOnUsdot());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fleetDetailsContactNameLbl(),RowNo,fleettabpage.fleetDetailsContactName());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fleetDetailsEmailIdLbl(), RowNo,fleettabpage.fleetDetailsEmailId());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fleetDetailsPrimaryCellNbrLbl(),RowNo, fleettabpage.fleetDetailsPrimaryCellNbr());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fleetDetailsAlternateCellNbrLbl(), RowNo,fleettabpage.fleetDetailsAlternateCellNbr());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fleetDetailsFaxNoLbl(),RowNo, fleettabpage.fleetDetailsFaxNo());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fleetDetailsTpIdLbl(), RowNo,fleettabpage.fleetDetailsTPID());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fleetDetailsUsdotNbrLbl(),RowNo,fleettabpage.fleetDetailsUsdotNbr());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fleetDetailsChangeVehUsdotTinLbl(), RowNo,fleettabpage.fleetDetailsChangeVehUsdotTin());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fleetDetailsFltTypeLbl(),RowNo, fleettabpage.fleetDetailsFltType());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fleetDetailsCommodityClassLbl(), RowNo,fleettabpage.fleetDetailsCommodityClass());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fleetDetailsFltEffDateLbl(),RowNo,fleettabpage.fleetDetailsFltEffDatedtPicker());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fleetDetailsFltExpDateLbl(), RowNo,fleettabpage.fleetDetailsFltExpDate());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fleetDetailsChangeAddrOnUsdotLbl(),RowNo, fleettabpage.fleetDetailsChangeAddrOnUsdot());
 
-				excelutilWrite.setCellData("Fleet",fleettabpage.fleetDetailsFirstOperatedDateLbl(),RowNo,fleettabpage.fleetDetailsFirstOperatedDate());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fleetDetailsWyomingIndicatorLbl(), RowNo,fleettabpage.fleetDetailsWyomingIndicator());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fleetDetailsIFTADistanceLbl(),RowNo, fleettabpage.fleetDetailsIFTADistance());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fleetDetailsMobileNotificationLbl(), RowNo,fleettabpage.fleetDetailsMobileNotification());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fleetDetailsIRPRequirementsLbl(),RowNo, fleettabpage.fleetDetailsIRPRequirements());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fleetDetailsStatementOfUnderstandingLbl(), RowNo,fleettabpage.fleetDetailsStatementOfUnderstanding());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fleetDetailsInstallmentAgreementLbl(),RowNo,fleettabpage.fleetDetailsInstallmentAgreement());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fleetDetailsPowerOfAttorneyLbl(), RowNo,fleettabpage.fleetDetailsPowerOfAttorney());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fleetDetailsHVUTFormLbl(),RowNo, fleettabpage.fleetDetailsHVUTForm());
-				excelutilWrite.setCellData("Fleet",fleettabpage.fleetDetailsPropertyTaxLbl(), RowNo,fleettabpage.fleetDetailsPropertyTax());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fleetDetailsFirstOperatedDateLbl(),RowNo,fleettabpage.fleetDetailsFirstOperatedDate());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fleetDetailsWyomingIndicatorLbl(), RowNo,fleettabpage.fleetDetailsWyomingIndicator());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fleetDetailsIFTADistanceLbl(),RowNo, fleettabpage.fleetDetailsIFTADistance());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fleetDetailsMobileNotificationLbl(), RowNo,fleettabpage.fleetDetailsMobileNotification());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fleetDetailsIRPRequirementsLbl(),RowNo, fleettabpage.fleetDetailsIRPRequirements());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fleetDetailsStatementOfUnderstandingLbl(), RowNo,fleettabpage.fleetDetailsStatementOfUnderstanding());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fleetDetailsInstallmentAgreementLbl(),RowNo,fleettabpage.fleetDetailsInstallmentAgreement());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fleetDetailsPowerOfAttorneyLbl(), RowNo,fleettabpage.fleetDetailsPowerOfAttorney());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fleetDetailsHVUTFormLbl(),RowNo, fleettabpage.fleetDetailsHVUTForm());
+				excelutilWrite.setCellData(config.writeRwcExcel(),"Fleet",fleettabpage.fleetDetailsPropertyTaxLbl(), RowNo,fleettabpage.fleetDetailsPropertyTax());
 
 		fleettabpage.navigateToServiceProvider();
 
@@ -328,7 +328,6 @@ public class RWC_002 extends DriverFactory {
 	     		
 	     	eleutil.updateExcel("Distance_Juris", 1,i+j,Juris_values.get(i));  //0 0 13
 	     	j++; 
-	     	//System.out.print("j value is:"+j);
 	     	eleutil.updateExcel("Distance_Juris", 1,i+j,Distance_values.get(i)); //01 14
 	     	j++;
 	     	eleutil.updateExcel("Distance_Juris", 1,i+j,Percent_values.get(i)); //02 15
@@ -528,7 +527,6 @@ public class RWC_002 extends DriverFactory {
 		vehicleadd.Updatevehiclelistselectunit();
 		vehicleadd.CancelVehicle();
 		eleutil.handleAlert();
-		Thread.sleep(2000);
 		commonobjects.clickDonebtn();
 	}
 
@@ -720,7 +718,6 @@ public class RWC_002 extends DriverFactory {
 			vehicledocs.SelectPlateReturn(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(), "VehicleDocuments",2,3));
 		    commonobjects.clickProceed();
 			eleutil.CloseFirstChildWindow();  //To close PDF Window
-		    Thread.sleep(2000);
 			dashboardpage.clickIRPLink();
 		    financepage.clickinstallmentpayment();
 			financepage.clickandenterAccountNo(ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"PreSetup",2,0));
@@ -793,7 +790,6 @@ public class RWC_002 extends DriverFactory {
 			commonobjects.clickProceed();
 
 			eleutil.CloseFirstChildWindow();
-			Thread.sleep(1000);
 			ArrayList<String> Complete_InfoMsgs=commonobjects.validateinfomsgs();
 	    	for(int i=0;i<Complete_InfoMsgs.size();i++) {
 	    		ExcelReader.FetchDataFromSheet(ConfigReader.readRWCexcel(),"CompletionPage",2,i);

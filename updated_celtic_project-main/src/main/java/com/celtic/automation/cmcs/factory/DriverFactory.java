@@ -1,29 +1,20 @@
 package com.celtic.automation.cmcs.factory;
 
-import java.util.concurrent.TimeUnit;
-
+import java.time.Duration;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
-
-import com.celtic.automation.cmcs.util.Generic_Functions;
-
-import io.cucumber.java.AfterStep;
-import io.cucumber.java.Scenario;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class DriverFactory {
 
-	private WebDriver driver;
 
 	private static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<>();
 
 
 	public WebDriver initdriver(String browser) {
-
-		System.out.println("browser value is: " + browser);
 
 		if (browser.equals("chrome")) {
 			WebDriverManager.chromedriver().setup();
@@ -41,7 +32,7 @@ public class DriverFactory {
 		}
 
 		getDriver().manage().deleteAllCookies();
-		getDriver().manage().timeouts().implicitlyWait(2500, TimeUnit.MILLISECONDS);
+		getDriver().manage().timeouts().implicitlyWait(Duration.ofMillis(2500));
 		getDriver().manage().window().maximize();
 		return getDriver();
 

@@ -28,7 +28,7 @@ public class ConfigReader {
 		return prop;
 	}
 	
-	public   String readjson() throws IOException {
+	public   String readJson() throws IOException {
 		return init_prop().getProperty("readjson");
 	}
 	
@@ -40,10 +40,10 @@ public class ConfigReader {
 		return init_prop().getProperty("loginURL");
 	}
 	
-	public   String readuserid() throws IOException {
+	public   String readUserId() throws IOException {
 		return init_prop().getProperty("userid");
 	}
-	public   String readpswrd() throws IOException {
+	public   String readPswrd() throws IOException {
 		return init_prop().getProperty("pswrd");
 	}
 	public  String readTestSuiteDirectory() throws Exception {
@@ -127,10 +127,10 @@ public class ConfigReader {
 		}
 		}
 
-	public  String writeexcel() throws Exception {
+	public  String writeRwcExcel() throws Exception {
 		try
 		{
-			return init_prop().getProperty("writeExcel");
+			return init_prop().getProperty("writeRWCExcel");
 		}
 		catch (Exception e){
 			e.printStackTrace();
@@ -138,7 +138,17 @@ public class ConfigReader {
 		}
 		}
 	
-	public   String readRWCexcel() throws Exception {
+	public   String writeRinExcel() throws Exception {
+		try
+		{
+			return init_prop().getProperty("writeRINExcel");
+		}
+		catch (Exception e){
+			e.printStackTrace();
+		throw e;
+		}
+		}
+	public   String readRwcExcel() throws Exception {
 		try
 		{
 			return init_prop().getProperty("RWCexcel");
@@ -148,6 +158,7 @@ public class ConfigReader {
 		throw e;
 		}
 		}
+	
 	public  String readRINexcel() throws Exception {
 		try
 		{

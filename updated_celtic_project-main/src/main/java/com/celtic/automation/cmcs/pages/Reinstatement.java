@@ -115,7 +115,7 @@ public class Reinstatement {
 		}
 
 		public String distanceFRPMlgQuetion() {
-			return ElementUtil.FetchTextBoxValuewithattributedisabled(FRPMlgQuetionlbl,"value");
+			return ElementUtil.FetchTextBoxValuewithattributedisabled(FRPMlgQuetion,"value");
 			}
 		public String distanceDistanceTypelbl() {
 			return ElementUtil.FetchTextBoxValuewithText(DistanceTypelbl);

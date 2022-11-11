@@ -21,20 +21,14 @@ public class VehicleList {
 
 	public String fetchRequiredUnitNumber(String serviceType){
 		String unitNumberTextValue=null;
-		System.out.println("Total Rows size is"+VehicleList.size());
-		for(int i=1;i<=VehicleList.size();i++){
+		for(int i=1;i<VehicleList.size();i++){
 			WebElement rowvalues=driver.findElement(By.xpath("//table[@id='gvVehicleList']/tbody/tr["+i+"]/td[5]"));
-		//	for(int j=1;j<=rowvalues.size();j++) {
-				System.out.println("fetchRequiredUnitNumber"+ElementUtil.FetchTextBoxValuewithText(rowvalues));
 				String rowvalue=ElementUtil.FetchTextBoxValuewithText(rowvalues);
 				if(rowvalue.contains(serviceType)) {
-					//WebElement selectRow=driver.findElement(By.xpath("//table[@id='gvVehicleList']/tbody/tr["+i+"]/td[1]/a"));
 					WebElement unitNumber=driver.findElement(By.xpath("//table[@id='gvVehicleList']/tbody/tr["+i+"]/td[2]"));
-					System.out.println("Unit Number to cancel"+ElementUtil.FetchTextBoxValuewithText(unitNumber));
 					unitNumberTextValue=ElementUtil.FetchTextBoxValuewithText(unitNumber).trim();
-					//ElementUtil.clickElement(selectRow);
 				}
-			//}
+
 		}
 		return unitNumberTextValue;
 	}
