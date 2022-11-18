@@ -9,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import com.celtic.automation.cmcs.util.ElementUtil;
 
 public class FleetPage {
-	public WebDriver driver;
+	private WebDriver driver;
 	
 	@FindBy(xpath="//h3[@class='float-left']") WebElement fleetLeftHeader;  //Fleet
 	@FindBy(xpath="//h3[@class='float-right']") WebElement fleetRightHeader; //Renew Fleet

@@ -9,7 +9,7 @@ import com.celtic.automation.cmcs.util.ElementUtil;
 
 public class WgtGroupAdd {
 
-	public WebDriver driver;
+	private WebDriver driver;
 	public WgtGroupAdd(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);

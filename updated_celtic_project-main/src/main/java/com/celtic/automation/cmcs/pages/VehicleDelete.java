@@ -9,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import com.celtic.automation.cmcs.util.ElementUtil;
 
 public class VehicleDelete {
-	public WebDriver driver;
+	private WebDriver driver;
 	public VehicleDelete(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
@@ -59,7 +59,9 @@ public class VehicleDelete {
 	
 	@FindBy(xpath="//a[text()='Next']") WebElement nextLink;
 	@FindBy(xpath="//div[@id='DeleteVehicleGrid_info']") WebElement showInGentries;
-	
+	@FindBy(xpath="//a[text()='First']") WebElement firstLink;
+	@FindBy(xpath="//a[text()='Previous']") WebElement previousLink;
+	@FindBy(xpath="//a[text()='Last']") WebElement lastLink;
 	
 	
 	
@@ -70,7 +72,20 @@ public class VehicleDelete {
 	public void clickonSearch() {
 		ElementUtil.clickElement(deleteVehicleSearchBtn);
 	}
+	public void clickFirstLink() {
+		ElementUtil.clickElement(firstLink);
+	}
+	public void clickPreviousLink() {
+		ElementUtil.clickElement(previousLink);
+	}
+	public void clickLastLink() {
+		ElementUtil.clickElement(lastLink);
+	}
+	public void clickspecificpagenumberLink(int number) {
+		ElementUtil.clickElement(driver.findElement(By.xpath("//a[contains(text(),"+number+")]")));
+	}
 	//Fetch the Row Number based on the Unit Value
+	@SuppressWarnings("unused")
 	public  int selectRowinaTable(String unitValue) {
 		int i;
 		int j;

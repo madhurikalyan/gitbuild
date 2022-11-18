@@ -6,8 +6,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
@@ -18,12 +18,11 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 public class WriteExcelUtil {
 	private Map<String, Integer> columns =null;
-	
+	private static Logger log = Logger.getLogger(WriteExcelUtil.class);
 	public  void setCellData(String filepath,String sheetname, String columnName, int rownum,String value) throws IOException {
 		FileInputStream fis = null;
 		 
 		Cell cellC=null;;
-		ConfigReader config=new ConfigReader();
 		Workbook workbook = null;
 		Boolean bool = null;
 		Sheet newSheet;
@@ -96,7 +95,7 @@ public class WriteExcelUtil {
 			workbook.write(out); 
 		}
 		catch (Exception e) {
-			e.printStackTrace();
+			log.error("Error in WriteExcelUtil"+e);
 		}
 
 		finally {

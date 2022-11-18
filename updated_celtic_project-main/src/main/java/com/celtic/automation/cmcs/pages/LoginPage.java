@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import com.celtic.automation.cmcs.util.ElementUtil;
 
 public class LoginPage {
-	public WebDriver driver;
+	private WebDriver driver;
 	
 	@FindBy(xpath="//input[@id='UserName']") WebElement LoginUserId;  
 	@FindBy(xpath="//input[@id='Password']") WebElement LoginPassword;
@@ -18,7 +18,7 @@ public class LoginPage {
 		PageFactory.initElements(driver, this);
 	}
 
-	// 3. page actions: features(behavior) of the page the form of methods:
+
 
 	public String getLoginPageTitle() {
 		return driver.getTitle();
@@ -32,6 +32,5 @@ public class LoginPage {
 	}
 	public void clickLoginBtn() throws InterruptedException {
 		ElementUtil.clickElementUsingActions(LoginbtnLogin);
-		//ElementUtil.sleepTime(2000);
 	}
 }

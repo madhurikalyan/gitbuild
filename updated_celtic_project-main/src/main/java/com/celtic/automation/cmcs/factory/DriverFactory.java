@@ -9,13 +9,8 @@ import org.openqa.selenium.safari.SafariDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class DriverFactory {
-
-
 	private static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<>();
-
-
 	public WebDriver initdriver(String browser) {
-
 		if (browser.equals("chrome")) {
 			WebDriverManager.chromedriver().setup();
 			tlDriver.set(new ChromeDriver());
@@ -27,10 +22,8 @@ public class DriverFactory {
 			tlDriver.set(new EdgeDriver());
 		} else if (browser.equals("safari")) {
 			tlDriver.set(new SafariDriver());
-		} else {
-			System.out.println("Please pass the correct browser value: " + browser);
-		}
-
+		} 
+		 
 		getDriver().manage().deleteAllCookies();
 		getDriver().manage().timeouts().implicitlyWait(Duration.ofMillis(2500));
 		getDriver().manage().window().maximize();

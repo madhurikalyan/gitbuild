@@ -1,21 +1,14 @@
 package com.celtic.automation.cmcs.util;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.poi.ss.usermodel.Cell;
+import org.apache.log4j.Logger;
 import org.apache.poi.ss.usermodel.DateUtil;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -23,7 +16,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class ReadExcelUtil {
 
 	  XSSFWorkbook workbook = null;  
-	
+	  private static Logger log = Logger.getLogger(ElementUtil.class);
 	 public ReadExcelUtil(String xlFilePath)
 	    {
 		   FileInputStream fis = null;
@@ -32,9 +25,9 @@ public class ReadExcelUtil {
 	        fis = new FileInputStream(xlFilePath);
 	        workbook = new XSSFWorkbook(fis);
 	    	} catch (FileNotFoundException e) {
-				e.printStackTrace();
+	    		log.error("Error in ReadExcelUtil"+e);
 			} catch (IOException e) {
-				e.printStackTrace();
+				log.error("Error in ReadExcelUtil"+e);
 			}
 	    	finally {
 				try {
@@ -42,7 +35,7 @@ public class ReadExcelUtil {
 					workbook.close(); }
 					fis.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					log.error("Error in ReadExcelUtil"+e);
 				}	}
 	    }
 	    @SuppressWarnings("incomplete-switch")
@@ -83,7 +76,7 @@ public class ReadExcelUtil {
 	        }
 		}
 		catch (Exception e) {
-			e.printStackTrace();
+			log.error("Error in ReadExcelUtil"+e);
 		}
 			 return cellvalue;
 			

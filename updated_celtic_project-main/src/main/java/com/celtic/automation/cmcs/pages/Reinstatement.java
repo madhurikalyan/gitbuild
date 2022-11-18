@@ -8,21 +8,11 @@ import org.openqa.selenium.support.PageFactory;
 import com.celtic.automation.cmcs.util.ElementUtil;
 
 public class Reinstatement {
-	public WebDriver driver;
+	private WebDriver driver;
 	public Reinstatement(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
-/*	@FindBy(xpath="//span[text()='Account No.']") WebElement AccountNumberlbl;
-	@FindBy(xpath="//input[@id='AccountNo']") WebElement AccountNumber;
-	@FindBy(xpath="//span[text()='Fleet No.']") WebElement FleetNumberlbl;
-	@FindBy(xpath="//input[@id='FleetNo']") WebElement FleetNumber;
-	@FindBy(xpath="//span[text()='Fleet No.']") WebElement FleetNumberlbl;
-	@FindBy(xpath="//input[@id='SupplementNo']") WebElement SupplementNo;
-	@FindBy(xpath="//span[text()='Fleet No.']") WebElement FleetNumberlbl;
-	@FindBy(xpath="//input[@id='RegistrantName']") WebElement RegistrantName;
-	@FindBy(xpath="//span[text()='Fleet No.']") WebElement FleetNumberlbl;
-	@FindBy(xpath="//input[@id='DBAName']") WebElement DBAName;*/
 
 	@FindBy(xpath="//span[text()='Reporting Period From']") WebElement ReportingPeriodFromlbl;
 	@FindBy(xpath="//input[@id='ReportingPeriodFrom']") WebElement ReportingPeriodFrom;

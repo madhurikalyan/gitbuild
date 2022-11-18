@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import com.celtic.automation.cmcs.util.ElementUtil;
 
 public class DashBoardPage {
-	public WebDriver driver;
+	private WebDriver driver;
 	
 	@FindBy(xpath="//a[@title='Services']") WebElement dashboardServicesLink;
 	@FindBy(xpath="//a[@title='IRP']") WebElement dashboardIRPLink;

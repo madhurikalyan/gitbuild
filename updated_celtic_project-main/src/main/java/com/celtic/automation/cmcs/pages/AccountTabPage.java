@@ -9,7 +9,7 @@ import com.celtic.automation.cmcs.util.ElementUtil;
 
 
 public class AccountTabPage {
-	public WebDriver driver;
+	private WebDriver driver;
 	public AccountTabPage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);

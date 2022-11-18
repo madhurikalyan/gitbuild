@@ -11,7 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 import com.celtic.automation.cmcs.util.ElementUtil;
 
 public class Payment {
-	public WebDriver driver;
+	private WebDriver driver;
 	public Payment(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
@@ -154,7 +154,6 @@ public void enterpaymentNoBasedonType(int i,String excelPassedValue,String payme
 }
 
 public void enterPaymentAmountBasedonType(int i,String excelpassedValue,String paymentAmountValue) {
-	WebElement Payment_PaymentType=driver.findElement(By.xpath("//select[contains(@id,'PayType') and contains(@id,'"+i+"')]"));
 	WebElement Payment_PaymentAmount=driver.findElement(By.xpath("//input[contains(@id,'paymentVos') and contains(@id,'PaymentAmount') and contains(@id,'"+i+"')]"));
 	if(excelpassedValue.equalsIgnoreCase("Cash")) {
 		ElementUtil.webEditTxt(Payment_PaymentAmount, paymentAmountValue);

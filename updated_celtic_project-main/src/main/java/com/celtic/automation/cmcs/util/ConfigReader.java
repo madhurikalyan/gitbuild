@@ -3,243 +3,278 @@ package com.celtic.automation.cmcs.util;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
 import java.util.Properties;
+import org.apache.log4j.Logger;
 
 public class ConfigReader {
 
 	public static String URL;
 	public  Properties prop;
+	private Logger log = Logger.getLogger(ConfigReader.class);
+	HashMap<String,String> hs= new HashMap<String,String>();
+	String fileName="./src/test/resources/config/config.properties";
 
-
-	public  Properties init_prop() throws IOException {
+	public  Properties initprop() throws IOException {
 		prop = new Properties();
 		FileInputStream ip = null ;
 		try {
-		ip	= new FileInputStream("./src/test/resources/config/config.properties");
+			ip	= new FileInputStream(fileName);
 			prop.load(ip);
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			log.error("Error in init_prop"+e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			log.error("Error in init_prop"+e);
 		}
 		finally {
 			ip.close();
 		}
 		return prop;
 	}
-	
+/*	public  String readJsonF() throws IOException {
+		InputStream is =null;
+		try {
+			try {
+				 is =Thread.currentThread().getContextClassLoader().getResourceAsStream(fileName);
+				prop.load(is);
+			} 
+			catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return prop.getProperty("readjson");
+		}
+		catch (Exception e){
+			e.printStackTrace();
+			throw e;
+		}
+		finally {
+			is.close();
+		}
+	}*/
+	public void readproperty() throws IOException {
+		prop=initprop();
+	}
 	public   String readJson() throws IOException {
-		return init_prop().getProperty("readjson");
+		return prop.getProperty("readjson");
 	}
-	
+
 	public   String readBrowser() throws IOException {
-		return init_prop().getProperty("browser");
+		try
+		{
+			return initprop().getProperty("browser");
+		}
+		catch (Exception e){
+			log.error("Error in init_prop"+e);
+			throw e;
+		}
 	}
-	
+
 	public   String readLoginURL() throws IOException {
-		return init_prop().getProperty("loginURL");
+		return initprop().getProperty("loginURL");
 	}
-	
+
 	public   String readUserId() throws IOException {
-		return init_prop().getProperty("userid");
+		return prop.getProperty("userid");
 	}
 	public   String readPswrd() throws IOException {
-		return init_prop().getProperty("pswrd");
+		return prop.getProperty("pswrd");
 	}
 	public  String readTestSuiteDirectory() throws Exception {
-	try{
-		return init_prop().getProperty("testSuiteDirectory");         
-	}
-	catch (Exception e){
-		e.printStackTrace();
-	throw e;
-	}
+		try{
+			return initprop().getProperty("testSuiteDirectory");         
+		}
+		catch (Exception e){
+			log.error("Error in init_prop"+e);
+			throw e;
+		}
 	}
 	public  String readLoginEmpId() throws Exception {
 		try
 		{
-			return init_prop().getProperty("LoginEmpId");
+			return initprop().getProperty("LoginEmpId");
 		}
 		catch (Exception e){
-			e.printStackTrace();
-		throw e;
+			log.error("Error in init_prop"+e);
+			throw e;
 		}
-		}
+	}
 	public  String readAmendVehicleCondition() throws Exception {
 		try
 		{
-			return init_prop().getProperty("AmendVehicleCondition");
+			return initprop().getProperty("AmendVehicleCondition");
 		}
 		catch (Exception e){
-			e.printStackTrace();
-		throw e;
+			log.error("Error in init_prop"+e);
+			throw e;
 		}
-		}
+	}
 	public  String readDeleteVehicleCondition() throws Exception {
 		try
 		{
-			return init_prop().getProperty("DeleteVehicleCondition");
+			return initprop().getProperty("DeleteVehicleCondition");
 		}
 		catch (Exception e){
-			e.printStackTrace();
-		throw e;
+			log.error("Error in init_prop"+e);
+			throw e;
 		}
-		}
+	}
 	public  String getApplicationName() throws Exception {
 		try
 		{
-			return init_prop().getProperty("ApplicationName");
+			return initprop().getProperty("ApplicationName");
 		}
 		catch (Exception e){
-			e.printStackTrace();
-		throw e;
+			log.error("Error in init_prop"+e);
+			throw e;
 		}
-		}
+	}
 	public   String readJdbcDriver() throws Exception {
 		try
 		{
-			return init_prop().getProperty("ApplicationName");
+			return initprop().getProperty("ApplicationName");
 		}
 		catch (Exception e){
-			e.printStackTrace();
-		throw e;
+			log.error("Error in init_prop"+e);
+			throw e;
 		}
-		}
+	}
 	public  String getOS() throws Exception {
 		try
 		{
-			return init_prop().getProperty("OS");
+			return initprop().getProperty("OS");
 		}
 		catch (Exception e){
-			e.printStackTrace();
-		throw e;
+			log.error("Error in init_prop"+e);
+			throw e;
 		}
-		}
+	}
 
 	public  String getEnvironment() throws Exception {
 		try
 		{
-			return init_prop().getProperty("Environment");
+			return initprop().getProperty("Environment");
 		}
 		catch (Exception e){
-			e.printStackTrace();
-		throw e;
+			log.error("Error in init_prop"+e);
+			throw e;
 		}
-		}
+	}
 
 	public  String writeRwcExcel() throws Exception {
 		try
 		{
-			return init_prop().getProperty("writeRWCExcel");
+			return initprop().getProperty("writeRWCExcel");
 		}
 		catch (Exception e){
-			e.printStackTrace();
-		throw e;
+			log.error("Error in init_prop"+e);
+			throw e;
 		}
-		}
-	
+	}
+
 	public   String writeRinExcel() throws Exception {
 		try
 		{
-			return init_prop().getProperty("writeRINExcel");
+			return initprop().getProperty("writeRINExcel");
 		}
 		catch (Exception e){
-			e.printStackTrace();
-		throw e;
+			log.error("Error in init_prop"+e);
+			throw e;
 		}
-		}
+	}
 	public   String readRwcExcel() throws Exception {
 		try
 		{
-			return init_prop().getProperty("RWCexcel");
+			return initprop().getProperty("RWCexcel");
 		}
 		catch (Exception e){
-			e.printStackTrace();
-		throw e;
+			log.error("Error in init_prop"+e);
+			throw e;
 		}
-		}
-	
+	}
+
 	public  String readRINexcel() throws Exception {
 		try
 		{
-			return init_prop().getProperty("RINexcel");
+			return initprop().getProperty("RINexcel");
 		}
 		catch (Exception e){
-			e.printStackTrace();
-		throw e;
+			log.error("Error in init_prop"+e);
+			throw e;
 		}
-		}
-	
+	}
+
 	public  String readLoginInternalUser() throws Exception {
 		try
 		{
-			return init_prop().getProperty("LoginInternalUser");
+			return initprop().getProperty("LoginInternalUser");
 		}
 		catch (Exception e){
-			e.printStackTrace();
-		throw e;
+			log.error("Error in init_prop"+e);
+			throw e;
 		}
-		}
-	
+	}
+
 	public  String readLoginServiceProvider1() throws Exception {
 		try
 		{
-			return init_prop().getProperty("LoginServiceProvider1");
+			return initprop().getProperty("LoginServiceProvider1");
 		}
 		catch (Exception e){
-			e.printStackTrace();
-		throw e;
+			log.error("Error in init_prop"+e);
+			throw e;
 		}
-		}
+	}
 	public  String readLoginServiceProvider2() throws Exception {
 		try
 		{
-			return init_prop().getProperty("LoginServiceProvider2");
+			return initprop().getProperty("LoginServiceProvider2");
 		}
 		catch (Exception e){
-			e.printStackTrace();
-		throw e;
+			log.error("Error in init_prop"+e);
+			throw e;
 		}
-		}
+	}
 	public  String readLoginExternaluser1() throws Exception {
 		try
 		{
-			return init_prop().getProperty("LoginExternaluser1");
+			return initprop().getProperty("LoginExternaluser1");
 		}
 		catch (Exception e){
-			e.printStackTrace();
-		throw e;
+			log.error("Error in init_prop"+e);
+			throw e;
 		}
-		}
+	}
 	public  String readLoginExternaluser2() throws Exception {
 		try
 		{
-			return init_prop().getProperty("LoginExternaluser2");
+			return initprop().getProperty("LoginExternaluser2");
 		}
 		catch (Exception e){
-			e.printStackTrace();
-		throw e;
+			log.error("Error in init_prop"+e);
+			throw e;
 		}
-		}
+	}
 	public  String readPassedScreenshotFile() throws Exception {
 		try
 		{
-			return init_prop().getProperty("ScreenshotPass");
+			return initprop().getProperty("ScreenshotPass");
 		}
 		catch (Exception e){
-			e.printStackTrace();
-		throw e;
+			log.error("Error in init_prop"+e);
+			throw e;
 		}
-		}
+	}
 	public  String readDownloadFolder() throws Exception {
 		try
 		{
-			return init_prop().getProperty("DownloadFolder");
+			return initprop().getProperty("DownloadFolder");
 		}
 		catch (Exception e){
-			e.printStackTrace();
-		throw e;
+			log.error("Error in init_prop"+e);
+			throw e;
 		}
-		}
-
 	}
+
+}

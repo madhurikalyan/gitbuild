@@ -11,7 +11,7 @@ import org.testng.Assert;
 import com.celtic.automation.cmcs.util.ElementUtil;
 
 public class PaymentTab {
-	public WebDriver driver;
+	private WebDriver driver;
 	public PaymentTab(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);

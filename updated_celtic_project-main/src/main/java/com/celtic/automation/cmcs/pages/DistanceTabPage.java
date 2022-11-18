@@ -10,7 +10,7 @@ import com.celtic.automation.cmcs.util.ElementUtil;
 
 public class DistanceTabPage {
 
-	public WebDriver driver;
+	private WebDriver driver;
 	public DistanceTabPage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);

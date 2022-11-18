@@ -10,12 +10,11 @@ import org.openqa.selenium.support.PageFactory;
 import com.celtic.automation.cmcs.util.ElementUtil;
 
 public class BillingTab {
-	public WebDriver driver;
+	private WebDriver driver;
 	public BillingTab(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
-
 	@FindBy(css="#contentMsg > div > ul > li > span") WebElement billingValidationMessage;
 	@FindBy(css="#contentMsg > div > ul > li:nth-child(1) > span") WebElement billingValidationMessage2;
 	@FindBy(css="#contentMsg > div > ul > li:nth-child(2) > span") WebElement billingValidationMessage3;
@@ -227,7 +226,6 @@ public class BillingTab {
 	public void  clickFeeOverrideReasonclearComments() {
 		ElementUtil.clickElement(billingFeeOverrideReasonClearCommentBtn);
 	}
-
 	public void validateBillingtab(String textmsg) {
 		Boolean a=billingBillingTab.getText().contains(textmsg);
 		if(a==true) {
@@ -454,8 +452,8 @@ public class BillingTab {
 	public String fetchBilling_InvoiceReportType() {
 		return ElementUtil.FetchDropdownSelectedValue(billingInvoiceReportTypedd);
 	}
+	@SuppressWarnings("unused")
 	public void selectWaiveOff(String FeeTypeExcel, String FeeWaiveExcel) {
-		boolean Amountbool=false;
 		for(int i=0;i<Billing_FeeType.size();i++) {
 			if(ElementUtil.FetchTextBoxValuewithattributedisabled(Billing_FeeType.get(i),"value").trim().equalsIgnoreCase(FeeTypeExcel));{
 				ElementUtil.selectFromDropdownByVisibleText(WaiveList.get(i), FeeWaiveExcel);

@@ -11,7 +11,7 @@ import com.celtic.automation.cmcs.util.ElementUtil;
 
 public class Financepage {
 	
-	public WebDriver driver;
+	private  WebDriver driver;
 
 	public Financepage(WebDriver driver) {
 		this.driver = driver;

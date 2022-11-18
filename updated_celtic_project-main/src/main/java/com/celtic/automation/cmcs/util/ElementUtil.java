@@ -29,6 +29,7 @@ import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -45,6 +46,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
 import org.apache.commons.io.FileUtils;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -72,7 +74,7 @@ public class ElementUtil {
 	public static WebDriverWait wait;
 	public static String mainWindow;
 	ConfigReader config=new ConfigReader();
-
+	private static Logger log = Logger.getLogger(ElementUtil.class);
 	
 	public static ElementUtil getInstance(){
 		if(elementUtil==null){
@@ -90,23 +92,11 @@ public  void sleepTime(long milliseconds) {
 	try {
 		Thread.sleep(milliseconds);
 	} catch (InterruptedException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+		log.error("Error in ElementUtil"+e);
 	}
 }
 
-/*public static  String readPdfContent(String url) throws IOException {
-	
-	URL pdfUrl = new URL(url);
-	InputStream in = pdfUrl.openStream();
-	BufferedInputStream bf = new BufferedInputStream(in);
-	PDDocument doc = PDDocument.load(bf);
-	int numberOfPages = getPageCount(doc);
-	String content = new PDFTextStripper().getText(doc);
-	doc.close();
 
-return content;
-}*/
 	/*
 	 * @description : Read the data from JSON File & return JSONObject
 	 * @param  : NA
@@ -122,7 +112,7 @@ return content;
 			jsonObject = (JSONObject)obj;
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error("Error in ElementUtil"+e);
 		}
 		return jsonObject;
 	}
@@ -167,31 +157,10 @@ return content;
 			File finalDestination = new File(destination);
 			FileUtils.copyFile(source, finalDestination);
 		}
-		// Full page screenshot
-		/*{
-//destination = ConfigReader.readLogsDirectory()+"\\FailedTestsScreenshots\\"+screenshotName+dateName+".png";
-destination = System.getProperty("user.dir") + "/TestResults/FailedTestsScreenshots/"+screenshotName+dateName+".png";
-Screenshot fpScreenshot = new AShot().shootingStrategy(ShootingStrategies.viewportPasting(1000)).takeScreenshot(driver);
-ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
-}*/
+	
 
 		return destination;
 	}
-	private static void until(WebDriver webDriver, Duration timeOutInSeconds, Function<WebDriver, Boolean> waitCondition) {
-        WebDriverWait webDriverWait = new WebDriverWait(webDriver, timeOutInSeconds);
-        try {
-            webDriverWait.until(waitCondition);
-        } catch (Exception e) {
-        	e.printStackTrace();
-        }
-    }
-	 public static void untilAjaxCallIsDone(WebDriver webDriver, Duration timeOutInSeconds) {
-	        until(webDriver, timeOutInSeconds, (function) -> {
-	            Boolean isJqueryCallDone = (Boolean) ((JavascriptExecutor) webDriver).executeScript("return jQuery.active==0");
-	            if (!isJqueryCallDone) System.out.println("jQuery call is in progress");
-	            return isJqueryCallDone;
-	        });
-	    }
 	/*
 	 * @description : adds the input value to current date
 	 * @param  : no of days to be added
@@ -393,7 +362,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 	 * @return : NA
 	 * @author : 
 	 */
-	public static void clickElementIgnoreStaleElementReferenceException(WebElement webElement) throws Exception {
+	public static  void clickElementIgnoreStaleElementReferenceException(WebElement webElement) throws Exception {
 		int attempts = 0;
 		while (attempts < 2) {
 			try {
@@ -403,7 +372,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 				break;
 			}
 			catch (StaleElementReferenceException e) {
-				e.printStackTrace();
+				log.error("Error in ElementUtil"+e);
 			}
 			attempts++;
 		}
@@ -414,11 +383,11 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 	 * @return : NA
 	 * @author : 
 	 */
-	public static void refreshWebpage() {
+	public  void refreshWebpage() {
 		try {
 			driver.navigate().refresh();
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Error in ElementUtil"+e);
 			throw e;
 		}
 	}
@@ -691,7 +660,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 			robot.keyRelease(KeyEvent.VK_ENTER);
 			sleepTime(500);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Error in ElementUtil"+e);
 			throw e;
 		}
 	}
@@ -809,7 +778,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 		}
 		catch (AWTException e)
 		{
-			e.printStackTrace();
+			log.error("Error in ElementUtil"+e);
 		}
 
 	}
@@ -835,7 +804,7 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 		}
 		catch (AWTException e)
 		{
-			e.printStackTrace();
+			log.error("Error in ElementUtil"+e);
 		}
 
 	}
@@ -1440,20 +1409,35 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 
 			ResultSet rs = null;
 			Connection con = null;
+			Statement st=null;
 			try {
 				// String jdbcUrl = "jdbc:mysql://localhost:3306/BORAJI";
 				Class.forName(config.readJdbcDriver());
 				 con = DriverManager.getConnection(applicationInstance,username,password);
-				Statement st = con.createStatement();
+				 st = con.createStatement();
 				//"INSERT INTO EMPLOYEE (ID,FIRST_NAME,LAST_NAME,STAT_CD) "+ "VALUES (1,'Lokesh','Gupta',5)" --For Insertion
 				//"SELECT ID,FIRST_NAME,LAST_NAME,STAT_CD FROM EMPLOYEE WHERE ID <= 10" --For Select Query
 				rs = st.executeQuery(query);
 			
-			} catch (Exception e) {
+			} catch (SQLException e) {
 				throw e;
 			}
 			finally {
-				con.close();
+				 if (rs != null) {
+				        try {
+				            rs.close();
+				        } catch (SQLException e) { /* Ignored */}
+				    }
+				    if (st != null) {
+				        try {
+				        	st.close();
+				        } catch (SQLException e) { /* Ignored */}
+				    }
+				    if (con != null) {
+				        try {
+				        	con.close();
+				        } catch (SQLException e) { /* Ignored */}
+				    }
 			}
 			return rs;
 			}
@@ -1466,17 +1450,28 @@ ImageIO.write(fpScreenshot.getImage(),"PNG",new File(destination));
 		 */
 		public  void executeUpdateQuery(String query, String applicationInstance, String username, String password) throws Exception {
 			Connection con = null;
+			Statement st=null;
 			try {
 				Class.forName(config.readJdbcDriver());
 				 con=DriverManager.getConnection(applicationInstance,username,password);
-				Statement st = con.createStatement();
+				 st = con.createStatement();
 				//DELETE FROM EMPLOYEE WHERE ID >= 1  --For Deletion
 				st.executeUpdate(query);
-				} catch (Exception e) {
+				} 
+			catch (SQLException e) {
 				throw e;
 			}
 			finally {
-				con.close();
+			    if (st != null) {
+			        try {
+			        	st.close();
+			        } catch (SQLException e) { /* Ignored */}
+			    }
+			    if (con != null) {
+			        try {
+			        	con.close();
+			        } catch (SQLException e) { /* Ignored */}
+			    }
 			}
 		}
 

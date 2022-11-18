@@ -10,7 +10,7 @@ import com.celtic.automation.cmcs.util.ElementUtil;
 public class InstallmentPage {
 
 	
-	public WebDriver driver;
+	private WebDriver driver;
 	public InstallmentPage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);

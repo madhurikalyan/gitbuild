@@ -10,7 +10,8 @@ import org.openqa.selenium.support.PageFactory;
 import com.celtic.automation.cmcs.util.ElementUtil;
 
 public class CommonObjects {
-	public WebDriver driver;
+	
+	private  WebDriver driver;
 	public CommonObjects(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);

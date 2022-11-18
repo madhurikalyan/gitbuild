@@ -9,8 +9,8 @@ import org.openqa.selenium.support.PageFactory;
 import com.celtic.automation.cmcs.util.ElementUtil;
 
 public class VehicleDocuments {
-	
-	public WebDriver driver;
+
+	private WebDriver driver;
 
 	public VehicleDocuments(WebDriver driver) {
 		this.driver = driver;
@@ -31,8 +31,6 @@ public class VehicleDocuments {
 	public void clickVehicleDocuments() throws InterruptedException {
 		ElementUtil.highlightElement(driver, dashboardVehicleDocuments);
 		ElementUtil.clickElementUsingActions(dashboardVehicleDocuments);
-	//	ElementUtil.clickElement(dashboardVehicleDocuments);
-		//ElementUtil.sleepTime(2000);
 	}	
 	public void selectHVUT(String HVUTValue) {
 		ElementUtil.waitUntilElementsVisible(vehicleHVUTFormdd);

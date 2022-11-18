@@ -11,7 +11,7 @@ import com.celtic.automation.cmcs.util.ElementUtil;
 
 
 public class Enquiry {
-	public WebDriver driver;
+	private WebDriver driver;
 	public Enquiry(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
@@ -33,6 +33,7 @@ public class Enquiry {
 @FindBy(xpath="//table[@id='gvVinTransInquiryGrid']") WebElement vehicleSupplementEnquiryGrid;
 //Fleet Enquiry
 
+@SuppressWarnings("unused")
 public void fleetenquiryvaluevalidation(String valueCheck) {
 	if(ElementUtil.isPresentAndDisplayed(fleetEnquiryGrid)) {
 		for(int i=0;i<fleetEnquiryRowValues.size();i++) {
@@ -47,6 +48,7 @@ public void fleetenquiryvaluevalidation(String valueCheck) {
 public void entersupplementEnquiryAccountNo(String accountNoValue) throws IOException {
 	ElementUtil.webEditTxtChange(supplementEnquiryAccountNo,accountNoValue);
 }
+@SuppressWarnings("unused")
 public void SupplementEnquiryvaluevalidation(String valueCheck) {
 	if(ElementUtil.isPresentAndDisplayed(supplementEnquiryGrid)) {
 		for(int i=0;i<fleetEnquiryRowValues.size();i++) {

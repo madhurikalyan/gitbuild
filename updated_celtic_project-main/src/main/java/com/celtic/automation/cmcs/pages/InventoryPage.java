@@ -8,7 +8,7 @@ import com.celtic.automation.cmcs.util.ElementUtil;
 
 public class InventoryPage {
 
-	public WebDriver driver;
+	private WebDriver driver;
 	public InventoryPage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);

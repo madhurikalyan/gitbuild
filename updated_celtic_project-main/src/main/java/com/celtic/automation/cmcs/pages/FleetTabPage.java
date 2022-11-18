@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import com.celtic.automation.cmcs.util.ElementUtil;
 
 public class FleetTabPage {
-	public WebDriver driver;
+	private WebDriver driver;
 	public FleetTabPage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
